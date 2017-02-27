@@ -1,0 +1,291 @@
+@mixin components\profile-plus\integrated-profile-cta {
+
+  .lia-integrated-profile-klout-connect-footer {
+    clear: both;
+    border-top: 1px solid $li-border-color;
+  }
+
+  .lia-wide-widget.connection-cta,
+  .lia-slim-widget.connection-cta,
+  .lia-panel-profile-plus-my-interests-cta,
+  .lia-profileplus-personalize-connect .lia-panel {
+    box-shadow: 0px 2px 5px $gray;
+    margin: $padding-xl-vertical;
+  }
+
+  .lia-wide-widget.connection-cta,
+  .lia-slim-widget.connection-cta,
+  .lia-panel-profile-plus-my-interests-cta,
+  .lia-personalize-connect-widget.connection-cta {
+
+    .lia-panel-content {
+      padding: 0;
+    }
+
+    .lia-panel .lia-panel-heading-bar {
+      border-bottom: none;
+      border-radius: 0;
+      border-top: $li-integrated-profile-cta-border-top-height solid $li-brand-call-to-action;
+      padding-top: $li-integrated-profile-padding + $padding-large-vertical;
+      
+      @include media(phone) {
+        padding: $li-integrated-profile-padding 0px;
+      }
+    }
+
+    .lia-panel-close-button {
+      margin-top: $padding-large-vertical;
+    }
+
+    .lia-panel-header,
+    .lia-integrated-profile-klout-connect-content {
+      margin: auto;
+      max-width: 630px; //max-width of 600px for content plus a 15px padding;
+      padding: 0px $li-integrated-profile-padding;
+    }
+
+    .lia-panel-header {
+      font-size: $li-integrated-profile-heading-font-size;
+      font-weight: normal;
+    }
+
+    .lia-integrated-profile-klout-connect-graphic {
+      color: $li-cta-icon-background-color;
+      float: left;
+      font-size: $li-integrated-profile-icon-font-size;
+      width: 35%;
+
+      @include media(phone) {
+        display: block;
+        float: none;
+        width: auto;
+      }
+    }
+
+    .lia-integrated-profile-klout-connect-description {
+      float: left;
+      width: 65%;
+      font-size: $font-size-h4;
+      padding-top: $padding-xl-vertical;
+
+      @include media(phone) {
+        display: block;
+        float: none;
+        width: auto;
+      }
+    }
+
+    .lia-integrated-profile-connect-text-description {
+      float: left;
+      font-size: $font-size-h4;
+      padding-top: 0;
+      width: 70%;
+
+      @include media(tablet) {
+        float: none;
+      }
+
+      @include media(phone) {
+        float: none;
+      }
+    }
+
+    .lia-integrated-profile-klout-connect-actions {
+      clear: both;
+    }
+
+    .lia-integrated-profile-klout-connect-icon {
+      background: $li-integrated-profile-bg;
+      border: $padding-small-vertical solid $li-cta-icon-background-color;
+      border-left: $padding-small-vertical solid $li-cta-icon-background-color-light;
+      border-radius: 50%;
+      border-top: $padding-small-vertical solid $li-cta-icon-background-color-light;
+      display: inline-block;
+      height: $li-integrated-profile-fa-icon-size-xl;
+      text-align: center;
+      width: $li-integrated-profile-fa-icon-size-xl;
+      -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+
+    .lia-integrated-profile-fineprint {
+      color: #acaeb9;
+      font-size: 11px;
+      font-style: italic;
+      text-align: right;
+    }
+
+    .lia-integrated-profile-fineprint-slim {
+      text-align: center;
+    }
+
+    .lia-integrated-profile-fineprint-wide {
+      padding-right: 8px;
+    }
+
+    .lia-integrated-profile-fineprint-slim,
+    .lia-integrated-profile-fineprint-wide {
+      clear: both;
+      padding-bottom: 11px;
+    }
+
+    .lia-fa-user {
+      background: $li-cta-icon-background-color;
+      border-radius: 50%;
+      color: $li-integrated-profile-bg;
+      height: $li-integrated-profile-fa-icon-size-large;
+      margin: $padding-large-vertical;
+      padding: $li-integrated-profile-padding;
+      width: $li-integrated-profile-fa-icon-size-large;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .lia-integrated-profile-klout-poweredby-icon {
+      background-image: svg-url($li-svg-profile-plus-klout-icon);
+      background-position: center;
+      background-repeat: no-repeat;
+      display: inline-block;
+      float: right;
+      height: $li-integrated-profile-fa-icon-size-large / 2;
+      margin-right: $padding-small-horizontal;
+      width: $li-integrated-profile-fa-icon-size-large;
+    }
+
+    .lia-integrated-profile-connect-text-list {
+      list-style: disc;
+      margin-bottom: 0;
+      padding-left: $li-integrated-profile-padding;
+
+      li {
+        font-size: $font-size-large;
+        padding-top: $padding-large-vertical;
+      }
+    }
+
+    .lia-integrated-profile-cta-personalize-description {
+      display: block;
+      font-size: $font-size-h4;
+      margin-bottom: $padding-xl-vertical;
+    }
+
+    .lia-integrated-profile-cta-personalize-graphic-wrapper {
+      margin: $li-integrated-profile-padding 0px;
+      overflow: auto;
+    }
+
+    .lia-integrated-profile-cta-personalize-icon {
+      display: block;
+      float: left;
+      width: 15%;
+
+      @media(max-width: $screen-xs) {
+        width: 20%;
+      }
+
+      .lia-fa {
+        background: $li-cta-icon-background-color-light;
+        border-radius: 50%;
+        color: $li-integrated-profile-bg;
+        font-size: $font-size-h2;
+        height: $li-integrated-profile-fa-icon-size-medium;
+        padding: $padding-large-vertical;
+        text-align: center;
+        width: $li-integrated-profile-fa-icon-size-medium;
+      }
+    }
+
+    .lia-integrated-profile-cta-graphic-bar-wrapper {
+      display: block;
+      float: left;
+      width: 85%;
+
+      @media(max-width: $screen-xs) {
+        width: 80%;
+      }
+    }
+
+    .lia-integrated-profile-cta-graphic-bar-100,
+    .lia-integrated-profile-cta-graphic-bar-75 {
+      background-color: $li-cta-icon-background-color-light;
+      display: block;
+      height: $padding-large-vertical;
+      margin-top: $padding-small-vertical;
+      overflow: hidden;
+    }
+
+    .lia-integrated-profile-cta-graphic-bar-75 {
+      width: 75%;
+    }
+
+    .lia-integrated-profile-cta-graphic-bar-100 {
+      width: 100%;
+    }
+  }
+
+  .lia-panel-profile-plus-my-interests-cta {
+
+    .lia-integrated-profile-klout-connect-actions {
+
+      @include media(tablet) {
+        margin-top: 0;
+        text-align: right;
+      }
+    }
+  }
+
+  .lia-panel-profileplus-my-interests, .lia-panel-profileplus-social-network-connections {
+
+    &.lia-panel-heading-bar-no-whitelisted-topics {
+
+      .lia-panel-heading-bar {
+        border-top: 3px solid $li-brand-call-to-action;
+        border-bottom: none;
+        border-radius: 0;
+      }
+    }
+
+    .lia-panel-title-no-whitelisted-topics {
+      font-size: $li-integrated-profile-heading-font-size;
+      font-weight: normal;
+      margin: auto;
+      max-width: 630px;
+      padding-top: 25px;
+    }
+  }
+
+  .lia-panel-profileplus.lia-profileplus-personalize-connect {
+    .lia-panel .lia-panel-heading-bar {
+      padding: 0;
+    }
+
+    .lia-integrated-profile-klout-connect-wrapper {
+      padding: $li-integrated-profile-top-bottom-padding $li-integrated-profile-left-right-padding;
+      color: $text-muted;
+
+      h2 {
+        padding-top: $li-integrated-profile-top-bottom-footer-padding;
+      }
+
+      .lia-integrated-profile-klout-connect-button {
+        text-align: right;
+        @include media(tablet) {
+          padding-top: $li-integrated-profile-mobile-padding;
+        }
+      }
+
+      @include media(phone) {
+        padding: $li-integrated-profile-mobile-padding;
+      }
+    }
+
+    .lia-integrated-profile-klout-connect-footer {
+      padding: $li-integrated-profile-top-bottom-footer-padding $li-integrated-profile-left-right-padding;
+      @include media(phone) {
+        padding: $li-integrated-profile-top-bottom-footer-padding $li-integrated-profile-mobile-padding;
+      }
+    }
+  }
+}

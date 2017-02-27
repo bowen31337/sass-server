@@ -1,0 +1,113 @@
+// Toast Message
+//
+// A toast message is absoloutely positioned and can be placed in any corner of the screen:
+// `lia-toast-position-top-left`, `lia-toast-position-top-right`, `lia-toast-position-bottom-right`, or `lia-toast-position-bottom-left`.
+// A toast message looks like this:
+//
+// Markup:
+// <div class="lia-toast-item"
+//      style="height: 25px"> Mmmm, toasty! </div>
+//
+// Style guide: codebook.toast-message
+
+@mixin codebook\toast-message {
+
+  .lia-toast-container {
+    position: absolute;
+    width: 300px;
+    z-index: 9999;
+  }
+
+  .lia-toast-item {
+    background: $gray-dark;
+    border-radius: 3px;
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, .25);
+    color: $gray-lighter;
+    height: auto;
+    margin-bottom: 15px;
+    opacity: .85;
+    overflow: hidden;
+    padding-left: 10px;
+    table-layout: fixed;
+    width: 300px;
+  }
+
+  .lia-toast-item:hover {
+    opacity: .7;
+  }
+
+  .lia-toast-item-text {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    overflow: hidden;
+    padding-left: 10px;
+  }
+
+  .lia-toast-item-centered-text {
+    font-size: $font-size-base;
+    overflow: hidden;
+    padding-left: 10px;
+    text-align: center;
+  }
+
+  .lia-toast-item-close-wrapper {
+    position: relative;
+    vertical-align: top;
+    width: 10px;
+  }
+
+  .lia-toast-item-close {
+    cursor: pointer;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: top;
+  }
+
+  .lia-toast-item-close:hover {
+    color: pink;
+  }
+
+  .lia-toast-item-image-wrapper {
+    height: 50px;
+    padding: 10px 0;
+    width: 50px;
+  }
+
+  .lia-toast-item-image {
+    @include circle($li-avatar-size-small);
+  }
+
+  .lia-toast-position-top-left {
+    left: 20px;
+    position: fixed;
+    top: 20px;
+  }
+
+  .lia-toast-position-top-right {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+  }
+
+  .lia-toast-position-bottom-left {
+    bottom: 10px;
+    left: 40px;
+    margin-right: -350px;
+    margin-top: -120px;
+    position: fixed;
+    right: auto;
+    top: auto;
+  }
+
+  .lia-toast-position-bottom-right {
+    bottom: 10px;
+    left: auto;
+    margin-left: -350px;
+    margin-top: -120px;
+    position: fixed;
+    right: 40px;
+    top: auto;
+  }
+}

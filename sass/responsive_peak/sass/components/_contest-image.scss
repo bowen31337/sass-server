@@ -1,0 +1,12 @@
+// Contest Image
+//
+// Increase `max-width` on images for Gallery and Entry pages to `100%`.
+//
+// Style guide: components.contest-image
+
+@mixin components\contest-image {
+
+  .lia-media-preview > img {
+    max-width: 100%;
+  }
+}

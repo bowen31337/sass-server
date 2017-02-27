@@ -1,0 +1,97 @@
+$discussion-page-header_solution-link-height: 40px;
+
+@mixin components\discussion-page-header {
+
+  // article, root message or question title in header
+  .lia-discussion-page-header-subject,
+  .lia-qanda-question-page-subject,
+  .lia-thread-subject {
+    @extend %title-font;
+    display: inline-block;
+
+    @include media(tablet) {
+      display: block;
+    }
+  }
+
+  .lia-discussion-page-header-row,
+  .lia-qanda-question-page-question-header {
+    background-color: $li-bg-secondary;
+//    border-bottom: 1px solid $li-border-color;
+    padding: {
+      bottom: $grid-gutter-width * 1.5;
+      left: $padding-xl-horizontal;
+      right: $padding-xl-horizontal;
+      top: $grid-gutter-width;
+    }
+
+    .lia-img-message-type-solved {
+      display: none;
+    }
+
+    //.lia-component-quilt-header + &,
+    //.lia-search-form-wrapper + & {
+      // search next to the topic header shouldn't have a divider between them
+      // take up large overlapping space
+      // TODO: better selector for combo headers to target instead of -margins
+      //margin-top: -$padding-xl-vertical;
+    //}
+  }
+
+  .lia-quilt-qanda-question-page,
+  .lia-quilt-blog-article-page,
+  .lia-quilt-forum-topic-page {
+    .lia-component-common-widget-page-feedback {
+      margin-bottom: $padding-xl-vertical;
+    }
+  }
+
+  // inline solved or accepted solution icon and text
+  .lia-page-header {
+    .lia-qanda-question-page-solution-link,
+    .lia-thread-solved {
+      @include li-icon($fa-var-check-square-o, $color: $brand-success,
+          $size: $font-size-h3, $line-height: $line-height-base);
+
+      color: $brand-success;
+      font-size: $font-size-h3;
+      padding-left: $padding-xs-horizontal;
+
+      @include media(tablet) {
+        display: block;
+        margin-left: 0;
+      }
+
+      @include media(phone) {
+        font-size: $font-size-large;
+        padding-bottom: $padding-medium; // related to _page-header.scss:46
+
+        &:before {
+          font-size: $font-size-large;
+        }
+      }
+
+      // there's a space in .lia-thread-solved, but not in the qanda solution
+      &.lia-thread-solved {
+        &:before {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  // go to solution link on right (not to be confused with the accepted solution
+  // link inline with the subject)
+  .lia-forum-topic-page-solution-link {
+    @include li-icon($fa-var-arrow-down, $color: inherit);
+
+    color: $li-navigation-link-color;
+    float: right;
+    line-height: $discussion-page-header_solution-link-height;
+    white-space: nowrap;
+
+    @include media(phone) {
+      padding-right: $panel-body-padding;
+    }
+  }
+}

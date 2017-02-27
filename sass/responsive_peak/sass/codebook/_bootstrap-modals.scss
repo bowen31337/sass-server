@@ -1,0 +1,138 @@
+// UI Bootstrap
+//
+// Modals
+// https://angular-ui.github.io/bootstrap/#/modal
+// --------------------------------------------------
+// .modal-open      - body class for killing the scroll
+// .modal           - container to scroll within
+// .modal-dialog    - positioning shell for the actual modal
+// .modal-content   - actual modal w/ bg and corners and shit
+//
+// JS: Make sure to set these classes for the modal to work properly
+// $uibModal.open({
+//   templateUrl: 'template.html',
+//   size: 'lg',
+//   windowClass: 'lia-ui-modal',
+//   openedClass: 'lia-ui-modal-open',
+//   backdropClass: 'lia-ui-modal-backdrop'
+// });
+//
+// Markup:
+// <div class="lia-ui-modal-header">
+//    <h3 class="modal-title">I'm a modal!</h3>
+// </div>
+// <div class="lia-ui-modal-body">
+//    <p>modal body</p>
+// </div>
+// <div class="lia-ui-modal-footer">
+//    <button class="lia-btn lia-btn-primary" type="button">OK</button>
+//    <button class="lia-btn lia-btn-warning" type="button">Cancel</button>
+// </div>
+//
+// Style guide: codebook.bootstrap-modals
+
+
+@mixin codebook\bootstrap-modals {
+
+  .lia-ui-modal-open {
+    @include li-extend('.modal-open');
+  }
+
+  // Container that the modal scrolls within
+  .lia-ui-modal {
+    @include li-extend('.modal');
+  }
+
+  .lia-ui-modal-open .lia-ui-modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  // Shell div to position the modal with bottom padding
+  .lia-ui-modal .modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+  }
+
+  // Actual modal
+  .lia-ui-modal .modal-dialog .modal-content {
+    position: relative;
+    background-color: $modal-content-bg;
+    border: 1px solid $modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
+    border: 1px solid $modal-content-border-color;
+    border-radius: $border-radius-base;
+    @include box-shadow(0 3px 9px rgba(0,0,0,.5));
+    background-clip: padding-box;
+    // Remove focus outline from opened modal
+    outline: 0;
+  }
+
+  // Modal background
+  .lia-ui-modal-open .lia-ui-modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $zindex-modal-background;
+    background-color: $modal-backdrop-bg;
+    // Fade for backdrop
+    &.fade { @include opacity(0); }
+    &.in { @include opacity($modal-backdrop-opacity); }
+  }
+
+  // Modal header
+  // Top section of the modal w/ title and dismiss
+  .lia-ui-modal-header {
+    @include li-extend('.modal-header');
+  }
+  // Close icon
+  .lia-ui-modal-header .close {
+    margin-top: -2px;
+  }
+
+  // Title text within header
+  .lia-ui-modal-title {
+    @include li-extend('.modal-title');
+  }
+
+  // Modal body
+  // Where all modal content resides (sibling of .modal-header and .modal-footer)
+  .lia-ui-modal-body {
+    @include li-extend('.modal-body');
+  }
+
+  // Footer (for actions)
+  .lia-ui-modal-footer {
+    @include li-extend('.modal-footer');
+  }
+
+  // Measure scrollbar width for padding body during modal show/hide
+  .lia-ui-modal .modal-scrollbar-measure {
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+    height: 50px;
+    overflow: scroll;
+  }
+
+  // Scale up the modal
+  @media (min-width: $screen-sm-min) {
+    // Automatically set modal's width for larger viewports
+    .lia-ui-modal .modal-dialog {
+      width: $modal-md;
+      margin: 30px auto;
+    }
+    .lia-ui-modal .modal-content {
+      @include box-shadow(0 5px 15px rgba(0,0,0,.5));
+    }
+
+    // Modal sizes
+    .lia-ui-modal .modal-sm { width: $modal-sm; }
+  }
+
+  @media (min-width: $screen-md-min) {
+    .lia-ui-modal .modal-lg { width: $modal-lg; }
+  }
+}

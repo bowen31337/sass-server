@@ -1,0 +1,203 @@
+// Media Uploader: Main Content: Saved Photos Tab
+//
+// This section allows the user to access photos already uploaded to
+// their various albums. This is the only tab/section with a header.
+//
+// `.lia-media-saved-photos` - wrapper around the entire saved photos area.
+//
+// Style guide: components.media-uploader-tab-saved-photos
+
+$media-uploader-tab-saved-photos_album-image-wrapper:                 200px !default;
+$media-uploader-tab-saved-photos_album-tile-cover-photo-bar-height:   3px !default;
+$media-uploader-tab-saved-photos_album-tile-border-width:             3px !default;
+
+@mixin components\media-uploader-tab-saved-photos {
+
+  @include media(phone) {
+    .lia-media-album-image-wrapper {
+      display: inline-block;
+    }
+
+    .lia-media-saved-photos-albums,
+    .lia-media-saved-photos-album-images {
+      text-align: center;
+    }
+
+    .lia-list-tile > li.lia-media-saved-photos-album,
+    .lia-list-tile > li.lia-media-saved-photos-album-image-block {
+      display: inline-block;
+      float: none;
+    }
+  }
+
+  .lia-form-vertical .lia-media-saved-photos-empty .lia-button-group .lia-button-wrapper {
+    float: none;
+    padding: 0;
+  }
+
+  // Album Tile Cover Photo
+  .lia-media-album-tile:hover {
+    cursor: pointer;
+  }
+
+  .lia-media-album-tile .lia-media-album-tile-bar {
+    background-color: $text-color;
+    height: $media-uploader-tab-saved-photos_album-tile-cover-photo-bar-height;
+    margin: auto auto $padding-small-vertical;
+
+    &:nth-child(2) {
+      width: 80%;
+    }
+
+    &:nth-child(3) {
+      width: 70%;
+    }
+  }
+
+  .lia-media-album-tile-cover-photo-image {
+    @include centered-vertical(relative);
+  }
+
+  .lia-media-saved-photos-albums {
+    margin: $li-uploader-padding-vertical $li-uploader-padding-vertical 0;
+  }
+
+  .lia-media-saved-photos {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .lia-list-tile > li {
+    &.lia-media-saved-photos-album,
+    &.lia-media-saved-photos-album-image-block {
+      margin: 0 $li-uploader-padding-vertical $li-uploader-padding-vertical 0;
+      text-align: center;
+    }
+  }
+
+  .lia-media-saved-photos-album-images {
+    padding: $li-uploader-padding-vertical;
+  }
+
+  .lia-media-album-image-wrapper {
+    border: $media-uploader-tab-saved-photos_album-tile-border-width solid $text-color;
+    height: $media-uploader-tab-saved-photos_album-image-wrapper + ($media-uploader-tab-saved-photos_album-tile-border-width * 2);
+    margin-bottom: $padding-small-vertical;
+    width: $media-uploader-tab-saved-photos_album-image-wrapper + ($media-uploader-tab-saved-photos_album-tile-border-width * 2);
+  }
+
+  .lia-media-saved-photos-album-image-block {
+    height: $media-uploader-tab-saved-photos_album-image-wrapper;
+    margin: 0 $li-uploader-padding-vertical $li-uploader-padding-vertical 0;
+    padding: 0;
+    position: relative;
+    width: $media-uploader-tab-saved-photos_album-image-wrapper;
+
+    &:hover {
+      cursor: pointer;
+      outline: $link-hover-color 3px solid;
+
+      .lia-media-saved-photos-album-image-icon {
+        background-color: $body-bg;
+        color: lighten($link-hover-color, 50%);
+        visibility: visible;
+      }
+    }
+  }
+
+  .lia-media-saved-photos-album-image-icon {
+    border-radius: .5em;
+    font-size: $li-uploader-2x-icon - 5;
+    height: 1em;
+    left: $li-uploader-padding-vertical;
+    position: absolute;
+    text-align: center;
+    top: $li-uploader-padding-vertical;
+    visibility: hidden;
+    width: 1em;
+    z-index: 100;
+  }
+
+  .lia-media-saved-photos-album-page {
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+  }
+
+  .lia-media-saved-photos-album-title {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: $media-uploader-tab-saved-photos_album-image-wrapper + ($media-uploader-tab-saved-photos_album-tile-border-width * 2);
+    word-wrap: normal; // IE10 hack!
+  }
+
+  .lia-media-saved-photos-breadcrumb {
+    color: $link-hover-color;
+  }
+
+  .lia-media-saved-photos-header {
+    background-color: $body-bg;
+    padding: {
+      bottom: $padding-xs-horizontal;
+      left: $li-uploader-padding-vertical;
+      right: 0;
+      top: $padding-xs-horizontal;
+    }
+  }
+
+  .lia-media-saved-photos-empty {
+    @include centered-vertical(relative);
+    font-family: $font-family-sans-serif;
+    font-size: $font-size-h4;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+
+    .lia-button {
+      margin: $padding-large-vertical auto 0;
+    }
+  }
+
+  .lia-media-saved-photos-image {
+    @include centered-vertical(relative);
+  }
+
+  .lia-media-saved-photos-album-image-block.lia-media-saved-photos-image-selected {
+    outline: $link-hover-color 3px solid;
+
+    .lia-media-saved-photos-album-image-icon {
+      background-color: $body-bg;
+      color: $link-hover-color;
+      visibility: visible;
+    }
+  }
+
+  .lia-media-saved-photos-selecting,
+  .lia-media-saved-photos-formatting {
+    display: inline-block;
+    height: calc(100% - #{$li-uploader-padding-vertical + $padding-small-vertical});
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+  }
+
+  .lia-saved-photos-selecting-opacity {
+    color: $text-color;
+    opacity: .5;
+  }
+
+  .lia-media-saved-photos-formatting {
+    padding: $padding-large-vertical $padding-large-horizontal;
+  }
+
+  .lia-show-more {
+    text-align: center;
+  }
+
+  .lia-show-more-loading {
+    font-size: $font-size-h2 * 2;
+  }
+}

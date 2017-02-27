@@ -1,0 +1,124 @@
+// Utilities
+//
+// Generic peak utilities. For now, only includes `lia-dot-separator`, as seen below.
+//
+// Markup:
+// <span class="lia-dot-separator"></span>
+// <span> foo </span>
+// <span class="lia-dot-separator"></span>
+// <span> bar </span>
+// <span class="lia-dot-separator"></span>
+//
+// Style guide: codebook.utilities
+
+
+@mixin codebook\utilities {
+
+  .clearfix {
+    @include clearfix;
+  }
+
+  // scss-lint:disable ImportantRule
+  // hide helper
+  .hidden,
+  .hide,
+  .lia-button-hidden,
+  .lia-button-wrapper-hidden,
+  .lia-hidden,
+  .lia-js-hidden {
+    display: none !important;
+
+    &[style="display: block;"] {
+      display: block !important;
+    }
+  }
+
+  // components hidden by default, but without a hidden class
+  .lia-attachment-upload-error-many {
+    display: none !important;
+  }
+  // scss-lint:enable ImportantRule
+
+  .lia-button-active {
+    @include li-extend('.active');
+  }
+
+  .lia-form-type-file-hidden {
+    visibility: hidden;
+  }
+
+  .lia-link-disabled {
+    @include li-extend('.disabled');
+  }
+
+  .lia-no-select {
+    @include user-select(none);
+  }
+
+  // scss-lint:disable ImportantRule
+  .lia-not-ready {
+    visibility: hidden !important;
+  }
+  // scss-lint:enable ImportantRule
+
+  // Used to reset styles on lia-content when lia-content is used on
+  // elements not inside the primary lia-content. We use important to
+  // prevent stronger selectors from customers attempting to style the
+  // primary lia-content.
+  // scss-lint:disable ImportantRule
+  .lia-content-reset {
+    background: transparent none !important;
+    border: 0 !important;
+    clear: none !important;
+    float: none !important;
+    height: auto !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    width: auto !important;
+    z-index: 9999;
+  }
+  // scss-lint:enable ImportantRule
+
+  .lia-bull-spacer {
+    margin: 0 $padding-small-horizontal;
+  }
+
+  %prevent-overflow {
+    white-space: normal;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+
+  // responsive utilities
+  // similar to bootstrap's _responsive-utilities but without !important and using lia conventions
+  .lia-hidden-phone {
+    @include media(phone) {
+      display: none;
+    }
+  }
+
+  .lia-hidden-tablet {
+    @include media(tablet) {
+      display: none;
+    }
+  }
+
+  .lia-hidden-desktop {
+    @include media(desktop) {
+      display: none;
+    }
+  }
+
+  %lia-dot-separator,
+  .lia-dot-separator {
+    @include separator($color: $li-separator-color, $location: before);
+
+    &:before {
+      line-height: $line-height-computed;
+      vertical-align: top;
+    }
+  }
+}

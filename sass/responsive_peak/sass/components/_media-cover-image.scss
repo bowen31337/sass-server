@@ -1,0 +1,57 @@
+@mixin components\media-cover-image {
+
+  $cover-image-size: 150px;
+  $cover-image-padding: 45px;
+
+  .lia-media-add-cover-image {
+    border: 1px solid $li-border-color;
+    color: $brand-primary;
+    cursor: pointer;
+    display: inline-block;
+    height: $cover-image-size;
+    margin-bottom: $form-group-margin-bottom;
+    padding: $cover-image-padding;
+    text-align: center;
+    width: $cover-image-size;
+  }
+
+  .lia-media-addition-sign {
+    display: block;
+    font-size: $font-size-h1;
+    line-height: 1em;
+  }
+
+  .lia-media-cover-image-title {
+    display: block;
+    font-size: $font-size-large;
+  }
+
+  .lia-form-cover-image-input .lia-image-container-editor.lia-image-container-editor {
+    align-items: center;
+    border: 1px solid $li-border-color;
+    padding: $padding-small-vertical;
+    display: flex;
+    height: $cover-image-size;
+    justify-content: center;
+    width: $cover-image-size;
+  }
+
+  .lia-form-cover-image-input .lia-media-image-upload-display .lia-image-container-editor .lia-image-edit-icon {
+    opacity: .8;
+  }
+
+  .lia-form-cover-image-input .lia-image-display {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  .lia-media-uploader-cover {
+    .lia-media-uploader-body-tab-content {
+      @include li-extend('.col-xs-24');
+    }
+
+    .lia-media-uploader-header-tabs-column {
+      @include li-extend('.col-xs-18');
+    }
+  }
+}

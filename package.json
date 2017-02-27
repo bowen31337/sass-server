@@ -1,0 +1,34 @@
+{
+	"name": "sassWebpack2",
+	"version": "1.0.0",
+	"description": "SASS Wepback2 Server",
+	"main": "index.js",
+	"author": "Bowen Li",
+	"license": "MIT",
+	"devDependencies": {
+		"autoprefixer": "^6.7.5",
+		"babel-core": "^6.21.0",
+		"babel-preset-es2015": "^6.18.0",
+		"css-loader": "^0.26.1",
+		"extract-text-webpack-plugin": "^2.0.0",
+		"file-loader": "^0.10.1",
+		"local-web-server": "^1.2.6",
+		"node-sass": "^3.0.0",
+		"nodemon": "^1.11.0",
+		"npm-run-all": "^4.0.2",
+		"postcss-loader": "^1.3.2",
+		"resolve-url-loader": "^2.0.0",
+		"sass-loader": "^6.0.2",
+		"style-loader": "^0.13.2",
+		"url-loader": "^0.5.8",
+		"webpack": "^2.2.1",
+		"webpack-dev-server": "2.2.0-rc.0"
+	},
+	"scripts": {
+		"server": "webpack-dev-server",
+		"build-css": "node-sass --include-path sass sass/skin.scss css/main.css --source-map true",
+		"watch-sass": "nodemon -e scss -x \"npm run build-css\"",
+		"static-server": "ws",
+		"sass-server": "npm-run-all --parallel static-server watch-sass"
+	}
+}

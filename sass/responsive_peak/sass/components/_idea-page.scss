@@ -1,0 +1,205 @@
+@mixin components\idea-page {
+
+  .lia-component-idea-navigator {
+    margin-top: 0;
+  }
+
+  .lia-component-forums-widget-comment-message-view {
+    .lia-message-body {
+      margin-bottom: $padding-xl-vertical;
+    }
+
+    .lia-quilt-row-footer {
+      display: none;
+    }
+  }
+
+  // Hack, mikey fix me plx!
+  .lia-idea-page-status-change {
+    margin-bottom: $padding-large-vertical * 2;
+    margin-top: -$padding-large-vertical;
+  }
+
+  .lia-component-status-change-form {
+    background-color: $li-panel-secondary-bg;
+    border: 1px solid $li-border-color;
+    border-radius: $panel-border-radius;
+    margin-bottom: $panel-body-padding;
+    padding: {
+      bottom: 0;
+      left: $panel-body-padding;
+      right: $panel-body-padding;
+      top: $panel-body-padding;
+    }
+
+    legend {
+      display: none;
+    }
+
+    > .lia-form-fieldset-wrapper {
+
+      @include media(tablet) {
+        padding-left: 0;
+      }
+    }
+  }
+
+  // TODO: replace checkbox with toggle
+  .lia-form-use-comment-entry {
+    display: none;
+  }
+
+  .lia-message-view-idea-message.lia-message-view-idea-message,
+  .lia-idea.EditPage .lia-component-ideas-widget-idea-message-view {
+    margin-bottom: 3px;
+    padding-top: 0;
+    position: relative;
+
+    @include media(tablet) {
+      padding-bottom: 0;
+      padding-top: $padding-base-vertical;
+    }
+
+    .label {
+      @extend %label-alt;
+      @extend %label-xs;
+    }
+
+    &.lia-thread-topic {
+      margin-bottom: $padding-xl-vertical;
+
+      + .lia-component-status-change-form {
+        margin-top: -$padding-xl-vertical + 3px;
+      }
+    }
+
+    .article-labels-title {
+      @extend %content-font;
+      display: block;
+      margin-bottom: $padding-base-vertical;
+    }
+
+    .LabelsForArticle {
+      margin-top: 0;
+
+      .label-link {
+        @extend %prevent-overflow;
+
+        float: left;
+      }
+    }
+
+    .lia-button-image-kudos-wrapper {
+      left: 0;
+      position: absolute;
+
+      @include media(tablet) {
+        margin-left: -$panel-body-padding;
+        margin-top: -$panel-body-padding;
+        padding-bottom: $padding-large-vertical;
+        position: relative;
+      }
+    }
+
+    .lia-message-actions {
+      margin-bottom: $padding-base-vertical;
+
+      .lia-message-comment-post {
+        margin-left: $padding-small-horizontal;
+      }
+    }
+
+    .lia-message-body-content {
+      margin-bottom: $padding-xl-vertical;
+      overflow: auto;
+    }
+
+    .lia-message-byline {
+      display: inline-block;
+    }
+
+    .lia-byline-wrapper {
+      .lia-status,
+      .lia-message-byline {
+        &:after {
+          @include media(phone) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .lia-message-byline,
+    .lia-message-status-info .lia-component-common-widget-date,
+    .lia-message-comment-action {
+      @include media(phone) {
+        display: block;
+
+        &.lia-message-comment-action {
+          display: none;
+        }
+      }
+    }
+
+    .lia-quilt-column-main-left-content {
+      padding-left: $li-kudos-horizontal-md-width;
+      padding-right: $panel-body-padding * 4;
+      padding-top: $panel-body-padding;
+
+      @include media(tablet) {
+        border-bottom: 1px solid $li-border-color;
+        padding: $panel-body-padding;
+      }
+    }
+
+    .lia-quilt-column-main-right-content {
+      margin-top: $panel-body-padding
+          + $line-height-computed + $padding-base-vertical
+          + round($font-size-small * $line-height-base) + $padding-large-vertical;
+
+      @include media(tablet) {
+        margin-top: $padding-base-vertical;
+        padding: $panel-body-padding;
+      }
+    }
+
+    .AddMessageTags,
+    .LabelsForArticle,
+    .TagList {
+      @include media(desktop) {
+        margin-right: $padding-small-horizontal;
+      }
+    }
+
+    .TagList {
+      .lia-view-all {
+        position: relative;
+
+        .lia-link-navigation {
+          font: inherit;
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .lia-tag {
+      @extend %prevent-overflow;
+    }
+
+    .lia-message-body-wrapper {
+      margin-top: $padding-base-vertical;
+    }
+  }
+
+  .lia-primary-rating-type-idea-ratings  .lia-message-view-display {
+    .lia-component-kudos-widget-button {
+      display: none;
+    }
+    .lia-quilt-column-main-left-content {
+      padding-left: $panel-body-padding;
+    }
+  }
+}

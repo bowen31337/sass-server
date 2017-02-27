@@ -1,0 +1,102 @@
+// placeholders
+%hero-icons {
+  display: inline-block;
+  height: $li-icon-size;
+  opacity: $li-disabled-opacity;
+  vertical-align: middle;
+  width: $li-icon-size;
+  display: block;
+
+  @include media(tablet) {
+    height: $li-icon-size-sm;
+  }
+}
+
+// using a mixin as the css is identical except for direction
+// use-bg for background image icons (currently browse and sign-in), false for avatar
+@mixin hero-links-container($side: left) {
+  $other-side: right;
+
+  @if ($side == right) {
+    $other-side: left;
+    float: right;
+  }
+
+  margin-#{$side}: floor($padding-base-horizontal * 2.5);
+  margin-top: floor(($li-icon-size - $line-height-computed) / 2);
+
+  @include media(tablet) {
+    #{$other-side}: 20%;
+    position: absolute;
+  }
+}
+
+// using a mixin as the css is identical except for direction
+@mixin hero-links($side: left, $is-bg: true) {
+  $other-side: right;
+
+  @if ($side == right) {
+    $other-side: left;
+
+    text-align: right;
+  }
+
+  @include transition(opacity ease-in-out .1s);
+
+  color: $li-hero-color;
+  display: block;
+  opacity: $li-disabled-opacity;
+  position: relative;
+
+  @include media(tablet) {
+    font-size: $font-size-base - 1;
+    text-align: center;
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  @if ($is-bg) {
+    &:before {
+      @extend %hero-icons;
+
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      content: '';
+
+    }
+  }
+}
+
+@mixin interaction-icon($size: $li-icon-size-lg) {
+  border-radius: 50%;
+  height: $size;
+  text-align: center;
+  width: $size;
+
+  &:before {
+    background-size: floor($size / 2);
+    color: $li-icon-inverse-color;
+    font-size: floor($size / 2);
+    line-height: $size;
+  }
+
+  @if ($size == $li-icon-size-lg) {
+    @include media(tablet) {
+      height: $li-icon-size;
+      width: $li-icon-size;
+
+      // actual icon image
+      &:before {
+        background-size: floor($li-icon-size / 2);
+        font-size: floor($li-icon-size / 2);
+        line-height: $li-icon-size;
+      }
+    }
+  }
+}

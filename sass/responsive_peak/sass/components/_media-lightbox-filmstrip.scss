@@ -1,0 +1,139 @@
+// Media Lightbox: Filmstrip
+//
+// The filmstrip is a horizontal display of images. It shows where the
+// imageis in context as well as the previous and next images if
+// applicable. It uses Bootstrap media queries to define breakpoints.
+//
+// * Large: Filmstrip displays 7 or fewer images
+// * Medium: Filstrip displays 5 or fewer images
+// * Small: Filmstrip displays 3 or fewer images
+// * Extra-small: Filmstrip does not display
+//
+// The filmstrip only appears on the desktop lightbox component
+// (min-width: $screen-sm-min or >786px). It does not appear in the
+// mobile view (max-width: $screen-xs-max or <786px)
+//
+// `.lia-filmstrip-wrapper` - A wrapper for the filmstrip.
+// It's displayed as a table and centered using margin auto.
+//
+// `.lia-filmstrip-navigation` - A class that wraps both thhe left and right filmstrip
+// navigation icons. Classes added on to this one will determine which way the filmstrip should go.
+//
+// `.lia-filmstrip-prev` - A class added on to specify that the icon it is displaying is the correct icon for 'previous'.
+//
+// `.lia-filmstrip-right` -  A class added on to specify that the icon it is displaying is the correct icon for 'next'.
+//
+// Style guide: components.media-lightbox-filmstrip
+
+$media-lightbox-filmstrip_icon-disabled-opacity: .5 !default;
+$media-lightbox-filmstrip_thumbnail-size:        100px !default;
+
+
+@mixin components\media-lightbox-filmstrip {
+
+  @include media(tablet-and-larger) {
+    .lia-community-filmstrip {
+      height: 100%;
+      position: relative;
+      width: 100%;
+    }
+
+    .lia-filmstrip-wrapper {
+      display: table;
+      height: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .lia-filmstrip-img-wrapper {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .lia-filmstrip-img {
+      box-sizing: border-box;
+      display: inline-block;
+      height: $media-lightbox-filmstrip_thumbnail-size;
+      margin: auto $padding-xs-horizontal;
+      padding: $padding-xs-vertical;
+      width: $media-lightbox-filmstrip_thumbnail-size;
+
+      .lia-filmstrip-thumbnail {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        width: 100%;
+      }
+
+      &.lia-filmstrip-img-selected {
+        border: 3px solid $link-color;
+
+        .lia-filmstrip-thumbnail {
+          opacity: .2;
+        }
+      }
+    }
+
+    .lia-filmstrip-navigation {
+      height: 30%;
+      position: absolute;
+      top: 35%;
+      z-index: 10;
+
+      &.lia-filmstrip-prev {
+        border-bottom-left-radius: $border-radius-base;
+        border-top-left-radius: $border-radius-base;
+        left: -$padding-base-horizontal;
+        padding: $padding-base-vertical;
+      }
+
+      .lia-filmstrip-prev-icon {
+        @include li-icon-button(icon-nav-previous-horizontal);
+        height: $li-lightbox-icon-size-large;
+        opacity: $media-lightbox-filmstrip_icon-disabled-opacity;
+        vertical-align: middle;
+
+        &.li-filmstrip-highlight {
+          opacity: 1;
+        }
+      }
+
+      &.lia-filmstrip-next {
+        border-bottom-right-radius: $border-radius-base;
+        border-top-right-radius: $border-radius-base;
+        padding: $padding-base-vertical;
+        right: -$padding-base-horizontal;
+      }
+
+      .lia-filmstrip-next-icon {
+        @include li-icon-button(icon-nav-next-horizontal);
+        height: $li-lightbox-icon-size-large;
+        opacity: $media-lightbox-filmstrip_icon-disabled-opacity;
+        vertical-align: middle;
+
+        &.lia-filmstrip-highlight {
+          opacity: 1;
+        }
+      }
+    }
+
+    span.lia-filmstrip-nav-icon {
+      cursor: pointer;
+      display: inline-block;
+      opacity: .8;
+      position: relative;
+      top: 5%;
+
+      &.lia-filmstrip-next-image-icon {
+        right: -($padding-small-vertical);
+      }
+
+      &.lia-filmstrip-prev-image-icon {
+        left: -($padding-small-vertical);
+      }
+    }
+  }
+}

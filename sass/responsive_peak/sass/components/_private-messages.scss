@@ -1,0 +1,558 @@
+$private-messages_content-max-width: $screen-md !default;
+
+@mixin components\private-messages {
+
+  // send to menu on the compose panel is nested more than other inputs
+  .lia-form-to-users-entry {
+    .lia-form-input-wrapper {
+      > .lia-quilt-column-24 {
+        padding: 0;
+      }
+    }
+  }
+
+  .PrivateNotesPage {
+    .lia-message-actions-secondary {
+      float: left;
+      margin-top: $padding-large-vertical;
+    }
+
+    .lia-message-heading {
+      @include clearfix;
+    }
+  }
+
+  .BulkNote {
+
+    // "to" section of form
+    > .lia-form-inline {
+      border-bottom: 1px solid $li-border-color;
+      margin-left: -$panel-body-padding;
+      margin-right: -$panel-body-padding;
+      padding-left: $panel-body-padding;
+      padding-right: $panel-body-padding;
+
+      .lia-form-footer {
+        display: block;
+        margin-bottom: $panel-body-padding + $padding-base-vertical;
+        text-align: right;
+      }
+
+      .lia-form-row {
+        margin-bottom: $panel-body-padding;
+      }
+
+      // "to" input used to be inline-block
+      > .lia-input-edit-form-row {
+        display: block;
+
+        .lia-token-input-list {
+          display: block;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .user-counts {
+      float: left;
+    }
+  }
+
+  .NoteUserSelection {
+    margin-top: $panel-body-padding;
+
+    // for both forms remove left column spacer and make the right button column full width
+    .lia-form-buttons-empty-left-column {
+      > .lia-quilt-column-left {
+        display: none;
+      }
+
+      > .lia-quilt-column-right {
+        @include make-xs-column(24);
+      }
+    }
+
+    .lia-button-primary {
+      @include lia-button-secondary;
+    }
+
+    .lia-button-wrapper-Reset-action {
+      display: none;
+    }
+  }
+
+  .PrivateNotesPage {
+    .lia-menu-bar {
+      margin-bottom: $padding-xl-vertical;
+      margin-top: $padding-xl-vertical;
+    }
+
+    .lia-menu-bar-top {
+      margin-top: $padding-large-vertical;
+      min-height: $input-height-base; // keep the menu bar height for the count text
+
+      @include media(phone) {
+        display: none;
+      }
+    }
+
+    // suppress margin for from _grid for single column pages
+    .lia-top-quilt > .lia-quilt-row-main {
+      background-color: $li-bg-secondary;
+
+      > .lia-quilt-column > .lia-quilt-column-alley {
+        margin: 0 auto;
+        max-width: $private-messages_content-max-width; // note: should this be a new var
+      }
+    }
+  }
+
+  //
+  // common to all private messages (lists, search and single full)
+  //
+
+  .lia-note-view-display {
+    background-color: $li-bg-secondary;
+    padding: $panel-body-padding;
+  }
+
+  .lia-note-header {
+    margin-bottom: $padding-base-vertical;
+
+    .lia-user-avatar {
+      display: inline-block;
+      line-height: 0;
+      padding-right: $padding-xs-horizontal;
+      vertical-align: top;
+    }
+
+    .lia-user-rank-icon {
+      vertical-align: baseline;
+    }
+
+    .lia-note-date {
+      color: $text-color;
+      display: inline-block;
+      padding-left: $padding-xs-horizontal;
+    }
+
+    .lia-note-sent-date {
+      @include separator($color: $li-separator-color, $location: before);
+
+      &:before {
+        vertical-align: top;
+      }
+    }
+  }
+
+  .lia-note-source-inbox,
+  .lia-notes-tab-inbox {
+    // using the contextual byline only for the outbox
+    .lia-note-byline {
+      display: none;
+    }
+  }
+
+  .lia-note-source-outbox,
+  .lia-notes-tab-outbox {
+    // hiding avatar and name as they're the author's (ie yourself)
+    .lia-note-header {
+      > .lia-user-avatar,
+      > .lia-user-name {
+        display: none;
+
+        // there is a situation where the class for NoteView is .lia-note-source-outbox but
+        // the user is viewing
+        .lia-notes-tab-inbox & {
+          display: inline-block;
+        }
+      }
+    }
+
+    .lia-component-report-note {
+      display: none;
+    }
+  }
+
+  .lia-note-content {
+    margin-top: $padding-large-vertical;
+  }
+
+  .lia-note-subject {
+    .lia-link-navigation {
+      color: $text-color;
+      font-size: $li-font-size-subject;
+    }
+  }
+
+  .lia-note-body {
+    font-size: $font-size-large;
+    font-weight: $font-weight-content;
+  }
+
+
+  //
+  // lists & search styles
+  //
+
+  .lia-note-batch-checkbox {
+    left: -$form-padding;
+    line-height: $li-avatar-size-small;
+    position: absolute;
+
+    .BatchProcessing {
+      @include scale(1.2, 1.2);
+      font-size: x-large;
+    }
+  }
+
+  // inbox / outbox list & search
+  .lia-notes-list,
+  .lia-note-search {
+
+    @include media(phone) {
+      margin-left: -$grid-gutter-width / 2;
+      margin-right: -$grid-gutter-width / 2;
+    }
+
+    .lia-note-date {
+      .local-time {
+        display: none;
+      }
+    }
+
+    .lia-note-date,
+    .lia-user-name,
+    .lia-user-name-link {
+      line-height: $li-avatar-size-small;
+    }
+
+    .lia-user-avatar {
+      height: $li-avatar-size-small;
+    }
+
+    .lia-user-avatar-message {
+      height: $li-avatar-size-small;
+      width: $li-avatar-size-small;
+    }
+
+    .lia-note-body-truncated {
+      @include multiline-truncate($font-size: $font-size-large, $max-lines: 3);
+
+      margin-bottom: 0;
+    }
+
+    // read and unread border
+    .lia-note-unread {
+      > .lia-quilt {
+        border-left: $li-unread-border-width solid $brand-info;
+      }
+    }
+
+    .lia-note-read {
+      > .lia-quilt {
+        margin-left: $li-unread-border-width;
+      }
+    }
+
+    // notes source is only shown on mixed inbox/outbox lists like search
+    .lia-notes-source {
+      display: none;
+    }
+
+    .lia-note-view-display {
+      border-bottom: 1px solid $li-border-color;
+      border-top: 1px solid $li-border-color;
+      margin-top: -1px;
+      padding: {
+        // lists using table-cell-padding could use a little more space as well
+        bottom: $table-cell-padding + $padding-small-vertical;
+        left: 0;
+        // spacing is similar to most lists which use $table-cell-padding
+        right: $table-cell-padding;
+        top: $table-cell-padding;
+      }
+
+      > .lia-quilt {
+        padding-left: $panel-body-padding;
+      }
+
+      &.lia-note-batch-enabled {
+        > .lia-quilt {
+          // make room for the batch checkbox
+          padding-left: $panel-body-padding + $form-padding;
+        }
+      }
+    }
+  }
+
+  .lia-note-search {
+    .lia-note-view-display {
+      border-top: 0;
+      margin-top: 0;
+
+      &:last-of-type {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  .lia-notes-tab-list {
+    margin-top: $panel-body-padding;
+
+    @include media(phone) {
+      margin-top: 0;
+    }
+  }
+
+  .lia-notes-unread-count {
+    display: block;
+    margin-bottom: $padding-small-vertical;
+    margin-left: $padding-xl-horizontal;
+    position: absolute;
+    top: ($input-height-base - $line-height-computed) / 2 + $padding-large-vertical;
+
+    @include media(tablet) {
+      top: ($input-height-base - $line-height-computed) / 2;
+    }
+
+    @include media(phone) {
+      margin-bottom: $padding-large-vertical;
+      margin-left: $padding-small-horizontal;
+      position: static;
+    }
+  }
+
+  .lia-note-search-results-list-container {
+    margin-bottom: $panel-body-padding;
+  }
+
+  //
+  // search private message styles
+  //
+
+  // in order for the anchor's underline to appear without a gap for both the mailbox and icon
+  // need to add \00a0 spaces. margin or padding creates the gap
+  .lia-source-outbox {
+    @include li-icon('\00a0\00a0' + $fa-var-paper-plane, $pseudo: after, $icon-margin: 0);
+  }
+
+  .lia-source-inbox {
+    @include li-icon('\00a0\00a0' + $fa-var-inbox, $pseudo: after, $icon-margin: 0);
+  }
+
+  .lia-note-source {
+    color: $text-color;
+    font-weight: bold;
+    margin-right: $padding-small-horizontal;
+
+    &:after {
+      color: $text-color;
+      display: inline;
+    }
+
+    &:hover {
+      &:after {
+        color: $link-hover-color;
+      }
+    }
+  }
+
+  .lia-note-icon {
+    color: $li-icon-color;
+  }
+
+
+  //
+  // full note view specific styles
+  //
+
+  // only use alternate pager on full message views, not lists
+  .lia-notes-tab-message {
+
+    .lia-paging-full {
+      @extend %pager-alt;
+    }
+
+    // don't show the menu bar or tabs when in the single note view
+    .lia-menu-bar-top,
+    > .lia-tabs-standard {
+      display: none;
+    }
+
+    .lia-note-view-display {
+      padding: {
+        // lists using table-cell-padding could use a little more space as well
+        bottom: 0;
+        left: $table-cell-padding;
+        // spacing is similar to most lists which use $table-cell-padding
+        right: $table-cell-padding;
+        top: $table-cell-padding + $padding-large-vertical;
+      }
+    }
+
+    .lia-note-full-view-header {
+      display: inline-block;
+    }
+
+    &.lia-notes-tab-inbox {
+
+      .lia-note-date,
+      .lia-user-name,
+      .lia-user-name-link {
+        line-height: $li-avatar-size-large;
+
+        @include media(phone) {
+          line-height: initial;
+        }
+      }
+
+      .lia-note-sent-date {
+        @include media(phone) {
+          display: block;
+          padding-left: 0;
+          vertical-align: top;
+
+          &:before {
+            display: none;
+          }
+        }
+      }
+
+      .lia-note-sent-date-and-label {
+        display: none;
+      }
+
+      .lia-user-avatar {
+        height: $li-avatar-size-large;
+
+        @include media(phone) {
+          float: left;
+          margin-left: -($li-avatar-size-large + $padding-small-horizontal);
+          margin-top: $padding-xs-vertical;
+        }
+      }
+
+      .lia-user-avatar-message {
+        height: $li-avatar-size-large;
+        width: $li-avatar-size-large;
+      }
+
+      .lia-note-full-view-header {
+        margin-bottom: $padding-base-vertical;
+        margin-right: $padding-xl-horizontal;
+
+        @include media(phone) {
+          margin-bottom: 0;
+          padding-left: $li-avatar-size-large + $padding-small-horizontal;
+        }
+      }
+    }
+
+    &.lia-notes-tab-outbox {
+
+      .lia-note-date {
+        display: block;
+        padding-left: 0;
+        vertical-align: top;
+
+        &:before {
+          display: none;
+        }
+      }
+
+      .lia-note-sent-date {
+        display: none;
+      }
+
+      .lia-note-sent-date-and-label {
+        display: block;
+      }
+
+
+    }
+
+    .lia-note-subject {
+      margin-bottom: $padding-small-vertical - 1;
+    }
+  }
+
+  .add-friend-link,
+  .add-ignore-link,
+  .delete-friend-link,
+  .delete-ignore-link {
+    // extra specificity
+    &.lia-button {
+      @include lia-button-link;
+
+      @include media(phone) {
+        height: auto;
+        padding: {
+          bottom: 0;
+          left: 0;
+          right: 0;
+          top: $padding-base-vertical;
+        }
+      }
+    }
+  }
+
+  .lia-contact-actions {
+    display: inline-block;
+    padding-left: $padding-base-horizontal;
+    vertical-align: top;
+
+    @include media(phone) {
+      padding-bottom: $padding-small-vertical;
+      padding-left: 0;
+
+      .lia-button-wrapper + .lia-button-wrapper {
+        padding-left: $padding-base-horizontal;
+      }
+    }
+  }
+
+  .lia-note-actions {
+    border-top: 1px solid $li-border-color;
+    margin-top: $panel-body-padding;
+    padding: {
+      bottom: $panel-body-padding - $padding-large-vertical;
+      left: 0;
+      right: 0;
+      top: $panel-body-padding;
+    }
+    text-align: right;
+
+    @include media(phone) {
+      border-bottom: 1px solid $li-border-color;
+    }
+
+    .delete-link {
+      @include lia-button-default;
+    }
+
+    .lia-button {
+      margin-bottom: $padding-large-vertical;
+      min-width: $li-btn-min-width;
+    }
+
+    .lia-button-wrapper {
+      float: right;
+      padding-left: $panel-body-padding;
+
+      &:last-of-type {
+        padding-left: 0;
+      }
+
+    }
+
+    .lia-component-report-note {
+      float: left;
+      line-height: $input-height-base;
+    }
+  }
+
+  .lia-note-editor-find-users {
+    float: right;
+  }
+}

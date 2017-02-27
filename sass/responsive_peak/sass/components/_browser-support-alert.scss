@@ -1,0 +1,28 @@
+@mixin components\browser-support-alert {
+
+  .lia-browser-support-alert {
+    text-align: center;
+    display: table-row;
+    background-color: $alert-warning-bg;
+    text-color: $alert-warning-text;
+
+    .lia-browser-support-alert-text {
+      display: table-cell;
+      width: 100%;
+      padding: {
+        top: $padding-small-vertical;
+        bottom: $padding-small-vertical;
+      }
+    }
+
+    .lia-browser-support-alert-close {
+      display: table-cell;
+      padding-right: $padding-small-horizontal;
+      padding: {
+        top: $padding-small-vertical;
+        bottom: $padding-small-vertical;
+      }
+    }
+  }
+
+}

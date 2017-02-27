@@ -1,0 +1,537 @@
+// Dropdowns
+//
+// Responsive-ready dropdown menus.
+//
+// Markup:
+// <div class="lia-common-dropdown dropdown lia-dropdown-open">
+//   <a class="lia-common-dropdown-toggle dropdown-toggle">Dropdown</a>
+//   <div class="lia-common-dropdown-menu dropdown-menu">
+//     <ul class="lia-list-standard">
+//       <li>
+//         <a>foo</a>
+//       </li>
+//       <li>
+//         <span class="lia-link-disabled">bar</span>
+//       </li>
+//     </ul>
+//   </div>
+// </div>
+//
+// Style guide: codebook.dropdowns
+
+$dropdowns_paging-min-width: 200px !default;
+
+
+@mixin codebook\dropdowns {
+
+  %dropdown-disabled-item {
+    // copying bootstrap .dropdown-menu > li > a
+    // disabled menu items are spans in lia, so we need to duplicate the styling
+    // we're not extending %dropdown-item because of specificity conflicts
+    clear: both;
+    display: block;
+    font-weight: normal;
+    line-height: $line-height-base;
+    padding: 3px 20px;
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+
+    &,
+    &:hover,
+    &:focus {
+      color: $dropdown-link-disabled-color;
+    }
+
+    // Nuke hover/focus effects
+    &:hover,
+    &:focus {
+      @include reset-filter;
+      background-color: transparent;
+      background-image: none; // Remove CSS gradient
+      cursor: $cursor-disabled;
+      text-decoration: none;
+    }
+  }
+
+  %dropdown-item {
+      // copying bootstrap .dropdown-menu > li > a
+    clear: both;
+    color: $dropdown-link-color;
+    display: block;
+    font-weight: normal;
+    line-height: $line-height-base;
+    padding: 3px 20px;
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+
+    &:hover,
+    &:focus,
+    &.selected {
+      background-color: $dropdown-link-hover-bg;
+      color: $dropdown-link-hover-color;
+      text-decoration: none;
+    }
+  }
+
+  %dropdown-separator {
+    @include nav-divider($dropdown-divider-bg);
+    display: block;
+    padding: 0;
+  }
+
+  .default-menu-option,
+  .lia-common-dropdown-toggle {
+    @include lia-button;
+    @include lia-button-default;
+    @include li-extend('.dropdown-toggle');
+    @include li-icon-menu;
+
+    .lia-tab-overflow & {
+      background-color: transparent;
+    }
+  }
+
+  .lia-autocomplete,
+  .lia-autocomplete-container {
+    @include li-extend('.dropdown-menu');
+  }
+
+  // autocomplete in all forms is a treated as a dropdown and uses inline styles
+  // for positioning. in this inline form, override the nested properties
+  .lia-autocomplete-container-inline {
+    // scss-lint:disable ImportantRule
+    display: block !important;
+    left: inherit !important;
+    position: relative !important;
+    top: inherit !important;
+    width: auto !important;
+    // scss-lint:enable ImportantRule
+  }
+
+  .lia-autocomplete-content {
+    max-height: ($line-height-computed + $padding-base-vertical * 2) * 11;
+    overflow-x: auto;
+
+    > ul > li {
+      @extend %dropdown-item;
+
+      padding: {
+        bottom: $padding-base-vertical;
+        top: $padding-base-vertical;
+      }
+      white-space: normal;
+    }
+
+    .board-icon,
+    .lia-attachment-icon-container {
+      display: table-cell;
+      padding-right: $padding-small-horizontal;
+
+      > img {
+        vertical-align: text-bottom;
+      }
+    }
+
+    .lia-component-forums-auto-complete-message-list-item {
+      display: table-cell;
+    }
+
+    .lia-user-avatar {
+      float: left;
+      padding-right: $padding-small-horizontal;
+      padding-top: $padding-base-vertical / 2;
+    }
+  }
+
+  .lia-autocomplete-content-inline {
+    margin: {
+      left: -$padding-base-horizontal / 2;
+      right: -$padding-base-horizontal / 2;
+    }
+
+    > ul {
+      margin-bottom: 0;
+
+      > li {
+        @extend %dropdown-item;
+
+        padding: {
+          bottom: $padding-large-vertical;
+          top: $padding-large-vertical;
+        }
+
+        &:hover,
+        &:focus,
+        &.selected {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .lia-user-avatar,
+    .lia-user-name {
+      display: inline-block;
+      padding-right: $padding-base-horizontal / 2;
+      vertical-align: top;
+    }
+  }
+
+  .lia-autocomplete-header,
+  .lia-autocomplete-header-inline {
+    @include li-extend('.dropdown-header');
+
+    &.lia-autocomplete-header-inline {
+      padding: {
+        bottom: $padding-base-vertical;
+        left: $padding-base-horizontal + 2px;
+        right: $padding-base-horizontal + 2px;
+        top: $padding-base-vertical;
+      }
+    }
+  }
+
+  .lia-autocomplete-footer,
+  .lia-autocomplete-footer-inline {
+    @extend %dropdown-item;
+
+    &.lia-autocomplete-footer-inline {
+      margin: {
+        left: -$padding-base-horizontal / 2;
+        right: -$padding-base-horizontal / 2;
+      }
+    }
+  }
+
+  .lia-menu-dropdown-items {
+    @include li-extend('.dropdown-menu');
+    margin-top: 0;
+
+    //  ButtonDrop buttons converted into dropdowns. Restyle them to look like
+    //  menu items -- this may need tweaking to align more to %dropdown-item
+    .lia-button-drop > .lia-button {
+      border: 0;
+      text-align: left;
+    }
+
+    //  dropdown disabled item
+    //    - disabled items markup is structured differently than how bootstrap
+    //      assumes. we don't use menu > li > a, but spans for disabled (bad)
+    > li > .lia-link-disabled {
+      @extend %dropdown-disabled-item;
+
+      &.lia-action-selected {
+        @include li-icon($fa-var-check, $pseudo: after);
+        color: $dropdown-link-color;
+      }
+    }
+
+    //  dropdown separator
+    //    - dropdown separator markup is structured differently than Bootstrap's
+    .lia-separator {
+      @extend %dropdown-separator;
+    }
+  }
+
+  .lia-menu-navigation-wrapper {
+    @include li-extend('.dropdown');
+    display: inline-block;
+  }
+
+  // menus aligned on the right that should open left
+  .lia-component-common-widget-site-navigation,
+  .lia-menu-action-search-result-sorting,
+  .lia-menu-overflow-right,
+  .lia-message-options,
+  .lia-tab-overflow {
+    .lia-menu-dropdown-items {
+      @include li-extend('.dropdown-menu-right');
+    }
+  }
+
+  // applied by DropDownMenu.js when menus break out of the viewport
+  // lia-menu-overflow-left and both need selectors stronger than 3
+  .lia-menu-overflow-left {
+    .lia-menu-dropdown-items {
+      left: 0;
+      right: auto;
+    }
+  }
+
+  .lia-menu-overflow-both {
+    .lia-menu-dropdown-items {
+      min-width: 0;
+
+      > li > a,
+      .lia-link-disabled {
+        white-space: normal;
+      }
+    }
+  }
+
+  .lia-message-options {
+
+    .default-menu-option {
+      @include li-icon-button(icon-message-menu);
+
+      // remove dropdown arrow
+      &:after {
+        content: '';
+        margin-left: 0;
+      }
+    }
+  }
+
+  // User navigation settings menus don't follow standard lia dropdown
+  // classes. Map classes to make them work.
+  .user-navigation-settings-drop-down-inner {
+    position: relative;
+
+    > .lia-list-standard {
+      @include li-extend('.lia-menu-dropdown-items');
+
+    }
+  }
+
+  .lia-component-common-widget-slide-out-user-menu,
+  .lia-component-users-widget-menu {
+    .UserNavigation.lia-list-standard-inline {
+      margin: 0;
+
+      li {
+        padding: 0;
+      }
+    }
+
+    .user-navigation-settings-drop-down-inner {
+      > .lia-list-standard {
+        left: inherit;
+        right: -5px;
+      }
+    }
+  }
+
+  .user-navigation-settings-drop-down {
+    display: none;
+
+    .dropdown-separator {
+      @extend %dropdown-separator;
+    }
+  }
+
+  .dropdownHover .lia-menu-dropdown-items,
+  .dropdownHover .lia-form-fieldset-content-wrapper.lia-form-fieldset-content-wrapper {
+    display: block;
+    z-index: 1040;
+  }
+
+  @include media(phone) {
+    .message-menu {
+      .default-menu-option {
+        @include li-icon-button(icon-message-menu);
+
+        // remove dropdown arrow
+        &:after {
+          content: '';
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .lia-common-dropdown {
+    @include li-extend('.dropdown');
+
+    &.lia-dropdown-open {
+      .lia-common-dropdown-menu {
+        display: block;
+      }
+    }
+  }
+
+  .lia-common-dropdown-menu {
+    @include li-extend('.dropdown-menu');
+  }
+
+  // ensure the dropdown contents are not displayed before the
+  // angular component has rendered
+  li\:common-dropdown {
+    display: none;
+
+    &.ng-isolate-scope {
+      display: block;
+    }
+  }
+
+  .lia-message-view-display .default-menu-option {
+    @include li-icon-svg($li-svg-ellipsis-v, $size: $font-size-h4, $line-height: $line-height-computed, $hide-text: true);
+    background-color: transparent;
+    border-color: transparent;
+    padding: {
+      left: $padding-base-horizontal / 2;
+      right: $padding-base-horizontal / 2;
+    }
+
+    // suppress caret
+    &:after {
+      display: none;
+    }
+
+    @include media(phone) {
+      @include li-icon-svg($li-svg-ellipsis-v, $size: $font-size-h4, $line-height: $line-height-computed, $hide-text: true);
+      margin-top: 0;
+    }
+  }
+
+
+  .default-menu-option {
+    // places to use the dots menu instead of text + carat
+    .lia-component-blog-article-options &,
+    .lia-component-search-actions &,
+    .lia-message-options &,
+    .lia-tab-overflow &,
+    .lia-quilt-column-sub-header-main & {
+      @include li-icon-svg($li-svg-ellipsis-v, $size: $font-size-h4, $line-height: $line-height-computed, $hide-text: true);
+      background-color: transparent;
+      border-color: transparent;
+      padding: {
+        left: $padding-base-horizontal / 2;
+        right: $padding-base-horizontal / 2;
+      }
+
+      // suppress caret
+      &:after {
+        display: none;
+      }
+    }
+
+    .lia-quilt-column-sub-header-main & {
+      @include li-icon-svg($li-svg-ellipsis-v, $size: $font-size-h4, $line-height: $line-height-computed, $hide-text: false);
+      margin-top: $breadcrumb-padding-vertical - $padding-base-vertical;
+
+      font-family: inherit;
+      font-size: $font-size-base;
+      color: $gray;
+      line-height: inherit;
+
+      &:before {
+        width: inherit;
+        vertical-align: middle;
+      }
+
+
+      @include media(phone) {
+        @include li-icon-svg($li-svg-ellipsis-v, $size: $font-size-h4, $line-height: $line-height-computed, $hide-text: true);
+        margin-top: 0;
+      }
+    }
+
+    // special handling for the search actions menu as it's located in a unique
+    // position to the right of tabs, but not part of the tab group like the
+    // overflow menu
+    .lia-component-search-actions & {
+      // compensate for the dropdown not being as tall as the tab in desktop
+      margin-top: 2px;
+
+      @include media(phone) {
+        margin-top: 0;
+        padding: {
+          bottom: 0;
+          top: 0;
+        }
+
+        &:before {
+          line-height: $padding-small-vertical * 2 + $font-size-small * $line-height-base;
+        }
+      }
+    }
+  }
+
+  .lia-menu-dropdown-items,
+  .lia-common-dropdown-menu {
+    margin-top: $padding-xs-vertical;
+    border-radius: $border-radius-small;
+
+    // search filter dropdowns: filters in dropdown specific styles are here
+    // additional styling that is applied to dropdown and fieldset filters can be
+    // found in _search-page.scss
+    .SearchToggleFieldFilter,
+    .type-filter-alternative {
+      @extend %dropdown-item;
+
+      // using dropdown .disabled > a
+      &.disabled,
+      .disabled {
+        @extend %dropdown-disabled-item;
+
+        label {
+          cursor: $cursor-disabled;
+        }
+      }
+    }
+
+    .lia-labels-concepts-wrapper {
+      .SearchToggleFieldFilter {
+        padding: 3px;
+      }
+    }
+
+    .lia-component-search-widget-author-filter & {
+      padding: $padding-base-vertical;
+    }
+
+    .lia-paging-full-wrapper {
+      min-width: $dropdowns_paging-min-width;
+      padding-right: $padding-base-horizontal;
+    }
+
+    // location tree in a dropdown
+    .lia-labels-concepts-wrapper,
+    .LocationFilter {
+      padding: $padding-base-vertical $padding-large-horizontal;
+      white-space: nowrap;
+
+      // hack: shouldn't use a js class, shouldn't assume id 1 = community
+      .lia-js-data-treeNodeId-1.lia-js-data-treeNodeDepth-0 {
+        display: none;
+      }
+    }
+
+    .search-toggle-element {
+      margin-right: $padding-xs-horizontal;
+    }
+  }
+
+  .lia-component-search-filter {
+
+    // restyled search filters dropdown triggers
+    .default-menu-option,
+    .lia-common-dropdown-toggle {
+      background-color: transparent;
+      border: 1px solid $li-border-color;
+      font-weight: normal;
+      padding: $padding-large-vertical $padding-large-horizontal;
+
+      &:after {
+        color: $link-color;
+        content: li-icon-content(icon-toggle-open);
+        font-size: $font-size-h4;
+        line-height: 1;
+        margin-left: $padding-base-horizontal;
+        vertical-align: bottom;
+      }
+
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    .dropdownHover .default-menu-option {
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+  }
+}

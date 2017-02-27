@@ -1,0 +1,17 @@
+// Placeholder text
+@mixin placeholder($color: $input-color-placeholder, $font-weight: 300) {
+  // Firefox
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github%com/twbs/bootstrap/pull/11526
+    font-weight: $font-weight;
+  }
+  &:-ms-input-placeholder {  // Internet Explorer 10+
+    color: $color;
+    font-weight: $font-weight;
+  }
+  &::-webkit-input-placeholder  {  // Safari and Chrome
+    color: $color;
+    font-weight: $font-weight;
+  }
+}

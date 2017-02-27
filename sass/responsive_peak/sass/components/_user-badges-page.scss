@@ -1,0 +1,99 @@
+$user-badges-page_container-width: 230px !default;
+$user-badges-page_revoke-badge-padding-vertical:   6px  !default;
+$user-badges-page_revoke-badge-padding-horizontal: 12px !default;
+
+@mixin components\user-badges-page {
+
+  .UserBadgesPage {
+
+    @include media(phone) {
+      .lia-list-tile > li {
+        width: 100%;
+
+        .lia-user-badge-display-card {
+          margin: auto;
+          width: auto;
+        }
+      }
+    }
+
+    .lia-list-tile > li {
+      display: inline-block;
+      float: none;
+      vertical-align: top;
+    }
+
+    .lia-user-badge-display-card {
+      padding: (2 * $padding-large-vertical) $padding-large-vertical;
+      text-align: center;
+      width: $user-badges-page_container-width + (2 * $padding-large-vertical);
+
+      .lia-link-navigation {
+        display: inline-block;
+        padding-bottom: $padding-small-vertical;
+      }
+
+      .lia-user-badge-name {
+        font-size: $font-size-large;
+      }
+
+      .lia-user-badge-date,
+      .lia-badge-participants-count {
+        color: $gray-light;
+        font-size: $font-size-small;
+      }
+    }
+
+    .lia-user-badge-display img {
+      max-height: $li-user-badges-badge-size;
+      max-width: $li-user-badges-badge-size;
+    }
+
+    .lia-badge-action-revoke-wrapper {
+      text-align: center;
+    }
+
+    .lia-button-wrapper .lia-badge-action-revoke {
+      padding: $user-badges-page_revoke-badge-padding-vertical $user-badges-page_revoke-badge-padding-horizontal;
+
+    }
+
+    .lia-badge-action-revoke-confirmation-form .lia-button-Cancel-action.lia-button-Cancel-action {
+      border-radius: $border-radius-base;
+    }
+
+    .lia-user-badge-display-card {
+      cursor: pointer;
+
+      .lia-user-badge-frame-card {
+        &.lia-user-badge-display-frame-back {
+          position: relative;
+          display: none;
+
+          .lia-user-badge-description {
+            padding: $user-badges-page_revoke-badge-padding-vertical $user-badges-page_revoke-badge-padding-horizontal;
+          }
+
+          .lia-badge-action-revoke-wrapper {
+            text-align: right;
+
+            .lia-button-group {
+              padding: $user-badges-page_revoke-badge-padding-vertical $user-badges-page_revoke-badge-padding-horizontal;
+            }
+          }
+        }
+      }
+
+      &.lia-user-badge-display-card-tapped {
+        .lia-user-badge-frame-card {
+          &.lia-user-badge-display-frame-front {
+            display: none;
+          }
+          &.lia-user-badge-display-frame-back {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

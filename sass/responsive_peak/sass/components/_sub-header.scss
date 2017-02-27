@@ -1,0 +1,31 @@
+@mixin components\sub-header {
+
+  .lia-quilt-row-sub-header {
+    background-color: $li-sub-header-bg;
+    border-top: 1px solid $li-border-color;
+    border-bottom: 1px solid $li-border-color;
+    padding: {
+      bottom: 0;
+      left: $panel-body-padding;
+      right: $panel-body-padding;
+      top: 0;
+    }
+  }
+
+  .lia-quilt-column-sub-header-left {
+    @include li-extend('.col-sm-20');
+    @include li-extend('.col-xs-20');
+  }
+
+  .lia-quilt-column-sub-header-right {
+    @include li-extend('.col-sm-4');
+    @include li-extend('.col-xs-4');
+    text-align: right;
+
+    .lia-menu-navigation-wrapper {
+    // when the options menu is in the header next to the breadcrumb
+      margin-right: $panel-body-padding;
+      margin-top: $padding-large-vertical;
+    }
+  }
+}

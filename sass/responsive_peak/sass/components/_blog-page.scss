@@ -1,0 +1,27 @@
+// Blog Page
+//
+// Minor styling enhancements such as margin adjustments and hiding `AddMessageTags`
+// on the list of articles.
+//
+// Style guide: components.blog-page
+
+@mixin components\blog-page {
+
+  .lia-component-blogs-widget-blogroll-list .blog-link {
+    line-height: $input-height-base;
+  }
+
+  // don't allow adding tags on the list of articles
+  .lia-component-articles .AddMessageTags,
+  .lia-component-articles .lia-modbar {
+    display: none;
+  }
+
+  .lia-message-blog .lia-message-author-avatar {
+    margin-bottom: $padding-small-vertical;
+  }
+
+  .lia-component-archives {
+    margin-bottom: $padding-large-vertical;
+  }
+}

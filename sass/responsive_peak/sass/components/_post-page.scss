@@ -1,0 +1,190 @@
+@mixin components\post-page {
+
+  // post page
+  //
+
+  // scss-lint:disable IdSelector
+  #addNewAttachment {
+    display: none;
+  }
+
+  .lia-add-attachment {
+    @include li-icon(button-delete, $font-size-h3, 1, true);
+
+    float: left;
+    padding-right: $padding-base-horizontal;
+
+    &:before {
+      color: $brand-danger;
+    }
+
+    > img {
+      display: none;
+    }
+  }
+
+  .lia-remove-new-attachment {
+    @include li-icon(button-delete, $font-size-h3, 1, true);
+
+    padding-left: $padding-base-horizontal;
+
+    &:before {
+      color: $brand-danger;
+    }
+
+    > img {
+      display: none;
+    }
+  }
+
+  .lia-add-new-attachment:checked + .lia-form-type-file {
+    display: inline-block;
+  }
+
+  .lia-attachment {
+    margin-bottom: $padding-small-vertical;
+  }
+
+  .lia-attachment-link-disabled {
+    text-decoration: line-through;
+  }
+
+  .lia-attachment-preview {
+    max-height: 35px;
+  }
+
+  .lia-existing-attachments-field {
+    margin-bottom: $padding-large-vertical;
+  }
+
+  .lia-form-attachments-fieldset-toggle {
+    @include clearfix;
+
+    float: left;
+    margin-bottom: $padding-large-vertical;
+    position: relative;
+  }
+
+  .lia-form-revision-information-fieldset-toggle {
+    clear: both;
+  }
+
+  .lia-form-source-revision-entry {
+    .lia-form-input-wrapper {
+      display: table;
+
+      .lia-button-wrapper-secondary,
+      .lia-form-source-revision-input {
+        display: table-cell;
+      }
+    }
+  }
+
+  .lia-form-message-contributors-fieldset-toggle {
+    .lia-search-input-user.UserSearchField {
+      float: left;
+      width: 80%;
+    }
+
+    .lia-button-wrapper {
+      float: right;
+    }
+  }
+
+  .lia-new-attachment {
+    @include clearfix;
+
+    margin-bottom: $form-padding / 2;
+    margin-top: $form-padding;
+    position: relative;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .lia-remove-new-attachment {
+    display: none;
+  }
+
+  .MessageEditorForm {
+    @include media(phone) {
+      padding-top: $padding-large-vertical;
+    }
+
+    legend {
+      display: none;
+    }
+
+    // Floating this right and attachments left
+    // on non-mobile sizes. 50% hardcoded :/
+    // At the phone media query, attachments and
+    // buttons are on differnt lines
+    .lia-form-buttons-empty-left-column {
+      float: right;
+      width: 50%;
+
+      @include media(phone) {
+        float: none;
+        width: 100%;
+      }
+    }
+
+    .lia-input-edit-form-column {
+      @include clearfix;
+    }
+  }
+
+  .message-preview {
+    min-height: 200px;
+  }
+
+  .PostPage,
+  .ReplyPage,
+  .EditPage {
+    .lia-autosave-discard,
+    .lia-autosave-load {
+      color: $body-bg;
+    }
+
+    .lia-breadcrumb {
+      background-color: $li-bg-secondary;
+      margin-top: 0;
+      padding-left: $grid-gutter-width;
+
+      .lia-list-standard-inline {
+        padding-left: 0;
+      }
+    }
+
+    .lia-quilt-row-header {
+      .lia-quilt-column-common-header {
+//        border-bottom: 1px solid $li-border-color;
+      }
+    }
+
+    @include media(phone) {
+      margin-top: 0;
+
+      .lia-form-subject-entry {
+        margin-bottom: 5px;
+      }
+
+      .lia-form-subject-entry > .lia-form-label-wrapper , // subject label
+      .lia-form-body-entry > .lia-form-label-wrapper, // Body label
+      .lia-saved-autosave-feedback , // autosaved at xx:yy
+      .lia-autosave-options, // you have autosaved content
+      .lia-tabs-standard-wrapper {
+        display: none !important;
+      }
+
+      .lia-page-header {
+//        padding-top: $padding-base-vertical;
+
+        .lia-component-common-widget-page-title {
+          padding-bottom: $padding-base-vertical;
+        }
+      }
+    }
+  }
+}

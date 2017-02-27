@@ -1,0 +1,19 @@
+@mixin components\header-user-bar {
+
+  // user row, with classic userbar it's user links and private messages
+  .lia-quilt-row-user {
+    margin-bottom: $padding-large-vertical;
+
+    .lia-component-notes-widget-summary {
+      float: right;
+    }
+
+    .lia-quilt-column-user-navigation {
+      @include li-extend('.col-sm-16');
+    }
+
+    .lia-quilt-column-private-notes {
+      @include li-extend('.col-sm-8');
+    }
+  }
+}

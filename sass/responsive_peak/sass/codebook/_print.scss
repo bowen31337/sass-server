@@ -1,0 +1,9 @@
+@mixin codebook\print {
+  @media print {
+    a[href]:after,
+    abbr[title]:after {
+      content: "";
+    }
+    // Bootstrap specific changes end
+  }
+}

@@ -1,0 +1,64 @@
+$li-breakpoints: (
+  phone-min:          '(max-width: #{$screen-xs})',
+  phone:              '(max-width: #{$screen-xs-max})',
+  phone-and-smaller:  '(max-width: #{$screen-xs-max})',
+  phone-and-down:     '(max-width: #{$screen-xs-max})',
+  phone-only:         '(max-width: #{$screen-xs-max})',
+  phone-landscape:    '(max-width: #{$screen-xs-max}) and (orientation: landscape)',
+  phone-portrait:     '(max-width: #{$screen-xs-max}) and (orientation: portrait)',
+  phone-to-tablet:    '(min-width: #{$screen-xs-min}) and (max-width: #{$screen-xs-max})',
+  tablet:             '(max-width: #{$screen-sm-max})',
+  tablet-and-smaller: '(max-width: #{$screen-sm-max})',
+  tablet-and-down:    '(max-width: #{$screen-sm-max})',
+  tablet-only:        '(min-width: #{$screen-xs-max}) and (max-width: #{$screen-sm-max})',
+  tablet-landscape:   '(min-width: #{$screen-xs-max}) and (max-width: #{$screen-sm-max}) and (orientation: landscape)',
+  tablet-portrait:    '(min-width: #{$screen-xs-max}) and (max-width: #{$screen-sm-max}) and (orientation: portrait)',
+  tablet-and-larger:  '(min-width: #{$screen-xs-max})',
+  tablet-and-up:      '(min-width: #{$screen-xs-max})',
+  tablet-and-bigger:  '(min-width: #{$screen-xs-max})',
+  tablet-to-desktop:  '(min-width: #{$screen-sm-min}) and (max-width: #{$screen-sm-max})',
+  desktop:            '(min-width: #{$screen-md-min})',
+  desktop-and-smaller:'(max-width: #{$screen-md-max})',
+  desktop-and-down:   '(max-width: #{$screen-md-max})',
+  desktop-only:       '(min-width: #{$screen-md-min}) and (max-width: #{$screen-md-max})',
+  desktop-and-larger: '(min-width: #{$screen-md-min})',
+  desktop-and-up:     '(min-width: #{$screen-md-min})',
+  desktop-and-bigger: '(min-width: #{$screen-md-min})',
+  large-desktop:      '(min-width: #{$screen-lg-min})',
+  large-desktop-only: '(min-width: #{$screen-lg-min})'
+);
+
+@mixin media($query...) {
+  $mq: '';
+  @for $i from 1 through length($query) {
+    @if (map-has-key($li-breakpoints, nth($query, $i))) {
+      $mq: $mq + 'screen and ' + map-get($li-breakpoints, nth($query, $i));
+
+      @if ($i < length($query)) {
+        $mq: $mq + ', ';
+      }
+    } @else {
+      @warn('unknown breakpoint: ' + nth($query, $i));
+    }
+  }
+
+  @if ($mq != '') {
+    @media #{$mq} {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin masonry($query, $columns) {
+  @include media($query) {
+    .lia-deckgrid[deckgrid]::before {
+      content: $columns + ' .column.column-1-' + $columns;
+    }
+  }
+
+  .lia-deckgrid .column-1-#{$columns} {
+    width: percentage(1 / $columns);
+  }
+}

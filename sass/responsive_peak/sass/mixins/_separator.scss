@@ -1,0 +1,19 @@
+@mixin separator($content:'\2022', $color:$li-separator-color, $font-size: $font-size-small, $padding-left: $padding-xs-horizontal, $padding-right: $padding-xs-horizontal, $location: 'after') {
+  @if($location == 'after') {
+    &:after {
+      color: $color;
+      content: $content;
+      font-size: $font-size;
+      padding-left: $padding-left;
+      padding-right: $padding-right;
+    }
+  } @else {
+    &:before {
+      color: $color;
+      content: $content;
+      font-size: $font-size;
+      padding-left: $padding-left;
+      padding-right: $padding-right;
+    }
+  }
+}

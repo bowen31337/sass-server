@@ -1,0 +1,23 @@
+@mixin components\tkb-article {
+
+  .lia-message-tkb {
+    h2 {
+      margin: $padding-small-vertical 0;
+    }
+
+    .lia-message-author,
+    .lia-message-subject {
+      margin-bottom: $padding-large-vertical;
+    }
+
+    .lia-message-body-content {
+      > div {
+        margin-bottom: $line-height-computed;
+      }
+    }
+
+    .lia-message-heading {
+      margin-bottom: $line-height-computed;
+    }
+  }
+}

@@ -1,0 +1,720 @@
+// Message Lists
+//
+$message-lists_block-padding-left:       $li-icon-size-sm + $table-cell-padding * 1.5 !default;
+$message-lists_block-padding-left-large: $li-icon-size + $table-cell-padding * 2 !default;
+
+@mixin components\message-lists {
+
+  //show group icon
+  .lia-data-cell-icon.groupImage {
+    width: auto;
+  }
+
+  .lia-summary-view-message-labels {
+    margin-top: $padding-small-vertical;
+  }
+
+  // message subject in lists
+  .MessageSubject .lia-list-standard-inline {
+    display: inline-block;
+    padding-left: $padding-small-horizontal;
+
+    > li {
+      padding: 0;
+    }
+  }
+
+  // for pagination and subject to be on the same line
+  .MessageSubjectIcons {
+    display: inline;
+  }
+
+  .NewMessagesCount {
+    color: $li-navigation-link-color;
+    text-decoration: underline;
+  }
+
+  .lia-list-wide {
+    border-bottom: 1px solid $li-border-divider;
+    border-top: 1px solid $li-border-divider;
+
+    .lia-data-cell-icon:first-child,
+    .newMessageIndicatorColumn + .boardIconColumn {
+      font-size: $font-size-large;
+      padding-top: $table-cell-padding;
+    }
+  }
+
+  // requires mod image to left
+  .readByModeratorColumn {
+    position: relative;
+    // terrible hack to stick the requires mod indicator to left
+    left: -($li-icon-size + $table-cell-padding * 1.5);
+
+    .lia-requires-moderation {
+      background-color: $brand-danger;
+      left: 0;
+      position: absolute;
+      top: $table-cell-padding / 2;
+      bottom: $table-cell-padding / 2;
+      width: $padding-xs-horizontal;
+
+      .lia-requires-moderation-image {
+        display: none;
+      }
+    }
+  }
+
+  // requires mod image to left
+  .cMessageStatusIndicatorColumn {
+    position: relative;
+
+    .lia-message-status-indicator {
+      left: 0;
+      position: absolute;
+      top: $table-cell-padding / 2;
+      bottom: $table-cell-padding / 2;
+      width: $padding-xs-horizontal;
+
+      tr.lia-list-row-thread-unread & {
+        background-color: $brand-info;
+      }
+
+      tr.lia-list-row-requires-moderation & {
+        background-color: $brand-danger;
+      }
+    }
+  }
+
+  @include media(phone) {
+    .lia-list-wide {
+
+      // override bootstrap's table styling
+      // rows now become blocks
+      .lia-list-row {
+        @include clearfix;
+        border-top: 1px solid $list-group-border;
+        clear: both;
+        display: block;
+        padding: $panel-body-padding;
+        position: relative;
+
+        &.t-first {
+          border-top: 0;
+        }
+
+        // primary column gets a line by itself
+        .lia-data-cell-primary {
+          clear: both;
+          float: none;
+          padding-right: 0;
+          width: 100%;
+
+          .message-subject {
+            font-size: $li-font-size-subject;
+          }
+        }
+
+        > td {
+          border-top: 0;
+          padding: 0;
+          padding-right: $padding-xs-horizontal;
+          text-align: left;
+          width: auto;
+
+          &:first-child {
+            padding-left: 0;
+          }
+
+          // if the first column is an icon, offset it into the left
+          // columns that use font-awesome status icons
+          &.newMessageIndicatorColumn + .boardIconColumn,
+          &:first-child.boardIconColumn,
+          &.cMessageAuthorAvatarColumn {
+            font-size: $font-size-large;
+            left: $panel-body-padding;
+            position: absolute;
+            top: 0;
+          }
+
+          + td + td:last-child {
+            text-align: left;
+          }
+        }
+
+        // Lists with leading icons we want to offset into a list bullet
+        .ContactsList &,
+        .MessageList & {
+          padding-left: $message-lists_block-padding-left;
+
+          // SimpleMessageLists don't have leading icons
+          .SimpleMessageList > & {
+            padding-left: $panel-body-padding;
+
+            // SimpleMessageLists don't have leading icons
+            // except for the two qanda widgets,
+            // the recommendations widget and the latest/recent tkb articles widget
+            .lia-component-qanda-widget-open-questions &,
+            .lia-component-qanda-widget-resolved-questions &,
+            .lia-component-recommendations-widget-recommended-content-taplet &,
+            .lia-component-tkb-widget-recent-tkb-articles-taplet & {
+              padding-left: $message-lists_block-padding-left;
+            }
+          }
+        }
+
+        // lists with leading avatars or large icons (peak only)
+        .RecentPostsPage &,
+        .ForumPage &,
+        .ForumsFilteredByLabelPage &,
+        .TagDetailPage &,
+        .TagViewPage &,
+        .BoardList &,
+        .GroupPage &,
+        .TkbPage & {
+          padding-left: $message-lists_block-padding-left-large;
+        }
+      }
+
+      // inline everything that may be block
+      // HACK: the <div> is greedy and will inline more than expected
+      // this causes excessive right padding for wrappers
+      div,
+      td {
+        display: inline-block;
+        float: left;
+      }
+
+      // columns that contain multiple types of text and multiple lines
+      // usually a date and username
+      .latestPostDateColumn,
+      .messageAskedByDateColumn,
+      .messageSolvedByDateColumn {
+        display: inline;
+      }
+
+      .lia-message-by {
+        padding-left: $padding-xs-horizontal;
+      }
+
+      // long items that need to span the width
+      .actions,
+      .boardTitleColumn,
+      .contactsActionColumn,
+      .contactsLatestPostColumn,
+      .draftActionsColumn,
+      .LabelsForArticle,
+      .lastCleanRequestColumn,
+      .lastRequestColumn,
+      .linkedMessageColumn,
+      .messageAskedByDateColumn,
+      .messageAuthorContestEmailColumn,
+      .message-subject-board,
+      .messageSolvedByDateColumn,
+      .messageSubjectColumn,
+      .MessageSubjectCell,
+      .revisionActionsColumn,
+      .revisionCommentColumn,
+      .revisionPathColumn,
+      .threadSubjectColumn,
+      .unmoderatedActionsColumn,
+      .uses {
+        @include clearfix;
+
+        clear: both;
+        display: block;
+        float: none;
+        padding-bottom: $padding-small-vertical;
+        padding-right: 0;
+        width: 100%;
+      }
+
+      // subject wrapping divs
+      .message-subject,
+      .MessageSubject,
+      .MessageSubjectIcons {
+        display: inline;
+        float: none;
+      }
+
+      // float all numbers (and star ratings) to the right
+      .lia-data-cell-secondary {
+        &.lia-data-cell-integer,
+        &.newMessages, // subs / bookmarks new message column is data-cell-text :P
+        &.messageRatingColumn {
+          float: right;
+          padding-left: $padding-large-horizontal;
+          padding-right: 0;
+          white-space: nowrap;
+        }
+      }
+
+      // all checkboxes to the top left corner
+      .lia-data-cell-checkbox {
+        left: $padding-small-horizontal;
+        position: absolute;
+        top: 0;
+      }
+
+      // group messaging / user reports list checkbox
+      .userSelection {
+        left: 0;
+        position: absolute;
+        top: 8px;
+      }
+    }
+
+    // read by mod image to left
+    .readByModeratorColumn {
+      position: static;
+    }
+  }
+
+
+
+  // columns that take up a lot of width, usually subjects or multiple buttons
+  .lia-data-cell-primary,
+  .actions,
+  .contactsActionColumn,
+  .contactsLatestPostColumn,
+  .draftActionsColumn,
+  .lastCleanRequestColumn,
+  .lastRequestColumn,
+  .linkedMessageColumn,
+  .messageAskedByDateColumn,
+  .messageAuthorContestEmailColumn,
+  .messageSolvedByDateColumn,
+  .revisionActionsColumn,
+  .revisionCommentColumn,
+  .revisionPathColumn,
+  .unmoderatedActionsColumn,
+  .uses {
+    &.lia-data-cell-text {
+      @include media(phone) {
+        width: 100%;
+      }
+    }
+  }
+
+  // commenting this out, but may use this in the future, please don't remove - mikey
+  // these are also primary/text but don't need as much room
+  // .lia-property-label,
+  // .contactsUserColumn,
+  // .memberGroupRole,
+  // .role,
+  // .supportAgentColumn,
+  // .timeOpenColumn,
+  // .userColumn {
+  //   &.lia-data-cell-text {
+  //     width: 100px;
+  //   }
+  // }
+
+  // message icons
+
+  .lia-message-forum-icon {
+    @extend .lia-fa-comments;
+  }
+  .lia-message-group-icon {
+    @extend .lia-fa-users;
+  }
+  .lia-message-tkb-icon {
+    @extend .lia-fa-book;
+  }
+  .lia-message-contest-icon {
+    @extend .lia-fa-trophy;
+  }
+  .lia-message-q-a-icon {
+    @extend .lia-fa-question-circle;
+  }
+  .lia-message-idea-exchange-icon {
+    @extend .lia-fa-comments;
+  }
+  .lia-message-blog-icon {
+    @extend .lia-fa-pencil;
+  }
+  .lia-message-category-icon {
+    @extend .lia-fa-folder-open-o;
+  }
+
+
+  .cThreadInfoColumn {
+    vertical-align: top;
+  }
+
+  .cContributorsColumn {
+    text-align: right;
+    width: $padding-small-vertical * 5 + $li-avatar-size-small * 5 + $table-cell-padding;
+
+    .lia-message-list-users-favicon {
+      > ul {
+        float: right;
+        margin-bottom: 0;
+      }
+
+      &:after {
+        content: ' ';
+        display: table;
+        width: 100%;
+      }
+    }
+
+    .UserAvatar > img {
+      height: $li-avatar-size-small;
+      width: $li-avatar-size-small;
+    }
+
+    .lia-contributors-label {
+      clear: both;
+      display: block;
+    }
+  }
+
+  .lia-info-area {
+    @extend %secondary-text;
+    //line-height: $line-height-medium;
+  }
+
+  .lia-component-messages-column-thread-info {
+    width: 100%;
+  }
+
+  //.lia-component-forums-widget-message-list {
+  //  margin-bottom: $panel-body-padding;
+  //}
+
+  .lia-data-cell-secondary {
+    .lia-component-messages-column-message-replies-count,
+    .lia-component-messages-column-message-views-count,
+    .lia-component-messages-column-thread-replies-count,
+    .lia-component-messages-column-topic-views-count,
+    .lia-component-messages-column-message-kudos-count {
+      @extend %xsmall-label;
+
+      min-width: 65px; // TODO: remove hardcoded arbitrary min-width value
+    }
+
+    .lia-message-stats-count {
+      display: block;
+      font-size: $font-size-large;
+      font-weight: bold;
+      padding-bottom: $padding-small-vertical;
+      line-height: $li-avatar-size-small;
+    }
+  }
+
+  // dropdown filter for q&a my questions / answers
+  // needs additional padding as the message list tries to eat up the $panel-body-padding
+  // on all sides
+  .lia-filter-select {
+    margin-bottom: $panel-body-padding * 2;
+  }
+
+  .lia-list-slim {
+    .message-subject {
+      font-size: $font-size-base;
+    }
+  }
+
+  // the version of node lists with the .lia-stats-area duplicate the
+  // posts and views column as columns and in the primary cell
+  .lia-stats-area {
+    @include media(tablet-and-larger) {
+      display: none;
+    }
+
+    @include media(phone) {
+      clear: both;
+      padding-top: $padding-small-vertical / 2;
+    }
+  }
+
+  // the version of message lists with the .c<something> columns duplicate the
+  // replies and views column as columns and in the primary cell
+  @include media(phone) {
+    .MessageList {
+      .cRepliesCountColumn,
+      .cViewsCountColumn {
+        display: none;
+      }
+    }
+
+    .lia-list-wide td.cContributorsColumn {
+      display: none;
+    }
+  }
+
+  .MessageListTaplet {
+    .lia-panel-content {
+      > .lia-list-standard {
+        margin: -$panel-body-padding;
+        margin-top: -$padding-large-vertical;
+
+        > li {
+          border-top: 1px solid $li-border-row;
+          padding-left: $table-cell-padding;
+          padding-right: $table-cell-padding;
+
+          &:first-child {
+            border-top: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // corner status icons for message lists
+  .lia-list-row-float {
+    .triangletop {
+      @include thread-status-icon($li-triangletop-thumb-tack-bg, $fa-var-thumb-tack);
+    }
+  }
+
+  .lia-list-row-thread-escalated {
+    .triangletop {
+      @include thread-status-icon($li-triangletop-bullhorn-bg, $fa-var-bullhorn);
+    }
+  }
+
+  .lia-list-row-thread-readonly {
+    .triangletop {
+      @include thread-status-icon($li-triangletop-lock-bg, $fa-var-lock);
+    }
+  }
+
+  .lia-list-row-thread-solved {
+    .triangletop {
+      @include thread-status-icon($li-triangletop-check-bg, $fa-var-check);
+    }
+  }
+
+  .lia-truncate-with-message-link {
+    @include multiline-truncate($truncate-selector: '.lia-truncated-message-link');
+  }
+
+  .lia-component-messages-widget-message-list {
+    .lia-message-list-title,
+    .lia-paging-pager {
+      display: inline-block;
+    }
+
+    .lia-paging-pager {
+      float: right;
+      ul {
+        margin-bottom: $padding-small-vertical;
+      }
+    }
+
+    .lia-message-list-title {
+      color: $gray-dark;
+      font-size: $font-size-large;
+      margin: {
+        bottom: $padding-small-vertical;
+        left: $padding-small-horizontal;
+      }
+    }
+
+    &.lia-message-list-not-empty {
+      .lia-message-list {
+        border-top: 1px solid $li-border-panel;
+        clear: both;
+      }
+    }
+
+    .lia-message-view-display {
+      @include box-shadow(none);
+      border: {
+        left: 0;
+        right: 0;
+        top: 0;
+      }
+      border-color: $li-border-row;
+      border-radius: 0;
+      margin-bottom: 0;
+
+      .lia-quilt {
+        margin: 0 $padding-large-horizontal;
+      }
+    }
+
+    .lia-menu-navigation-wrapper {
+      float: right;
+    }
+  }
+
+  // Styling for the none table-base message list.
+
+  .lia-messages-message-list-row-wrapper {
+    background-color: $li-bg-secondary;
+    border-radius: $border-radius-base;
+    color: $gray;
+    position: relative;
+
+    &.lia-messages-message-list-edit-mode {
+      border: 1px solid $li-border-color;
+    }
+
+    .lia-messages-message-titles {
+      display: none;
+    }
+
+    .lia-messages-message-container {
+      font-weight: normal;
+      border-bottom: 1px solid $li-border-row;
+    }
+
+    .lia-messages-message-last-container {
+      border-bottom: none;
+    }
+
+    .lia-messages-message-no-content .lia-common-feedback {
+      background-color: $body-bg;
+      border: 2px solid $brand-info;
+      color: $gray;
+
+      p:before {
+        font: normal normal normal $font-size-h4 / 1 FontAwesome;
+        color: $brand-info;
+        content: $fa-var-info-circle;
+        margin-right: $padding-large-horizontal;
+      }
+    }
+
+    .lia-common-loading-dots-container {
+      opacity: 0;
+      transition: 1s;
+    }
+
+    .lia-common-loading-dots-fade {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.5);
+      opacity: 1;
+    }
+
+    .lia-common-loading-dots {
+      bottom: 50%;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  // row type
+
+  .lia-messages-message-row {
+    padding: $panel-body-padding 0;
+
+    .lia-message-solved-topic {
+      @include thread-status-icon($li-triangletop-check-bg, $fa-var-check);
+      top: -$panel-body-padding;
+    }
+
+    .lia-message-solved-topic:before, .lia-message-solved-topic:after {
+      @include media(tablet) {
+        display: none;
+      }
+    }
+
+    .lia-messages-message-col {
+      @include media(tablet) {
+        float: left;
+      }
+    }
+
+    .lia-messages-message-col p {
+      margin: $padding-small-vertical 0 0 0;
+    }
+
+    .lia-messages-message-icon-col {
+      font-size: $li-avatar-size-medium;
+      text-align: center;
+      @include media(tablet) {
+        width: 10%;
+      }
+      @include media(phone) {
+        position: relative;
+        top: 20px;
+        width: 15%;
+      }
+    }
+
+    .lia-fa {
+      color: $li-icon-forum-bg;
+    }
+
+    .lia-messages-message-subject-col {
+      @include media(tablet) {
+        width: 70%;
+      }
+      @include media(phone) {
+        width: 85%;
+      }
+    }
+
+    .lia-message-subject-text {
+      font-size: $li-font-size-subject;
+    }
+
+    .lia-message-auth-info {
+      @extend %secondary-text;
+    }
+
+    .lia-user-name-link {
+      vertical-align: inherit;
+    }
+
+    .lia-messages-message-metrics-col {
+      text-align: right;
+
+      @include media(tablet) {
+        width: 20%;
+      }
+
+      @include media(phone) {
+        width: 100%;
+        display: inline-block;
+        margin-left: 15%;
+        text-align: left;
+      }
+    }
+
+    .lia-community-metrics-display {
+      font-size: $font-size-base;
+
+      .lia-metrics-display {
+        margin: 0;
+        margin-right: $panel-body-padding;
+      }
+
+      .lia-metrics-display:before {
+        display: none;
+      }
+
+      .lia-vitality-stats span {
+        @include media(phone) {
+          display: inline-block;
+          color: $text-muted;
+          margin-right: $padding-xs-horizontal;
+        }
+      }
+
+      .lia-vitality-value {
+        font-size: $font-size-h4;
+        text-align: center;
+      }
+    }
+  }
+
+  .lia-messages-list-title {
+    @include li-extend('%sub-section-header-font');
+    vertical-align: middle;
+
+    @include media(tablet) {
+      padding-left: $grid-gutter-width;
+    }
+  }
+}

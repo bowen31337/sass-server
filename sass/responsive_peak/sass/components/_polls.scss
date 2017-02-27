@@ -1,0 +1,33 @@
+@mixin components\polls {
+
+  .lia-hide-trigger,
+  .lia-show-trigger {
+    margin-bottom: $padding-large-vertical;
+    cursor: pointer;
+  }
+
+  .lia-poll-choice .lia-data-cell-secondary {
+    vertical-align: top;
+  }
+
+  .lia-poll-choice-selection {
+    display: table-row;
+
+    label {
+      display: table-cell;
+      padding-bottom: $padding-large-vertical;
+    }
+
+    .lia-form-poll-choice-input {
+      margin-right: $padding-small-horizontal;
+    }
+  }
+
+  .lia-poll-summary {
+    margin-bottom: $padding-large-vertical;
+  }
+
+  .lia-poll-votes-count {
+    white-space: nowrap;
+  }
+}

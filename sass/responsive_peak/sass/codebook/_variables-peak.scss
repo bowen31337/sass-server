@@ -1,0 +1,554 @@
+// scss-lint:disable ColorVariable
+//
+// Variables
+// --------------------------------------------------
+
+$gray-base:             #000 !default;
+$gray-darker:           #333 !default;    // lighten($gray-base, 20%)
+$gray-dark:             #3e3e3e !default; // lighten($gray-base, 24.5%)
+$gray:                  #5d5d5d !default; // lighten($gray-base, 36.5%)
+$gray-light:            #747474 !default; // lighten($gray-base, 45.5%)
+$gray-lighter:          #e8e8e8 !default; // lighten($gray-base, 91%)
+$gray-lightest:         #f4f4f4 !default; // lighten($gray-base, 95.7%)
+
+
+//== Colors
+//
+$brand-primary:     #146cac !default;
+$brand-danger:      #cf000f !default;
+$brand-info:        #007fab !default;
+$brand-success:     #448602 !default;
+$brand-warning:     #fecc5c !default;
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+// Background color for `<body>`.
+$body-bg:                   #fff !default;
+// The default background for panels and areas with content
+$li-bg-secondary:           #fff !default;
+
+// Background for the section under header background and between consecutive elements for mobile
+$li-sub-header-bg:          #fbfbfb !default;
+
+// Global text color on `<body>`.
+$text-color:                $gray-dark !default;
+$text-muted:                $gray-light !default;
+// Text color on dark backgrounds
+$li-text-color-inverse:     #fff !default;
+
+// Global textual link color.
+$link-color:                $brand-primary !default;
+// Link hover color set via `darken()` function.
+$link-hover-color:          darken($link-color, 15%) !default;
+// Link hover decoration.
+$link-hover-decoration:     underline !default;
+
+// Opacity for disabled links and buttons
+$li-disabled-opacity:       .3 !default;
+
+// Background for terms highlighted by search
+$li-text-highlight-bg:      #ffffb5 !default;
+// Links in the message body color
+$li-message-link-color:     $brand-primary !default;
+// Navigation or signpost links such as "Go to Solution" or "Forgot password"
+$li-navigation-link-color:  $brand-primary !default;
+// Color of the dot that separates items horizontally like author and date for a message
+$li-separator-color:        $gray-light !default;
+
+// uppercase to uppercase all rank names, or none
+$li-rank-text-transform:    none !default;
+
+// Default border color
+$li-border-color:           #c4c4c4 !default;
+// Border for dividing consecutive items in a panel such as a list of messages or users
+$li-border-row:             $gray-lighter !default;
+// Border for panel headings, outlining panels and primary separators between panel sections
+$li-border-panel:           #d1d1d1 !default;
+// Border between major sections of a page such as below the header or above the footer
+// and other borders which span the width of the page
+$li-border-divider:         #c4c4c4 !default;
+// Stroke around kudos counts and secondary inversed buttons
+$li-border-dark:            #a1a1a1;
+
+$li-slide-menu-bg:          $gray-darker !default;
+
+// Hover background for dropdown links.
+$dropdown-link-hover-bg:    #e9faff !default;
+
+
+//== Container
+//
+$li-container-fluid:        true !default;
+
+
+//== Responsive Breakpoints
+//
+$screen-xs:                  480px !default;
+$screen-sm:                  768px !default;
+$screen-md:                  992px !default;
+$screen-lg:                  1200px !default;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:    'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$font-family-base:          $font-family-sans-serif !default;
+
+$font-size-xsmall:          11px !default;
+$font-size-small:           12px !default;
+$font-size-base:            14px !default;
+$font-size-large:           16px !default;
+
+$font-size-h1:              28px !default;
+$font-size-h2:              24px !default;
+$font-size-h3:              20px !default;
+$font-size-h4:              18px !default;
+
+$font-size-page-title:      32px !default;
+
+// Default size for message subjects
+$li-font-size-subject:      16px !default;
+
+// Font Awesome default font size
+$fa-font-size-base:         $font-size-base !default;
+
+// Font weight for most user generated long-form content
+$font-weight-content:       300 !default;
+$headings-font-weight:      normal !default;
+
+// Generally used for column headings
+$headings-small-color:      $text-muted !default;
+
+// Line heights
+$headings-line-height:      1.2 !default;
+$line-height-base:          1.7142857143 !default; // 24/14  24px line height with base 14px font
+$line-height-large:         1.3333333333 !default; // extra decimals for Win 8.1 Chrome
+$line-height-medium:        1.4285714286 !default; // 20/14  20px line height with base 14px font
+$line-height-small:         1.5 !default;
+$line-height-medium-computed:   round($line-height-medium * $font-size-base) !default; // 20px for 14px base
+
+
+//== Buttons
+//
+$btn-font-weight:                bold !default;
+
+$btn-primary-color:              $li-text-color-inverse !default;
+$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-border:             $brand-primary !default;
+
+$btn-inverse-primary-color:      $brand-primary !default;
+$btn-inverse-primary-bg:         transparent !default;
+$btn-inverse-primary-border:     $brand-primary !default;
+
+$btn-default-color:              $gray-dark !default;
+$btn-default-bg:                 $gray-lighter !default;
+$btn-default-border:             $gray-lighter !default;
+
+$btn-secondary-color:            $li-text-color-inverse !default;
+$btn-secondary-bg:               $gray-light !default;
+$btn-secondary-border:           $gray-light !default;
+
+$btn-inverse-secondary-color:    $gray-dark !default;
+$btn-inverse-secondary-bg:       transparent !default;
+$btn-inverse-secondary-border:   $li-border-dark !default;
+
+$btn-link-disabled-color:        $gray-lighter !default;
+
+
+//== Community interaction style icon backgrounds
+//
+$li-icon-blog-bg:         #58a386 !default;
+$li-icon-category-bg:     #869499 !default;
+$li-icon-community-bg:    $gray-light !default;
+$li-icon-contest-bg:      #cf6f6f !default;
+$li-icon-forum-bg:        #3296b5 !default;
+$li-icon-group-bg:        #d78021 !default;
+$li-icon-idea-bg:         #809f52 !default;
+$li-icon-qanda-bg:        #6a80bc !default;
+$li-icon-tkb-bg:          #8477a3 !default;
+
+
+//== Triangle top
+//
+$li-triangletop-thumb-tack-bg:  #007fab !default;
+$li-triangletop-check-bg:       #008000 !default;
+$li-triangletop-lock-bg:        #007fab !default;
+$li-triangletop-bullhorn-bg:    #cf000f !default;
+
+//== Hero
+//
+$li-hero-board-bg:              $gray !default;
+$li-hero-category-bg:           $gray !default;
+$li-hero-profile-bg:            #40494c !default;
+$li-hero-color:                 #fff !default;
+$li-hero-community-bg:          #3f3143 !default;
+$li-hero-icon-color:            #d1d1d1 !default;
+
+//== Message editor buttons
+//
+// visibility for message editor toolbar buttons for different sizes
+// desktop buttons are determined by the tinyMceOptions...json files
+// if the button is not available for desktop it is not available for any size
+//
+
+// Mobile controls
+//
+$li-editor-mobile-show-bold:            true !default;
+$li-editor-mobile-show-bullist:         false !default; // Bullet list
+$li-editor-mobile-show-code:            false !default; // Insert code (previous version)
+$li-editor-mobile-show-embedvideo:      false !default;
+$li-editor-mobile-show-emoticons:       true !default;
+$li-editor-mobile-show-findcontent:     false !default; // TKB Find Content
+$li-editor-mobile-show-fontselect:      false !default; // Select font family
+$li-editor-mobile-show-fontsizeselect:  false !default;
+$li-editor-mobile-show-forecolor:       false !default;
+$li-editor-mobile-show-formatselect:    false !default; // Select heading sizes
+$li-editor-mobile-show-image:           true !default;
+$li-editor-mobile-show-insertcode:      false !default;
+$li-editor-mobile-show-italic:          true !default;
+$li-editor-mobile-show-link:            false !default;
+$li-editor-mobile-show-macros:          true !default;
+$li-editor-mobile-show-numlist:         false !default; // Numbered list
+$li-editor-mobile-show-quote:           true !default;
+$li-editor-mobile-show-spellchecker:    false !default;
+$li-editor-mobile-show-spoiler:         false !default;
+$li-editor-mobile-show-strikethrough:   false !default;
+$li-editor-mobile-show-table:           false !default;
+$li-editor-mobile-show-toc:             false !default; // TKB table of contents
+$li-editor-mobile-show-underline:       true !default;
+
+
+// Tablet controls
+//
+// Note: if a control is hidden for tablet it is also hidden for mobile
+//       even if the mobile control is set to true
+$li-editor-tablet-show-bold:            true !default;
+$li-editor-tablet-show-bullist:         true !default; // Bullet list
+$li-editor-tablet-show-code:            true !default; // Insert code (previous version)
+$li-editor-tablet-show-embedvideo:      true !default;
+$li-editor-tablet-show-emoticons:       true !default;
+$li-editor-tablet-show-findcontent:     true !default; // TKB Find Content
+$li-editor-tablet-show-fontselect:      true !default; // Select font family
+$li-editor-tablet-show-fontsizeselect:  true !default;
+$li-editor-tablet-show-forecolor:       true !default;
+$li-editor-tablet-show-formatselect:    true !default; // Select heading sizes
+$li-editor-tablet-show-image:           true !default;
+$li-editor-tablet-show-insertcode:      true !default;
+$li-editor-tablet-show-italic:          true !default;
+$li-editor-tablet-show-link:            true !default;
+$li-editor-tablet-show-macros:          true !default;
+$li-editor-tablet-show-numlist:         true !default; // Numbered list
+$li-editor-tablet-show-quote:           true !default;
+$li-editor-tablet-show-spellchecker:    true !default;
+$li-editor-tablet-show-spoiler:         true !default;
+$li-editor-tablet-show-strikethrough:   true !default;
+$li-editor-tablet-show-table:           true !default;
+$li-editor-tablet-show-toc:             true !default; // TKB table of contents
+$li-editor-tablet-show-underline:       true !default;
+
+
+//=============================================================================
+// NOTE: Below this point all colors are derived from colors above
+//
+
+
+
+//== Border radii
+//
+$border-radius-base:        4px !default;
+$border-radius-large:       6px !default;
+$border-radius-small:       2px !default;
+// used to create rounded sides
+$border-radius-round:       200px !default;
+
+
+//== Icons
+//
+$li-avatar-size-small:      25px !default;
+$li-avatar-size-medium:     30px !default;
+$li-avatar-size-large:      40px !default;
+$li-avatar-size-message:    64px !default;
+
+$li-icon-size:              38px !default;
+$li-icon-size-lg:           50px !default;
+$li-icon-size-sm:           32px !default;
+$li-icon-size-xs:           9px !default;
+
+$li-icon-color:             $gray-light !default;
+$li-icon-inverse-color:     $li-text-color-inverse !default;
+
+$li-icon-fixed-width:       18em/14;
+//== Panels
+//
+$panel-bg:                    $li-bg-secondary !default;
+
+// Secondary panels
+$li-panel-secondary-bg:       $li-bg-secondary !default;
+
+$panel-heading-padding:       8.5px 15px !default;
+$panel-body-padding:          20px !default;
+
+$panel-border-radius:         $border-radius-base !default;
+
+// Border color for elements within panels
+$panel-inner-border:          $li-border-color !default;
+
+$panel-footer-bg:             $li-sub-header-bg !default;
+
+$panel-default-text:          $text-color !default;
+$panel-default-border:        $li-border-panel !default;
+$panel-default-heading-bg:    $li-bg-secondary !default;
+
+
+//== Breadcrumbs
+//
+//##
+$breadcrumb-padding-vertical:   15px !default;
+$breadcrumb-padding-horizontal: 15px !default;
+
+// Breadcrumb background color
+$breadcrumb-bg:                 transparent !default;
+// Breadcrumb text color
+$breadcrumb-color:              $li-border-dark !default;
+// Text color of current page in the breadcrumb
+$breadcrumb-active-color:       $text-color !default;
+// Textual separator for between breadcrumb elements
+$breadcrumb-separator:          '>' !default;
+
+
+//== Forms
+//
+$input-bg:                        $li-bg-secondary !default;
+
+// `<input disabled>` background color
+$input-bg-disabled:               $gray-lighter !default;
+
+// Text color for `<input>`s
+$input-color:                     $text-color !default;
+
+$input-color-placeholder:         $text-muted !default;
+
+// `<input>` border color
+$input-border:                    $li-border-color !default;
+$input-border-radius:             $border-radius-small !default;
+// Border color for inputs on focus
+$input-border-focus:              $brand-primary !default;
+
+$legend-color:                    $text-color !default;
+$legend-border-color:             $li-border-color !default;
+
+$input-checkbox-width:            20px !default;
+$form-padding:                    30px !default;
+
+// Used to create 40px tall buttons and inputs. 26px + ($padding-base-vertical(6) * 2) + (border(1) * 2) = 40px
+$li-line-height-input:            26px !default;
+$input-height-base:               40px !default; // 40px
+
+
+//== Dropdowns
+//
+//## Dropdown menu container and contents.
+// Dropdown menu `border-color`.
+$dropdown-border:                   $li-border-panel !default;
+
+// Divider color for between dropdown items.
+$dropdown-divider-bg:               $li-border-color !default;
+
+// Dropdown link text color.
+$dropdown-link-color:               $text-color !default;
+
+$dropdown-link-hover-color:         darken($dropdown-link-color, 5%) !default;
+
+
+// Disabled dropdown menu item background color.
+$dropdown-link-disabled-color:      lighten($dropdown-link-color, 40%) !default;
+
+// Text color for headers within dropdown menus.
+$dropdown-header-color:             $text-muted !default;
+
+// Deprecated `$dropdown-caret-color` as of v3.1.0
+$dropdown-caret-color:              $gray-light !default;
+
+
+//== Navs
+//
+
+// Shared nav styles
+$nav-link-hover-bg:                         $gray-lightest !default;
+$nav-link-padding-xs:                       10px 17px !default;
+
+// Tabs
+$nav-tabs-border-color:                     $li-border-color !default;
+$nav-tabs-link-hover-border-color:          $li-border-color !default;
+$nav-tabs-active-link-hover-color:          $text-color !default;
+$nav-tabs-active-link-hover-border-color:   $li-border-color !default;
+
+
+// Alerts
+//
+$alert-success-bg:            $brand-success !default;
+$alert-success-text:          $li-text-color-inverse !default;
+$alert-success-border:        $brand-success !default;
+
+$alert-info-bg:               $brand-info !default;
+$alert-info-text:             $li-text-color-inverse !default;
+$alert-info-border:           $brand-info !default;
+
+$alert-warning-bg:            $brand-warning !default;
+$alert-warning-text:          $text-color !default;
+$alert-warning-border:        $brand-warning !default;
+
+$alert-danger-bg:             $brand-danger !default;
+$alert-danger-text:           $li-text-color-inverse !default;
+$alert-danger-border:         $brand-danger !default;
+
+
+//== Pagination
+//
+//##
+$pagination-color:                     $text-color !default;
+$pagination-bg:                        transparent !default;
+$pagination-border:                    transparent !default;
+$pagination-hover-color:               $text-color !default;
+$pagination-hover-bg:                  transparent !default;
+$pagination-hover-border:              transparent !default;
+$pagination-active-color:              $text-color !default;
+$pagination-active-bg:                 transparent !default;
+$pagination-active-border:             transparent !default;
+$pagination-disabled-color:            $text-color !default;
+$pagination-disabled-bg:               transparent !default;
+$pagination-disabled-border:           transparent !default;
+
+
+//== Thumbnails
+//
+
+// Thumbnail border color
+$thumbnail-border:            $li-border-color !default;
+
+
+//== Wells
+//
+//##
+$well-bg:                     $li-panel-secondary-bg !default;
+
+
+//== Badges (number of new notification over the avatar)
+//
+//##
+$badge-bg:                    $brand-danger !default;
+// Badge background color in active nav link
+$badge-active-bg:             $brand-danger !default;
+
+
+//== Ideas Statuses
+//
+$li-idea-status-color:          $gray-light !default;
+
+
+//== Modals
+//
+//##
+// Modal content border color
+$modal-content-border-color:  $li-border-panel !default;
+// Modal header border color
+$modal-header-border-color:   $li-border-color !default;
+// Modal footer border color
+$modal-footer-border-color:   $li-border-color !default;
+
+
+//== Spacing
+//
+$padding-base-vertical:     6px !default;
+$padding-base-horizontal:   12px !default;
+
+$padding-xl-vertical:       20px !default;
+$padding-xl-horizontal:     25px !default;
+
+$padding-large-vertical:    10px !default;
+$padding-large-horizontal:  16px !default;
+
+$padding-small-vertical:    5px !default;
+$padding-small-horizontal:  10px !default;
+
+$padding-xs-vertical:       1px !default;
+$padding-xs-horizontal:     5px !default;
+
+$padding-medium:            15px !default;
+
+
+//== Grid system
+//
+$grid-columns:              24; // DO NOT MODIFY
+// Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:         30px !default;
+
+
+//== List group
+//
+//##
+// `.list-group-item` border color
+$list-group-border:             $li-border-row !default;
+// List group border radius
+$list-group-border-radius:      $border-radius-base !default;
+// Background color of single list items on hover
+$list-group-hover-bg:           $gray-lighter !default;
+
+
+//== Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
+// Border color for table and cell borders.
+$table-border-color:            $li-border-row !default;
+$table-bg:                      transparent !default;
+$table-cell-padding:            15px !default;
+
+
+//== Lithium component spacing and widths
+//
+
+$li-triangletop-size:             40px !default;
+$li-font-size-space:              .26em !default;
+$li-video-gallery-height:         90px !default;
+$li-video-gallery-width:          120px !default;
+$li-kudos-alt-button-style-width: 180px !default;
+$li-kudos-horizontal-md-width:    93px !default;
+$li-ratings-alt-button-style-width: $li-kudos-alt-button-style-width !default;
+$li-ratings-horizontal-md-width:    $li-kudos-horizontal-md-width !default;
+$li-ratings-star-large:           20px;
+$li-user-badges-badge-size:       72px !default; // Badge display size + image padding top and bottom -- 72px + (2 * 10px)
+$li-album-thumbnail-dimensions:   110px !default;
+$li-uploader-image-tile-caption-height:   35px !default;
+$li-uploader-image-tile-height:   250px !default;
+$li-uploader-image-tile-width:    250px !default;
+$li-uploader-padding-vertical:    15px !default;
+$li-hero-category-height:         225px !default;
+$li-hero-input-height:            55px !default;
+$li-unread-border-width:          6px !default;
+$li-slide-menu-vertical-width:    400px !default;
+$li-community-nav-item-padding:   15px !default;
+$fa-font-path:                    '/html/assets/fonts' !default;
+$fa-css-prefix:                   lia-fa !default;
+
+$li-lightbox-icon-size-large:     24px !default;
+$li-uploader-2x-icon:             28px !default;
+$li-dropdown-paging-min-width:    200px !default;
+$li-search-input-height:          46px !default;
+
+// not all buttons have a min width, used for footer actions with 2 buttons
+//  320px (min container width)
+//  - 20px (10px * 2 grid gutters)
+//  - 40px (20px * 2 panel / view padding)
+//  - 20px (space between buttons)
+//  / 2 (per button) = 120
+$li-btn-min-width:               120px !default;
+
+
+// scss-lint:disable ColorVariable
+$li-group-icon-size:              75px !default;
+$li-group-icon-size-large:        100px !default;

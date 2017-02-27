@@ -1,0 +1,195 @@
+
+// copying .btn from bootstrap 3.4.3 and modifying .active and .disabled
+// states so that we can avoid over-extending
+@mixin lia-button {
+  display: inline-block;
+  margin-bottom: 0; // For input.btn
+  font-weight: $btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  white-space: nowrap;
+  @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-large, $li-line-height-input, $border-radius-base);
+  @include user-select(none);
+
+  &,
+  &:active {
+    &:focus {
+      @include tab-focus;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: $btn-default-color;
+    text-decoration: none;
+  }
+
+  &:active,
+  &.lia-link-active,
+  .lia-dropdown-open &.lia-common-dropdown-toggle,
+  .dropdownHover &.default-menu-option {
+    background-image: none;
+//    @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+    outline: 0;
+  }
+
+  &[disabled],
+  .lia-link-disabled &,
+  &.lia-link-disabled {
+    cursor: $cursor-disabled;
+    @include opacity($li-disabled-opacity);
+    @include box-shadow(none);
+  }
+
+  .lia-button-wrapper & {
+    min-width: $li-btn-min-width;
+  }
+}
+
+
+// Modify bootstrap's button-variant mixin for:
+// * added invert button style which makes the background transparent,
+//   sets color to border-color but retains the same hover
+@mixin button-variant($color, $background, $border, $active-color: $color, $active-background: $background, $active-border: $border) {
+
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+
+  &:after,
+  &:before {
+    color: $color;
+  }
+
+  &:focus {
+    color: $active-color;
+    background-color: darken($active-background, 10%);
+        border-color: darken($active-border, 25%);
+  }
+  &:hover {
+    color: $active-color;
+    background-color: darken($active-background, 10%);
+        border-color: darken($active-border, 12%);
+
+    &:after,
+    &:before {
+      color: $active-color;
+    }
+  }
+  &:active,
+  &.lia-link-active {
+    color: $active-color;
+    background-color: darken($active-background, 10%);
+        border-color: darken($active-border, 12%);
+
+    &:hover,
+    &:focus {
+      color: $active-color;
+      background-color: darken($active-background, 17%);
+          border-color: darken($active-border, 25%);
+    }
+  }
+
+  .lia-dropdown-open &.lia-common-dropdown-toggle,
+  .dropdownHover &.default-menu-option {
+    border-color: darken($active-border, 12%);
+  }
+
+  &[disabled],
+  .lia-link-disabled &,
+  &.lia-link-disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $active-background;
+          border-color: $active-border;
+    }
+  }
+}
+
+// convenience named button styles
+@mixin lia-button-primary {
+  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+
+@mixin lia-button-primary-inverse {
+  @include button-variant($btn-inverse-primary-color, $btn-inverse-primary-bg, $btn-inverse-primary-border,
+      $btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+
+@mixin lia-button-secondary {
+  @include button-variant($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
+}
+
+@mixin lia-button-secondary-inverse {
+  @include button-variant($btn-inverse-secondary-color, $btn-inverse-secondary-bg, $btn-inverse-secondary-border,
+    $btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
+}
+
+@mixin lia-button-default {
+  @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+  min-width: 0;
+}
+
+
+// Create a button which looks and behaves like a normal link
+// This serves a similar function to Bootstrap's .btn-link with lithium classes added
+@mixin lia-button-link {
+  border-radius: 0;
+  color: $link-color;
+  font-size: $font-size-base;
+  font-weight: normal;
+  min-width: 0;
+  padding-left: $padding-base-horizontal;
+  padding-right: $padding-base-horizontal;
+
+  &,
+  &:active,
+  &.lia-link-active,
+  .lia-dropdown-open &.lia-common-dropdown-toggle,
+  .dropdownHover &.default-menu-option,
+  .lia-link-disabled &,
+  &.lia-link-disabled {
+    @include box-shadow(none);
+    background-color: transparent;
+  }
+
+  &,
+  &:hover,
+  &:focus,
+  &:active,
+  &.lia-link-active {
+    border-color: transparent;
+  }
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.lia-link-active {
+    background-color: transparent;
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &[disabled],
+  .lia-link-disabled &,
+  &.lia-link-disabled {
+    &:hover,
+    &:focus {
+      color: $btn-link-disabled-color;
+      text-decoration: none;
+    }
+  }
+}
+
+// Replace the link color with the normal text color. On hover or active it behaves like a link
+@mixin lia-button-text {
+  @include lia-button-link;
+
+  color: $text-color;
+}

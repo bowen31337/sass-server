@@ -1,0 +1,214 @@
+$ratings-and-reviews_histogram-width:        200px !default;
+$ratings-and-reviews_star-width:             16px !default;
+$ratings-and-reviews_histogram-item-height:  round($font-size-small * $line-height-base) !default;
+$ratings-and-reviews-star-margin-left:       -8px !default;
+$ratings-and-reviews-star-control-width:     18px !default;
+$ratings-and-reviews-star-dimensions:        14px !default;
+
+@mixin components\ratings-and-reviews {
+
+  .lia-component-histogram {
+    float: right;
+    font-size: $font-size-small;
+    margin-bottom: $padding-large-vertical;
+    width: $ratings-and-reviews_histogram-width;
+
+    // wraps the histogram cell
+    .lia-data-cell-primary {
+      padding: $padding-small-vertical $padding-small-horizontal;
+      width: 100%;
+    }
+
+    .lia-data-cell-secondary {
+      padding: $padding-xs-vertical $padding-xs-horizontal;
+    }
+
+    .rating-count,
+    .rating-value {
+      color: $text-muted;
+      white-space: nowrap;
+    }
+
+    .rating-count {
+      text-align: left;
+    }
+
+  }
+
+  .lia-form-message-ratings-entry,
+  .lia-form-tkb-ratings-entry {
+    margin-bottom: 0;
+  }
+
+  // colored histogram row
+  .lia-rating-distribution-bar {
+    background-color: $brand-primary;
+    height: $ratings-and-reviews_histogram-item-height;
+  }
+
+  .lia-rating-distribution-bar-wrapper {
+    background-color: $input-bg-disabled;
+    width: 100%;
+  }
+
+  .lia-reviews-byline {
+    @include clearfix;
+  }
+
+
+  // Stars
+
+  // form star container
+  // hardcoded at 80px using jquery-ui-stars 10 * 8px half star png sprites
+  .lia-rating-control-type-star {
+    min-width: 80px;
+    white-space: nowrap;
+  }
+
+  .lia-form-idea-ratings-entry {
+    margin-bottom: 0;
+  }
+
+  .ui-stars-star,
+  .ui-stars-cancel {
+    cursor: pointer;
+    display: block;
+    float: left;
+    overflow: hidden;
+    text-indent: -999em;
+  }
+
+  .ui-stars-star > a,
+  .ui-stars-cancel > a {
+    background: transparent url($li-png-star-states) no-repeat 50% -1px;
+    border-radius: 50%;
+    display: block;
+    height: $ratings-and-reviews-star-dimensions;
+    margin: 1px;
+    width: $ratings-and-reviews-star-dimensions;
+  }
+
+  .ui-stars-star > a {
+    background-color: $input-bg-disabled;
+    background-position: 50% ($ratings-and-reviews_star-width * -2 - 1px);
+  }
+
+  .ui-stars-star-on > a {
+    background-color: $brand-primary;
+    background-position: 50% ($ratings-and-reviews_star-width * -3 - 1px);
+  }
+
+  .ui-stars-star-hover > a {
+    background-color: $brand-primary;
+    background-position: 50% ($ratings-and-reviews_star-width * -4 - 1px);
+  }
+
+  .ui-stars-cancel-hover > a {
+    background-color: transparent;
+    background-position: 50% (-$ratings-and-reviews_star-width - 1px);
+  }
+
+  .lia-rating-star-wrapper-rtl {
+    .ui-stars-star:nth-child(even) > a {
+      margin-left: $ratings-and-reviews-star-margin-left; // this will become flipped for rtl, equivalent to the hardcoded styles
+    }
+  }
+
+  .lia-rating-form .lia-rating-control-wrapper .lia-input-edit-form-row {
+    display: block;
+  }
+
+  .ui-stars-star-disabled,
+  .ui-stars-star-disabled > a,
+  .ui-stars-cancel-disabled > a {
+    cursor: default;
+  }
+
+  .ui-stars-star.ui-stars-star {
+    @include fa-icon;
+    font-size: $li-ratings-star-large;
+    text-indent: 0;
+  }
+
+  .lia-rating-control-passive .ui-stars-star {
+    > a {
+      display: none;
+    }
+
+    &:nth-child(odd) {
+      &:before {
+        margin-right: 0;
+      }
+    }
+
+    &:nth-child(even) {
+      padding-right: $padding-small-horizontal;
+
+      &:before {
+        margin-left: $ratings-and-reviews-star-margin-left;
+      }
+    }
+  }
+
+  .lia-rating-control-passive .ui-stars-star-disabled {
+    &:nth-child(odd) {
+      &:before {
+        content: $fa-var-star-o;
+      }
+    }
+
+    &:nth-child(even) {
+      &:before {
+        content: $fa-var-star-o;
+      }
+    }
+  }
+
+  .lia-rating-control-passive .ui-stars-star-on {
+    &:nth-child(odd) {
+      &:before {
+        content: $fa-var-star;
+      }
+    }
+
+    &:nth-child(even) {
+      &:before {
+        content: $fa-var-star;
+      }
+    }
+  }
+
+  .lia-rating-control-active .ui-stars-star {
+    max-width: $ratings-and-reviews-star-control-width;
+    min-width: $ratings-and-reviews-star-control-width;
+
+    > a {
+      display: none;
+    }
+
+    &:before {
+      content: $fa-var-star-o;
+    }
+  }
+
+  .lia-rating-control-active .ui-stars-star-on {
+    &:before {
+      content: $fa-var-star;
+    }
+  }
+
+  .lia-rating-control-active .ui-stars-star-hover {
+    &:before {
+      content: $fa-var-star;
+    }
+  }
+
+  [dir=rtl] .lia-ratings-rating .half-star {
+    @include fa-icon-flip(-1, 1, 0);
+  }
+
+  .lia-rating-star-system-label,
+  .lia-form-tkb-ratings-entry .lia-form-label {
+    display: none;
+  }
+}

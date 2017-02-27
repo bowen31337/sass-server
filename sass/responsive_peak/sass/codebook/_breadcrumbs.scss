@@ -1,0 +1,117 @@
+// Breadcrumbs
+//
+// Indicate the current page's location within a navigational hierarchy.
+//
+// Markup:
+// <div class="lia-breadcrumb">
+//   <ul class="lia-list-standard-inline">
+//     <li class="crumb">
+//       <a href="">Foo Community</a>
+//     </li>
+//     <li class="lia-breadcrumb-seperator">
+//       <span class="separator">:</span>
+//     </li>
+//     <li class="final-crumb">
+//       <span class="lia-link-disabled">Bar Category</span>
+//     </li>
+//   </ul>
+// </div>
+//
+// Style guide: codebook.breadcrumbs
+
+@mixin codebook\breadcrumbs {
+
+  // consider making breadcrumbs custom due to the odd way spacing
+  // is handled and our odd separator structure.
+  .lia-breadcrumb {
+
+    margin-bottom: $padding-large-vertical;
+
+    > .lia-list-standard-inline {
+      @include li-extend('.breadcrumb');
+
+      // this is inheriting both .list-inline and .breadcrumb styles
+      // undo margin and padding
+      margin: {
+        bottom: 0;
+        left: 0;
+      }
+
+      @include media(phone) {
+
+        // suppress separator as we're only showing one node on mobile
+
+        // show only 1 level up on the breadcrumb. last-of-type(3) generally
+        // works in most cases, but not all, for example the q&a communitypage
+        > .crumb {
+          display: none;
+
+          &:nth-last-of-type(3) {
+            display: inline-block;
+
+            // remove default bootstrap separator
+            &:before {
+              display: none;
+            }
+
+            > .lia-link-navigation {
+              @include li-icon($fa-var-angle-left, 20px);
+
+              &:before {
+                margin-right: $padding-large-horizontal;
+                vertical-align: top;
+              }
+            }
+          }
+        }
+      }
+
+      > li {
+        padding: {
+          left: 0;
+          right: 0;
+        }
+
+        + li:before {
+          padding: {
+            left: 5px;
+            right: 0;
+          }
+        }
+      }
+
+      // separator is spelled wrong. we don't need a separate separator because
+      // it's included in default Bootstrap .BreadCrumb using pseudo :before
+      > .lia-breadcrumb-seperator {
+        display: none;
+      }
+    }
+
+    .final-crumb {
+      font-weight: bolder;
+    }
+  }
+
+
+  .lia-breadcrumb {
+    margin-bottom: 0;
+    margin-left: -$panel-body-padding / 2;
+
+    > .lia-list-standard-inline {
+      padding-left: 0;
+      padding-right: $panel-body-padding / 2;
+    }
+
+    .lia-link-navigation {
+      line-height: $line-height-medium-computed;
+      padding: {
+        left: $panel-body-padding / 2;
+        right: $panel-body-padding / 2;
+      }
+    }
+
+    .final-crumb {
+      font-weight: normal;
+    }
+  }
+}

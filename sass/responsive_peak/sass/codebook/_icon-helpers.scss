@@ -1,0 +1,562 @@
+// Icon Helpers
+//
+// A hodgepodge of classes dedicated to managing various icon types.
+//
+// The primary types of icons are:
+//
+// Base icons (row icons). Base icons are used most often as the first column
+// of a table containing a list of repeated items. These are usually larger
+// and are used to convey type and/or status.
+// Examples: Interaction-style icons, thread icons.
+//
+// Inline contextual icons. Inline icons either add additional information about
+// the text it's surrounding.
+// Examples: message subject has-image / has-attachment icons, rank icons.
+//
+// Inline navigational icons. These are icons which are associated with controls
+// or actions.
+// Example: Inline close icon, open / close toggles, help icons, go up icons.
+//
+// Currently, both types of inline icons are treated identically.
+//
+// Styling notes:
+// Base icon default size is 18px, changed by `$icon-size-base`.
+//
+// Inline icon default size is set to be identical to the current font size
+// `$font-size-base`, or can be set independently with `$icon-size-inline`.
+//
+// Style guide: codebook.icon-helpers
+
+@mixin codebook\icon-helpers {
+
+  // the icon values in this map are defined in _lia-font-awesome.scss
+  .#{$fa-css-prefix} {
+    color: $li-icon-color;
+
+    @each $icon, $val in $li-fa-icons {
+      &.lia-img-#{$icon}:before {
+        content: li-icon-content($icon);
+      }
+
+      &.lia-fa-avatar:before {
+        content: li-icon-content($icon);
+      }
+    }
+
+    &.lia-fa-thread {
+      @each $interaction-style in $li-interaction-styles {
+        &.lia-fa-#{$interaction-style}:before {
+          content: li-icon-content($interaction-style);
+        }
+      }
+
+      &.lia-fa-hot:before {
+        color: $brand-danger;
+      }
+    }
+  }
+
+  .help-icon > img,
+  .lia-panel-content .help-icon > img {
+    height: $font-size-base;
+    vertical-align: text-top;
+  }
+
+  // lia-base.css
+  .lia-lazy-load {
+    @include li-icon(feedback-loading);
+  }
+
+  .lia-lazy-load-small {
+    @include li-icon(feedback-loading-small);
+  }
+
+  // lia-cb-controls.css
+  .lia-link-go-back {
+    @include li-icon(icon-paging-page-arrow-previous);
+  }
+
+  .lia-toggle-closed {
+    @include li-icon(icon-toggle-closed);
+  }
+
+  .lia-toggle-open {
+    @include li-icon(icon-toggle-open);
+  }
+
+  .lia-token-input-delete-token {
+    @include li-icon(button-delete);
+
+  }
+
+  .lia-twizzle-closed {
+    @include li-icon(icon-toggle-closed);
+  }
+
+  .lia-twizzle-open {
+    @include li-icon(icon-toggle-open);
+  }
+
+
+  // lia-cb-forms.css
+  .lia-form-field-success {
+    @include li-icon(icon-form-field-success);
+  }
+
+  .lia-form-field-validating {
+    @include li-icon(feedback-loading-mini);
+  }
+
+
+  // lia-cb-panels.css
+  .lia-media-snippet-close {
+    @include li-icon(button-dialog-close);
+  }
+
+  .lia-media-snippet-thumbnail a i {
+    @include li-icon(button-video-play);
+  }
+
+  .lia-spoiler-link {
+    @include li-icon(icon-toggle-closed);
+
+    &.open {
+      @include li-icon(icon-toggle-open);
+    }
+  }
+
+  // lia-cb-views.css
+  .lia-list-wide .lia-view-filter-ascending {
+    @include li-icon(icon-view-filter-ascending-inv);
+  }
+
+  .lia-list-wide .lia-view-filter-descending {
+    @include li-icon(icon-view-filter-descending-inv);
+  }
+
+  .lia-view-filter-ascending {
+    @include li-icon(icon-view-filter-ascending);
+  }
+
+  .lia-view-filter-descending {
+    @include li-icon(icon-view-filter-descending);
+  }
+
+
+  // lia-gallery.css
+  .contributing-author .UserName {
+    @include li-icon(icon-user-author);
+  }
+
+  .lia-link-navigation-tkb {
+    @include li-icon(icon-tkb-link);
+  }
+
+  .lia-post-from-search {
+    @include li-icon(button-post-forum-thread);
+  }
+
+  .lia-summary-view-statistic-email {
+    @include li-icon(icon-stat-email, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-kudos {
+    @include li-icon(icon-stat-kudos, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-last-ip {
+    @include li-icon(icon-stat-last-ip, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-last-visit-date,
+  .lia-summary-view-statistic-registration-date {
+    @include li-icon(icon-stat-date, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-location {
+    @include li-icon(icon-stat-location, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-logins {
+    @include li-icon(icon-stat-logins, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-page-views {
+    @include li-icon(icon-stat-views, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-post-count {
+    @include li-icon(icon-stat-posts, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-post-date {
+    @include li-icon(icon-stat-time, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-replies {
+    @include li-icon(icon-stat-replies, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-roles {
+    @include li-icon(icon-stat-role, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .lia-summary-view-statistic-views {
+    @include li-icon(icon-stat-views, $fixed-width: true, $icon-margin: 0);
+  }
+
+  .remove-image {
+    @include li-icon(button-delete);
+
+    color: $state-danger-text;
+  }
+
+
+  // lia-qanda.css
+  .qanda-message-view .accepted-solution {
+    @include li-icon(message-type-solution);
+  }
+
+  .search-header-ascending {
+    @include li-icon(icon-view-filter-ascending, $icon-margin: 10px);
+  }
+
+  .search-header-descending {
+    @include li-icon(icon-view-filter-descending, $icon-margin: 10px);
+  }
+
+  .search-header-selected {
+    @include li-icon($fa-var-check, $pseudo: after);
+  }
+
+  .search-result-syndicate-permalink {
+    @include li-icon(button-permalink);
+  }
+
+  .search-result-syndicate-rss {
+    @include li-icon(button-rss);
+  }
+
+
+  // marketing/activity_streams.css
+  .lia-link-feed-icon {
+    @include li-icon(icn-feed-off);
+
+    &.lia-link-disabled,
+    &:hover {
+      @include li-icon(icn-feed-on);
+    }
+  }
+
+  .lia-link-grid-icon {
+    @include li-icon(icn-grid-off);
+
+    &.lia-link-disabled,
+    &:hover {
+      @include li-icon(icn-grid-on);
+    }
+  }
+
+  .lia-link-list-icon {
+    @include li-icon(icn-list-off);
+
+    &.lia-link-disabled,
+    &:hover {
+      @include li-icon(icn-list-on);
+    }
+  }
+
+  .lia-link-photo-grid-icon {
+    @include li-icon(icon-photostream-off);
+
+    &.lia-link-disabled,
+    &:hover {
+      @include li-icon(icon-photostream-on);
+    }
+  }
+
+  .lia-link-scroll-to {
+    @include li-icon(icon-back-to-top);
+  }
+
+  .lia-link-show-more-icon {
+    @include li-icon(icn-more);
+  }
+
+
+  // marketing/buttons.css
+  .lia-link-back-icon {
+    @include li-icon(icon-back-arrow);
+  }
+
+  .lia-link-give-kudos-icon {
+    @include li-icon(icon-kudos);
+  }
+
+  .lia-link-reply-icon {
+    @include li-icon(button-reply);
+  }
+
+
+  // marketing/forms.css
+  .lia-form-horizontal .lia-form-input-wrapper .lia-form-error-text {
+    @include li-icon(icon-error);
+  }
+
+
+  // marketing/messages.css
+  .lia-authors {
+    @include li-icon(icn-user);
+  }
+
+  .lia-component-reply-count {
+    @include li-icon(icn-replies);
+  }
+
+  .lia-component-report-abuse {
+    .report-abuse-link {
+      @include li-icon-button($fa-var-exclamation-triangle);
+
+      &:hover:before {
+        color: $brand-warning;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .lia-component-views {
+    @include li-icon(icn-views);
+  }
+
+
+  // marketing/wait_loader.css
+  .lia-loader {
+    @include li-icon(sm-loading-icon);
+  }
+
+
+  // tinymce
+  .lia-mce-toolbar-insertcode {
+    .mce-ico {
+      @include li-icon-button($fa-var-code);
+
+      // remove tinymce's plugin image reference
+      background-size: 0;
+
+      > img {
+        display: none;
+      }
+    }
+  }
+
+  .mce-btn-small .lia-fa.mce-ico {
+    font-family: FontAwesome;
+  }
+
+  .mce-i-image.mce-ico {
+    @include li-icon-button($fa-var-camera);
+  }
+
+  .mce-i-media.mce-ico {
+    @include li-icon-button($fa-var-video-camera);
+  }
+
+  // override lithium's spoiler button with fontawesome in tinymce
+  .mce-i-spoiler.mce-ico {
+    @include li-icon-button($fa-var-eye-slash);
+
+    > img {
+      display: none;
+    }
+
+    &:before {
+      vertical-align: top;
+    }
+  }
+
+  .lia-img-button-fbconnect-primary,
+  .lia-img-button-fbconnect-secondary,
+  .lia-img-icon-third-party-source-facebook {
+    // scss-lint:disable ColorVariable
+    color: #3b5998;
+  }
+
+  .lia-img-icon-twitter-stream,
+  .lia-img-twitterbird-12x12 {
+    // scss-lint:disable ColorVariable
+    color: #55acee;
+  }
+
+  .lia-img-button-delete,
+  .lia-img-button-inline-delete,
+  .lia-img-icon-arrow-down-alert,
+  .lia-img-icon-arrow-up-alert {
+    color: $state-danger-text;
+  }
+
+  .lia-img-icon-accept-solution,
+  .lia-img-icon-arrow-down-safe,
+  .lia-img-icon-arrow-up-safe,
+  .lia-img-message-type-resolution,
+  .lia-img-message-type-resolved,
+  .lia-img-message-type-solution,
+  .lia-img-message-type-solved,
+  .lia-img-online {
+    color: $brand-success;
+  }
+
+  // map all integer columns to use an icon label in tables
+  @include media(phone) {
+    .kudosCountColumn {
+      @include li-icon-responsive-label(button-kudos-v2-h-enabled);
+    }
+
+    // new messages
+    .newMessageCount,
+    .newMessageCountColumn,
+    .newMessagesCount,
+    .newMessagesCountColumn,
+    .newMessages,
+    .recentMessageCountColumn {
+      &.lia-data-cell-secondary {
+        @include li-icon-responsive-label(icon-thread-new);
+      }
+    }
+
+    // message counts
+    .cRepliesCountColumn,
+    .messageCount,
+    .messageCountColumn,
+    .replies,
+    .repliesCountColumn,
+    .userNumberOfPosts {
+      &.lia-data-cell-secondary {
+        @include li-icon-responsive-label(icon-thread);
+
+        .lia-list-row-thread-unread & {
+          @include li-icon-responsive-label(icon-thread-new);
+        }
+      }
+    }
+
+    // minutes
+    .minutesIdleColumn {
+      &.lia-data-cell-secondary {
+        @include li-icon-responsive-label($fa-var-bed);
+      }
+    }
+
+    .minutesOnlineColumn {
+      &.lia-data-cell-secondary {
+        @include li-icon-responsive-label($fa-var-clock-o);
+      }
+    }
+
+    .cViewsCountColumn,
+    .viewsCountColumn {
+      &.lia-data-cell-secondary {
+        @include li-icon-responsive-label(icon-stat-views);
+      }
+    }
+
+    .groupMembers {
+      &.lia-data-cell-secondary {
+        @include li-icon-responsive-label($fa-var-user);
+      }
+    }
+
+    .meTooCountColumn {
+      &.lia-data-cell-secondary {
+        @include li-icon-responsive-label($fa-var-user-plus);
+      }
+    }
+
+    .revisionColumn {
+      &.lia-data-cell-tertiary {
+        @include li-icon-responsive-label($fa-var-user-plus);
+      }
+    }
+
+    .tagsCountColumn {
+      &.lia-data-cell-tertiary {
+        @include li-icon-responsive-label($fa-var-tags);
+      }
+    }
+
+    .tagWeightColumn {
+      &.lia-data-cell-secondary {
+        @include li-icon-responsive-label($fa-var-arrows-v);
+      }
+    }
+  }
+
+  .lia-fa-hot:before {
+    color: $brand-danger;
+  }
+
+  // RTL support for direct use of font awesome icons
+  // add as needed, see https://github.com/fisharebest/font-awesome-rtl/blob/master/font-awesome-rtl.css
+  [dir=rtl] {
+    .lia-fa-angle-left,
+    .lia-fa-angle-right {
+      transform: scale(-1, 1);
+    }
+
+    .lia-mentions-block:before {
+      transform: rotate(-45deg);
+    }
+  }
+
+  .lia-group-image > .lia-link-navigation,
+  .groupImage > .lia-link-navigation {
+    border: 1px solid $li-border-color;
+    display: inline-block;
+    position: relative;
+
+    img {
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      max-height: 100%;
+      max-width: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .lia-group-image > .lia-link-navigation {
+    height: $li-avatar-size-large;
+    width: $li-avatar-size-large;
+  }
+
+  .groupImage > .lia-link-navigation {
+    height: $li-avatar-size-message;
+    width: $li-avatar-size-message;
+  }
+
+  .lia-fa-group.lia-fa-avatar {
+    background: svg-url($li-svg-groups, $li-icon-group-bg) center no-repeat;
+    background-size: $li-icon-size-sm $li-icon-size-sm;
+    box-sizing: border-box;
+    content: '';
+    height: 100%;
+    padding: {
+      top: ceil($fa-font-size-base / 2);
+      bottom: ceil($fa-font-size-base / 2);
+      left: calc(100% - #{ceil($fa-font-size-base / 2)});
+      right: ceil($fa-font-size-base / 2);
+    }
+    width: 100%;
+
+    .lia-group-details &.lia-img-icon-group-avatar-profile {
+      border: 1px solid $li-border-color;
+      height: $li-avatar-size-message;
+      width: $li-avatar-size-message;
+    }
+  }
+
+  .lia-group-details .lia-group-icon {
+    border: 1px solid $li-border-color;
+  }
+}

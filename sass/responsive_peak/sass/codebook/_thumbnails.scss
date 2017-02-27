@@ -1,0 +1,21 @@
+@mixin codebook\thumbnails {
+
+  .lia-list-tile {
+    @include clearfix;
+  }
+
+  .contest-gallery-card {
+    @include li-extend('.thumbnail');
+
+    .image-preview > img {
+      @include img-responsive;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contest-gallery-content,
+    .lia-component-kudos-widget-button {
+      @include li-extend('.caption');
+    }
+  }
+}

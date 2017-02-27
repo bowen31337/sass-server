@@ -1,0 +1,127 @@
+@mixin components\profile-plus\integrated-profile-plus-settings {
+  .lia-component-integratedprofile-widget-klout-connect-topic-setup .lia-panel,
+  .lia-component-profile-plus-settings.lia-panel {
+    .lia-panel-heading-bar,
+    .lia-white-list-topics .lia-privacy-control-instruction {
+      border: none;
+    }
+  }
+
+  .lia-component-profile-plus-settings {
+    color: $li-integrated-actionable-insight-ranking-topic-color;
+    margin: auto;
+    max-width: 700px;
+
+    .lia-integrated-profile-klout-connect-footer {
+      margin-top: $padding-xl-horizontal * 2;
+    }
+
+    .lia-form-submit-wrapper {
+      overflow: auto;
+    }
+
+    .lia-integrated-profile-klout-poweredby-icon {
+      background-image: svg-url($li-svg-profile-plus-klout-icon);
+      background-position: center;
+      background-repeat: no-repeat;
+      display: inline-block;
+      float: right;
+      height: $li-integrated-profile-fa-icon-size-large / 2;
+      margin-right: $padding-small-horizontal;
+      margin-top: $padding-xl-horizontal;
+      width: $li-integrated-profile-fa-icon-size-large;
+    }
+
+
+    .lia-profile-plus .lia-profile-plus-title {
+      font-size: $font-size-h3;
+      margin-bottom: $li-integrated-profile-padding;
+    }
+
+    .lia-profile-plus-connected-state {
+      margin-bottom: $padding-xl-vertical * 2;
+    }
+
+    .lia-profile-plus-connected-state .lia-profile-plus-connect-status {
+      font-weight: normal;
+    }
+
+    .lia-profile-plus-connect-mode,
+    .lia-search-input-message,
+    .lia-white-list-topics .lia-privacy-control-instruction,
+    .lia-privacy-control-network-instruction,
+    .lia-profile-plus-settings-network-instruction,
+    .lia-topic-selection-instructions,
+    .lia-user-settings label {
+      font-size: $font-size-large;
+    }
+
+    .lia-profile-plus-settings-network-instruction {
+      margin-bottom: $padding-large-vertical;
+    }
+
+    .lia-search-typehead {
+      margin-bottom: $padding-small-vertical;
+    }
+
+    .lia-white-list-topics {
+      .lia-privacy-control-topic-group,
+      .lia-signature-topic-selection-title,
+      .lia-profile-plus-social-network-connect-title {
+        font-size: $padding-xl-vertical;
+        font-weight: normal;
+      }
+
+      .lia-signature-topic-selection-title {
+        margin-top: $padding-small-horizontal;
+      }
+
+      .lia-privacy-control-topic-group {
+        margin-bottom: $padding-large-vertical;
+      }
+
+      .lia-advanced-settings-label {
+        color: $li-integrated-actionable-insight-activity-threshold-color;
+        font-size: $font-size-h4;
+      }
+
+      .lia-user-settings {
+        margin-top: $padding-xl-vertical;
+      }
+
+      .lia-topic-selection-area {
+        background-color: $li-integrated-profile-bg;
+        border: none;
+        padding: $padding-large-vertical 0px;
+      }
+
+      .lia-topic-pill {
+        margin-right: $li-integrated-profile-padding;
+        margin-top: $li-integrated-profile-padding;
+
+      }
+
+      .lia-topic-checkbox,
+      .lia-user-settings input[type=checkbox] {
+        border-radius: $border-radius-small;
+        height: $padding-xl-vertical;
+        margin-top: 0;
+        vertical-align: middle;
+        width: $padding-xl-vertical;
+      }
+
+      .lia-user-settings input[type=checkbox] {
+        margin-right: $li-integrated-profile-padding;
+      }
+    }
+
+    .lia-button-wrapper-Submit-action {
+      float: right;
+    }
+  }
+
+  .lia-topic-pill-container {
+    display: inline-block;
+  }
+
+}

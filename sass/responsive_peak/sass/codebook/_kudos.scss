@@ -1,0 +1,404 @@
+// Kudos
+//
+// Kudos are treated as 2 part buttons similar to Bootstrap's .btn-group but
+// doesn't use the .btn-group class due to markup differences (too many wrapper
+// classes between .btn-group and .btn).
+//
+// There are two kudos layouts: horizontal and vertical.
+// horizontal: used with most interaction styles.
+// vertical: used with ideas and contests.
+//
+// `.kudos-count-link`: shows the number of kudos the associated item has recieved
+//  with a link to a list of all who has given kudos to this same item.
+//
+// `.kudos-link`: control to give kudos; normal state is a secondary `.btn`.
+//  if a user has given kudos, it is styled as a primary button.
+//
+// `.kudos-count`: number of people who have given kudos.
+//
+// Each layout supports the following styles:
+//
+// `.lia-button-image-kudos-kudoed`: this user has given kudos to this post.
+// This applies styling which mimics the ``.btn-primary.disabled` state.
+//
+// `.lia-button-image-kudos-disabled`: kudos cannot be given.
+// Disabled is also triggered when the author views her own post.
+// An author cannot give her own post kudos. Styling is handled with `.disabled` (mimcs .btn-default.disabled).
+//
+// `.lia-button-image-kudos-frozen`: a moderator has prevented users from giving kudos to this post.
+// This is currently styled identically to disabled.
+//
+// Markup:
+// <div class="lia-button-image-kudos-give">
+//  <a class="lia-link-navigation kudos-link"></a>
+// </div>
+// <div class="lia-button-image-kudos lia-button-image-kudos-horizontal lia-button-image-kudos-enabled lia-button-image-kudos-not-kudoed lia-button">
+//  <div class="lia-button-image-kudos-count">
+//    <span class="lia-link-navigation kudos-count-link">
+//      <span class="lia-component-kudos-widget-message-kudos-count"> 0 </span>
+//      <span class="lia-button-image-kudos-label lia-component-kudos-widget-kudos-count-label"> Kudos </span>
+//    </span>
+//  </div>
+// </div>
+//
+// Style guide: codebook.kudos
+
+@mixin codebook\kudos {
+
+  // common to both vertical and horizontal
+  .lia-button-image-kudos {
+
+    // hack: undo button styling for misnamed wrapper
+    &.lia-button {
+      border: 0;
+      cursor: initial;
+      margin: 0;
+      padding: 0;
+      touch-action: initial;
+    }
+
+    .kudos-count-link {
+      @include lia-button;
+      @include lia-button-secondary;
+    }
+
+    // the clickable part to give a kudo and it's variants
+    .kudos-link {
+      @include lia-button;
+      @include lia-button-secondary;
+
+      line-height: $line-height-base;
+      z-index: 2;
+    }
+
+    // user has given this kudos
+    &.lia-button-image-kudos-kudoed .kudos-link {
+      @include lia-button-primary;
+      @include li-extend('.disabled');
+    }
+
+    &.lia-button-image-kudos-enabled .kudos-link {
+      &:hover,
+      &:focus,
+      &.focus,
+      &:active,
+      &.active {
+        background-color: darken($btn-primary-bg, 10%);
+        border-color: darken($btn-primary-border, 12%);
+        color: $btn-primary-color;
+      }
+    }
+  }
+
+  .lia-button-image-kudos-horizontal {
+    display: inline-table;
+
+    > .lia-button-image-kudos-count,
+    > .lia-button-image-kudos-give {
+      display: table-cell;
+    }
+
+    .kudos-count-link {
+      @include border-right-radius(0);
+      border-right: 0;
+    }
+
+    // the clickable part to give a kudo and it's variants
+    .kudos-link {
+      @include border-left-radius(0);
+
+      &:before {
+        @include fa-icon;
+        content: li-icon-content(button-kudos-v2-h-enabled);
+      }
+    }
+  }
+
+  .lia-button-image-kudos-vertical {
+
+    .kudos-count-link {
+      @include border-bottom-radius(0);
+
+      border-bottom: 0;
+      width: 100%;
+    }
+
+    // the clickable part to give a kudo and it's variants
+    .kudos-link {
+      @include border-top-radius(0);
+
+      &:before {
+        @include fa-icon;
+        content: li-icon-content(button-kudos-v2-h-enabled);
+      }
+    }
+  }
+
+  .lia-kudos-kudo {
+    display: inline-block;
+    float: left;
+  }
+
+  .lia-button-group-left .lia-kudos-kudo .lia-button-wrapper.lia-kudos-count-wrapper {
+    margin-right: 0;
+  }
+
+  .lia-kudos-kudo {
+    .lia-kudos-button {
+      @include border-left-radius(0);
+      @include border-right-radius($border-radius-base);
+    }
+
+    .lia-kudos-count {
+      @include border-left-radius($border-radius-base);
+      @include border-right-radius(0);
+
+      &:hover {
+        background-color: $btn-default-bg;
+      }
+    }
+  }
+
+  .lia-kudos-kudo.lia-kudos-button-disabled {
+    .lia-button {
+      opacity: .75;
+    }
+
+    span.lia-kudos-count:hover {
+      cursor: auto;
+    }
+
+    .lia-kudos-button {
+      cursor: auto;
+
+      &:hover {
+        background-color: $btn-primary-bg;
+        border: 1px solid $btn-primary-bg;
+      }
+    }
+
+    a.lia-kudos-count:hover {
+      cursor: pointer;
+    }
+  }
+
+
+
+  //START
+  //Default kudos
+  // kudos baseline.  reset button styling, odd border-radiuses and active states
+  .lia-button-image-kudos {
+
+    // reset active, hover and pressed states inherited from btn
+    &.lia-button {
+      &:active {
+        background-color: transparent;
+        border: 0;
+        border-color: transparent;
+        box-shadow: none;
+        outline: 0;
+
+        &:focus {
+          background-color: transparent;
+          border: 0;
+          border-color: transparent;
+          box-shadow: none;
+          outline: 0;
+        }
+      }
+    }
+
+    .kudos-count-link {
+      color: $link-color;
+
+      // remove backgrounds, border and opacity for all states
+      &,
+      &.lia-link-disabled {
+        &,
+        &:active,
+        &:active:focus,
+        &:active:hover,
+        &:focus,
+        &:hover {
+          background-color: transparent;
+          border: 0;
+          box-shadow: none;
+          opacity: 1;
+          outline: 0;
+        }
+      }
+
+      &.lia-link-disabled {
+        &,
+        &:active,
+        &:active:focus,
+        &:active:hover,
+        &:focus,
+        &:hover {
+          color: $text-color;
+        }
+      }
+
+      &:active,
+      &:active:focus,
+      &:active:hover,
+      &:focus,
+      &:hover {
+        color: $link-hover-color;
+      }
+    }
+
+    .kudos-link {
+      // individual corners to override other corner specific styles
+      border-bottom-left-radius: $border-radius-base;
+      border-bottom-right-radius: $border-radius-base;
+      border-top-left-radius: $border-radius-base;
+      border-top-right-radius: $border-radius-base;
+    }
+  }
+
+  // swap left and right for horizontal kudos
+  .lia-button-image-kudos-horizontal {
+    > .lia-button-image-kudos-count,
+    > .lia-button-image-kudos-give {
+      float: right;
+    }
+
+    // default styling for horizontal kudos is inversed with a border and no bg
+    // with the hover styling using default primary btn styling
+    .kudos-link {
+      background-color: $btn-inverse-primary-bg;
+      border: 1px solid $btn-inverse-primary-border;
+
+      &:after,
+      &:before {
+        color: $btn-inverse-primary-color;
+      }
+
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: $btn-primary-bg;
+        border: 1px solid $btn-primary-border;
+
+        &:after,
+        &:before {
+          color: $btn-primary-color;
+        }
+      }
+
+      &.lia-link-disabled {
+        background-color: $btn-link-disabled-color;
+        border: 0;
+        color: $btn-inverse-secondary-color;
+
+        &:active,
+        &:focus,
+        &:hover {
+          background-color: $btn-link-disabled-color;
+          border: 0;
+
+          &:after,
+          &:before {
+            color: $btn-inverse-secondary-color;
+          }
+        }
+      }
+    }
+  }
+
+  // Alternate Kudos UI primarily used in ideas
+  //
+  %kudos-alt {
+    .lia-button-image-kudos {
+      @include border-left-radius(0);
+      background-color: $gray-lighter;
+    }
+
+    .lia-button-image-kudos-label {
+      display: none;
+    }
+
+    .lia-button-image-kudos-count {
+      border-left: 1px solid $text-muted;
+      margin: {
+        bottom: $padding-base-vertical;
+        left: -1px;
+        top: $padding-base-vertical;
+      }
+      padding: 0;
+
+      .kudos-count-link {
+        padding: 0;
+      }
+
+      .lia-component-kudos-widget-message-kudos-count {
+        padding: {
+          bottom: 0;
+          left: $padding-base-horizontal;
+          right: $padding-base-horizontal;
+          top: 0;
+        }
+      }
+    }
+
+    .kudos-link {
+      @include border-left-radius(0);
+      border: 0;
+      margin-left: -1px;
+    }
+  }
+
+  .KudosButton.lia-component-kudos-widget-button-horizontal-button-count {
+    float: right;
+
+    .lia-button-image-kudos-horizontal_button_count {
+      @include li-extend('.lia-button-image-kudos-horizontal');
+      .kudos-link.lia-link-disabled {
+        &:hover {
+          background-color: inherit;
+          &:before {
+            color: $gray-light;
+          }
+        }
+      }
+    }
+
+    .lia-button-image-kudos {
+      .lia-button-image-kudos-give .kudos-link {
+        background-color: inherit;
+        border: 0;
+        color: $gray-dark;
+        font-size: $font-size-base;
+        font-weight: normal;
+        padding: 0;
+
+        &:before {
+          @include fa-icon;
+          color: $gray-light;
+          content: li-icon-content(icon-kudos);
+          font-size: $font-size-h4;
+          padding-right: $padding-xs-horizontal;
+        }
+
+        &:active {
+          @include box-shadow(none);
+        }
+      }
+    }
+
+    .lia-button-image-kudos-count {
+      .kudos-count-link {
+        color: $gray-dark;
+        font-size: $font-size-base;
+        font-weight: 300;
+        padding: {
+          bottom: 0;
+          left: $padding-xs-horizontal;
+          right: 0;
+          top: 0;
+        }
+      }
+    }
+  }
+}

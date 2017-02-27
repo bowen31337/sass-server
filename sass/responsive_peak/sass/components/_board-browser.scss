@@ -1,0 +1,70 @@
+// Board Browser component
+//
+// Styling for hierarchy indentation
+//
+$board-browser-child-indentation: 20px;
+
+@mixin components\board-browser {
+  .lia-panel.BoardBrowserTaplet {
+    margin-bottom: 0;
+  }
+
+
+  .lia-list-tree-toggle-container,
+  .lia-list-tree-toggle-node > ul {
+    margin-left: $board-browser-child-indentation;
+  }
+
+  .lia-list-tree > .lia-list-tree-toggle-container {
+    margin-left: 0;
+  }
+
+  .lia-list-tree-selected > .lia-link-disabled {
+    color: inherit;
+  }
+
+  .lia-list-tree-closed > ul {
+    display: none;
+  }
+
+  .lia-list-tree-selected > .lia-component-forums-widget-community-node-tree-item {
+    font-weight: bold;
+  }
+
+  .lia-list-tree {
+    line-height: $font-size-base + $padding-small-vertical * 2;
+    // compensate for the floated toggle
+    margin-right: $search-page_tree-icon-size;
+
+    .lia-fa-icon,
+    .lia-list-tree-toggle {
+      &:before {
+        display: inline-block;
+        text-align: center;
+        width: $search-page_tree-icon-size;
+      }
+    }
+  }
+
+  .lia-list-tree-toggle-container > li,
+  .lia-list-tree-toggle-container > li ul li {
+    margin: $padding-base-vertical 0;
+
+    @include media(phone) {
+      padding: $padding-large-vertical 0;
+    }
+  }
+
+  .lia-list-tree-toggle,
+  .lia-list-tree-opened > .lia-list-tree-toggle,
+  .lia-list-tree-selected > .lia-list-tree-toggle {
+    @include li-icon(icon-toggle-open-list-tree, $icon-margin: 0);
+  }
+
+  .lia-list-tree-closed > .lia-list-tree-toggle,
+  .lia-list-tree-opened.lia-list-tree-closed > .lia-list-tree-toggle,
+  .lia-list-tree-selected.lia-list-tree-closed > .lia-list-tree-toggle {
+    @include li-icon(icon-toggle-closed-list-tree, $icon-margin: 0);
+    float: left;
+  }
+}

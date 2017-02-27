@@ -1,0 +1,43 @@
+@mixin components\comment-message {
+
+  .lia-quilt-comment-message {
+    @extend %message-quilt-all;
+  }
+
+  .lia-section-header {
+    margin-left: $padding-base-horizontal;
+  }
+
+  .CommentList.CommentList {
+    .lia-quilt-row-header {
+      .lia-component-common-widget-date,
+      .lia-component-post-date,
+      .lia-component-post-date-last-edited,
+      .lia-message-edited-on,
+      .lia-message-posted-on {
+        color: $text-muted;
+        display: inline;
+
+        @include media(tablet) {
+          display: none;
+        }
+      }
+    }
+
+    // Date in body - show in tablet & mobile
+    .lia-quilt-row-main {
+      .lia-component-common-widget-date,
+      .lia-component-post-date,
+      .lia-component-post-date-last-edited,
+      .lia-message-edited-on,
+      .lia-message-posted-on {
+        display: none;
+        text-align: left;
+
+        @include media(tablet) {
+          display: inline;
+        }
+      }
+    }
+  }
+}

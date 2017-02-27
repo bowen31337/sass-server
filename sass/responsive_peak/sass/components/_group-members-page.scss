@@ -1,0 +1,308 @@
+$action-buttons-mobile-padding-bottom: 40px;
+$confirmation-pos-bottom-phone: -30px;
+$confirmation-pos-bottom-tablet: -10px;
+
+@mixin components\group-members-page {
+  .GroupMembersPage {
+    .actions .lia-button-wrapper,
+    .actionColumn .lia-button-wrapper {
+      position: relative;
+    }
+
+    .lia-inline-confirm {
+      @extend %small-font;
+      bottom: -3px;
+      padding: 0 $padding-base-horizontal;
+      position: absolute;
+
+      @include media(tablet-and-smaller) {
+        font-size: $font-size-base;
+        left: 50%;
+        line-height: $line-height-base;
+        transform: translate(-50%, 0);
+
+        .lia-ajax-inline-approve,
+        .lia-ajax-inline-deny {
+          padding-left: $padding-small-horizontal;
+          padding-right: $padding-small-horizontal;
+        }
+      }
+
+      @include media(phone-only) {
+        bottom: $confirmation-pos-bottom-phone;
+      }
+
+      @include media(tablet-only) {
+        bottom: $confirmation-pos-bottom-tablet;
+      }
+    }
+
+    .lia-page-header .lia-page-actions-wrapper {
+      padding-bottom: 0;
+    }
+
+    @include media(tablet-only) {
+      .lia-quilt-column-side-content > .lia-quilt-column-alley-right > .lia-panel {
+        display: block;
+        width: 100%;
+      }
+
+      .lia-quilt-row-main {
+        padding: $grid-gutter-width;
+      }
+    }
+
+    .memberJoinDate .local-time {
+      display: none;
+    }
+
+    .lia-tabs-standard-wrapper {
+      .lia-list-wide {
+        border-top: 0;
+        @include media(phone) {
+          div {
+            float: none;
+          }
+        }
+      }
+
+      thead {
+        border-bottom: 1px solid $li-border-divider;
+      }
+
+      .t-data-grid {
+        margin: {
+          left: 0;
+          right: 0;
+        }
+
+        tbody td {
+          padding: {
+            bottom: $padding-xl-vertical;
+            top: $padding-xl-vertical;
+          }
+
+          @include media(phone) {
+            display: block;
+            float: none;
+            margin: {
+              bottom: $padding-large-vertical;
+            }
+            padding: {
+              bottom: 0;
+              top: 0;
+            }
+
+            &:last-child {
+              padding-top: $padding-large-vertical;
+            }
+          }
+        }
+
+        .actions,
+        .actionColumn {
+          @include media(tablet-and-smaller) {
+            padding-bottom: $action-buttons-mobile-padding-bottom;
+          }
+        }
+      }
+    }
+
+    // Simple modeless dialog
+    // Should ultimately be in _modals.scss
+    .lia-panel-dialog-modeless-simple {
+      .ui-dialog-titlebar {
+        border-bottom: none;
+        padding-left: $padding-xl-horizontal;
+        padding-right: $padding-xl-horizontal;
+        padding-top: $padding-xl-vertical;
+        padding: {
+          bottom: $padding-xs-vertical;;
+          left: $padding-xl-horizontal;
+          right: $padding-xl-horizontal;
+          top: $padding-xl-vertical;;
+        }
+      }
+
+      .ui-dialog-titlebar-close {
+        display: none;
+      }
+
+      .ui-dialog-content {
+        padding: {
+          bottom: 0;
+          left: $padding-xl-horizontal;
+          right: $padding-xl-horizontal;
+          top: 0;
+        }
+      }
+    }
+
+    //Edit Role
+    .lia-component-groups-widget-group-member-list-role-form {
+      ul span {
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      ul li label {
+        overflow: hidden;
+        display: inline-block;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+        padding-right: $padding-xl-horizontal;
+      }
+    }
+
+
+    .GroupMemberListRoleForm {
+      .lia-user-name {
+        @extend %modal-section-header-font;
+      }
+
+      .lia-quilt-column-08 {
+        width: 0%;
+      }
+
+      .lia-quilt-column-16 {
+        @include li-extend('.col-xs-24');
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .lia-form-submit.lia-button-group {
+        text-align: center;
+      }
+    }
+
+    .lia-group-members-tab {
+      @include media(phone) {
+        .lia-list-row td.actionColumn {
+          text-align: center;
+          white-space: nowrap;
+        }
+
+        .inviteTimeColumn.inviteTimeColumn {
+          display: none;
+        }
+
+        .lia-button-group-left {
+          float: none;
+        }
+
+        .moderatorBatchProcessingColumn,
+        .loginColumn {
+          display: inline-block;
+        }
+
+        .moderatorBatchProcessingColumn {
+          padding-right: $padding-base-horizontal;
+        }
+      }
+    }
+
+    .lia-member-count-prefix {
+      display: none;
+
+      @include media(phone) {
+        display: inline;
+      }
+    }
+
+    .lia-group-member-count-display {
+      font-size: $font-size-large;
+      font-weight: 300;
+      padding: $padding-large-vertical 0 $padding-xl-vertical $table-cell-padding;
+
+      @include media(phone) {
+        border-bottom: 1px solid $li-border-divider;
+      }
+    }
+
+    .lia-group-members-tab {
+      .actions,
+      .actionColumn {
+        .lia-button-group-left {
+          margin-bottom: -$padding-xl-vertical;
+          text-align: right;
+          white-space: nowrap;
+        }
+
+        .lia-button-wrapper {
+          display: inline-block;
+          padding-bottom: $padding-xl-vertical;
+          padding-left: $padding-small-horizontal;
+          padding-right: $padding-small-horizontal;
+        }
+
+        @include media(phone) {
+          &.lia-data-cell-secondary {
+            text-align: center;
+            white-space: nowrap;
+          }
+
+          .lia-button-group-left {
+            float: none;
+          }
+        }
+      }
+
+      @include media(phone) {
+        tbody {
+          td {
+            &.memberJoinDate,
+            &.memberGroupRole {
+              font-size: $font-size-base;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+
+    .lia-user-batch-wrapper {
+      display: table;
+      white-space: nowrap;
+
+      .lia-row {
+        display: table-row;
+      }
+
+      .lia-batch-processing-wrapper,
+      .lia-empty-cell,
+      .lia-user-invite-time,
+      .UserProfileSummary {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      .BatchProcessing {
+        margin-right: $padding-base-horizontal;
+
+        @include media(phone) {
+          margin-left: $padding-xs-horizontal;
+          margin-right: $padding-xl-horizontal;
+          transform: scale(1.4);
+        }
+      }
+
+      @include media(tablet-and-larger) {
+        .lia-user-invite-time {
+          display: none;
+        }
+      }
+    }
+
+    .bottom-block {
+      padding: $padding-large-vertical $padding-small-horizontal;
+
+      .lia-paging-pager {
+        text-align: center;
+
+        .lia-paging-full {
+          float: none;
+        }
+      }
+    }
+  }
+}

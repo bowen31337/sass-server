@@ -1,0 +1,595 @@
+// Messages
+//
+// styles for common components which appear in multiple interaction styles
+
+$messages_topic-reply-font-size:      13px !default;
+$messages_mod-controls-bg:            $gray-lighter !default;
+
+@mixin components\messages {
+
+  .lia-attachment {
+    > img {
+      display: inline-block;
+      height: $font-size-base;
+      padding-right: $li-font-size-space;
+    }
+  }
+
+  .lia-attachment-row-element {
+    display: inline-block;
+  }
+
+  // message buttons
+  .lia-message-actions,
+  .lia-message-actions-secondary,
+  .lia-panel-message .lia-quilt-column-footer-right,
+  .lia-message-view-forum-message .lia-quilt-column-footer-right {
+    @include clearfix;
+
+    .lia-button {
+      float: right;
+      margin-left: $li-font-size-space;
+    }
+  }
+
+  .lia-message-actions-secondary {
+    margin-top: $padding-small-vertical;
+  }
+
+  .lia-message-body {
+    overflow: auto;
+  }
+
+  .lia-message-body-content,
+  .lia-message-body,
+  .lia-message-editor {
+    @extend %prevent-overflow;
+
+    margin-bottom: $padding-large-vertical;
+
+    // message quoting
+    blockquote {
+      padding: {
+        bottom: 0;
+        top: 0;
+      }
+
+      hr {
+        display: none;
+      }
+    }
+
+    embed,
+    iframe,
+    object,
+    video {
+      max-width: 100%;
+    }
+
+    img {
+      @include li-extend('.img-responsive');
+    }
+
+    .emoticon {
+      display: inline;
+      vertical-align: text-bottom;
+    }
+
+    ul {
+      padding-left: 2.5em;
+      list-style: outside;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .Attachments {
+      @include li-extend('.well');
+      @include li-extend('.well-sm');
+
+      margin-top: $padding-large-vertical;
+    }
+  }
+
+  // lia-message-heading is odd, in q&a and forums, it doesn't include the date
+  // for tkb, blogs, ideas and contests it does.
+  .lia-message-heading {
+    margin-bottom: $padding-large-vertical;
+
+    // remove bottom margin from forums only
+    .lia-message-board &,
+    .lia-message-qanda & {
+      margin-bottom: 0;
+    }
+
+    .lia-quilt-column-left {
+      @include li-extend('.col-xs-20');
+    }
+
+    .lia-quilt-column-right {
+      @include li-extend('.col-xs-4');
+    }
+
+    .lia-message-options {
+      position: absolute;
+      right: $panel-body-padding;
+    }
+  }
+
+  .lia-metadata-application-tool-panel {
+    @include li-extend('.dropdown-menu');
+
+    line-height: normal;
+    margin-top: $padding-large-vertical;
+    padding: $panel-body-padding;
+    width: 100%;
+  }
+
+  .lia-quilt-row-forum-message-main {
+    margin-bottom: $padding-large-vertical;
+  }
+
+  .lia-spoiler-border {
+    @extend %li-panel-body;
+
+    display: none;
+
+    .lia-spoiler-link.open ~ & {
+      display: block;
+    }
+  }
+
+  .lia-spoiler-container {
+    @extend %li-panel;
+
+    .lia-spoiler-link {
+      @extend %li-panel-heading;
+      @extend %li-panel-title;
+
+      display: block;
+      margin-bottom: -1px;
+      padding: $nav-link-padding-xs;
+      text-decoration: none;
+      width: 100%;
+
+      &.open {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .lia-message-draft {
+    .lia-message-body {
+      @extend .lia-message-editor.mce-content-body;
+    }
+  }
+
+  @include media(desktop) {
+    .lia-component-author .lia-user-avatar {
+      margin: {
+        bottom: $padding-large-vertical;
+        top: $padding-large-vertical;
+      }
+    }
+  }
+
+  @include media(tablet) {
+    .lia-component-author {
+      position: relative;
+
+      .lia-user-avatar {
+        left: 0;
+        position: absolute;
+        top: 1px;
+      }
+    }
+  }
+
+  @include media(phone) {
+    .lia-component-report-abuse,
+    .lia-message-author-ipaddress,
+    .lia-message-author-post-count,
+    .lia-message-author-registered-date,
+    .lia-message-statistics {
+      display: none;
+    }
+  }
+
+  // much of the padding for the columns is controlled by grid.scss, provide
+  // space around each message (and siblings like blog article)
+  .lia-message-view {
+    @include media(tablet) {
+      margin-bottom: $grid-gutter-width / 2;
+
+      .lia-quilt-column-single & {
+  //      margin-left: $grid-gutter-width / 2;
+  //      margin-right: $grid-gutter-width / 2;
+      }
+    }
+  }
+
+  .lia-component-topic-message {
+    @include media(tablet) {
+      margin-top: $grid-gutter-width / 2;
+    }
+  }
+
+  // .lia-panel-message {
+  //   @include media(tablet) {
+  //     margin-bottom: 0;
+  //   }
+  // }
+
+  // user avatar, name and rank
+  .lia-message-author-avatar {
+    display: inline-block;
+    float: none;
+    padding-right: $padding-small-horizontal;
+
+    @include media(phone) {
+      float: left;
+    }
+
+    + .lia-component-author,
+    + .lia-message-author-username {
+      display: inline;
+      margin-right: $padding-small-horizontal;
+    }
+  }
+
+  .lia-component-author-rank-name {
+    white-space: nowrap;
+
+    @include media(phone) {
+      display: block;
+    }
+  }
+
+  .lia-message-quick-reply {
+    @include media(desktop) {
+      margin-right: $panel-body-padding;
+    }
+
+    .lia-button-group .lia-button-wrapper-primary {
+      padding-left: $padding-xs-horizontal;
+      padding-right: 0;
+    }
+
+    .lia-button-Cancel-action {
+      @include lia-button;
+      @include lia-button-secondary-inverse;
+    }
+  }
+
+  .lia-panel-message-content,
+  .lia-message-view-forum-message,
+  .lia-message-view-group-topic-message,
+  .lia-message-view-group-reply-message,
+  .lia-message-view-blog-topic-message,
+  .lia-message-view-blog-reply-message,
+  .lia-message-view-contest-reply-message,
+  .lia-message-view-tkb-reply-message,
+  .lia-message-view-media-message {
+    // remove global panel padding from $panel-body-padding
+    padding: 0;
+
+    // message options menu
+    // put the message options menu in the panel border with a little breathing room
+    .lia-menu-navigation-wrapper {
+      position: absolute;
+      right: -$panel-body-padding * 2 + $padding-xs-horizontal;
+      top: -$panel-body-padding * 2 + $padding-small-vertical;
+
+      @include media(phone) {
+        right: -$panel-body-padding + $padding-xs-horizontal;
+        top: -$panel-body-padding + $padding-small-vertical;
+      }
+    }
+
+    // subject styles
+    .lia-message-subject {
+      display: block;
+      margin-bottom: $panel-body-padding;
+
+      @include media(tablet) {
+        margin-top: 0;
+      }
+
+      // root message
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: $text-color;
+        display: inline;
+      }
+
+      h1 {
+        font-size: $font-size-h3;
+        font-weight: $headings-font-weight;
+      }
+
+      h2 {
+        font-size: $messages_topic-reply-font-size;
+        font-weight: normal;
+      }
+
+      .best-solution .lia-img-best-solution-icon {
+        width: $padding-large-horizontal;
+        height: $padding-large-horizontal;
+        vertical-align: text-top;
+      }
+    }
+
+    .lia-panel-feedback-banner-safe {
+      border-radius: $border-radius-base;
+      margin-top: $padding-xl-vertical;
+    }
+
+
+    // Date in header - Show in desktop
+    .lia-component-common-widget-date,
+    .lia-component-post-date-last-edited {
+      width: 100%;
+
+      // when widget-date is nested in post-date-last-edited
+      .lia-component-common-widget-date {
+        width: auto;
+      }
+    }
+
+    .lia-quilt-row-header {
+      .lia-component-common-widget-date,
+      .lia-component-post-date-last-edited,
+      .lia-message-edited-on,
+      .lia-message-posted-on {
+        color: $text-muted;
+        display: inline-block;
+
+        @include media(tablet) {
+          display: none;
+        }
+      }
+    }
+
+    // Date in body - show in tablet & mobile
+    .lia-quilt-row-main {
+      .lia-component-common-widget-date,
+      .lia-component-post-date-last-edited,
+      .lia-message-edited-on,
+      .lia-message-posted-on {
+        display: none;
+        text-align: left;
+
+        @include media(tablet) {
+          display: inline-block;
+        }
+      }
+    }
+
+    // Sub components that pertain to the message
+    .lia-message-card-sub-component-header {
+      color: $text-muted;
+      font-size: $font-size-h4;
+      margin-bottom: $padding-large-vertical;
+    }
+
+    .lia-message-labels {
+      margin-bottom: 0;
+
+      .LabelsForArticle {
+        margin-bottom: $panel-body-padding * 2;
+      }
+    }
+
+    .lia-message-tags {
+      margin-bottom: 0;
+
+      .AddMessageTags {
+        margin-bottom: $panel-body-padding * 2;
+      }
+    }
+
+    .Attachments {
+      margin-bottom: $panel-body-padding * 2;
+    }
+
+    // controls, interactive components
+    .lia-rating-link-summary {
+      font-size: $font-size-large;
+      font-weight: bold;
+      vertical-align: middle;
+    }
+
+    // spacing between buttons
+    .lia-quilt-column-footer-right > .lia-quilt-column-alley-right {
+      .lia-button-group {
+        .lia-button {
+          margin-bottom: $padding-large-vertical;
+          margin-left: $padding-large-horizontal;
+        }
+
+        &:last-child {
+          .lia-button {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    .lia-component-action-rating,
+    .lia-component-kudos,
+    .lia-rating-control-wrapper {
+      display: inline-block;
+      margin-right: $padding-small-horizontal;
+      margin-top: 0;
+      vertical-align: middle;
+    }
+  }
+
+  .lia-message-view-blog-topic-message .lia-menu-navigation-wrapper {
+      position: relative;
+      right: 0;
+      top: 0;
+
+      @include media(phone) {
+        position: absolute;
+        right: -$panel-body-padding + $padding-xs-horizontal;
+        top: -$panel-body-padding * 2 + $padding-small-vertical;
+      }
+  }
+
+  .lia-message-view-forum-message.lia-message-view-display,
+  .lia-message-view-group-reply-message.lia-message-view-display,
+  .lia-message-view-group-topic-message.lia-message-view-display,
+  .lia-message-view-blog-topic-message.lia-message-view-display,
+  .lia-message-view-blog-reply-message.lia-message-view-display,
+  .lia-message-view-blog-message.lia-message-view-display,
+  .lia-message-view-idea-reply-message.lia-message-view-display,
+  .lia-message-view-contest-reply-message.lia-message-view-display,
+  .lia-message-view-tkb-reply-message.lia-message-view-display,
+  .lia-message-view-media-message.lia-message-view-display {
+    margin-bottom: 0;
+
+    .lia-attachment-row .lia-attachment-row-element.lia-media-document:last-child {
+      left: 0;
+      position: relative;
+      width: auto;
+    }
+
+    .lia-message-subject {
+      display: inline-block;
+      font-size: $font-size-h3;
+    }
+
+    .lia-panel-heading-bar {
+      border-bottom: 0;
+      padding: 0;
+    }
+
+    .lia-quilt-row-footer {
+      background-color: $body-bg;
+    }
+
+    .lia-quilt-row-mod-controls {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    .lia-quilt-row-header {
+      .lia-message-post-date {
+        color: $text-muted;
+        display: inline-block;
+
+        @include media(tablet) {
+          display: none;
+        }
+      }
+    }
+
+
+    // Date in body - show in tablet & mobile
+    .lia-quilt-row-main {
+      .lia-message-post-date {
+        display: none;
+        text-align: left;
+
+        @include media(tablet) {
+          display: block;
+          margin-bottom: $padding-base-vertical * 2;
+        }
+      }
+    }
+
+    .lia-action-reply.lia-action-link.lia-link-disabled,
+    .lia-button-secondary.lia-link-disabled {
+      background-color: $body-bg;
+    }
+  }
+
+  .lia-message-view-forum-message.lia-message-view-display,
+  .lia-message-view-group-reply-message.lia-message-view-display,
+  .lia-message-view-group-topic-message.lia-message-view-display {
+    &.lia-list-row-thread-solved:after,
+    &.lia-list-row-thread-escalated:after,
+    &.lia-list-row-thread-requires-moderation:after {
+      display: none;
+    }
+  }
+
+  .lia-message-view-blog-topic-message.lia-message-view-display {
+    .lia-message-author-rank {
+      @include media(phone) {
+        display: block;
+      }
+    }
+  }
+
+  .lia-message-view-idea-reply-message.lia-message-view-display {
+    .lia-quilt-row-footer {
+      display: none;
+    }
+  }
+
+  // default footer and mod backgrounds
+  .lia-quilt-layout-one-column-message,
+  .lia-quilt-layout-two-column-message {
+    > .lia-quilt-row-footer {
+      background-color: $panel-footer-bg;
+    }
+  }
+
+  // styles for the first message (root/topic)
+  .lia-panel-message-root {
+    .lia-quilt-row-footer {
+      background-color: transparent;
+
+      @include media(tablet) {
+        border-top: 1px solid $li-border-color;
+      }
+    }
+  }
+
+  .lia-component-solution-list {
+    .lia-panel-message-content {
+      border-top-color: $brand-success;
+    }
+
+    .section-header {
+      display: none;
+    }
+  }
+
+  .lia-quilt-row-mod-controls {
+    background-color: $messages_mod-controls-bg;
+
+    .lia-quilt-column-mod-controls-main {
+      // allow mod controls to collapse so that the bg doesn't show when empty
+      min-height: 0;
+    }
+
+    .lia-message-view-display & {
+      // .lia-message-view-display adds $panel-body-padding padding-bottom
+      // make the mod controls flush and -1px extra in case it is empty
+      margin-bottom: -$panel-body-padding;
+      margin-top: $panel-body-padding;
+    }
+
+    .lia-button-wrapper,
+    .lia-component-classifications,
+    .lia-component-modbar-toggle,
+    .lia-metadata-application-tool-toggle {
+      display: inline-block;
+      margin: {
+        bottom: $padding-large-vertical;
+        left: $panel-body-padding;
+        right: 0;
+        top: $padding-large-vertical;
+      }
+      vertical-align: middle;
+    }
+  }
+}

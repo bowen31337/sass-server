@@ -1,0 +1,956 @@
+@mixin components\profile-plus\integrated-profile {
+
+  .lia-ui-modal .modal-profile-plus-auth-modal-overlay {
+    width: 400px;
+
+    @include media(phone) {
+      width: 300px;
+    }
+  }
+
+  .lia-integrated-profile-klout-auth-modal-success-dialog {
+
+    .lia-panel-profileplus-auth-modal {
+
+      .lia-panel-heading-bar {
+        background: #028000;
+
+        .lia-panel-title.status-icon-circle {
+          @include li-icon-responsive-button("\f058", $color: #fff);
+        }
+      }
+    }
+  }
+
+  .lia-integrated-profile-klout-auth-modal-success-dialog.lia-profileplus-recommndations-cta-info-header {
+    .lia-panel-profileplus-auth-modal {
+      .lia-panel-heading-bar {
+        background: $li-profile-plus-pre-connect-note-header-color;
+
+        .lia-panel-title.status-icon-circle {
+          @include li-icon-responsive-button("\f071", $color: #000);
+        }
+
+        .lia-panel-title {
+          color: $li-profile-plus-pre-connect-note-color;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+  .lia-integrated-profile-klout-auth-modal-error-dialog {
+
+    .lia-panel-profileplus-auth-modal {
+
+      .lia-panel-heading-bar {
+        background: $brand-danger;
+        
+        .lia-panel-title.status-icon-circle {
+          @include li-icon-responsive-button("\f057", $color: #fff)
+        }
+      }
+    }
+  }
+
+  .lia-integrated-profile-klout-auth-modal-error-dialog,
+  .lia-integrated-profile-klout-auth-modal-success-dialog {
+
+    .modal-dialog {
+      
+      margin: 30px auto;
+
+      .modal-content {
+        border: none;
+        border-radius: 5px;
+        width: 350px;
+      }
+    }
+    
+    .lia-panel-profileplus-auth-modal {
+
+      .lia-panel {
+        margin-bottom: 0;
+      }
+
+      .lia-panel-heading-bar {
+        padding-bottom: 10px;
+
+        .lia-panel-heading-bar-title {
+          font-size: 16px;
+        }
+
+        .lia-panel-title {
+          color: #ffffff;
+          font-weight: 300;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+
+    .lia-profileplus-klout-auth-modal-success-dismiss {
+      display: inline-block;
+      margin-right: $modal-button-margin-right;
+    }
+
+    .lia-klout-connect-buttons-wrapper {
+      margin-bottom: $modal-button-wrapper-margin-bottom;
+      text-align: right;
+    }
+
+    .lia-profileplus-klout-auth-modal-success-dismiss-button {
+      border: none;
+      font-size: $modal-button-text-size;
+    }    
+
+    .lia-profileplus-klout-auth-modal-success-dismiss-button {
+      background-color: $auth-modal-button-background;
+
+      &.lia-button-primary:hover {
+        color: $li-profile-plus-auth-modal-dismiss-button-color;
+        background-color: $auth-modal-button-background;
+      }
+    }
+
+    .lia-profileplus-klout-auth-modal-success-success-button {
+      background-color: $auth-modal-button-background;
+
+      &.lia-button-primary:hover {
+        color: $li-profile-plus-auth-modal-success-button-color;
+        background-color: $auth-modal-success-button-background;
+      }
+    }
+
+    .lia-pre-connect-modal-buttons {
+      display: inline-block;
+      width: $li-profile-plus-pre-connect-modal-button-width
+    }
+
+  }
+
+  .lia-integrated-profile-klout-auth-modal-success-dialog,
+  .lia-integrated-profile-klout-auth-modal-error-dialog,
+  .lia-integrated-profile-klout-connect-feedback-dialog {
+    .ui-dialog-titlebar {
+      margin-bottom: auto;
+      padding: $padding-large-vertical $padding-large-horizontal;
+
+      .ui-dialog-titlebar-close {
+        position: absolute;
+        right: $padding-small-horizontal;
+        top: $padding-small-horizontal;
+      }
+    }
+
+    .lia-klout-connect-feedback-modal {
+      .lia-klout-connect-feedback-modal-content {
+        .lia-klout-connect-feedback-modal-description {
+          margin-bottom: $padding-large-horizontal;
+        }
+
+        .lia-klout-connect-feedback-modal-topics,
+        .lia-klout-connect-feedback-modal-dismiss {
+          margin-top: $padding-large-horizontal;
+          text-align: center;
+        }
+      }
+    }
+
+    .lia-integrated-profile-auth-modal-loading {
+      display: none;
+      font-size: $font-size-h4;
+      padding: $padding-large-vertical 0;
+      text-align: center;
+    }
+
+    .lia-integrated-profile-auth-modal-description {
+      font-size: $font-size-base;
+      text-align: center;
+    }
+
+    .lia-integrated-profile-auth-modal-actions {
+      margin: $li-profile-plus-auth-modal-actions-margin;
+      text-align: center;
+
+      button:disabled {
+        opacity: 0.3;
+      }
+    }
+
+    .lia-integrated-profile-auth-modal-action {
+      margin-bottom: $padding-large-vertical;
+
+      .connect-with-button {
+        border: 0;
+        padding: $padding-large-vertical $padding-large-horizontal;
+        width: 100%;
+      }
+
+      .facebook {
+        @include li-icon-responsive-button($fa-var-facebook, $color: #fff);
+        background: $li-integrated-profile-btn-facebook-color;
+
+        &:hover {
+          background: $li-integrated-profile-btn-facebook-color;
+        }
+      }
+
+      .facebook-connected {
+        @include li-icon-responsive-button($fa-var-check-circle, $color: #fff);
+        background: $li-integrated-profile-btn-facebook-color;
+        cursor: not-allowed;
+        text-align: left;
+
+        &:hover {
+          background: $li-integrated-profile-btn-facebook-color;
+        }
+
+        &:before {
+          margin-right: 20px;
+        }
+      }
+
+      .twitter {
+        @include li-icon-responsive-button($fa-var-twitter, $color: #fff);
+        background: $li-integrated-profile-btn-twitter-color;
+
+        &:hover {
+          background: $li-integrated-profile-btn-twitter-color;
+        }
+      }
+
+      .twitter-connected {
+        @include li-icon-responsive-button($fa-var-check-circle, $color: #fff);
+        background: $li-integrated-profile-btn-twitter-color;
+        cursor: not-allowed;
+        text-align: left;
+
+        &:hover {
+          background: $li-integrated-profile-btn-twitter-color;
+        }
+
+        &:before {
+          margin-right: 20px;
+        }
+      }
+
+      .email {
+        @include li-icon-responsive-button($fa-var-envelope, $color: #fff);
+      }
+
+      .lia-integrated-profile-auth-modal-user-email {
+        display: inline-block;
+        font-size: $font-size-small;
+        max-width: 100%;
+        margin-top: $padding-small-horizontal;
+
+        .lia-integrated-profile-auth-modal-email-value {
+          display: inline-block;
+          font-weight: bold;
+          max-width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .lia-profileplus-recommendations-feed-notice-button {
+      margin-top: $li-profile-plus-pre-connect-notice-button-margin-top;
+    }
+
+    .lia-integrated-profile-auth-modal-fineprint {
+      margin-top: $li-profile-plus-auth-modal-fine-print-margin-top;
+      text-align: center;
+
+      .lia-integrated-profile-auth-modal-fineprint-agreement,
+      .lia-integrated-profile-auth-modal-disconnect-print,
+      .lia-integrated-profile-auth-modal-fineprint-permission {
+        color: $li-integrated-profile-connect-dialog-agreement-text-color;
+        font-size: $font-size-small;
+        font-style: italic;
+      }
+    }
+
+    .lia-klout-connect-more-social-connections-description {
+      margin-top: $li-profile-plus-auth-modal-more-social-connections-margin-top;
+    }
+  }
+
+  .KloutConnectWideWidget,
+  .KloutConnectSlimWidget {
+    .lia-panel-heading-bar {
+      border-top: 3px solid $li-brand-call-to-action;
+      margin-bottom: auto;
+      padding: $padding-large-vertical $padding-large-horizontal;
+
+      .lia-panel-heading-bar-title {
+        font-size: $font-size-h3;
+      }
+    }
+
+    .lia-integrated-profile-klout-connect-content {
+      .lia-integrated-profile-klout-connect-main {
+        .lia-integrated-profile-klout-connect-description {
+          float: left;
+
+          .lia-integrated-profile-klout-connect-points li {
+            list-style: square inside;
+          }
+        }
+
+        .lia-integrated-profile-klout-connect-actions {
+          float: right;
+          padding: {
+            bottom: $padding-large-horizontal;
+            left: 0;
+            right: 0;
+            top: 0;
+          }
+          text-align: center;
+
+          .klout-connect-complete {
+            .lia-button {
+              @include li-icon-responsive-button($fa-var-pencil-square-o, $color: #fff);
+            }
+          }
+        }
+      }
+
+      .lia-integrated-profile-klout-connect-footer {
+        bottom: 0;
+        float: left;
+        font-size: $font-size-small;
+        width: 100%;
+
+        .lia-img-klout-logo {
+          width: 50px;
+        }
+      }
+    }
+  }
+
+  .KloutConnectWideWidget {
+    .lia-integrated-profile-klout-connect-content {
+      .lia-integrated-profile-klout-connect-actions {
+        display: table;
+
+        .lia-integrated-profile-klout-connect-action {
+          display: table-cell;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  @include media(phone) {
+    .KloutConnectWideWidget,
+    .KloutConnectSlimWidget {
+      .lia-integrated-profile-klout-connect-content {
+        .lia-integrated-profile-klout-connect-description {
+          margin-bottom: $padding-large-vertical * 2;
+        }
+
+        .lia-integrated-profile-klout-connect-actions {
+          float: none;
+          width: 100%;
+        }
+      }
+    }
+
+    .KloutConnectWideWidget {
+      .lia-integrated-profile-klout-connect-content {
+        .lia-integrated-profile-klout-connect-actions {
+          min-height: unset;
+        }
+      }
+    }
+  }
+
+  .lia-profileplus-manage-topics {
+    .lia-panel-heading-bar {
+      border-top: 3px solid $li-brand-call-to-action;
+      margin-bottom: auto;
+      padding: $padding-large-vertical $padding-large-horizontal;
+
+      .lia-panel-heading-bar-title {
+        font-size: $font-size-h4;
+      }
+    }
+
+    .lia-manage-topics-actions {
+      padding: {
+        top: $padding-small-horizontal;
+      }
+    }
+  }
+
+  .lia-panel-profileplus, .lia-feature-panel-profileplus {
+
+    .lia-panel-heading-bar {
+      border-top: 3px solid $li-brand-call-to-action;
+      margin-bottom: auto;
+      padding: $padding-large-vertical $padding-large-horizontal;
+
+      .lia-panel-heading-bar-title {
+        font-size: $font-size-h4;
+      }
+    }
+
+    .lia-profileplus-cta-actions {
+      padding: {
+        top: 10px;
+      }
+    }
+  }
+
+  .lia-panel-profileplus-my-interests, .lia-panel-profileplus-social-network-connections {
+
+    .lia-panel-heading-bar {
+      margin-bottom: auto;
+      padding: $padding-large-vertical $padding-large-horizontal;
+
+      .lia-panel-heading-bar-title {
+        font-size: $font-size-h4;
+      }
+    }
+
+    .lia-profileplus-cta-actions {
+      padding: {
+        top: 10px;
+      }
+    }
+  }
+
+  .lia-feature-panel-profileplus {
+
+    .lia-panel {
+      .lia-panel-heading-bar {
+        border: none;
+      }
+    }
+
+    .lia-panel-content {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .lia-decoration-border-content {
+      margin: 0 auto;
+      max-width: $li-integrated-profile-center-width;
+    }
+
+  }
+
+  .lia-profileplus-personalize-connect {
+    .lia-panel-heading-bar {
+      border-top: 3px solid $li-brand-call-to-action;
+      margin-bottom: auto;
+      padding: $padding-large-vertical $padding-large-horizontal;
+
+      .lia-panel-heading-bar-title {
+        font-size: $font-size-h4;
+      }
+    }
+
+    .lia-personalize-connect-actions {
+      padding: {
+        top: $padding-small-horizontal;
+      }
+    }
+  }
+
+  //Personalized Feed
+
+  .lia-component-integratedprofile-widget-curated-feed {
+
+    .messageAuthorAvatarColumn {
+      width: auto;
+    }
+
+    .lia-user-top-ranked-topics {
+      margin-left: 0;
+    }
+
+    .lia-list-wide > thead > tr > th {
+      padding: $padding-small-vertical;
+    }
+
+    .lia-list-wide > tbody > tr > td {
+      padding: $padding-small-vertical;
+    }
+
+    .lia-personalized-feed-link {
+      float: right;
+    }
+
+    .lia-personalized-feed-link {
+
+      .lia-profile-plus-page-text {
+        @include media(phone) {
+          display: none;
+        }
+      }
+    }
+
+    .lia-personalized-feed-link {
+      .lia-link-navigation {
+        text-decoration: none;
+      }
+    }
+
+    .lia-personalized-feed-tooltip {
+      margin-left: $padding-small-horizontal;
+    }
+  }
+
+  //metrics
+
+  .lia-profileplus-metrics {
+
+    margin: 0 auto;
+    max-width: $li-integrated-profile-center-width;
+
+    padding: $li-integrated-profile-padding;
+
+    .lia-profileplus-metrics-title {
+      color: $li-integrated-actionable-activity-title-color;
+      font-size: $font-size-h3;
+      text-align: left;
+    }
+
+    .lia-profileplus-user-metrics {
+      .lia-vitality-metrics-display-net-overall-posts {
+        &:before {
+          background-image: none;
+          color: $li-integrated-actionable-insight-metrics-icon-color;
+          content: $fa-var-comment-o;
+          font: normal normal normal $li-integrated-actionable-insight-metrics-font-size / 1 FontAwesome;
+        }
+      }
+
+      .lia-vitality-metrics-display-net-overall-replies {
+        &:before {
+          color: $li-integrated-actionable-insight-metrics-icon-color;
+          content: $fa-var-reply;
+          font: normal normal normal $li-integrated-actionable-insight-metrics-font-size / 1 FontAwesome;
+        }
+      }
+
+      .lia-vitality-metrics-display-net-kudos-weight-received {
+        &:before {
+          color: $li-integrated-actionable-insight-metrics-icon-color;
+          content: $fa-var-thumbs-o-up;
+          font: normal normal normal $li-integrated-actionable-insight-metrics-font-size / 1 FontAwesome;
+        }
+      }
+
+      @include media(phone) {
+        .lia-vitality-metrics-display-net-overall-posts:before,
+        .lia-vitality-metrics-display-net-overall-replies:before,
+        .lia-vitality-metrics-display-net-kudos-weight-received:before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  //actionable-insight
+
+  .lia-profileplus-actionable-insight {
+    background-color: $li-integrated-profile-bg;
+    padding: $li-integrated-profile-padding;
+
+    .lia-actionable-insight-desktop {
+      .lia-actionable-insight-collapse {
+        max-height: 1000px;
+        opacity: 1;
+        transition: 0.50s ease-in;
+
+        &.ng-hide {
+          display: block !important;
+          max-height: 0;
+          opacity: 0;
+          overflow: hidden;
+          transition: 0.25s ease-out;
+        }
+      }
+
+      .lia-actionable-insight-button {
+        padding: 0 $li-integrated-profile-klout-hovercard-padding $li-integrated-profile-klout-hovercard-padding $li-integrated-profile-klout-hovercard-padding;
+        text-align: right;
+        .lia-insight-collapse-chevron-link, .lia-fa {
+          background-color: transparent;
+          border: none;
+          color: $li-integrated-actionable-insight-tab-active;
+          outline: none;
+        }
+        .lia-collapse-chevron-text {
+          font-size: $font-size-large;
+          margin-left: 10px;
+          @include media(phone) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .lia-experts-ranking-mobile {
+
+      .lia-common-dropdown-toggle {
+        font-weight: 400;
+      }
+
+      .lia-dropdown-item {
+        padding-left: $padding-xl-vertical;
+        margin: $padding-large-vertical 0;
+
+        &:hover {
+          background-color: $dropdown-link-hover-bg;
+        }
+
+      }
+    }
+
+    .lia-actionable-insight-mobile {
+
+      .lia-profile-plus-rank-topic-tabs {
+        clear: both;
+        margin-top: $li-integrated-actionable-insight-section-padding;
+      }
+
+      .uib-tab {
+        border: none;
+        border-bottom: 1px solid $li-integrated-actionable-insight-uib-tab-color;
+        float: left;
+        font-size: $font-size-base;
+        margin: 0 0 $padding-xl-vertical 0;
+        width: 50%;
+      }
+      .uib-tab .ng-binding {
+        background-color: transparent;
+        color: $li-integrated-actionable-collapse-content-color;
+        border: none;
+        margin: 0;
+        padding: 0 0 2px 0;
+      }
+      .uib-tab .ng-binding:hover {
+        border-bottom: 1px solid $li-integrated-actionable-insight-tab-active;
+        cursor: pointer;
+        padding-bottom: 1px;
+      }
+      .uib-tab.active .ng-binding {
+        border-bottom: 2px solid $li-integrated-actionable-insight-tab-active;
+        padding: 0;
+      }
+      .tab-pane {
+        display: none;
+        clear: both;
+      }
+      .tab-pane.active {
+        display: block;
+      }
+
+      .lia-profileplus-related-topics-container {
+        border-bottom: none;
+      }
+
+      .lia-trending-topics-header {
+        margin-top: 0;
+      }
+
+      .lia-profileplus-experts-ranking-container {
+        border-top: none;
+        padding-top: 0;
+      }
+
+    }
+  }
+
+  //Trending Topics
+
+  .lia-profileplus-trending-topics-container {
+
+    margin-bottom: $li-integrated-actionable-insight-section-padding;
+    border-bottom: 1px solid $li-integrated-profile-insights-border-color;
+
+    .lia-tag-cloud-container {
+      margin-bottom: $li-integrated-actionable-insight-section-padding;
+    }
+
+    .lia-trending-topics-header {
+      display: inline-block;
+      margin-top: $padding-large-horizontal;
+      margin-bottom: $li-integrated-actionable-insight-section-padding;
+    }
+
+    .lia-trending-topics-header-title {
+      margin-right: $padding-small-horizontal;
+      font-weight: $li-integrated-actionable-insight-ranking-user-rank-font-weight;
+      font-size: $font-size-h4;
+    }
+
+    .topic-name {
+      margin-right: $padding-small-horizontal;
+      line-height: $li-integrated-profile-topics-line-height;
+    }
+  }
+
+  //Related Topics
+
+  .lia-profileplus-related-topics-container {
+
+    font-weight: $li-integrated-actionable-insight-ranking-sub-text-font-weight;
+
+    .lia-related-topics-header-title {
+      display: inline-block;
+      margin-bottom: $li-integrated-actionable-insight-section-padding;
+      margin-right: $padding-small-horizontal;
+      font-weight: $li-integrated-actionable-insight-ranking-user-rank-font-weight;
+      font-size: $font-size-h4;
+    }
+
+    .topic-name {
+      margin-right: $padding-small-horizontal;
+      line-height: $li-integrated-profile-topics-line-height;
+    }
+
+    .lia-related-topics-list {
+      margin-bottom: $li-integrated-actionable-insight-section-padding;
+    }
+
+  }
+
+  //Experts Ranking
+
+  .lia-profileplus-experts-ranking-container {
+
+    padding-top: $li-integrated-actionable-insight-section-padding;
+    border-top: 1px solid $li-integrated-profile-insights-border-color;
+
+    .lia-experts-ranking-header-title {
+      font-size: $font-size-h4;
+      font-weight: $li-integrated-actionable-insight-ranking-user-rank-font-weight;
+      margin-bottom: $padding-large-vertical;
+    }
+
+    .lia-ranking-header-description {
+      color: $li-integrated-actionable-insight-ranking-discription-color;
+      font-size: $font-size-base;
+      font-weight: $li-integrated-actionable-insight-ranking-sub-text-font-weight;
+      margin-bottom: $li-integrated-actionable-insight-section-padding;
+    }
+
+    .lia-experts-ranking-main {
+      .lia-quilt-column-10 {
+        @include media(tablet) {
+          width: 50%;
+          float: left;
+        }
+      }
+
+      .lia-quilt-column-right {
+        float: right;
+      }
+
+    }
+
+    .lia-expert-ranking-topic {
+      color: $li-integrated-actionable-insight-ranking-topic-color;
+      font-size: $font-size-large;
+      border-bottom: 1px solid $li-integrated-profile-insights-ranking-border;
+      padding-bottom: $padding-large-vertical;
+      font-weight: 700;
+    }
+
+    .lia-expert-ranking-list {
+
+      &.ranking-0 {
+        margin-top: $li-integrated-actionable-insight-section-padding;
+      }
+
+      margin: $li-integrated-actionable-insight-ranking-top-margin/2 0;
+
+      .lia-rank-hash {
+        font-size: $font-size-base;
+        position: relative;
+        bottom: 10px;
+      }
+
+      .lia-component-user-rank {
+        color: $li-integrated-actionable-insight-activity-threshold-color;
+        display: inline-block;
+        font-size: $li-integrated-actionable-insight-ranking-user-rank-text-size;
+        font-weight: $li-integrated-actionable-insight-ranking-user-rank-font-weight;
+        margin-right: $li-integrated-actionable-insight-ranking-list-margin-right;
+        vertical-align: middle;
+      }
+
+      .lia-component-user-name {
+        color: $li-integrated-actionable-insight-tab-active;
+        font-size: $font-size-large;
+        font-weight: $li-integrated-actionable-insight-ranking-user-rank-font-weight;
+        &:hover {
+          color: $li-integrated-actionable-insight-ranking-user-rank-link-color-hover;
+        }
+      }
+
+      @include media(tablet) {
+        .lia-message-author-avatar {
+          float: none;
+        }
+      }
+    }
+  }
+
+  // Treatment Header
+  .lia-component-quilt-treatment-profile-header {
+    &:hover {
+      .lia-quilt-column-treatment-hovercard-container {
+        display: block;
+        @include media(phone) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .lia-component-quilt-treatment-profile-header .lia-quilt-row-main {
+    .lia-user-avatar-message {
+      height: $li-integrated-profile-treatment-author-avatar-profile-size;
+      margin-right: 5px;
+      width: $li-integrated-profile-treatment-author-avatar-profile-size;
+    }
+  }
+
+  // Treatment Hovercard
+  .lia-component-quilt-treatment-profile-header .lia-quilt-column-treatment-hovercard-container {
+    display: none;
+    margin-top: 40px;
+    position: absolute;
+    width: 620px;
+    z-index: 1000;
+    &:hover {
+      display: block;
+    }
+    .lia-quilt-treatment-profile-hovercard {
+      background-color: $li-bg-secondary;
+      border: 1px solid $li-border-panel;
+      border-radius: 5px;
+      bottom: 70px;
+      box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.3);
+      left: 60px;
+      padding: 30px;
+      position: relative;
+
+      // left hovercard pointer
+      &:before {
+        border: 6px solid;
+        border-color: transparent transparent $li-bg-secondary $li-bg-secondary;
+        top: 40px;
+        box-sizing: border-box;
+        box-shadow: -1px 3px 2px 0px $li-border-panel;
+        content: "";
+        height: 0;
+        left: 1px;
+        position: absolute;  
+        transform: rotate(45deg);
+        transform-origin: 0 0;
+        width: 0;
+      }
+    }
+
+    //user-info
+    .lia-quilt-column-user-info {
+      float: left;
+      padding: 0;
+    }
+    .lia-user-avatar-message {
+      width: $li-integrated-profile-treatment-author-avatar-hovecard-size;
+      height: $li-integrated-profile-treatment-author-avatar-hovecard-size;
+    }
+    .lia-user-name-link:after {
+      content: '';
+      position: absolute;
+      height: 300px;
+      left: -30px;
+      top: -30px;
+      width: 620px;
+      z-index: 10000;
+    }
+    //user-metrics
+    .lia-quilt-column-alley-inner {
+      float: right;
+    }
+    .lia-component-profileplus-widget-treatment-statistics {
+      display: inline-block;
+    }
+    .lia-quilt-column-user-metrics {
+      padding: 0;
+    }
+    .lia-metrics-display {
+      margin: 0 0 0 30px;
+    }
+    .lia-vitality-value {
+      color: $gray-dark;
+      font-size: $font-size-h4;
+      text-align: center;
+    }
+    .lia-vitality-key {
+      color: $gray;
+      font-size: $font-size-xsmall;
+    }
+    .lia-vitality-metrics-display-net-overall-posts:before, .lia-vitality-display:before {
+      display: none;
+    }
+
+    //user-social
+    .lia-quilt-column-user-social {
+      margin: 30px 0 0 0;
+      padding: 0;
+      @include media(tablet) {
+        margin-top: 70px;
+      }
+    }
+    .lia-profileplus-scorebox, .lia-component-profileplus-widget-treatment-social-network-icons {
+      float: left;
+    }
+    .lia-klout-scorebox-text {
+      margin: 0 12px 0 0;
+    }
+    .lia-klout-scorebox-text {
+      color: $gray;
+      font-size: $font-size-large;
+    }
+    .lia-scorebox-pipe {
+      color: $li-border-panel;
+      margin: 0 10px;
+    }
+    .lia-klout-user-networks {
+      margin: 2px 0;
+    }
+    .lia-klout-hovercard-networks-network {
+      margin-left: 2px;
+    }
+    .lia-remaining-icons, .lia-remaining-interests {
+      color: $gray-light;
+      font-size: $font-size-base;
+    }
+
+    //user-interests
+    .lia-panel-title {
+      display: none;
+    }
+    .lia-panel-heading-bar {
+      margin-top: 30px;
+      padding: 0;
+    }
+    .lia-panel-content, .lia-panel-standard {
+      margin: 0;
+      padding: 0;
+    }
+    .lia-remaining-interests {
+      display: inline-block;
+    }
+  }
+}

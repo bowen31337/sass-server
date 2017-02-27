@@ -1,0 +1,1121 @@
+$tinymce_macros-form-width:               80px !default;
+$tinymce_edit-icon-size:                  38px !default;
+$tinymce_edit-icon-font-size:             20px !default; // value from tinymce theme in skin.min.css
+$tinymce_toc-padding-left:                37px !default;
+$tinymce_toc-title-font-weight:           bold !default;
+$tinymce_widget-height:                   23px !default;
+
+@mixin components\tinymce {
+  // many inline styles to override
+  // scss-lint:disable ImportantRule
+
+  // LIA-47464 - Used to fill in all available area and resolve focus issue with iOS devices
+  .lia-tinymce-html {
+    height: 100%;
+  }
+
+  // .mce-edit-area > iframe also extends .form-control in _lia-forms.scss
+  %mce-button-reset {
+    &,
+    &:active,
+    &:focus,
+    &:hover,
+    &.mce-active,
+    &.mce-active:hover,
+    &.mce-menubtn span,
+    .mce-carat,
+    .mce-ico {
+      background-color: transparent;
+      background-image: none;
+      border: 0;
+      border-left: 0;
+      border-radius: $border-radius-small;
+      border-right: 0;
+      box-shadow: none;
+      text-shadow: none;
+    }
+
+    > button {
+      padding: 0 $padding-base-horizontal;
+      text-shadow: none;
+    }
+  }
+
+  .mce-ico.lia-fa {
+    font-family: FontAwesome;
+  }
+
+  .mce-tinymce .mce-ico.lia-tinymce-expand-small-icon,
+  .mce-tinymce .mce-ico.lia-tinymce-expand-medium-icon,
+  .mce-tinymce .mce-ico.lia-tinymce-expand-large-icon {
+    border: 1px solid $gray-light;
+    text-align: center;
+  }
+
+  .mce-tinymce .mce-btn .mce-ico.lia-tinymce-expand-small-icon {
+    font-size: 10px;
+    line-height: 10px;
+    height: 10px;
+    width: 10px;
+    margin: 2px;
+  }
+
+  .mce-tinymce .mce-btn .mce-ico.lia-tinymce-expand-medium-icon {
+    font-size: 12px;
+    line-height: 12px;
+    height: 12px;
+    width: 12px;
+    margin: 1px;
+  }
+
+  .mce-tinymce .mce-btn .mce-ico.lia-tinymce-expand-large-icon {
+    font-size: 14px;
+    line-height: 14px;
+    height: 14px;
+    width: 14px;
+  }
+
+  .lia-component-editor-wieget-emoticons.EmoticonView {
+
+    li {
+      white-space: normal;
+    }
+
+    .emoticon-link {
+      display: inline-block;
+      padding: $thumbnail-padding;
+    }
+  }
+
+  // lia-message-editor is both the body of the iframed wysiwyg and the textarea
+  .lia-message-editor p {
+    margin: 0;
+  }
+
+  .lia-spoiler-container-editor {
+    @include li-extend('.well');
+    @include li-extend('.well-sm');
+
+    // setting a min-height because there's no content in the well when created.
+    // 20px is due to bootstrap's .well-sm hardcoded at 9px * 2 + borders.
+    min-height: $line-height-computed + 20px;
+  }
+
+  .mce-arrow.mce-arrow {
+    // make the arrow color consistent with the dropdown
+    &.mce-arrow-down {
+      &:after {
+        border-top-color: $dropdown-bg;
+      }
+    }
+
+    &.mce-arrow-up {
+      &:after {
+        border-bottom-color: $dropdown-bg;
+      }
+    }
+  }
+
+  .mce-colorbutton {
+    &:hover,
+    &:hover > .mce-open {
+      border-left: 0;
+      border-right: 0;
+    }
+
+    .mce-open.mce-open.mce-open.mce-open.mce-open {
+      border-left: 0;
+      border-right: 0;
+      margin-left: -$tinymce_edit-icon-size;
+      padding-left: $tinymce_edit-icon-size - $caret-width-base;
+    }
+
+    // font color preview bar under A
+    &.mce-btn-small .mce-preview.mce-preview {
+      // hardcoding value overriding tinymce skin.min.css
+      margin-left: -12px;
+    }
+  }
+
+  .mce-container .lia-content {
+    padding: 0;
+    width: auto;
+  }
+
+  .mce-floatpanel.mce-popover.mce-bottom.mce-container {
+    margin-top: 2px;
+  }
+
+  .mce-lia-emoticons-panel.mce-popover {
+    padding: $padding-base-vertical $padding-base-horizontal;
+  }
+
+  .mce-listbox {
+    .mce-caret.mce-caret {
+      margin-top: 8px;
+      position: static;
+    }
+  }
+
+  .mce-panel.mce-panel {
+    background-color: $modal-content-bg;
+    background-image: none;
+  }
+
+  .mce-lia-search-content-dialog.mce-panel {
+    left: 5% !important;
+    margin: $form-padding 0;
+    width: 90% !important;
+
+    @include media(phone) {
+      left: 0 !important;
+      margin: 0;
+      width: 100% !important;
+    }
+  }
+
+  .mce-edit-area.mce-panel {
+    background-color: $modal-content-bg;
+    border-width: 1px !important;
+    clear: both;
+    height: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: {
+      bottom: $padding-base-horizontal;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+
+
+    position: relative;
+
+    > iframe {
+      border-radius: $input-border-radius-large;
+    }
+
+    // scss-lint:disable DeclarationOrder
+    @include media(phone) {
+      padding: 0;
+    }
+  }
+
+  .mce-statusbar.mce-statusbar {
+    border-width: 0 !important;
+
+    @include media(phone) {
+      display: none;
+    }
+
+    .mce-path {
+      display: none;
+    }
+
+  }
+
+  .mce-i-resize.mce-i-resize {
+    margin-left: 2px;
+  }
+
+  // tinymce button rows
+  .mce-toolbar-grp,
+  .mce-stack-layout,
+  .mce-flow-layout {
+    @include clearfix;
+  }
+
+
+  .mce-toolbar-grp {
+    border-width: 0 !important;
+
+    // tinymce group styling reset
+    // this removes the dividers between groups
+    .mce-btn-group:not(:first-child) {
+      border-left: 0;
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    .mce-flow-layout-item {
+      margin: 0;
+
+      &,
+      > div {
+        display: inline;  // responsive tinymce buttons
+        line-height: $tinymce_edit-icon-size + 6;
+
+        .mce-fullscreen & {
+          line-height: $tinymce_edit-icon-size;
+        }
+      }
+    }
+  }
+
+  // tinymce button styling reset
+  .mce-tinymce .mce-btn {
+    @extend %mce-button-reset;
+
+
+    float: left; // responsive tinymce buttons
+    margin: 1px;
+
+    &:active,
+    &:focus,
+    &:hover,
+    &.mce-active,
+    &.mce-active:hover {
+
+      background-color: $gray-lighter;
+
+      .mce-carat,
+      .mce-ico,
+      &.mce-menubtn span {
+        color: $gray-dark;
+      }
+    }
+
+    // extra specificity for left and right group borders
+    &.mce-first,
+    &.mce-last {
+      border-left: 0;
+      border-right: 0;
+    }
+
+    > button {
+      // 2px to account for 1px border on each side
+      height: $tinymce_edit-icon-size - 2px;
+      min-width: $tinymce_edit-icon-size - 2px;
+    }
+
+    .mce-carat,
+    .mce-ico,
+    &.mce-menubtn span {
+      color: $gray-light;
+    }
+
+    .mce-ico {
+      &,
+      &:before {
+        line-height: $tinymce_edit-icon-font-size;
+      }
+    }
+  }
+
+  .mce-tinymce-inline .mce-btn .mce-ico {
+    &,
+    &:before {
+      line-height: normal;
+    }
+  }
+
+  // reset fixed with tinymce buttons
+  .mce-menubtn.mce-fixed-width.mce-fixed-width.mce-btn-small span,
+  .mce-menubtn.mce-fixed-width.mce-btn-small .mce-txt {
+    width: auto;
+  }
+
+  .lia-mce-toolbar-liafullscreendone {
+    display: none !important;
+  }
+
+  .mce-fullscreen {
+    .lia-mce-toolbar-liafullscreendone.lia-mce-toolbar-liafullscreendone {
+      @include lia-button-primary;
+
+      border-radius: 0 0 0 $border-radius-base; // bottom left has a border radius
+      display: block !important;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: $zindex-navbar-fixed + 1;
+
+      > button {
+        width: $tinymce_edit-icon-size + 2px;
+      }
+
+      .mce-txt {
+        // hardcoded icon size to match value from skin.min.css tinymce skin
+        @include li-icon($fa-var-close, $color: $btn-primary-color, $hide-text: true, $size: $tinymce_edit-icon-font-size);
+      }
+    }
+
+    .mce-btn-small i {
+      // hardcoded icon + border size to match value from skin.min.css tinymce skin
+      line-height: $tinymce_edit-icon-font-size;
+    }
+
+    .mce-edit-area.mce-panel {
+      border-radius: 0;
+      border-width: 0 !important;
+    }
+
+    .mce-toolbar-grp.mce-stack-layout-item {
+      line-height: $tinymce_edit-icon-size;
+      padding: 0;
+
+      &,
+      > div {
+        line-height: $tinymce_edit-icon-size;
+      }
+    }
+  }
+
+  #lia-body.lia-fullscreen-ios {
+    overflow: hidden;
+    -webkit-overflow-scrolling: auto;
+
+    #tinyMceEditor_ifr {
+      height: calc(100% - #{$tinymce_edit-icon-size}) !important; //override inline generated height
+      width: 100%;
+    }
+
+    .mce-edit-area {
+      bottom: 0;
+      left: 0;
+      -webkit-overflow-scrolling: touch;
+      overflow-y: scroll;
+      position: fixed;
+      right: 0;
+      top: $tinymce_edit-icon-size;
+    }
+
+    .mce-fullscreen {
+      height: 100%;
+    }
+
+    .mce-toolbar {
+      background-color: $body-bg;
+      left: 0;
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: $zindex-navbar-fixed;
+    }
+
+    .mce-flow-layout {
+      margin-right: $tinymce_edit-icon-size + 1;
+
+      &,
+      .mce-flow-layout-item {
+        display: inline-block;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: scroll;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .lia-fullscreen-ios,
+  .lia-fullscreen-ios body  {
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  // other tinymce
+  .mce-tinymce.mce-container {
+    border: 0;
+  }
+
+  // tinymce inline panels such as clicking in a table tool panel
+  .mce-tinymce-inline.mce-container {
+    @include li-extend('.dropdown-menu');
+
+    border: 1px solid $li-border-color;
+    display: block;
+    padding: 0;
+
+    // inline toolbar panel margin adjustment based on top or bottom
+    &.mce-arrow-down {
+      margin-top: -$padding-large-vertical;
+    }
+
+    &.mce-arrow-up {
+      margin-top: $padding-large-vertical;
+    }
+
+    .mce-container-body {
+      position: relative;
+    }
+
+    .mce-flow-layout-item {
+      margin: 0;
+    }
+  }
+
+  // tinymce dialog / modals
+  .lia-body .mce-window {
+    height: auto !important;
+
+    @include media(phone) {
+      bottom: 0 !important;
+    }
+
+    .mce-abs-layout,
+    .mce-abs-layout-item {
+      height: auto !important;
+      position: static;
+      width: auto !important;
+
+      .lia-mce-loader-feedback {
+        position: absolute;
+      }
+    }
+
+    .mce-container-body.li-dialog-iframe-container {
+      background-color: $body-bg;
+    }
+
+    .mce-combobox,
+    .mce-textbox {
+      box-sizing: border-box;
+      width: 100% !important;
+    }
+
+    .mce-foot {
+      background-image: none;
+      border-color: $modal-footer-border-color;
+      margin-top: $modal-inner-padding;
+      padding-top: $padding-large-vertical;
+      position: relative;
+      text-align: right;
+      width: 100% !important;
+
+      .mce-btn {
+        float: right;
+        margin-right: $padding-xs-horizontal;
+
+        &.mce-first {
+          margin-right: $modal-inner-padding;
+        }
+      }
+
+      > .mce-container-body {
+        display: inline-block;
+      }
+    }
+
+    .mce-form {
+      padding: {
+        bottom: 0;
+        left: $modal-inner-padding;
+        right: $modal-inner-padding;
+        top: $modal-inner-padding;
+      }
+    }
+
+    .mce-formitem {
+      padding-bottom: $line-height-computed;
+    }
+
+    .mce-label {
+      display: block;
+      overflow: visible;
+      padding-bottom: 2px;
+      text-shadow: none;
+    }
+
+    .mce-multiline {
+      height: 300px !important;
+    }
+
+    &.mce-lia-search-content-dialog .mce-window-head + .mce-container-body {
+      height: 100% !important;
+      position: relative !important;
+      width: 100% !important;
+    }
+  }
+
+  // to fix:
+  // style active button state
+  .message-editor-controls {
+    .lia-form-submit.lia-button-group {
+      float: none;
+      position: relative;
+      z-index: 10;
+
+      .lia-button-wrapper {
+        padding-top: 0;
+      }
+
+      .Macros {
+        float: right;
+        height: $tinymce_edit-icon-size;
+        margin-left: $padding-base-horizontal;
+        width: $tinymce_macros-form-width;
+      }
+    }
+  }
+
+  .message-body-editor {
+
+    // move buttons closer to tabs. margin is originally defined in .lia-tabs-standard
+    margin-top: 2px - $padding-large-vertical;
+
+    @include media(phone) {
+      margin-top: 0;
+    }
+
+    // textarea (html) version of the message / comment editor
+    .lia-form-tiny-mce-editor-input {
+      height: 209px;
+      margin: {
+        bottom: 0;
+        top: -11px;
+      }
+      resize: vertical;
+    }
+  }
+
+  .lia-form-body-input.lia-form-type-text {
+    height: 150px;
+  }
+
+  // this is the class on the tinymce contenteditable body within the iframe
+  // subset of .form-control
+  .lia-message-editor.mce-content-body {
+    @include form-control-focus(transparent);
+    border: 0;
+    box-shadow: none;
+    height: 100%;
+    margin: 0;
+    padding: $padding-base-vertical $padding-base-horizontal;
+
+    @include media(phone) {
+      img {
+        @include user-select(none);
+      }
+    }
+
+    &:active,
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .lia-message-quick-reply {
+    margin-top: 20px;
+
+    .lia-form-row {
+      margin-bottom: 10px;
+    }
+  }
+
+  @include media(phone) {
+
+    .mce-colorbutton-grid.mce-grid {
+      padding: $panel-body-padding;
+      table-layout: fixed;
+      width: 100%;
+
+      .mce-grid-cell div {
+        height: 30px;
+        width: auto;
+      }
+
+      .mce-colorbtn-trans div {
+        font-size: 30px;
+        line-height: 30px;
+      }
+    }
+
+    .mce-menu,
+    .mce-popover {
+      height: auto !important; // emoticons
+      left: 15px !important; // emoticons
+      margin-left: 0 !important;
+      right: 15px !important; // emoticons
+      width: auto !important; // emoticons
+
+      .mce-arrow.mce-arrow {
+        display: none;
+      }
+    }
+  }
+
+  // modal container and positioning
+  .lia-body .mce-window {
+    > .mce-reset {
+      height: 100% !important;
+    }
+  }
+
+
+  .lia-body .mce-floatpanel.mce-window {
+    max-height: none !important;
+    top: $panel-body-padding;
+
+    @include media(phone) {
+      bottom: 0;
+      top: 0;
+    }
+
+    &.mce-lia-search-content-dialog {
+      bottom: $panel-body-padding;
+    }
+  }
+
+  .lia-body .mce-abs-layout.mce-container-body {
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    padding: 0;
+    width: 100% !important;
+
+    // the embedded iframe should only be used
+    > iframe {
+      border: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    &.lia-panel-dialog-content-type-iframe {
+      margin-bottom: 0;
+      padding: 0;
+    }
+  }
+
+  .mce-content-body,
+  .lia-media-image-upload-display {
+    @include media(phone) {
+      .lia-image-caption {
+        display: inline-block;
+        margin-bottom: $padding-large-vertical * 2;
+      }
+    }
+
+    .lia-image-container-editor[data-mce-selected] {
+      border-color: $input-border-focus;
+      outline: 0;
+      @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(red($input-border-focus), green($input-border-focus), blue($input-border-focus), 1));
+    }
+
+    .lia-image-container-editor {
+      cursor: default;
+      display: inline-block;
+      max-width: 100%;
+      position: relative;
+
+      &.lia-image-container-align-left {
+        float: left;
+        margin-right: $padding-large-vertical;
+      }
+
+      &.lia-image-container-align-right {
+        float: right;
+        margin-left: $padding-large-vertical;
+        text-align: right;
+      }
+
+      &.lia-image-container-align-center {
+        clear: both;
+        display: block;
+        margin: auto;
+      }
+
+      .lia-image-display + .lia-image-edit-icon {
+        display: inline;
+      }
+
+      .lia-image-edit-icon {
+        background-color: #fff;
+        border-radius: $border-radius-small;
+        color: $gray;
+        cursor: pointer;
+        display: none;
+        font-size: $font-size-large;
+        // 2px to account for 1px border on each side
+        height: $tinymce_edit-icon-size - 2px;
+        line-height: $tinymce_edit-icon-size - 2px;
+        position: absolute;
+        right: $padding-xs-horizontal;
+        text-align: center;
+        top: $padding-small-vertical;
+        width: $tinymce_edit-icon-size - 2px;
+
+        &:hover {
+          color: $link-hover-color;
+        }
+      }
+    }
+  }
+
+  .mce-content-body.lia-editor-gte-2 {
+    .lia-image-display {
+      display: inline-block;
+      max-width: 100%;
+      vertical-align: baseline;
+    }
+
+    .lia-image-align-left {
+      float: left;
+      margin-right: $padding-large-vertical;
+    }
+
+    .lia-image-align-right {
+      float: right;
+      margin-left: $padding-large-vertical;
+      text-align: right;
+    }
+
+    .lia-image-align-center {
+      clear: both;
+      display: block;
+      margin: auto;
+    }
+  }
+
+  .mce-container .lia-mce-placeholder {
+    color: $text-muted;
+    font-weight: $font-weight-content;
+    left: 0;
+    line-height: $line-height-base;
+    padding: $padding-base-vertical $padding-base-horizontal;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    white-space: normal;
+  }
+
+  .mce-btn-has-text.mce-btn-has-text {
+    .mce-ico {
+      padding-right: $padding-xs-horizontal;
+    }
+
+    .mce-txt {
+      font-size: $font-size-small;
+      line-height: $line-height-base;
+    }
+  }
+
+  .lia-mce-toolbar .mce-ico.lia-tinymce-toc-icon {
+    background: transparent 0 0;
+    background-image: svg-url($li-svg-icon-toc, $gray-light) ;
+    background-repeat:no-repeat;
+    vertical-align: middle;
+    height: 13px;
+    width: 18px;
+  }
+
+  .lia-mce-toolbar:hover .mce-ico.lia-tinymce-toc-icon {
+    background: transparent 0 0;
+    background-image: svg-url($li-svg-icon-toc, $gray-dark);
+    background-repeat:no-repeat;
+    height: 13px;
+    width: 18px;
+  }
+
+  #lia-body .lia-content .lia-message-body a.li-toc,
+  body.mce-content-body a.li-toc {
+    background-image: svg-url($li-svg-icon-toc, $gray-dark);
+    background-repeat: no-repeat;
+    display: block;
+    padding-left: $tinymce-toc-padding-left;
+    font-weight: $tinymce_toc-title-font-weight;
+    height: $tinymce_widget-height;
+    text-decoration: none;
+  }
+
+  // TinyMCE button visibility
+  @include media(phone) {
+
+    @if ($li-editor-mobile-show-bold == false) {
+      .lia-mce-toolbar-bold.lia-mce-toolbar-bold {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-bullist == false) {
+      .lia-mce-toolbar-bullist.lia-mce-toolbar-bullist {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-code == false) {
+      .lia-mce-toolbar-code.lia-mce-toolbar-code {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-embedvideo == false) {
+      .lia-mce-toolbar-embedvideo.lia-mce-toolbar-embedvideo {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-emoticons == false) {
+      .lia-mce-toolbar-emoticons.lia-mce-toolbar-emoticons {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-findcontent == false) {
+      .lia-mce-toolbar-findcontent.lia-mce-toolbar-findcontent {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-fontselect == false) {
+      .lia-mce-toolbar-fontselect.lia-mce-toolbar-fontselect {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-fontsizeselect == false) {
+      .lia-mce-toolbar-fontsizeselect.lia-mce-toolbar-fontsizeselect {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-forecolor == false) {
+      .lia-mce-toolbar-forecolor.lia-mce-toolbar-forecolor {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-formatselect == false) {
+      .lia-mce-toolbar-formatselect.lia-mce-toolbar-formatselect {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-image == false) {
+      .lia-mce-toolbar-image.lia-mce-toolbar-image {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-insertcode == false) {
+      .lia-mce-toolbar-insertcode.lia-mce-toolbar-insertcode {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-italic == false) {
+      .lia-mce-toolbar-italic.lia-mce-toolbar-italic {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-link == false) {
+      .lia-mce-toolbar-link.lia-mce-toolbar-link {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-macros == false) {
+      .lia-mce-toolbar-liamacros.lia-mce-toolbar-liamacros {
+        display: none;
+      }
+
+      // editor v1 dropdown
+      .Macros.lia-custom-event {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-numlist == false) {
+      .lia-mce-toolbar-numlist.lia-mce-toolbar-numlist {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-quote == false) {
+      .lia-mce-toolbar-liaquote.lia-mce-toolbar-liaquote {
+        display: none;
+      }
+
+      // editor v1 button
+      .quote-message-link {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-spellchecker == false) {
+      .lia-mce-toolbar-spellchecker.lia-mce-toolbar-spellchecker {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-spoiler == false) {
+      .lia-mce-toolbar-spoiler.lia-mce-toolbar-spoiler {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-strikethrough == false) {
+      .lia-mce-toolbar-strikethrough.lia-mce-toolbar-strikethrough {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-table == false) {
+      .lia-mce-toolbar-table.lia-mce-toolbar-table {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-toc == false) {
+      .lia-mce-toolbar-toc.lia-mce-toolbar-toc {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-mobile-show-underline == false) {
+      .lia-mce-toolbar-underline.lia-mce-toolbar-underline {
+        display: none;
+      }
+    }
+  }
+
+  @include media(tablet) {
+
+    @if ($li-editor-tablet-show-bold == false) {
+      .lia-mce-toolbar-bold.lia-mce-toolbar-bold {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-bullist == false) {
+      .lia-mce-toolbar-bullist.lia-mce-toolbar-bullist {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-code == false) {
+      .lia-mce-toolbar-code.lia-mce-toolbar-code {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-embedvideo == false) {
+      .lia-mce-toolbar-embedvideo.lia-mce-toolbar-embedvideo {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-emoticons == false) {
+      .lia-mce-toolbar-emoticons.lia-mce-toolbar-emoticons {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-findcontent == false) {
+      .lia-mce-toolbar-findcontent.lia-mce-toolbar-findcontent {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-fontselect == false) {
+      .lia-mce-toolbar-fontselect.lia-mce-toolbar-fontselect {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-fontsizeselect == false) {
+      .lia-mce-toolbar-fontsizeselect.lia-mce-toolbar-fontsizeselect {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-forecolor == false) {
+      .lia-mce-toolbar-forecolor.lia-mce-toolbar-forecolor {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-formatselect == false) {
+      .lia-mce-toolbar-formatselect.lia-mce-toolbar-formatselect {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-image == false) {
+      .lia-mce-toolbar-image.lia-mce-toolbar-image {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-insertcode == false) {
+      .lia-mce-toolbar-insertcode.lia-mce-toolbar-insertcode {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-italic == false) {
+      .lia-mce-toolbar-italic.lia-mce-toolbar-italic {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-link == false) {
+      .lia-mce-toolbar-link.lia-mce-toolbar-link {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-macros == false) {
+      .lia-mce-toolbar-liamacros.lia-mce-toolbar-liamacros {
+        display: none;
+      }
+
+      // editor v1 dropdown
+      .Macros.lia-custom-event {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-numlist == false) {
+      .lia-mce-toolbar-numlist.lia-mce-toolbar-numlist {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-quote == false) {
+      .lia-mce-toolbar-liaquote.lia-mce-toolbar-liaquote {
+        display: none;
+      }
+
+      // editor v1 button
+      .quote-message-link {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-spellchecker == false) {
+      .lia-mce-toolbar-spellchecker.lia-mce-toolbar-spellchecker {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-spoiler == false) {
+      .lia-mce-toolbar-spoiler.lia-mce-toolbar-spoiler {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-strikethrough == false) {
+      .lia-mce-toolbar-strikethrough.lia-mce-toolbar-strikethrough {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-table == false) {
+      .lia-mce-toolbar-table.lia-mce-toolbar-table {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-toc == false) {
+      .lia-mce-toolbar-toc.lia-mce-toolbar-toc {
+        display: none;
+      }
+    }
+
+    @if ($li-editor-tablet-show-underline == false) {
+      .lia-mce-toolbar-underline.lia-mce-toolbar-underline {
+        display: none;
+      }
+    }
+  }
+}

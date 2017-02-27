@@ -1,0 +1,279 @@
+// Header
+//
+// Styles that include the container for titlebar, userbar and breadcrumb.
+//
+// Style guide: components.header
+
+$header_page-options-position-top:  64px !default; // 50px header + 15px title padding - 1px border
+$header_content-height-xs:          $li-avatar-size-medium !default;
+$header_height-xs:                  $header_content-height-xs + $padding-large-vertical * 2 !default;
+
+
+@mixin components\header {
+
+  @include media(phone) {
+    .PostPage,
+    .ReplyPage,
+    .EditPage {
+      .lia-quilt-row-header .lia-component-quilt-header {
+        .lia-quilt-row {
+          display: none;
+
+          &.lia-quilt-row-feedback {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .lia-component-quilt-header {
+    background-color: $li-bg-secondary;
+
+    .lia-quilt-column-alley.lia-quilt-column-alley-left {
+      white-space: nowrap;
+    }
+  }
+
+  .lia-nodes-community-title-text {
+    color: $gray;
+    display: inline-block;
+    font-size: $font-size-h2;
+    font-weight: $font-weight-content;
+    line-height: $li-icon-size;
+    margin-left: -$padding-large-horizontal;
+    max-width: 100%;
+    overflow: hidden;
+    padding: $padding-base-vertical $padding-base-horizontal;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    white-space: nowrap;
+
+    @include media(phone) {
+      display: none;
+    }
+
+    &:active,
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .lia-slide-out-nav-menu {
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
+  }
+
+  .lia-slide-out-nav-menu-title {
+    @include hide-text;
+  }
+
+  .lia-slide-out-nav-menu-wrapper {
+    @include li-icon-svg($li-svg-community-nav-trigger, $size: $font-size-h3);
+
+    padding: {
+      bottom: $padding-medium;
+      left: $panel-body-padding;
+      right: $panel-body-padding;
+      top: $padding-medium;
+    }
+
+    &:before {
+      display: block;
+      vertical-align: middle;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .lia-quilt-row-main-header {
+
+    .lia-user-avatar {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .user-navigation-user-profile {
+      display: none;
+    }
+
+  }
+
+  .lia-quilt-row-sub-header {
+
+    .lia-component-common-widget-breadcrumb {
+      float: left;
+
+      @include media(phone) {
+        display: none;
+      }
+    }
+
+    .lia-component-community-widget-page-options {
+      float: right;
+
+      // move the breadcrumb's option menu next to the title as the
+      // breadcrumb is not shown on mobile
+      @include media(phone) {
+        float: none;
+        position: absolute;
+        right: $grid-gutter-width / -2;
+        top: $header_page-options-position-top;
+        z-index: 5;
+      }
+    }
+  }
+
+  .lia-component-quilt-header {
+    .UserNavigation {
+      @include media(phone) {
+        float: right;
+      }
+
+      .lia-user-avatar {
+        display: inline-block;
+      }
+
+      .user-navigation-parent-dropdown {
+        vertical-align: top;
+      }
+    }
+  }
+
+  .UserNavigation {
+    .lia-user-avatar-message {
+      height: $li-avatar-size-medium;
+      width: $li-avatar-size-medium;
+    }
+  }
+
+  .lia-quilt-row-main-header {
+
+    //.lia-quilt-column-alley > .lia-component-help-action-faq {
+    //  padding-right: $grid-gutter-width;
+    .lia-quilt-column-header-left {
+      @include li-extend('.col-xs-4');
+      @include li-extend('.col-sm-16');
+    }
+
+    .lia-quilt-column-header-right {
+      @include li-extend('.col-xs-20');
+      @include li-extend('.col-sm-8');
+    }
+
+    @include media(phone) {
+      background-color: $gray-lightest;
+      border-bottom: 1px solid $li-border-color;
+
+      .lia-nodes-community-title {
+        display: none;
+      }
+    }
+
+  }
+
+  .lia-quilt-row-sub-header {
+    @include media(phone) {
+      height: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+
+  .lia-header-actions {
+    > .lia-component-help-action-faq,
+    .lia-component-users-widget-menu,
+    .lia-header-nav-component-widget,
+    .lia-search-toggle,
+    > .login-link {
+      float: right;
+      line-height: $header_content-height-xs;
+      padding: $padding-large-vertical $panel-body-padding;
+
+      @include media(phone) {
+        height: $header_height-xs;
+        line-height: $header_content-height-xs;
+        margin: 0;
+        text-align: center;
+        white-space: nowrap;
+        width: 25%;
+      }
+    }
+
+    .lia-header-nav-component-widget {
+      padding: 0;
+
+      .private-notes-link,
+      .lia-notification-feed-page-link {
+        display: block;
+        padding: $padding-large-vertical $panel-body-padding;
+
+        &:before {
+          line-height: $header_content-height-xs;
+        }
+      }
+    }
+  }
+
+  .lia-header-nav-component-widget {
+    float: right;
+    margin-left: $padding-xs-horizontal;
+    margin-right: $padding-xs-horizontal;
+    position: relative;
+
+    // hardcoding as this is a fairly unique element
+    .lia-header-nav-component-unread-count {
+      display: none;
+      padding: 2px 6px;
+      position: absolute;
+      right: calc(50% - #{$font-size-h3});
+      top: 10px;
+    }
+
+    &.unread .lia-header-nav-component-unread-count {
+      display: block;
+    }
+
+    .private-notes-link {
+      @include li-icon($fa-var-envelope-o, $size: $font-size-h3);
+      display: block;
+      padding: $padding-medium;
+
+      &:before {
+        display: block;
+
+        @include media(phone) {
+          display: inline-block;
+        }
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .lia-notification-feed-page-link {
+      @include li-icon($fa-var-bell-o, $size: $font-size-h3);
+      display: block;
+      padding: $padding-medium;
+
+
+      &:before {
+        display: block;
+
+        @include media(phone) {
+          display: inline-block;
+        }
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

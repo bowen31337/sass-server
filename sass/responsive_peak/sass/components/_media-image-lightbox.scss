@@ -1,0 +1,501 @@
+// Media Lightbox: Viewer v2
+//
+// TODO(adamayres): remove v1 once v2 is completed
+//
+// The lightbox viewer displays a single image flanked on either side by
+// arrows. Clicking an arrow (previous or next) will bring up that
+// respective image. The lightbox viewport scrolls through the collection
+// of images without looping.
+//
+// Style guide: components.media-image-lightbox
+//== Lightbox
+//
+//##
+
+//** Minimum height of lightbox main content
+$media-image-lightbox_min-height:               450px !default;
+//** Lightbox text color
+$media-image-lightbox_text-color:               #fff !default;
+//** Lightbox background color
+$media-image-lightbox_bg-color:                 $li-bg-secondary !default;
+//** Lightbox background color for main section
+$media-image-lightbox_main-bg-color:            lighten($modal-backdrop-bg, 20%) !default;   // #333
+//** Lightbox button background color
+$media-image-lightbox_button-bg:                lighten($modal-backdrop-bg, 25%) !default;   // #404040
+//** Lightbox button border color
+$media-image-lightbox_button-border-color:      lighten($modal-backdrop-bg, 30%) !default; // #4d4d4d
+//** Lightbox button margin
+$media-image-lightbox_button-margin:            15px !default;
+//** Lightbox button padding
+$media-image-lightbox_button-padding:           5px !default;
+//** Lightbox caption gradient color
+$media-image-lightbox_caption-gradient-color:   #191919 !default;
+//** Lightbox caption gradient color
+$media-image-lightbox_caption-margin:           15px !default;
+$media-image-lightbox_modal-margin:             15px !default;
+$media-image-lightbox_selected:                 $brand-primary !default;
+
+
+@mixin components\media-image-lightbox {
+
+  // Applied to the modal-content container to allow specific modal styling for the lightbox
+  .modal-imagelightbox {
+    margin: $media-image-lightbox_modal-margin;
+    width: auto;
+
+    .modal-content {
+      background-color: $media-image-lightbox_bg-color;
+      border-radius: ($border-radius-large + 1);
+    }
+  }
+
+  .lia-media-image-lightbox {
+    @extend .lia-content-reset;
+  }
+
+  // Lightbox main image containers
+  .lia-media-image-lightbox,
+  .lia-lightbox-main-image {
+    background-color: $media-image-lightbox_main-bg-color;
+    border-radius: $border-radius-large $border-radius-large 0 0;
+  }
+
+  .lia-fullscreen .lia-lightbox-main-image {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+  }
+
+  .lia-lightbox-fullscreen-button {
+    margin-right: $padding-xs-horizontal;
+  }
+
+  // Lightbox main image container
+  .lia-lightbox-main-image {
+    height: $media-image-lightbox_min-height;
+    min-height: $media-image-lightbox_min-height;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+
+    // Lightbox main image
+    .lia-image {
+      @include centered-vertical(relative);
+      max-height: 100%;
+      max-width: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .lia-button-container.lia-button-disabled i.lia-lightbox-button,
+    .lia-button-container.lia-button-disabled i.lia-lightbox-button-inverted {
+      opacity: .2;
+
+      &:hover {
+        cursor: auto;
+        opacity: .2;
+      }
+    }
+
+    &:hover {
+      .lia-lightbox-actions-container i {
+        visibility: visible;
+      }
+    }
+
+    .lia-lightbox-image-caption {
+      background-image: svg-gradient-vertical($media-image-lightbox_caption-gradient-color, 0, 0%, .55, 100%);
+      bottom: 0;
+      color: $media-image-lightbox_text-color;
+      font-style: italic;
+      margin: 0;
+      padding-bottom: $media-image-lightbox_caption-margin;
+      padding-left: $media-image-lightbox_caption-margin;
+      padding-right: $media-image-lightbox_caption-margin;
+      padding-top: $media-image-lightbox_caption-margin + 10;
+      position: absolute;
+      text-shadow: 1px 1px 1px rgba(150, 150, 150, .7);
+      width: 100%;
+      word-break: break-all;
+    }
+  }
+
+  // Lightbox buttons (previous, next, close)
+  .lia-button-container {
+    i.lia-lightbox-button {
+      @include transition(opacity .15s linear);
+      background: $media-image-lightbox_button-bg;
+      border: 1px solid $media-image-lightbox_button-border-color;
+      border-radius: $border-radius-base;
+      color: $media-image-lightbox_text-color;
+      cursor: pointer;
+      opacity: $li-disabled-opacity;
+      padding: $media-image-lightbox_button-padding;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    i.lia-lightbox-button-inverted {
+      background: $media-image-lightbox_text-color;
+      border: 0;
+      color: $media-image-lightbox_button-bg;
+    }
+
+    &:hover .lia-lightbox-button {
+      opacity: .8;
+    }
+  }
+
+  // Container for lightbox close button
+  .lia-lightbox-actions-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 3;
+
+    i {
+      position: relative;
+      right: $media-image-lightbox_button-margin;
+      top: $media-image-lightbox_button-margin;
+      visibility: hidden;
+    }
+  }
+
+  // Container for lightbox prev and next buttons
+  .lia-lightbox-prev-container,
+  .lia-lightbox-next-container {
+    // hack to give positioned element click bubbling in IE
+    background-image: svg-gradient-vertical($body-bg, 0, 0%, 0, 100%);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+
+    i {
+      @include centered-vertical(relative);
+      position: relative;
+    }
+  }
+
+  .lia-lightbox-prev-container {
+    left: 0;
+    text-align: left;
+    width: 33%;
+
+    i {
+      left: $media-image-lightbox_button-margin;
+    }
+  }
+
+  .lia-lightbox-next-container {
+    right: 0;
+    text-align: right;
+    width: 67%;
+
+    i {
+      right: $media-image-lightbox_button-margin;
+    }
+  }
+
+  // Loading icon for main images
+  .lia-lightbox-image-loader {
+    @include centered-vertical(relative);
+    color: $media-image-lightbox_text-color;
+  }
+
+  .lia-lightbox-info {
+    background-color: $media-image-lightbox_bg-color;
+    margin-bottom: $padding-large-horizontal;
+    margin-left: $padding-large-horizontal;
+    margin-right: $padding-large-horizontal;
+    margin-top: $padding-large-horizontal;
+
+    .lia-button-primary .lia-fa {
+      color: inherit;
+    }
+
+    .lia-button-group-left .lia-button-wrapper {
+      float: left;
+      margin-right: $padding-xs-horizontal;
+    }
+
+    .lia-user-avatar {
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: $padding-small-horizontal;
+      margin-top: 0;
+      vertical-align: middle;
+    }
+
+    .lia-users-user-login {
+      display: inline;
+    }
+
+    .lia-lightbox-context {
+      float: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: calc(100% - 220px);
+    }
+
+    .lia-lightbox-actions {
+      float: right;
+    }
+
+    .lia-media-download-icon {
+      display: inline-block;
+    }
+
+    .lia-button-group {
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: $padding-xs-vertical * 2;
+      vertical-align: middle;
+    }
+
+    .lia-button {
+      margin: 0;
+    }
+  }
+
+  .lia-image-upload-time {
+    margin-right: $padding-xs-horizontal;
+  }
+
+  .lia-filmstrip {
+    border-top: $padding-xs-vertical solid $btn-default-border;
+    margin-bottom: -8px; // hack to make filmstrip flush against bottom
+    text-align: center;
+
+    .lia-list-tile {
+      display: inline-block;
+    }
+
+    .lia-media-image {
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    .lia-media-image-frame {
+      cursor: pointer;
+      height: 65px;
+      line-height: 58px; // border-box line height does not include padding, border, and margin.
+      overflow: hidden;
+      width: 65px;
+    }
+  }
+
+  .lia-filmstrip-prev-container,
+  .lia-filmstrip-next-container {
+    bottom: 45px; // half the height of the image
+    display: inline-block;
+    position: relative;
+  }
+
+  .lia-filmstrip {
+    .lia-media-image-item {
+      border-bottom: $padding-xs-vertical * 2 solid transparent;
+      border-top: $padding-xs-vertical * 2 solid transparent;
+    }
+
+    .lia-image-selected {
+      border-bottom: $padding-xs-vertical * 2 solid lighten($link-color, 15%);
+      border-top: $padding-xs-vertical * 2 solid lighten($link-color, 15%);
+
+      .lia-media-image-frame {
+        opacity: 1;
+        transition: opacity .15s linear;
+      }
+    }
+
+    .lia-media-image-frame {
+      border: $padding-xs-vertical solid $btn-default-border;
+      opacity: .8;
+      padding: $padding-xs-vertical;
+      transition: opacity .15s linear;
+
+      &:hover {
+        opacity: 1;
+        transition: opacity .15s linear;
+      }
+    }
+
+    .lia-list-tile {
+      margin-bottom: 0;
+
+      > li {
+        margin-bottom: 0;
+        margin-right: $padding-base-vertical;
+        padding: $padding-large-horizontal 0;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .lia-media-image-frame {
+    text-align: center;
+
+    .lia-media-image {
+      // TODO(adamayres): figure out why this does not work with bootstrap skin.
+      // @include centered-vertical(relative);
+    }
+  }
+
+  .lia-lightbox-info .lia-button-wrapper {
+    height: auto;
+    overflow: hidden;
+  }
+
+  .lia-moderation-flag-entity.lia-entity-flag-actioned .lia-flag-button {
+    color: $brand-danger;
+  }
+
+  .lia-link-disabled .lia-flag-button {
+    cursor: auto;
+  }
+
+  .lia-lightbox-info-wrapper .lia-lightbox-image-caption {
+    display: none;
+  }
+
+  @include media(phone, tablet-portrait) {
+    .lia-lightbox-info-wrapper .lia-lightbox-image-caption {
+      display: initial;
+    }
+
+    .lia-lightbox-main-image .lia-lightbox-image-caption {
+      display: none;
+    }
+
+    .modal-open .lia-page {
+      position: fixed;
+    }
+
+    .modal-imagelightbox {
+      height: 100%;
+      margin: 0;
+      width: auto;
+
+      .modal-content {
+        background-color: $media-image-lightbox_main-bg-color;
+        border: 0;
+        border-radius: 0;
+        height: 100%;
+      }
+
+      .lia-filmstrip {
+        display: none;
+      }
+    }
+
+    .lia-media-image-lightbox,
+    .lia-lightbox-main-image {
+      border-radius: 0;
+    }
+
+    .lia-lightbox-info-wrapper {
+      background-image: svg-gradient-vertical($media-image-lightbox_caption-gradient-color, 0, 0%, .55, 100%);
+      bottom: 0;
+      position: absolute;
+      text-shadow: 1px 1px 1px rgba(150, 150, 150, .7);
+      width: 100%;
+
+      .lia-lightbox-image-caption {
+        text-align: center;
+      }
+
+      .lia-lightbox-info {
+        margin: 0;
+        padding: $padding-large-vertical;
+      }
+
+      .lia-lightbox-context {
+        line-height: 30px;
+        width: auto;
+      }
+
+      .lia-media-download-icon,
+      .lia-user-avatar,
+      .lia-lightbox-image-album {
+        display: none;
+      }
+    }
+
+    .lia-lightbox-main-image {
+      height: 100%;
+      min-height: 100%;
+    }
+
+    .lia-media-image-lightbox {
+      height: 100% !important;
+    }
+
+    .lia-button-group-left .lia-button-wrapper.lia-moderation-flag-entity {
+      margin-right: 0;
+    }
+
+    .lia-lightbox-actions-container i {
+      visibility: visible;
+    }
+
+    .lia-lightbox-next-container,
+    .lia-lightbox-prev-container {
+      width: 45px;
+    }
+
+    .lia-lightbox-main-image .lia-lightbox-image-caption {
+      bottom: 45px;
+    }
+
+    .lia-lightbox-next-container,
+    .lia-lightbox-prev-container,
+    .lia-lightbox-close-container,
+    .lia-lightbox-info-wrapper,
+    .lia-lightbox-info-wrapper .lia-lightbox-image-caption,
+    .lia-media-publishing-history {
+      display: none;
+    }
+
+    .lia-show-controls {
+      .lia-lightbox-next-container,
+      .lia-lightbox-prev-container,
+      .lia-lightbox-close-container,
+      .lia-lightbox-info-wrapper,
+      .lia-lightbox-info-wrapper .lia-lightbox-image-caption {
+        display: inherit;
+      }
+    }
+
+    .lia-kudos-count-label {
+      display: none;
+    }
+  }
+
+  // Media Lightbox: Responsive Peak customizations
+  .lia-button-container {
+    .lia-lightbox-button {
+      border-radius: $border-radius-base;
+    }
+  }
+
+  .lia-filmstrip {
+    .lia-image-selected {
+      border-bottom: $padding-xs-vertical * 2 solid $media-image-lightbox_selected;
+      border-top: $padding-xs-vertical * 2 solid $media-image-lightbox_selected;
+    }
+  }
+
+  .lia-lightbox-info .lia-lightbox-context {
+    width: calc(100% - (220px + (2 * #{$padding-large-horizontal})));
+
+    @include media(phone) {
+      width: 50%;
+    }
+  }
+}

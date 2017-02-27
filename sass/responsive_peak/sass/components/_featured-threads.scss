@@ -1,0 +1,42 @@
+@mixin components\featured-threads {
+  .FeaturedThreadsTaplet {
+    margin-bottom: $padding-xl-vertical;
+    width: 100%;
+
+    .lia-message-view-featured-threads-default-quilt {
+      border: none;
+      border-radius: 0;
+      margin-bottom: 0;
+      padding-left: $padding-large-horizontal;
+    }
+
+    .lia-featured-threads-header {
+      @include li-extend('.panel-heading');
+      background: $panel-bg;
+      border-bottom: 1px solid $panel-inner-border;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .lia-featured-threads-title {
+      @include li-extend('.panel-title');
+    }
+
+    .lia-component-author {
+      display: inline-block;
+      margin-bottom: 0;
+      padding-left: 0;
+      padding-right: $padding-large-horizontal;
+      text-align: right;
+      width: 100%;
+
+      @include media(phone) {
+        display: none;
+      }
+    }
+
+    .MessageSubject .lia-link-navigation {
+      font-size: $font-size-base;
+    }
+  }
+}

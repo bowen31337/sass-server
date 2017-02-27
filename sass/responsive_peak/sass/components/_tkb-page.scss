@@ -1,0 +1,318 @@
+$tkb-page_article-entry-card-height:          280px !default;
+$tkb-page_featured-threads-line-truncation:   4 !default;
+
+@mixin components\tkb-page {
+  .TkbPage {
+    &.lia-user-status-anonymous {
+      .lia-quilt-search-and-post .lia-quilt-column-left-content {
+        width: 100%;
+      }
+    }
+
+    .lia-component-paging {
+      margin-right: $padding-large-vertical;
+    }
+
+    .lia-article-list-sort-wrapper {
+      float: left;
+    }
+
+    .lia-article-list-header {
+      margin-bottom: $panel-body-padding;
+
+      &:after {
+        content: ' ';
+        display: table;
+        clear: both;
+      }
+
+      .lia-component-paging {
+        float: right;
+        margin: {
+          top: 0;
+          bottom: 0;
+        }
+
+        @include media(phone) {
+          display: none;
+        }
+      }
+    }
+
+    .lia-article-list-sort-wrapper {
+      margin-bottom: $padding-large-vertical;
+      margin-left: $padding-large-vertical;
+    }
+
+    .lia-featured-threads-header,
+    .local-time {
+      display: none;
+    }
+
+    //TKB engagement components
+    .lia-tkb-page-engagement-components {
+      border-spacing: $panel-body-padding;
+      display: table;
+      height: 100%;
+      margin-top: -$panel-body-padding;
+      width: 100%;
+
+
+      .lia-component-messages-widget-featured-threads + & {
+        margin-top: -$panel-body-padding;
+      }
+
+      @include media(phone) {
+        display: block;
+        margin-top: $panel-body-padding;
+        padding: 0 $panel-body-padding;
+      }
+
+      .lia-labels-list-sortable,
+      > .lia-panel {
+        background-color: $li-bg-secondary;
+        border: 1px solid transparent;
+        border-collapse: collapse;
+        border-radius: $border-radius-base;
+
+        @include media(tablet-and-larger) {
+          display: table-cell;
+          height: 100%;
+        }
+
+        @include media(phone) {
+          display: block;
+          margin-bottom: $panel-body-padding;
+        }
+
+        // Only applies to components whose panels are not top level
+        > .lia-panel {
+          @include media(desktop) {
+            height: 100%;
+            margin-bottom: 0;
+            padding-bottom: 1px;
+            top: -2px;
+          }
+        }
+
+        &:first-child {
+          @include li-extend('.col-sm-18');
+          @include li-extend('.col-xs-24');
+          float: none;
+        }
+
+        &:last-child {
+          @include li-extend('.col-sm-6');
+          @include li-extend('.col-xs-24');
+          float: none;
+        }
+      }
+    }
+
+    .lia-quilt-column-sub-hero-content
+      > .lia-quilt-column-alley-single
+      > .lia-tkb-page-engagement-components:first-child {
+        @include media(tablet-and-larger) {
+          margin-top: 0;
+        }
+    }
+
+    .lia-sort-label {
+      padding: auto $padding-small-horizontal;
+    }
+
+    .lia-sort-label,
+    .lia-sort-menu {
+      display: inline-block;
+    }
+
+    .lia-tkb-article-list {
+      font-size: 0;
+      margin-top: -$padding-small-horizontal;
+    }
+
+    // TKB Entry for Article List
+    .lia-tkb-article-entry {
+      @include li-extend('.col-lg-6');
+      @include li-extend('.col-md-8');
+      @include li-extend('.col-sm-12');
+      @include li-extend('.col-xs-24');
+      display: inline-block;
+      float: none;
+      font-size: $font-size-base;
+      height: $tkb-page_article-entry-card-height;
+      margin: $padding-small-horizontal 0;
+      vertical-align: top;
+
+      @include media(tablet-and-smaller) {
+        margin: {
+          bottom: $padding-xl-horizontal;
+          left: 0;
+          right: 0;
+          top: 0;
+        };
+      }
+
+      .lia-message-view-wrapper,
+      .lia-message-view-tkb-card-article,
+      .lia-quilt-tkb-card-article,
+      .lia-quilt-row-main,
+      .lia-quilt-column-main-content,
+      .lia-quilt-column-alley {
+        height: 100%;
+      }
+
+      .lia-message-teaser-wrapper {
+        width: 100%;
+      }
+
+      .lia-helpfulness-no-rating {
+        font-weight: $font-weight-content;
+      }
+
+      .lia-tkb-article-footer {
+        border-top: 1px solid $panel-default-border;
+        bottom: 0;
+        display: inline-block;
+        margin-top: $padding-large-vertical;
+        padding-top: $padding-large-horizontal;
+        position: absolute;
+        width: 100%;
+        white-space: nowrap;
+      }
+
+      .lia-message-edit-date {
+        position: absolute;
+        right: 0;
+        text-align: right;
+      }
+      .lia-component-ratings-widget-internal-rating-display {
+        position: absolute;
+        display: inline-block;
+      }
+      .lia-rating-star-system-label {
+        display: none;
+      }
+    }
+
+    .lia-message-view-tkb-card-article {
+      margin: 0;
+
+      .lia-featured-threads-entry & {
+        padding: $panel-body-padding $panel-body-padding * 2;
+      }
+
+      .lia-helpfulness-display {
+        padding-right: $padding-xl-horizontal;
+      }
+
+      .lia-helpfulness-total-and-count {
+        color: $text-muted;
+      }
+
+      .lia-message-helpfulness-display {
+        display: inline-block;
+      }
+
+      .lia-message-edit-date {
+        color: $text-muted;
+      }
+
+      .lia-teaser-text {
+        @include multiline-truncate($font-size-large, $line-height-small, 3, $truncate-text: '', $gradient-size: 0);
+        font-size: $font-size-large;
+        font-weight: $font-weight-content;
+        line-height: $line-height-small;
+      }
+
+      .lia-teaser-view-full-article {
+        bottom: ($padding-large-vertical + $padding-large-horizontal + $font-size-base) + $panel-body-padding;
+        display: block;
+        padding-top: $padding-base-vertical;
+        position: absolute;
+        text-align: right;
+        width: 100%;
+      }
+
+      .message-subject .page-link {
+        @include multiline-truncate($font-size-h4, $line-height-medium, 2, $truncate-text: '', $gradient-size: 0);
+        font-size: $font-size-h4;
+        line-height: $line-height-medium;
+      }
+
+      .BatchProcessing {
+        float: left;
+        margin-top: 7px;
+        margin-right: $padding-xs-horizontal;
+      }
+    }
+
+    .lia-tkb-article-list .lia-message-view-tkb-card-article {
+      padding: $padding-xl-vertical $padding-xl-horizontal;
+    }
+
+    // TKB Featured Threads
+    .lia-featured-threads-entry {
+      background: $li-bg-secondary;
+      border: 1px solid $panel-default-border;
+      border-radius: $border-radius-base;
+      margin: $panel-body-padding;
+
+      .lia-message-view-tkb-card-article {
+        padding: $panel-body-padding $panel-body-padding * 2;
+      }
+
+      .lia-message-view-display {
+        border: none;
+        border-radius: 0;
+      }
+
+      .lia-message-teaser-wrapper {
+        margin-bottom: $padding-large-vertical;
+        padding-bottom: $padding-xl-vertical;
+      }
+
+      .lia-message-teaser {
+        @include multiline-truncate($font-size-large, $line-height-base, $tkb-page_featured-threads-line-truncation, $truncate-text: '', $gradient-size: 0);
+      }
+
+      .lia-teaser-view-full-article {
+        position: static;
+      }
+
+      // corner status icons for message lists
+      .lia-list-row-float,
+      .lia-list-row-thread-escalated,
+      .lia-list-row-thread-readonly,
+      .lia-list-row-thread-solved {
+        &:before {
+          display: none;
+        }
+      }
+
+      .lia-helpfulness-display {
+        padding-right: $padding-xl-horizontal;
+      }
+
+      .lia-message-teaser-wrapper {
+        border-bottom: 1px solid $panel-default-border;
+      }
+    }
+
+    .lia-featured-threads-entry-header {
+      border-bottom: 1px solid $panel-default-border;
+      display: inline-block;
+      padding: $panel-heading-padding;
+      width: 100%;
+
+      .lia-featured-threads-entry-title {
+        @extend %sub-section-header-font;
+        color: $text-color;
+      }
+    }
+
+    .lia-tkb-article-entry-header {
+      display: none;
+    }
+  }
+}

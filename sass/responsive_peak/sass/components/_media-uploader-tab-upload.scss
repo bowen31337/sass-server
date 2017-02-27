@@ -1,0 +1,260 @@
+// Media Uploader: Main Content: Upload Tab
+//
+// The upload tab of the Media Uploader uploads photos from your local
+// computer.  The user can optionally bring up the browser's file chooser,
+// or they can choose to drag and drop their images . Please note that this
+// is the only view available when a user hits the $screen-xs-max breakpoint
+// (mobile) with caveats - drag and drop functionality is not enabled.
+//
+// Note: the "Choose Files" button becomes "Add" at the xs breakpoint.
+//
+// Style guide: components.media-uploader-tab-upload
+
+$media-uploader-tab-upload_accept-border-width:             5px !default;
+$media-uploader-tab-upload_album-selector-label-margin:     12px !default;
+$media-uploader-tab-upload_album-selector-left-spacing:     31px !default;
+$media-uploader-tab-upload_droppable-border:                #5a9614 !default;
+$media-uploader-tab-upload_droppable-color:                 #254802 !default;
+$media-uploader-tab-upload_droppable-icon:                  #5a9614 !default;
+$media-uploader-tab-upload_mobile-close-icon-size:          16px !default;
+$media-uploader-tab-upload_tab-album-selector-top-spacing:  27px !default;
+
+@mixin components\media-uploader-tab-upload {
+
+  .lia-form-vertical {
+    .lia-media-image-upload-contents {
+      border: 2px dashed $gray-light;
+      border-radius: $border-radius-base;
+      display: table-cell;
+      height: 100%;
+      padding: ($li-uploader-padding-vertical + $padding-small-vertical) 0;
+      position: relative;
+      text-align: center;
+      vertical-align: middle;
+
+      .lia-button-wrapper {
+        float: none;
+        padding: 0;
+        margin: 0;
+
+        .lia-button-image-upload {
+          @include lia-button-default;
+
+          .lia-image-upload-icon {
+            display: none;
+          }
+        }
+      }
+
+      .lia-image-upload-icon {
+        color: $gray;
+        font-size: $li-uploader-2x-icon * 3;
+      }
+    }
+  }
+
+
+  .lia-media-image-upload-contents-wrapper {
+    .lia-media-album-selector {
+      display: none;
+    }
+  }
+
+  .lia-media-uploader-web-content {
+    .lia-media-album-selector {
+      display: none;
+    }
+  }
+
+  .lia-media-tile .lia-media-image-tile-caption .lia-media-image-tile-caption-field {
+    border-radius: 0;
+  }
+
+  .lia-media-image-upload {
+    display: table;
+    height: 100%;
+    min-height: $li-uploader-image-tile-height;
+    min-width: $li-uploader-image-tile-width;
+    padding: $li-uploader-padding-vertical;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .lia-media-uploader-upload-tab {
+    height: 100%;
+  }
+
+  .lia-media-uploader-dialog-no-items .lia-media-uploader-tab-content {
+    height: 100%;
+  }
+
+  .lia-media-uploader-upload-tab .lia-media-uploader-image-list {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+
+    &.lia-media-image-list-with-images {
+      padding: $li-uploader-padding-vertical;
+    }
+  }
+
+  .lia-row.lia-media-image-upload-contents-wrapper {
+    display: table-row;
+    height: 100%;
+  }
+
+  .lia-media-image-upload-drag, .lia-media-image-upload-mobile-instruction {
+    color: $gray;
+    display: none;
+    font-size: $font-size-h4;
+  }
+
+  .lia-media-image-upload-title {
+    color: $text-color;
+    display: block;
+    font-size: $font-size-h4;
+  }
+
+  .lia-image-upload-icon {
+    margin-bottom: $padding-small-vertical;
+  }
+
+  .lia-media-image-upload-title {
+    margin-bottom: $padding-large-vertical;
+  }
+
+
+  @include media(phone) {
+    .lia-form-vertical {
+      .lia-media-image-upload-contents {
+        border: 0;
+        padding: 0;
+      }
+    }
+
+    .lia-media-image-upload-mobile-menu {
+      .lia-media-image-upload-contents-wrapper {
+        display: none;
+      }
+
+      .lia-button-close {
+        background-image: svg-url($li-svg-icon-uploader-close, $link-color);
+        background-position: center;
+        background-repeat: no-repeat;
+        width: $media-uploader-tab-upload_mobile-close-icon-size;
+        height: $media-uploader-tab-upload_mobile-close-icon-size;
+      }
+
+      .lia-button-upload-mobile-done {
+        color: $link-color;
+      }
+    }
+
+
+    .lia-media-image-preview {
+      background-position: 50% 50%;
+      height: 100%;
+    }
+
+    .lia-media-image-preview,
+    .lia-media-image-preview-overlay,
+    .lia-media-image-progress-bar,
+    .lia-media-image-tile,
+    .lia-media-image-tile-caption,
+    .lia-media-image-tile-caption-field,
+    .lia-media-image-tile-display {
+      width: 100%;
+    }
+
+    .lia-media-image-tile {
+      border: 1px solid $thumbnail-border;
+      border-radius: $thumbnail-border-radius;
+    }
+
+    .lia-media-image-tile-footer {
+      width: auto;
+    }
+
+    .lia-media-image-upload {
+      display: inline-block;
+      height: auto;
+      min-height: 1%;
+      min-width: 1%;
+      padding: 0;
+      width: auto;
+    }
+
+  }
+
+  @include media(tablet-and-larger) {
+    .lia-drop-accept {
+      &.lia-media-image-upload {
+        border: $media-uploader-tab-upload_accept-border-width solid $media-uploader-tab-upload_droppable-border;
+        padding: $li-uploader-padding-vertical - $media-uploader-tab-upload_accept-border-width + 2; // 2 from dashed border width
+      }
+
+      .lia-image-upload-icon {
+        color: $media-uploader-tab-upload_droppable-border;
+        padding-top: $form-padding; // to make sure icon doesn't abruptly move
+      }
+
+      .lia-media-image-upload-drag {
+        color: $media-uploader-tab-upload_droppable-color;
+        font-size: $font-size-h4;
+        display: block;
+      }
+
+      .lia-media-image-upload-button-group,
+      .lia-media-image-upload-title {
+        visibility: hidden;
+      }
+
+      .lia-media-image-upload-contents {
+        border: none;
+      }
+
+      .lia-media-uploader-upload-tab {
+        border: $media-uploader-tab-upload_accept-border-width solid $media-uploader-tab-upload_droppable-border;
+      }
+    }
+
+    .lia-drop-reject .lia-media-image-upload-contents {
+      border: 4px dashed $brand-danger;
+    }
+
+    .lia-media-uploader-no-formatting {
+      .lia-media-album-selector-label {
+        color: $text-color;
+        display: inline-block;
+        margin-bottom: $media-uploader-tab-upload_album-selector-label-margin;
+      }
+
+      .lia-media-uploader-tab-content {
+        .lia-media-album-selector {
+          display: block;
+          margin-left: $media-uploader-tab-upload_album-selector-left-spacing + $li-uploader-padding-vertical;
+          margin-top: $media-uploader-tab-upload_tab-album-selector-top-spacing + $li-uploader-padding-vertical;
+        }
+      }
+
+      .lia-media-image-upload {
+        .lia-media-album-selector {
+          display: block;
+          left: $media-uploader-tab-upload_album-selector-left-spacing;
+          margin: {
+            left: 0;
+            top: 0;
+          }
+          position: absolute;
+          text-align: left;
+          top: $media-uploader-tab-upload_tab-album-selector-top-spacing;
+        }
+      }
+
+    }
+  }
+
+  @include keyframes(cursor-blink) {
+    50% { border-color: transparent; }
+  }
+}

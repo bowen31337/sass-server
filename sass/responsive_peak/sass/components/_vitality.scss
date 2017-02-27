@@ -1,0 +1,99 @@
+//== Vitality
+$vitality_icon-color:               $gray-light !default;
+$vitality_icon-height:              55px !default;
+$vitality_icon-width:               72px !default;
+$vitality_padding-base-horizontal:  32px !default;
+$vitality_padding-base-vertical:    20px !default;
+$vitality_padding-small-horizontal: 16px !default;
+$vitality_padding-small-vertical:   20px !default;
+
+
+@mixin components\vitality {
+
+  .lia-quilt-vitality {
+    background-color: $li-bg-secondary;
+    border-bottom: 1px solid $li-border-color;
+
+    .lia-quilt-column-main-content {
+      float: none;
+      text-align: center;
+    }
+  }
+
+  .lia-vitality-component {
+    display: inline-block;
+  }
+
+  .lia-vitality-display {
+    display: inline-block;
+    margin: $vitality_padding-base-vertical $vitality_padding-base-horizontal;
+    vertical-align: middle;
+
+    &:before {
+      background-position: center;
+      background-repeat: no-repeat;
+      content: '';
+      display: inline-block;
+      height: $vitality_icon-height;
+      margin-right: $padding-small-horizontal;
+      vertical-align: middle;
+      width: $vitality_icon-width;
+    }
+
+    // different declaration order for the &:before specifity
+    // scss-lint:disable DeclarationOrder
+    @include media(phone) {
+      margin: $vitality_padding-small-vertical $vitality_padding-small-horizontal;
+
+      &:before {
+        display: none;
+        margin-right: 0;
+      }
+    }
+  }
+
+  .lia-vitality-metrics-display-completed-registrations {
+    &:before {
+      background-image: svg-url($li-svg-vitality-members, $vitality_icon-color);
+    }
+  }
+
+  .lia-vitality-metrics-display-net-overall-posts {
+    &:before {
+      background-image: svg-url($li-svg-vitality-posts, $vitality_icon-color);
+    }
+  }
+
+  .lia-vitality-users-online {
+    &:before {
+      background-image: svg-url($li-svg-vitality-users, $vitality_icon-color);
+      width: $vitality_icon-width - ($padding-base-horizontal * 2);
+    }
+  }
+
+  .lia-vitality-stats {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .lia-vitality-value {
+    display: block;
+    font-size: $font-size-h2;
+    text-align: left;
+
+    @include media(phone) {
+      text-align: center;
+    }
+  }
+
+  .lia-vitality-key {
+    display: block;
+    font-size: $font-size-small + 1;
+    text-align: left;
+    text-transform: uppercase;
+
+    @include media(phone) {
+      text-align: center;
+    }
+  }
+}

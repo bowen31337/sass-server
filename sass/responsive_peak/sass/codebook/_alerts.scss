@@ -1,0 +1,194 @@
+// Alerts
+//
+// Designed to provide contextual feedback messages for typical user actions. The default location for banner feedback messages is under the Bread Crumb.
+//
+// Alerts can either be `banner` which are full width or `inline`.
+// They come in three types: `alert`, `note`, and `safe`.
+// To be combined like so: `.lia-panel-feedback-{location}-{type}`.
+// For example, `.lia-panel-feedback-inline-safe`.
+//
+// There is an additional type of alert "Banner status messages"
+// denoted by the `.lia-panel-status-banner-note` class.
+// Banner status messages are similar to banner feedback messages but are
+// displayed regardless of user actions or application actions. Banner status
+// messages are commonly used to let a user know that there is
+// no data to display.
+//
+// .lia-panel-feedback-banner-alert    - An urgent alert, banner style.
+// .lia-panel-feedback-banner-warning  - A warning alert, banner style.
+// .lia-panel-feedback-banner-note     - An informational alert, banner style.
+// .lia-panel-feedback-banner-safe     - Confirmational alert, banner style.
+// .lia-panel-feedback-inline-alert    - An urgent alert, inline style.
+// .lia-panel-feedback-inline-warning  - A warning alert, inline style.
+// .lia-panel-feedback-inline-note     - An information alert, inline style.
+// .lia-panel-feedback-inline-safe     - confirmational alert, inline style.
+//
+// Markup:
+// <div class="{{modifier_class}}">Alert!!</div>
+//
+// Style guide: codebook.alerts
+
+
+@mixin codebook\alerts {
+
+  %lia-banner-alert {
+    @include li-extend('.alert');
+    margin-top: $padding-large-vertical;
+
+    p:last-child {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+  }
+
+  %lia-inline-alert {
+    @extend %lia-banner-alert;
+    padding: {
+      bottom: $padding-large-vertical;
+      left: $padding-large-horizontal;
+      right: $padding-large-horizontal;
+      top: $padding-large-vertical;
+    }
+  }
+
+  .mce-container .lia-mce-loader-feedback,
+  .lia-ajax-loader-feedback {
+    @extend %lia-banner-alert;
+    @include li-extend('.alert-warning');
+    @include centered-horizontal(fixed);
+
+    top: -$padding-large-vertical - 2px;
+    z-index: $zindex-modal + 10;
+  }
+
+  .mce-container .lia-mce-loader-feedback * {
+    color: $alert-warning-text;
+  }
+
+
+  // remove bottom margin from p tags in alerts
+  .lia-component-common-widget-page-feedback {
+    p:last-child {
+      margin: 0;
+    }
+  }
+
+  .lia-panel-feedback-banner-safe,
+  .lia-panel-feedback-inline-safe {
+    @include li-extend('.alert-success');
+    z-index: 200;
+  }
+
+  .lia-panel-feedback-banner-alert,
+  .lia-panel-feedback-banner-warning,
+  .lia-panel-feedback-banner-note,
+  .lia-panel-feedback-banner-safe {
+    @extend %lia-banner-alert;
+    z-index: 200;
+  }
+
+  .lia-panel-feedback-banner-alert,
+  .lia-panel-feedback-inline-alert {
+    @include li-extend('.alert-danger');
+    z-index: 200;
+  }
+
+  .lia-panel-feedback-banner-warning,
+  .lia-panel-feedback-inline-warning {
+    @include li-extend('.alert-warning');
+    z-index: 200;
+  }
+
+  .lia-panel-feedback-banner-note,
+  .lia-panel-feedback-inline-note {
+    @include li-extend('.alert-info');
+    z-index: 200;
+  }
+
+  .lia-panel-feedback-inline-alert,
+  .lia-panel-feedback-inline-warning,
+  .lia-panel-feedback-inline-note,
+  .lia-panel-feedback-inline-safe {
+    @extend %lia-inline-alert;
+    z-index: 200;
+  }
+
+  .lia-panel-status-banner-note {
+    @extend %lia-banner-alert;
+    @include li-extend('.alert-warning');
+    z-index: 200;
+  }
+
+
+  .lia-panel-feedback-banner-alert,
+  .lia-panel-feedback-banner-warning,
+  .lia-panel-feedback-banner-note,
+  .lia-panel-feedback-banner-safe,
+  .lia-panel-feedback-inline-alert,
+  .lia-panel-feedback-inline-warning,
+  .lia-panel-feedback-inline-note,
+  .lia-panel-feedback-inline-safe,
+  .lia-panel-status-banner-note,
+  .no-blog-articles {
+
+    // Link colors in Peak feedback panels
+    // need to be light since the backgrounds
+    // are dark
+    .lia-link-navigation {
+      color: $li-text-color-inverse;
+      text-decoration: underline;
+    }
+  }
+
+  // make banner alerts full width
+  .lia-panel-feedback-banner-alert,
+  .lia-panel-feedback-banner-warning,
+  .lia-panel-feedback-banner-note,
+  .lia-panel-feedback-banner-safe,
+  .lia-panel-status-banner-note {
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+
+    .lia-text {
+      padding-left: $padding-small-horizontal;
+      padding-right: $padding-small-horizontal;
+    }
+
+    //When not full width, have appropriate border radius
+    .lia-input-edit-form-column & {
+      border-radius: $panel-border-radius;
+    }
+  }
+
+  .lia-panel-feedback-banner-note,
+  .lia-panel-status-banner-note {
+    .lia-link-navigation {
+      color: $text-color;
+    }
+  }
+
+  .lia-quilt-column-feedback {
+    &.lia-quilt-column {
+      min-height: 0;
+    }
+
+    // for pages with no titles and a description, highlight the description
+    .lia-component-common-widget-page-information {
+      @extend .lia-panel-status-banner-note;
+    }
+  }
+
+  .lia-dismiss-feedback {
+    cursor: pointer;
+    float: right;
+    font-size: $font-size-h2;
+    line-height: 1;
+    margin: -10px -6px 0 0;
+  }
+}

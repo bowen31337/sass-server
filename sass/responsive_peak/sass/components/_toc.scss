@@ -1,0 +1,174 @@
+// TOC
+//
+// Style guide: components.toc
+
+@mixin components\toc {
+
+$li-toc-icon-padding-left: 40px;
+
+#lia-body .lia-content {
+
+  .lia-toc {
+
+    *, *:before, *:after {
+      box-sizing: border-box;
+    }
+
+    .lia-quilt-row::after {
+      clear: both;
+    }
+
+    .lia-quilt-row:after, .lia-quilt-row:before {
+      display: table;
+      content: " ";
+    }
+
+    // Manage TOC settings dialog
+    .lia-toc-dialog {
+      background-color: $li-bg-secondary;
+      margin: 0 auto;
+      position: fixed;
+      top: 10%;
+      left: 0;
+      right: 0;
+      z-index: 10002;
+
+      ul.lia-tabs-sort li a, ul.lia-tabs-sort li span {
+        display: inline;
+        font-size: $line-height-base;
+        line-height: $line-height-base;
+      }
+
+      ul.lia-tabs-sort, ul.lia-tabs-sort li {
+        margin: 0 5px 2px 0;
+        a, span {
+          padding: $padding-small-vertical $padding-small-horizontal;
+        }
+        .lia-button-Cancel-action {
+          margin-right: $padding-xl-horizontal;
+        }
+      }
+    }
+
+    // Header
+    .lia-toc-dialog-header {
+      background-color: $li-bg-secondary;
+      overflow: auto;
+
+      h2, .lia-tabs-sort {
+        padding: $padding-xl-vertical;
+        white-space: nowrap;
+        word-wrap: normal;
+      }
+
+      .lia-toc-dialog-icon {
+        background-image: svg-url($li-svg-icon-toc, $gray-light);
+        background-repeat: no-repeat;
+        padding-left: $li-toc-icon-padding-left;
+        }
+
+      h3 {
+        @media (max-width: $screen-sm) {
+          padding:  $padding-xl-vertical $padding-xs-horizontal $padding-xs-horizontal $padding-xs-horizontal;
+          font-size: 160%;
+        }
+        padding:  $padding-xl-vertical  $padding-xl-horizontal  $padding-xl-vertical  $padding-xl-horizontal;
+        white-space: nowrap;
+        word-wrap: normal;
+        font-size: 140%;
+      }
+
+    }
+  }
+
+  // TOC Background
+  .lia-toc-backdrop {
+    background-color: $modal-backdrop-bg;
+    opacity: $modal-backdrop-opacity;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10001;
+  }
+
+  // Tabs
+  .lia-toc-tab-list {
+    @media (max-width: $screen-sm) {
+      float: none;
+    }
+    float: right;
+    border: 0px;
+  }
+
+
+  .lia-toc-body-side-panel {
+    @media (max-width: $screen-sm) {
+      height: 40%;
+    }
+    border-top: 1px solid lighten($li-border-color, 30%);
+    overflow: auto;
+    transform: translate3d(0,0,0); // fix issue where done button doesn't highlight when ready
+    height: 100%
+  }
+
+  .lia-toc-side-panel-formatting {
+    padding: $padding-small-vertical  $padding-xs-horizontal  $padding-small-vertical  $padding-xs-horizontal;
+	  font-size: 12px;
+  }
+
+	.lia-toc-settings-input-wrapper {
+      padding-bottom: $padding-large-vertical;
+      position: relative;
+
+    .lia-toc-settings-input {
+        width: 90%;
+
+        input[type="text"] {
+          padding: $padding-large-vertical;
+          width: 90%;
+        }
+      }
+
+      .lia-toc-settings-label {
+	      font-weight: bold;
+      }
+
+      .lia-toc-settings-input-description {
+     	 padding-top: 2px;
+      }
+
+      .lia-toc-settings-input-error-message {
+	      padding-top: 2px;
+	      color: $brand-danger;
+      }
+    }
+
+  .lia-toc-dialog-preview-content {
+    border-top: 1px solid lighten($li-border-color, 30%);
+    transform: translate3d(0,0,0); // fix chrome redraw issue when overflow changes
+    height: 100%;
+  }
+
+  .lia-toc-dialog-body {
+    height: 60vh;
+  }
+
+  .lia-toc-dialog-preview {
+    @media (max-width: $screen-sm) {
+      height: 40%;
+    }
+    background-color: lighten($li-border-color, 35%);
+    font-size: 120%;
+    height: 90%;
+    overflow: auto;
+    width: 95%;
+    margin-left: $padding-large-horizontal;
+
+    ul {
+      margin-left: $padding-xl-horizontal;
+      margin-top:  $padding-large-vertical;
+    }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+$slide-menu_shadow-left:              5px 0 5px rgba(45, 45, 45, .25) !default;
+$slide-menu_shadow-right:            -5px 0 5px rgba(45, 45, 45, .25) !default;
+$slide-menu_overlay-background:      $modal-backdrop-bg !default;
+$slide-menu_overlay-opacity:         .1 !default;
+$slide-menu_horizonal-height:        150px !default;
+
+
+@mixin codebook\slide-menu {
+
+  body.lia-slide-menu-open {
+    overflow: hidden;
+  }
+
+  .lia-common-slide-menu {
+
+    @each $pos in (top, bottom, left, right) {
+      // a few extra pixels are added to accommodate for the box shadow
+      $slide-menu_size: -$li-slide-menu-vertical-width - 30px;
+
+      @if $pos == top or $pos == bottom {
+        // a few extra pixels are added to accommodate for the box shadow
+        $slide-menu_size: -$slide-menu_horizonal-height - 30px;
+      }
+
+      .lia-slide-menu-content-#{$pos} {
+        #{$pos}: $slide-menu_size;
+
+        &.lia-slide-menu-content-open {
+          #{$pos}: 0;
+        }
+      }
+    }
+
+    .lia-slide-menu-content {
+      background: $li-slide-menu-bg;
+      box-shadow: $slide-menu_shadow-left;
+      overflow: auto;
+      position: fixed;
+      z-index: $zindex-navbar-fixed;
+
+      &.lia-slide-menu-content-right {
+        box-shadow: $slide-menu_shadow-right;
+      }
+
+      // slide menus should be flush with edges of container
+      .lia-quilt {
+        > .lia-quilt-row {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+    }
+
+    // Transitions
+    .lia-slide-menu-content,
+    .lia-slide-menu-content-push {
+      @include transition(all .3s ease);
+    }
+
+
+    .lia-slide-menu-content-horizontal {
+      height: $slide-menu_horizonal-height;
+      left: 0;
+      width: 100%;
+
+      @include media(tablet-and-larger) {
+        height: 110px;
+      }
+    }
+
+    // Orientation-dependent styles for the content of the menu
+    .lia-slide-menu-content-vertical {
+      height: 100%;
+      max-width: 90%;
+      top: 0;
+      width: $li-slide-menu-vertical-width;
+    }
+
+    .lia-slide-menu-overlay {
+      @include transition(all .5s linear);
+
+      bottom: 0;
+      height: 120vh;
+      left: 0;
+      opacity: 0;
+      position: fixed;
+      right: 0;
+      top: -1px;
+      z-index: $zindex-navbar-fixed - 1;
+
+      &.lia-slide-menu-overlay-open {
+        background: $slide-menu_overlay-background;
+        opacity: $slide-menu_overlay-opacity;
+      }
+    }
+  }
+
+  .lia-slide-menu-trigger {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}

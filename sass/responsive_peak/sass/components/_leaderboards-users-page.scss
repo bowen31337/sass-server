@@ -1,0 +1,30 @@
+@mixin components\leaderboards-users-page {
+
+  // user leaderboard pages
+  .TopUsersLeaderBoard {
+    .lia-user-item {
+      margin-bottom: $line-height-computed;
+    }
+  }
+
+  .UserListBlock {
+    @include clearfix;
+    border-top: 1px solid $panel-inner-border;
+    margin-top: $padding-large-vertical;
+    padding: {
+      bottom: $line-height-computed;
+      top: $line-height-computed;
+    }
+
+    .list-column {
+      float: left;
+      width: 33%;
+
+      @include media(tablet) {
+        // server generates 3 columns, reading top to bottom, then left to right
+        // when 50% it reads awkwardly, keep at either 33% or 100%, no 50%
+        width: 100%;
+      }
+    }
+  }
+}

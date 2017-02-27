@@ -1,0 +1,66 @@
+@mixin components\labels-list {
+
+  .lia-component-labels-widget-labels-list {
+    .label {
+      @extend %label-alt;
+      @extend %label-sm;
+      @extend %label-with-truncation-and-counts;
+
+      float: left;
+      margin-bottom: $padding-large-vertical;
+      margin-right: $panel-body-padding;
+      padding: 0;
+      // assumes 4 columns, make configurable?
+      width: calc(25% - #{$panel-body-padding});
+
+      .lia-quilt-column-side-content & {
+        width: calc(100% - #{$panel-body-padding});
+      }
+
+      @include media(phone) {
+        width: calc(100% - #{$panel-body-padding});
+      }
+    }
+
+    .default-menu-option {
+      background-color: transparent;
+      border-color: transparent;
+      border-radius: 0;
+      border-top-left-radius: $panel-border-radius;
+      margin: -1px;
+      padding: {
+        bottom: $padding-large-vertical;
+        left: $panel-body-padding;
+        right: $panel-body-padding;
+        top: $padding-large-vertical;
+      }
+    }
+
+    .lia-panel-content {
+      padding: {
+        bottom: $padding-large-vertical;
+        right: 0;
+        top: $panel-body-padding;
+      }
+    }
+
+    &.lia-labels-list-sortable .lia-panel-heading-bar {
+      padding: 0;
+    }
+
+    .lia-link-navigation:focus {
+      background-color: transparent;
+    }
+
+    .lia-link-navigation:focus:hover {
+      background-color: $btn-default-bg;
+    }
+
+    .lia-link-navigation.lia-link-disabled:hover, &:focus {
+      background-color: transparent;
+      cursor: default;
+    }
+
+
+  }
+}

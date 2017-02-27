@@ -1,0 +1,193 @@
+// Community Navigation
+//
+// The `community-navigation` mixin includes positioning and animations for the navigation component
+// that is designed to be placed in the slide-menu component.
+//
+// Style guide: components.community-navigation
+
+$community-navigation_back-bg:                  $gray-dark !default;
+$community-navigation_back-color:               $gray-lighter !default;
+$community-navigation_icon-color:               $gray-lighter !default;
+$community-navigation_item-bg:                  $gray-darker !default;
+$community-navigation_item-color:               $gray-lighter !default;
+$community-navigation_item-icon-size:           20px !default;
+$community-navigation_item-hover-bg:            $gray-darker !default;
+$community-navigation_item-hover-color:         $li-text-color-inverse !default;
+$community-navigation_item-border-color:        rgba(#000, .3) !default;
+$community-navigation_item-padding:             15px !default;
+
+
+@mixin components\community-navigation {
+
+  .lia-nav-pos-left {
+    @include transition(left .25s);
+
+    left: 0;
+    position: absolute;
+
+    &.lia-nav-pos-end {
+      left: -$li-slide-menu-vertical-width;
+      z-index: $zindex-navbar-fixed;
+    }
+
+    &.lia-nav-pos-start {
+      left: 0;
+      z-index: $zindex-navbar-fixed + 10;
+    }
+
+    // after animation reset absolute positioning and full height so that
+    // other components in the quilt under the nav will show
+    &.lia-nav-selected {
+      height: inherit;
+      position: relative;
+    }
+  }
+
+  .lia-community-nav-node {
+    background: $li-slide-menu-bg;
+    height: 100vh;
+    left: 0;
+    margin-bottom: 0;
+    position: absolute;
+    width: 100%;
+
+    .lia-nav-item {
+      background: $community-navigation_item-bg;
+      border-bottom: 1px solid $community-navigation_item-border-color;
+      position: relative;
+    }
+
+    .lia-nav-action {
+      color: $community-navigation_item-color;
+      display: inline-block;
+      height: 100%;
+      padding: $nav-link-padding;
+      width: 100%;
+
+      &:active,
+      &:focus,
+      &:hover {
+        background: $community-navigation_item-hover-bg;
+        color: $community-navigation_item-hover-color;
+        text-decoration: none;
+      }
+    }
+
+    .lia-nav-icon {
+      background-position: center center;
+      background-repeat: no-repeat;
+      color: $community-navigation_icon-color;
+      display: inline-block;
+      font-size: $community-navigation_item-icon-size;
+      height: $community-navigation_item-icon-size;
+      position: absolute;
+      text-align: center;
+      width: $community-navigation_item-icon-size;
+
+      &.lia-nav-icon:before {
+        background-size: $community-navigation_item-icon-size;
+      }
+    }
+
+    .lia-nav-icon-left {
+      left: $grid-gutter-width / 2;
+    }
+
+    .lia-nav-item-text {
+      display: inline-block;
+      font-size: $font-size-h4;
+      line-height: $line-height-medium;
+      padding-left: $community-navigation_item-icon-size + $padding-small-horizontal;
+      padding-right: $community-navigation_item-icon-size;
+    }
+
+    .lia-nav-icon-right {
+      right: $grid-gutter-width / 2;
+      text-align: right;
+    }
+
+    .lia-nav-back {
+      background: $community-navigation_back-bg;
+
+      > .lia-nav-action {
+        color: $community-navigation_back-color;
+        padding-bottom: $padding-small-vertical;
+        padding-top: $padding-small-vertical;
+      }
+
+      .lia-nav-icon {
+        color: $community-navigation_back-color;
+        font-size: inherit;
+        margin-top: floor($font-size-large / -2);
+        text-align: right;
+        top: 50%;
+
+        &:before {
+          font-size: $font-size-large;
+        }
+      }
+
+      .lia-nav-item-text {
+        font-size: $font-size-base;
+        text-transform: uppercase;
+      }
+    }
+
+    .lia-nav-header {
+      background: $li-slide-menu-bg;
+      padding: $nav-link-padding;
+
+      .lia-nav-header-title {
+        color: $community-navigation_item-color;
+
+        &:active,
+        &:focus,
+        &:hover {
+          background: inherit;
+          color: $community-navigation_item-color;
+        }
+      }
+    }
+
+    .lia-nav-menu-trigger {
+      @include li-icon-svg($li-svg-community-nav-trigger, $size: $font-size-h3, $color: $li-icon-inverse-color);
+      @include hide-text;
+
+      margin-top: floor($font-size-h3 / -2);
+      top: 50%;
+    }
+
+    .lia-nav-header-text {
+      display: inline-block;
+      font-size: $font-size-h3;
+      padding-right: $padding-small-horizontal;
+    }
+  }
+
+  .lia-community-nav-node {
+    .lia-nav-action {
+      padding: $community-navigation_item-padding;
+    }
+
+    .lia-nav-back {
+      .lia-nav-icon {
+        margin-top: floor($li-icon-size / -2);
+      }
+    }
+
+    .lia-nav-empty-category {
+      display: none;
+    }
+
+    .lia-nav-icon-left {
+      height: $li-icon-size;
+      margin-top: floor($li-icon-size / -2);
+      top: 50%;
+      width: $li-icon-size;
+    }
+
+    .lia-nav-item-text {
+      padding-left: $li-icon-size + $padding-small-horizontal;
+    }
+  }
+}

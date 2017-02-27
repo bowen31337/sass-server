@@ -1,0 +1,20 @@
+@mixin components\goto-nav-menu {
+
+  // goto menu
+  .lia-menu-navigation {
+    .bookmark-dropdown-item {
+      > .bookmark-link {
+        white-space: normal;
+        width: 300px;
+      }
+    }
+
+    .dropdown-section-title {
+      .lia-link-navigation {
+        @include li-extend('.dropdown-header');
+
+        margin-top: $padding-large-vertical;
+      }
+    }
+  }
+}

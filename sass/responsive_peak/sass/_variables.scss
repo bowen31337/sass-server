@@ -1,0 +1,523 @@
+//
+// scss-lint:disable ColorVariable
+//
+// Variables
+// --------------------------------------------------
+//$gray-base:             #000;
+//$gray-darker:           #333;    // lighten($gray-base, 20%)
+//$gray-dark:             #3e3e3e; // lighten($gray-base, 24.5%)
+//$gray:                  #5d5d5d; // lighten($gray-base, 36.5%)
+//$gray-light:            #747474; // lighten($gray-base, 45.5%)
+//$gray-lighter:          #e8e8e8; // lighten($gray-base, 91%)
+//$gray-lightest:         #f4f4f4; // lighten($gray-base, 95.7%)
+
+
+//== Colors
+//
+//$brand-primary:     #146cac;
+//$brand-danger:      #cf000f;
+//$brand-info:        #007fab;
+//$brand-success:     #448602;
+//$brand-warning:     #fecc5c;
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+// Background color for `<body>`.
+//$body-bg:                   #fff;
+// The default background for panels and areas with content
+//$li-bg-secondary:           #fff;
+
+// Background for the section under header background and between consecutive elements for mobile
+//$li-sub-header-bg:          #fbfbfb;
+
+// Global text color on `<body>`.
+//$text-color:                $gray-dark;
+//$text-muted:                $gray-light;
+// Text color on dark backgrounds
+//$li-text-color-inverse:     #fff;
+
+// Global textual link color.
+//$link-color:                $brand-primary;
+// Link hover color set via `darken()` function.
+//$link-hover-color:          darken($link-color, 15%);
+// Link hover decoration.
+//$link-hover-decoration:     underline;
+
+// Opacity for disabled links and buttons
+//$li-disabled-opacity:       .3;
+
+// Background for terms highlighted by search
+//$li-text-highlight-bg:      #ffffb5;
+// Links in the message body color
+//$li-message-link-color:     $brand-primary;
+// Navigation or signpost links such as "Go to Solution" or "Forgot password"
+//$li-navigation-link-color:  $brand-primary;
+// Color of the dot that separates items horizontally like author and date for a message
+//$li-separator-color:        $gray-light;
+
+// uppercase to uppercase all rank names, or none
+//$li-rank-text-transform:    none;
+
+// Default border color
+//$li-border-color:           #c4c4c4;
+// Border for dividing consecutive items in a panel such as a list of messages or users
+//$li-border-row:             $gray-lighter;
+// Border for panel headings, outlining panels and primary separators between panel sections
+//$li-border-panel:           #d1d1d1;
+// Border between major sections of a page such as below the header or above the footer
+// and other borders which span the width of the page
+//$li-border-divider:         #c4c4c4;
+// Stroke around kudos counts and secondary inversed buttons
+//$li-border-dark:            #a1a1a1;
+//$li-slide-menu-bg:          $gray-darker;
+
+// Hover background for dropdown links.
+//$dropdown-link-hover-bg:    #e9faff;
+
+
+//== Container
+//
+//$li-container-fluid:        true;
+
+
+//== Responsive Breakpoints
+//
+//$screen-xs:                  480px;
+//$screen-sm:                  768px;
+//$screen-md:                  992px;
+//$screen-lg:                  1200px;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+//$font-family-sans-serif:    'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+//$font-family-base:          $font-family-sans-serif;
+//$font-size-xsmall:          11px;
+//$font-size-small:           12px;
+//$font-size-base:            14px;
+//$font-size-large:           16px;
+//$font-size-h1:              28px;
+//$font-size-h2:              24px;
+//$font-size-h3:              20px;
+//$font-size-h4:              18px;
+//$font-size-page-title:      32px;
+
+// Default size for message subjects
+//$li-font-size-subject:      16px;
+
+// Font Awesome default font size
+//$fa-font-size-base:         $font-size-base;
+
+// Font weight for most user generated long-form content
+//$font-weight-content:       300;
+//$headings-font-weight:      normal;
+
+// Generally used for column headings
+//$headings-small-color:      $text-muted;
+
+// Line heights
+//$headings-line-height:      1.2;
+//$line-height-base:          1.7142857143; // 24/14  24px line height with base 14px font
+//$line-height-large:         1.3333333333; // extra decimals for Win 8.1 Chrome
+//$line-height-medium:        1.4285714286; // 20/14  20px line height with base 14px font
+//$line-height-small:         1.5;
+//$line-height-medium-computed:   round($line-height-medium * $font-size-base); // 20px for 14px base
+
+
+//== Buttons
+//
+//$btn-font-weight:                bold;
+//$btn-primary-color:              $li-text-color-inverse;
+//$btn-primary-bg:                 $brand-primary;
+//$btn-primary-border:             $brand-primary;
+//$btn-inverse-primary-color:      $brand-primary;
+//$btn-inverse-primary-bg:         transparent;
+//$btn-inverse-primary-border:     $brand-primary;
+//$btn-default-color:              $gray-dark;
+//$btn-default-bg:                 $gray-lighter;
+//$btn-default-border:             $gray-lighter;
+//$btn-secondary-color:            $li-text-color-inverse;
+//$btn-secondary-bg:               $gray-light;
+//$btn-secondary-border:           $gray-light;
+//$btn-inverse-secondary-color:    $gray-dark;
+//$btn-inverse-secondary-bg:       transparent;
+//$btn-inverse-secondary-border:   $li-border-dark;
+//$btn-link-disabled-color:        $gray-lighter;
+
+
+//== Community interaction style icon backgrounds
+//
+//$li-icon-blog-bg:         #58a386;
+//$li-icon-category-bg:     #869499;
+//$li-icon-community-bg:    $gray-light;
+//$li-icon-contest-bg:      #cf6f6f;
+//$li-icon-forum-bg:        #3296b5;
+//$li-icon-group-bg:        #d78021;
+//$li-icon-idea-bg:         #809f52;
+//$li-icon-qanda-bg:        #6a80bc;
+//$li-icon-tkb-bg:          #8477a3;
+
+
+//== Triangle top
+//
+//$li-triangletop-thumb-tack-bg:  #007fab;
+//$li-triangletop-check-bg:       #008000;
+//$li-triangletop-lock-bg:        #007fab;
+//$li-triangletop-bullhorn-bg:    #cf000f;
+
+//== Hero
+//
+//$li-hero-board-bg:              $gray;
+//$li-hero-category-bg:           $gray;
+//$li-hero-profile-bg:            #40494c;
+//$li-hero-color:                 #fff;
+//$li-hero-community-bg:          #3f3143;
+//$li-hero-icon-color:            #d1d1d1;
+
+//== Message editor buttons
+//
+// visibility for message editor toolbar buttons for different sizes
+// desktop buttons are determined by the tinyMceOptions...json files
+// if the button is not available for desktop it is not available for any size
+//
+
+// Mobile controls
+//
+//$li-editor-mobile-show-bold:            true;
+//$li-editor-mobile-show-bullist:         false; // Bullet list
+//$li-editor-mobile-show-code:            false; // Insert code (previous version)
+//$li-editor-mobile-show-embedvideo:      false;
+//$li-editor-mobile-show-emoticons:       true;
+//$li-editor-mobile-show-findcontent:     false; // TKB Find Content
+//$li-editor-mobile-show-fontselect:      false; // Select font family
+//$li-editor-mobile-show-fontsizeselect:  false;
+//$li-editor-mobile-show-forecolor:       false;
+//$li-editor-mobile-show-formatselect:    false; // Select heading sizes
+//$li-editor-mobile-show-image:           true;
+//$li-editor-mobile-show-insertcode:      false;
+//$li-editor-mobile-show-italic:          true;
+//$li-editor-mobile-show-link:            false;
+//$li-editor-mobile-show-macros:          true;
+//$li-editor-mobile-show-numlist:         false; // Numbered list
+//$li-editor-mobile-show-quote:           true;
+//$li-editor-mobile-show-spellchecker:    false;
+//$li-editor-mobile-show-spoiler:         false;
+//$li-editor-mobile-show-strikethrough:   false;
+//$li-editor-mobile-show-table:           false;
+//$li-editor-mobile-show-toc:             false; // TKB table of contents
+//$li-editor-mobile-show-underline:       true;
+
+
+// Tablet controls
+//
+// Note: if a control is hidden for tablet it is also hidden for mobile
+//       even if the mobile control is set to true
+//$li-editor-tablet-show-bold:            true;
+//$li-editor-tablet-show-bullist:         true; // Bullet list
+//$li-editor-tablet-show-code:            true; // Insert code (previous version)
+//$li-editor-tablet-show-embedvideo:      true;
+//$li-editor-tablet-show-emoticons:       true;
+//$li-editor-tablet-show-findcontent:     true; // TKB Find Content
+//$li-editor-tablet-show-fontselect:      true; // Select font family
+//$li-editor-tablet-show-fontsizeselect:  true;
+//$li-editor-tablet-show-forecolor:       true;
+//$li-editor-tablet-show-formatselect:    true; // Select heading sizes
+//$li-editor-tablet-show-image:           true;
+//$li-editor-tablet-show-insertcode:      true;
+//$li-editor-tablet-show-italic:          true;
+//$li-editor-tablet-show-link:            true;
+//$li-editor-tablet-show-macros:          true;
+//$li-editor-tablet-show-numlist:         true; // Numbered list
+//$li-editor-tablet-show-quote:           true;
+//$li-editor-tablet-show-spellchecker:    true;
+//$li-editor-tablet-show-spoiler:         true;
+//$li-editor-tablet-show-strikethrough:   true;
+//$li-editor-tablet-show-table:           true;
+//$li-editor-tablet-show-toc:             true; // TKB table of contents
+//$li-editor-tablet-show-underline:       true;
+
+
+//=============================================================================
+// NOTE: Below this point all colors are derived from colors above
+//
+
+
+
+//== Border radii
+//
+//$border-radius-base:        4px;
+//$border-radius-large:       6px;
+//$border-radius-small:       2px;
+// used to create rounded sides
+//$border-radius-round:       200px;
+
+
+//== Icons
+//
+//$li-avatar-size-small:      25px;
+//$li-avatar-size-medium:     30px;
+//$li-avatar-size-large:      40px;
+//$li-avatar-size-message:    64px;
+//$li-icon-size:              38px;
+//$li-icon-size-lg:           50px;
+//$li-icon-size-sm:           32px;
+//$li-icon-size-xs:           9px;
+//$li-icon-color:             $gray-light;
+//$li-icon-inverse-color:     $li-text-color-inverse;
+//$li-icon-fixed-width:       18em/14;
+//== Panels
+//
+//$panel-bg:                    $li-bg-secondary;
+
+// Secondary panels
+//$li-panel-secondary-bg:       $li-bg-secondary;
+//$panel-heading-padding:       8.5px 15px;
+//$panel-body-padding:          20px;
+//$panel-border-radius:         $border-radius-base;
+
+// Border color for elements within panels
+//$panel-inner-border:          $li-border-color;
+//$panel-footer-bg:             $li-sub-header-bg;
+//$panel-default-text:          $text-color;
+//$panel-default-border:        $li-border-panel;
+//$panel-default-heading-bg:    $li-bg-secondary;
+
+
+//== Breadcrumbs
+//
+//##
+//$breadcrumb-padding-vertical:   15px;
+//$breadcrumb-padding-horizontal: 15px;
+
+// Breadcrumb background color
+//$breadcrumb-bg:                 transparent;
+// Breadcrumb text color
+//$breadcrumb-color:              $li-border-dark;
+// Text color of current page in the breadcrumb
+//$breadcrumb-active-color:       $text-color;
+// Textual separator for between breadcrumb elements
+//$breadcrumb-separator:          '>';
+
+
+//== Forms
+//
+//$input-bg:                        $li-bg-secondary;
+
+// `<input disabled>` background color
+//$input-bg-disabled:               $gray-lighter;
+
+// Text color for `<input>`s
+//$input-color:                     $text-color;
+//$input-color-placeholder:         $text-muted;
+
+// `<input>` border color
+//$input-border:                    $li-border-color;
+//$input-border-radius:             $border-radius-small;
+// Border color for inputs on focus
+//$input-border-focus:              $brand-primary;
+//$legend-color:                    $text-color;
+//$legend-border-color:             $li-border-color;
+//$input-checkbox-width:            20px;
+//$form-padding:                    30px;
+
+// Used to create 40px tall buttons and inputs. 26px + ($padding-base-vertical(6) * 2) + (border(1) * 2) = 40px
+//$li-line-height-input:            26px;
+//$input-height-base:               40px; // 40px
+
+
+//== Dropdowns
+//
+//## Dropdown menu container and contents.
+// Dropdown menu `border-color`.
+//$dropdown-border:                   $li-border-panel;
+
+// Divider color for between dropdown items.
+//$dropdown-divider-bg:               $li-border-color;
+
+// Dropdown link text color.
+//$dropdown-link-color:               $text-color;
+//$dropdown-link-hover-color:         darken($dropdown-link-color, 5%);
+
+
+// Disabled dropdown menu item background color.
+//$dropdown-link-disabled-color:      lighten($dropdown-link-color, 40%);
+
+// Text color for headers within dropdown menus.
+//$dropdown-header-color:             $text-muted;
+
+// Deprecated `$dropdown-caret-color` as of v3.1.0
+//$dropdown-caret-color:              $gray-light;
+
+
+//== Navs
+//
+
+// Shared nav styles
+//$nav-link-hover-bg:                         $gray-lightest;
+//$nav-link-padding-xs:                       10px 17px;
+
+// Tabs
+//$nav-tabs-border-color:                     $li-border-color;
+//$nav-tabs-link-hover-border-color:          $li-border-color;
+//$nav-tabs-active-link-hover-color:          $text-color;
+//$nav-tabs-active-link-hover-border-color:   $li-border-color;
+
+
+// Alerts
+//
+//$alert-success-bg:            $brand-success;
+//$alert-success-text:          $li-text-color-inverse;
+//$alert-success-border:        $brand-success;
+//$alert-info-bg:               $brand-info;
+//$alert-info-text:             $li-text-color-inverse;
+//$alert-info-border:           $brand-info;
+//$alert-warning-bg:            $brand-warning;
+//$alert-warning-text:          $text-color;
+//$alert-warning-border:        $brand-warning;
+//$alert-danger-bg:             $brand-danger;
+//$alert-danger-text:           $li-text-color-inverse;
+//$alert-danger-border:         $brand-danger;
+
+
+//== Pagination
+//
+//##
+//$pagination-color:                     $text-color;
+//$pagination-bg:                        transparent;
+//$pagination-border:                    transparent;
+//$pagination-hover-color:               $text-color;
+//$pagination-hover-bg:                  transparent;
+//$pagination-hover-border:              transparent;
+//$pagination-active-color:              $text-color;
+//$pagination-active-bg:                 transparent;
+//$pagination-active-border:             transparent;
+//$pagination-disabled-color:            $text-color;
+//$pagination-disabled-bg:               transparent;
+//$pagination-disabled-border:           transparent;
+
+
+//== Thumbnails
+//
+
+// Thumbnail border color
+//$thumbnail-border:            $li-border-color;
+
+
+//== Wells
+//
+//##
+//$well-bg:                     $li-panel-secondary-bg;
+
+
+//== Badges (number of new notification over the avatar)
+//
+//##
+//$badge-bg:                    $brand-danger;
+// Badge background color in active nav link
+//$badge-active-bg:             $brand-danger;
+
+
+//== Ideas Statuses
+//
+//$li-idea-status-color:          $gray-light;
+
+
+//== Modals
+//
+//##
+// Modal content border color
+//$modal-content-border-color:  $li-border-panel;
+// Modal header border color
+//$modal-header-border-color:   $li-border-color;
+// Modal footer border color
+//$modal-footer-border-color:   $li-border-color;
+
+
+//== Spacing
+//
+//$padding-base-vertical:     6px;
+//$padding-base-horizontal:   12px;
+//$padding-xl-vertical:       20px;
+//$padding-xl-horizontal:     25px;
+//$padding-large-vertical:    10px;
+//$padding-large-horizontal:  16px;
+//$padding-small-vertical:    5px;
+//$padding-small-horizontal:  10px;
+//$padding-xs-vertical:       1px;
+//$padding-xs-horizontal:     5px;
+//$padding-medium:            15px;
+
+
+//== Grid system
+//
+//$grid-columns:              24; // DO NOT MODIFY
+// Padding between columns. Gets divided in half for the left and right.
+//$grid-gutter-width:         30px;
+
+
+//== List group
+//
+//##
+// `.list-group-item` border color
+//$list-group-border:             $li-border-row;
+// List group border radius
+//$list-group-border-radius:      $border-radius-base;
+// Background color of single list items on hover
+//$list-group-hover-bg:           $gray-lighter;
+
+
+//== Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
+// Border color for table and cell borders.
+//$table-border-color:            $li-border-row;
+//$table-bg:                      transparent;
+//$table-cell-padding:            15px;
+
+
+//== Lithium component spacing and widths
+//
+//$li-triangletop-size:             40px;
+//$li-font-size-space:              .26em;
+//$li-video-gallery-height:         90px;
+//$li-video-gallery-width:          120px;
+//$li-kudos-alt-button-style-width: 180px;
+//$li-kudos-horizontal-md-width:    93px;
+//$li-ratings-alt-button-style-width: $li-kudos-alt-button-style-width;
+//$li-ratings-horizontal-md-width:    $li-kudos-horizontal-md-width;
+//$li-ratings-star-large:           20px;
+//$li-user-badges-badge-size:       72px; // Badge display size + image padding top and bottom -- 72px + (2 * 10px)
+//$li-album-thumbnail-dimensions:   110px;
+//$li-uploader-image-tile-caption-height:   35px;
+//$li-uploader-image-tile-height:   250px;
+//$li-uploader-image-tile-width:    250px;
+//$li-uploader-padding-vertical:    15px;
+//$li-hero-category-height:         225px;
+//$li-hero-input-height:            55px;
+//$li-unread-border-width:          6px;
+//$li-slide-menu-vertical-width:    400px;
+//$li-community-nav-item-padding:   15px;
+//$fa-font-path:                    '/html/assets/fonts';
+//$fa-css-prefix:                   lia-fa;
+//$li-lightbox-icon-size-large:     24px;
+//$li-uploader-2x-icon:             28px;
+//$li-dropdown-paging-min-width:    200px;
+//$li-search-input-height:          46px;
+
+// not all buttons have a min width, used for footer actions with 2 buttons
+//  320px (min container width)
+//  - 20px (10px * 2 grid gutters)
+//  - 40px (20px * 2 panel / view padding)
+//  - 20px (space between buttons)
+//  / 2 (per button) = 120
+//$li-btn-min-width:               120px;
+
+
+// scss-lint:disable ColorVariable
+//$li-group-icon-size:              75px;
+//$li-group-icon-size-large:        100px;
+//

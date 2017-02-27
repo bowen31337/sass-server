@@ -1,0 +1,166 @@
+// Buttons
+//
+// Classes for buttons. Includes generic styles for primary and secondary actions
+// as well as buttons for specific lia actions.
+//
+// .lia-button           - Generic button.
+// .lia-button-primary   - A button for primary actions.
+// .lia-button-secondary - Inherits `lia-button-inversed` to contrast with primary button.
+// .lia-action-quick-reply.reply-action-link - Example of a button with an icon.
+//
+// Markup:
+// <a class="lia-button {{modifier_class}}" href="#">Button</a>
+//
+// Style guide: codebook.buttons
+
+@mixin codebook\buttons {
+
+  %button-spacing {
+    padding-bottom: ($form-padding / 3) / 2;
+    padding-left: $form-padding / 2;
+    padding-top: ($form-padding / 3) / 2;
+    vertical-align: middle;
+
+    @include media(phone) {
+      padding-bottom: $form-padding / 2;
+      padding-left: $form-padding / 1.5;
+    }
+  }
+
+  .lia-button,
+  .mce-foot button,
+  .ui-dialog button {
+    @include lia-button;
+  }
+
+  .lia-button.lia-button-icon {
+    min-width: initial;
+  }
+
+  .lia-button-inversed,
+  .lia-button-secondary,
+  .mce-foot button,
+  .ui-dialog button {
+    @include lia-button-secondary;
+  }
+
+  .lia-button-inversed {
+    @include lia-button-secondary-inverse;
+  }
+
+  .mce-foot .mce-primary button,
+  .lia-button-primary.lia-button-primary {
+    @include lia-button-primary;
+  }
+
+  .lia-button-primary {
+    &.lia-button-inversed {
+      @include lia-button-primary-inverse;
+    }
+  }
+
+  // The buttons have .lia-button-primary classes by default, but are not
+  // the preffered action.  Giving them secondary styling.
+  .lia-button-EditRequest-action.lia-button-EditRequest-action,
+  .lia-button-SaveDraft-action.lia-button-SaveDraft-action,
+  .lia-button.lia-message-comment-post,
+  .lia-button.lia-js-add-this-widget {
+    @include lia-button-secondary;
+  }
+
+  // Connect to your facebook account button
+  // There isn't an obvious unique selectors to target this link effectively
+  .UserPreferences {
+    .lia-link-ticket-post-action.lia-link-ticket-post-action {
+      @include lia-button;
+      @include lia-button-primary;
+    }
+  }
+
+  // These uttons should be primary, but are not
+  .lia-groups-group-list-ask-to-join-link,
+  .lia-groups-group-list-join-link,
+  .lia-panel-message-root .lia-action-reply.reply-action-link.reply-action-link {
+    @include lia-button-primary;
+  }
+
+  // overlay on some buttons to prevent double or multiple submissions
+  // this is inconsistently applied. don't know where this is used outside of
+  // .lia-form-type-file / .lia-form-type-file-hidden, pressing submit
+  .lia-button-overlay {
+    position: absolute;
+    z-index: 2000;
+
+    .fileinput-button & {
+      position: relative;
+    }
+  }
+
+  .lia-form-vertical {
+    .lia-button-group .lia-button-wrapper {
+      @extend %button-spacing;
+      float: right;
+    }
+
+    .message-editor-controls .lia-button-group .lia-button-wrapper {
+      margin-left: $padding-base-horizontal;
+      padding-bottom: $padding-base-vertical;
+      padding-left: 0;
+      position: relative;
+    }
+  }
+
+  .lia-button-group.lia-button-group-center {
+    text-align: center;
+
+    .lia-button-wrapper {
+      display: inline-block;
+      float: inherit;
+    }
+  }
+
+  // Buttons with icons and text
+  .lia-content .add-tag-link {
+    color: $text-muted;
+    @include li-icon-responsive-button(icon-tag, $color: $text-muted, $btn-respond: xs, $size: $font-size-h4);
+  }
+
+  .lia-button-wrapper .lia-button-icon {
+    padding: $padding-base-vertical $padding-base-horizontal;
+  }
+
+
+  // Buttons
+  .lia-button {
+    border-radius: $border-radius-base;
+  }
+
+  .lia-button-primary {
+    padding-left: $padding-xl-horizontal;
+    padding-right: $padding-xl-horizontal;
+  }
+
+  // Cancel and Reset buttons have .lia-button-primary classes by default.
+  // Having the submit and cancel/reset buttons look similar hurts usability.
+  // Cancel and Reset should be styled differently, we are giving them link styling.
+  .lia-button-Cancel-action.lia-button-Cancel-action,
+  .lia-button-wrapper-Cancel-action,
+  .lia-button-CancelCrop-action.lia-button-CancelCrop-action,
+  .lia-button-confirmation-cancel-action.lia-button-confirmation-cancel-action,
+  .lia-button-Reset-action.lia-button-Reset-action,
+  .lia-button-secondary.lia-button-content-finder-done {
+    @include lia-button-text;
+  }
+
+  .lia-panel-message {
+    .lia-button-primary,
+    .lia-action-reply.reply-action-link {
+      @include lia-button-primary-inverse;
+    }
+
+    .lia-button-secondary {
+      @include lia-button-secondary-inverse;
+    }
+  }
+
+}

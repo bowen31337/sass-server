@@ -1,0 +1,172 @@
+// li-icon
+//
+$li-icon_btn-icon-padding:                7px !default;
+
+@mixin li-icon($icon-id, $size: inherit, $line-height: '', $hide-text: false,
+    $pseudo: before, $color: $li-icon-color, $fixed-width: false,
+    $icon-margin: '', $btn-respond: '') {
+  $base-size: $size;
+  @if ($size == inherit) {
+    $base-size: $fa-font-size-base;
+  } @else {
+    $base-size: $size;
+  }
+
+  @if ($icon-margin == '') {
+    $icon-margin: 4px;
+  }
+
+  @if ($hide-text) {
+    @include text-hide-min;
+  } @elseif ($btn-respond == 'sm') {
+    @include media(tablet) {
+      @include text-hide-min;
+    }
+  } @elseif ($btn-respond == 'xs') {
+    @include media(phone) {
+      @include text-hide-min;
+    }
+  }
+
+  &:#{$pseudo} {
+    @if ($color != '') {
+      color: $color;
+    }
+    // copied from font-awesome/_core.scss
+    content: li-icon-content($icon-id);
+    display: inline-block;
+    font: normal normal normal #{$base-size}/1 FontAwesome; // shortening font declaration
+    font-size: $base-size;
+
+    @if ($size == inherit and $hide-text == false and $btn-respond == '') {
+      font-size: inherit;
+    }
+
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+
+    @if ($line-height != '') {
+      line-height: $line-height;
+    } @elseif ($hide-text or $btn-respond != '') {
+      line-height: $line-height-base;
+    }
+
+    @if ($hide-text == false and $icon-margin != 0) {
+      @if ($pseudo == 'before') {
+        margin-right: $icon-margin;
+
+        @if ($btn-respond == 'sm') {
+          @include media(tablet) {
+            margin-right: 0;
+          }
+        } @elseif ($btn-respond == 'xs') {
+          @include media(phone) {
+            margin-right: 0;
+          }
+        }
+      } @else {
+        margin-left: $icon-margin;
+
+        @if ($btn-respond == 'sm') {
+          @include media(tablet) {
+            margin-left: 0;
+          }
+        } @elseif ($btn-respond == 'xs') {
+          @include media(phone) {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    text-rendering: auto; // optimizelegibility throws things off #1094
+    transform: translate(0, 0); // ensures no half-pixel rendering in firefox
+
+    @if ($fixed-width) {
+      text-align: center;
+      width: (18em / 14);
+    }
+
+    [dir='rtl'] & {
+      @include fa-icon-flip(-1, 1, 0);
+    }
+  }
+}
+
+@mixin li-icon-button($icon-id, $color: $li-icon-color) {
+  @include li-icon($icon-id, $line-height: $line-height-base, $hide-text: true, $color: $color);
+}
+
+@mixin li-icon-menu {
+  @include li-icon(icon-link-menu, $line-height: $line-height-base, $pseudo: after);
+}
+
+@function li-icon-content($icon-id) {
+  $content: $icon-id;
+  @if (variable-exists(li-fa-icons-overrides) and map-has-key($li-fa-icons-overrides, $icon-id)) {
+    $content: map-get($li-fa-icons-overrides, $icon-id);
+  } @elseif (map-has-key($li-fa-icons, $icon-id)) {
+    $content: map-get($li-fa-icons, $icon-id);
+  } @else if (str-index($icon-id, '\\') == 1) {
+    $content: $icon-id;
+  } @else {
+//    @warn('unknown li-icon id: ' + $icon-id);
+  }
+  @return $content;
+}
+
+@mixin li-icon-responsive-label($icon-id, $size: $font-size-small) {
+  @include li-icon($icon-id, $size: $size, $icon-margin: $li-font-size-space / 2);
+
+  white-space: nowrap;
+}
+
+@mixin li-icon-responsive-button($icon-id, $btn-respond: '', $color: '', $size: inherit) {
+  @include li-icon($icon-id, $color: $color, $icon-margin: $li-icon-btn-icon-padding, $btn-respond: $btn-respond, $size: $size);
+}
+
+@mixin li-icon-responsive-dropdown($icon-id: 'icon-menu-options', $btn-respond: 'xs') {
+  @if ($btn-respond == 'sm') {
+    @include media(tablet) {
+      @include li-icon(icon-menu-options, $pseudo: before, $hide-text: true);
+
+      // hide dropdown carat
+      &:after {
+        display: none;
+      }
+    }
+  } @elseif ($btn-respond == 'xs') {
+    @include media(phone) {
+      @include li-icon(icon-menu-options, $pseudo: before, $hide-text: true);
+
+      // hide dropdown carat
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+// drop-in replacement for li-icon when using an svg
+@mixin li-icon-svg($svg-id, $size: inherit, $line-height: '', $hide-text: false,
+    $pseudo: before, $color: $li-icon-color, $fixed-width: false,
+    $icon-margin: 0, $btn-respond: '') {
+
+  $base-size: $fa-font-size-base;
+  @if ($size != inherit) {
+    $base-size: $size;
+  }
+
+  @include li-icon('', $size: $size, $line-height: $line-height, $hide-text: $hide-text,
+      $pseudo: $pseudo, $color: $color, $fixed-width: $fixed-width,
+      $icon-margin: $icon-margin, $btn-respond: $btn-respond);
+
+  &:#{$pseudo} {
+    background: svg-url($svg-id, $color) center no-repeat;
+    background-size: $base-size $base-size;
+    content: '';
+    height: 100%;
+    padding: ceil($base-size / 2);
+    width: 100%;
+  }
+}

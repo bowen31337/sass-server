@@ -1,0 +1,86 @@
+@mixin components\image-video-uploader-popup {
+
+  .ImageUploaderPopupPage,
+  .VideoEmbedPopupPage {
+
+    // padding to compensate for the mce-container-body height: 100% not
+    // accounting for mce-window-head height
+    padding: {
+      top: $padding-large-vertical;
+    }
+    width: auto;
+
+    .min-width-wrapper {
+      border-left: 0 !important;
+    }
+
+    .min-width {
+      margin-left: 0 !important;
+    }
+
+    .MinimumWidthContainer {
+      min-width: 0 !important;
+    }
+  }
+
+  // image / video uploader
+  .lia-form-upload-entry {
+    .lia-form-input-wrapper {
+      display: table;
+      width: 100%;
+
+      .lia-button-wrapper {
+        display: table-cell;
+        padding-left: .25em;
+        vertical-align: top;
+        width: 90px;
+      }
+
+      .video-file {
+        display: table-cell;
+      }
+    }
+
+    .image-upload-link {
+      line-height: 1;
+      margin-bottom: $padding-large-vertical;
+    }
+  }
+
+  .lia-image-layout-options-preview {
+    > img {
+      max-width: 80%;
+    }
+  }
+
+  .image-preview-description,
+  .video-preview-description {
+    margin-bottom: $padding-large-vertical;
+  }
+
+  .lia-vid-container > div,
+  .lia-vid-container .innerWrapper,
+  .video-embed,
+  .video-embed-youtube {
+    @include li-extend('.embed-responsive');
+    @include li-extend('.embed-responsive-16by9');
+  }
+
+  // using #lia-body for more specificity vs #lia-vid-<video id> tag for
+  // Ooyala videos
+  #lia-body .lia-vid-container .innerWrapper {
+    width: auto;
+    z-index: 0;
+  }
+
+  .ImageUploaderPopupPage,
+  .VideoEmbedPopupPage {
+    background-color: $li-bg-secondary;
+    padding: $panel-body-padding;
+  }
+
+  .lia-image-upload-editor-preview {
+    padding-bottom: $padding-base-vertical;
+    padding-top: $padding-base-vertical;
+  }
+}

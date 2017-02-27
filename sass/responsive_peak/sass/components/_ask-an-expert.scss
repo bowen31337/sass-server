@@ -1,0 +1,74 @@
+// Ask an Expert
+//
+// A textarea and form submit footer styled to look like a single inline form.
+// This component may perform an AJAX search while typing, which appears below
+// the form by default, or provides feedback for no results. Form submit button
+// is :disabled by default until text is entered into the form.
+//
+// Style guide: components.ask-an-expert
+
+@mixin components\ask-an-expert {
+
+  .lia-ask-an-expert-wrapper {
+
+    // ask an expert in the main column
+    .lia-quilt-column-main-content & {
+
+      textarea {
+        height: $input-height-base  ;
+        overflow: hidden;
+        resize: none;
+      }
+
+      .lia-form {
+        display: table;
+        margin-bottom: $padding-large-vertical;
+        width: 100%;
+      }
+
+      .lia-form-footer {
+        display: table-cell;
+      }
+
+      .lia-form-input-wrapper {
+        margin: 1px (-$grid-gutter-width / 2) 0;
+      }
+
+      .lia-button-wrapper-primary.lia-button-wrapper-Continue-action {
+        padding: {
+          bottom: 0;
+          top: 0;
+        }
+        margin-left: $padding-small-horizontal;
+      }
+
+      .lia-form-row {
+        margin: 0;
+      }
+
+      .lia-quilt-row-first {
+        display: table-cell;
+        vertical-align: top;
+        width: 100%;
+      }
+    }
+
+    // ask an expert in the side column
+    .lia-quilt-column-side-content & {
+      .lia-form-footer,
+      .lia-form-question-field-entry {
+        margin-bottom: $padding-small-vertical;
+      }
+    }
+
+    .lia-ask-search-results {
+      margin-left: -$padding-small-horizontal;
+    }
+  }
+
+  .lia-component-qanda-widget-ask-an-expert.lia-panel {
+    .lia-panel-content {
+      padding-top: $panel-body-padding;
+    }
+  }
+}

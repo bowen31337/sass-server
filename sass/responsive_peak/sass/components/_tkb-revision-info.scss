@@ -1,0 +1,63 @@
+@mixin components\tkb-revision-info {
+  .lia-revision-info-wrapper {
+    width: 100%;
+
+    .lia-revision-info {
+      display: table;
+      margin-bottom: $panel-body-padding;
+      width: 100%;
+    }
+
+    .lia-revision-info-row {
+      display: table-row;
+    }
+
+    .lia-revision-article-history-link-row {
+      .lia-revision-info-data-cell {
+        text-align: right;
+      }
+
+      .lia-article-history-link {
+        display: inline-block;
+        margin-top: $padding-xl-vertical;
+        position: absolute;
+        right: $panel-body-padding;
+        white-space: nowrap;
+      }
+    }
+
+    .lia-revision-info-title-cell,
+    .lia-revision-info-data-cell {
+      display: table-cell;
+      padding: {
+        bottom: 0;
+        right: $padding-large-horizontal;
+        top: 0;
+      }
+      position: relative;
+
+      .lia-saved-autosave-feedback {
+        .lia-panel-feedback-inline-note {
+          background-color: inherit;
+          border: 0;
+          box-sizing: none;
+          color: inherit;
+          margin: 0;
+          padding: 0;
+          position: absolute;
+          top: 0;
+        }
+      }
+    }
+
+    .lia-revision-info-title-cell {
+      font-weight: bold;
+      white-space: nowrap;
+      width: 25%;
+    }
+
+    .lia-revision-info-data-cell {
+      width: 75%;
+    }
+  }
+}

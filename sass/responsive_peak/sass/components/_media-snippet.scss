@@ -1,0 +1,64 @@
+@mixin components\media-snippet {
+  .lia-media-snippet {
+    background-color: $gray-lighter;
+    border-top: 1px solid $li-border-color;
+    border-bottom: 1px solid $li-border-color;
+    display: inline-block;
+    margin-bottom: $padding-large-vertical;
+    padding: {
+      bottom: 0;
+      left: $padding-large-vertical;
+      right: $padding-large-vertical;
+      top: $padding-xl-vertical;
+    }
+    width: 100%;
+  }
+
+  .lia-media-snippet-thumbnail {
+    float: left;
+    margin-bottom: $padding-large-vertical;
+    margin-right: $padding-large-vertical;
+    vertical-align: middle;
+
+    @include media(phone) {
+      width: 100%;
+    }
+
+    a {
+      position: relative;
+
+      i {
+        @include li-icon(button-video-play, $size: $font-size-h3, $color: white);
+        @include centered(absolute);
+      }
+    }
+  }
+
+  .lia-media-snippet-title {
+    padding-bottom: $padding-large-vertical;
+
+    .lia-link-navigation {
+      color: $text-color;
+    }
+  }
+
+  .lia-media-snippet-url {
+    font-size: $font-size-xsmall;
+  }
+
+  .lia-media-snippet-desc {
+    color: $text-muted;
+    font-size: $font-size-small;
+    margin-bottom: $padding-xl-vertical;
+  }
+
+  .lia-media-snippet-header {
+    margin-bottom: $padding-large-vertical;
+  }
+
+  .lia-media-snippet-close {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+  }
+}

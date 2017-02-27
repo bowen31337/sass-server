@@ -1,0 +1,56 @@
+//* Publishing History
+$media-publishing-history_title-width:           100px !default;
+$media-publishing-history_item-margin-left:      25px !default;
+$media-publishing-history_total-width: $media-publishing-history_title-width +
+$panel-body-padding + $media-publishing-history_item-margin-left !default;
+
+
+@mixin components\media-publishing-history {
+
+  // publishing history css
+  .lia-media-publishing-history {
+    border-radius: 0 0 $border-radius-large $border-radius-large;
+    border-top: 1px solid $btn-default-border;
+    padding-top: $padding-large-horizontal;
+
+    .lia-publishing-history-title {
+      display: inline-block;
+      font-weight: bold;
+      margin-left: $panel-body-padding;
+      text-align: left;
+      vertical-align: top;
+      width: $media-publishing-history_title-width;
+    }
+
+    .lia-publishing-history-items {
+      display: inline-block;
+      margin-bottom: 0;
+      width: calc(100% - #{$media-publishing-history_total-width});
+    }
+
+    .lia-publishing-history-item {
+      border-left: 3px solid $text-color;
+      margin: 0 0 $padding-large-horizontal $media-publishing-history_item-margin-left;
+      padding-left: $media-publishing-history_item-margin-left;
+
+      .lia-publishing-history-row {
+        margin: 0 0 $padding-large-vertical;
+      }
+
+      .lia-publishing-history-item-subject {
+        display: block;
+        font-weight: bold;
+      }
+    }
+
+    // scss-lint:disable DeclarationOrder
+    @include media(phone) {
+      .lia-publishing-history-title {
+        display: block;
+        margin: 0 0 $padding-large-horizontal $media-publishing-history_item-margin-left;
+        text-align: left;
+        width: auto;
+      }
+    }
+  }
+}

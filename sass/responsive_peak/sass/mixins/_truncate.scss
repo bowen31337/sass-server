@@ -1,0 +1,63 @@
+// for single line ellipsis use @include text-overflow; provided by Bootstrap
+
+@mixin multiline-truncate($font-size: $font-size-large, $line-height: $line-height-base,
+    $max-lines: 3, $max-height: 0, $bg-color: $panel-bg, $truncate-text: '\2026',
+    $gradient-size: $padding-xs-horizontal, $truncate-selector: '&:before') {
+
+  $mt-line-height-computed: if(unitless($line-height), $font-size * $line-height, $line-height);
+  $max-height: if($max-height == 0, $mt-line-height-computed * $max-lines, $max-height);
+
+  display: block;
+  max-height: $max-height;
+  overflow: hidden;
+  position: relative;
+
+  #{$truncate-selector} {
+    background-color: $bg-color;
+    bottom: 0;
+    content: $truncate-text;
+    display: inline-block;
+    height: $mt-line-height-computed;
+    padding-left: $gradient-size;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    text-decoration: none;
+  }
+
+  &:after {
+    background: $bg-color;
+    content: '';
+    height: $mt-line-height-computed * 2;
+    position: absolute;
+    width: 100%;
+    z-index: 4;
+  }
+
+  .lia-truncate-spacer {
+    background: $bg-color;
+    display: inline-block;
+    height: $mt-line-height-computed;
+    margin-left: -2px;
+    margin-right: -3px;
+    position: relative;
+    vertical-align: top;
+    z-index: 10;
+  }
+
+  // use -webkit-line-clamp for the default case of ... and ::before
+  @if ($truncate-text == '\2026' and $truncate-selector == '&:before') {
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      -webkit-line-clamp: $max-lines;
+      overflow: hidden;
+
+      #{$truncate-selector},
+      &:after,
+      .lia-truncate-spacer {
+        display: none;
+      }
+    }
+  }
+}

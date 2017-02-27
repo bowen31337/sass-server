@@ -1,0 +1,35 @@
+// User Navigation
+//
+
+@mixin codebook\user-nav {
+
+  .lia-header-nav-component-unread-count {
+    @include li-extend('.badge');
+  }
+
+  .user-navigation-parent-dropdown {
+    display: table-cell;
+  }
+
+  .user-navigation-parent-dropdown-combine {
+    display: table-cell;
+    padding-right: $padding-large-horizontal;
+  }
+
+  .user-navigation-settings-drop-down .lia-list-standard {
+    display: block;
+  }
+
+  .user-navigation-settings-dropdown-link {
+    position: relative;
+  }
+
+  .user-navigation-user-profile {
+    display: inline-block;
+  }
+
+  .lia-common-slide-menu {
+    text-align: initial;
+  }
+
+}

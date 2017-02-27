@@ -1,0 +1,233 @@
+// Interaction Icons
+//
+// Icon set to represent our interaction styles. Used in board pages and navigation components.
+//
+// Markup:
+// <span class="lia-fa
+//              lia-fa-community
+//              lia-img-icon-community"
+//       style="height: 20px; width: 20px;"></span>
+// <span class="lia-fa
+//              lia-fa-category
+//              lia-img-icon-category"
+//       style="height: 20px; width: 20px;"></span>
+// <span class="lia-fa
+//              lia-fa-blog
+//              lia-img-icon-blog"
+//       style="height: 20px; width: 20px;"></span>
+// <span class="lia-fa
+//              lia-fa-idea
+//              lia-img-icon-idea"
+//       style="height: 20px; width: 20px;"></span>
+// <span class="lia-fa
+//              lia-fa-tkb
+//              lia-img-icon-tkb"
+//       style="height: 20px; width: 20px;"></span>
+// <span class="lia-fa
+//              lia-fa-contest
+//              lia-img-icon-contest"
+//       style="height: 20px; width: 20px;"></span>
+// <span class="lia-fa
+//              lia-fa-group
+//              lia-img-icon-group"
+//       style="height: 20px; width: 20px;"></span>
+//
+// Style guide: codebook.interaction-icons
+
+
+@mixin codebook\interaction-icons {
+
+  // Entire icon + border + background
+
+  // category and board lists get large icons
+  .lia-message-discussion-style-icon,
+  .boardIconColumn .board-icon,
+  .lia-page-info {
+    > .lia-fa-icon {
+      @include interaction-icon;
+
+      vertical-align: top;
+    }
+  }
+
+  // community slide nav icons
+  .lia-nav-item-container {
+    .lia-nav-icon-left {
+      @include interaction-icon($li-icon-size);
+    }
+  }
+
+  .boardIconColumn,
+  .lia-nav-item-container,
+  .lia-notification-feed-icon,
+  .lia-page-info {
+
+    .lia-fa-community {
+      background-color: $li-icon-community-bg;
+    }
+
+    // Forum icon bg
+    .lia-fa-forum {
+      background-color: $li-icon-forum-bg;
+    }
+
+    // QA icon bg
+    .lia-fa-qanda {
+      background-color: $li-icon-qanda-bg;
+    }
+
+    // Blog icon bg
+    .lia-fa-blog {
+      background-color: $li-icon-blog-bg;
+
+      @include li-icon-svg($li-svg-blog, $color: $li-icon-inverse-color);
+    }
+
+    // Idea icon bg
+    .lia-fa-idea {
+      background-color: $li-icon-idea-bg;
+
+      @include li-icon-svg($li-svg-ideas, $color: $li-icon-inverse-color);
+    }
+
+    // TKB icon bg
+    .lia-fa-tkb {
+      background-color: $li-icon-tkb-bg;
+    }
+
+    // Contest icon bg
+    .lia-fa-contest {
+      background-color: $li-icon-contest-bg;
+    }
+
+    // Groups icon bg
+    .lia-fa-group {
+      background-color: $li-icon-group-bg;
+    }
+
+    // Category icon bg
+    .lia-fa-category {
+      background-color: $li-icon-category-bg;
+      padding-left: 3px; // FontAwesome's folder icon design optically seems off-center
+    }
+  }
+
+  .lia-notification-feed-icon .lia-fa-icon {
+    @include interaction-icon($li-icon-size);
+  }
+
+  // replace font awesome interaction style icons for custom svgs
+  .lia-fa-blog {
+    @include li-icon-svg($li-svg-blog);
+  }
+
+  .lia-fa-idea {
+    @include li-icon-svg($li-svg-ideas);
+  }
+
+  // message discussion style icon next to the page title is inverted with a colored icon and inverted bg
+  .lia-message-discussion-style-icon {
+    // Forum icon bg
+    .lia-fa-forum {
+      &:before {
+        color: $li-icon-forum-bg;
+      }
+    }
+
+    // QA icon bg
+    .lia-fa-qanda {
+      &:before {
+        color: $li-icon-qanda-bg;
+      }
+    }
+
+    // TKB icon bg
+    .lia-fa-tkb {
+      &:before {
+        color: $li-icon-tkb-bg;
+      }
+    }
+
+    // Contest icon bg
+    .lia-fa-contest {
+      &:before {
+        color: $li-icon-contest-bg;
+      }
+    }
+
+    // Groups icon bg
+    .lia-fa-group {
+      &:before {
+        color: $li-icon-group-bg;
+      }
+    }
+
+    // Category icon bg
+    .lia-fa-category {
+      padding-top: 1px; // again compensating for the visually smaller icon
+
+      &:before {
+        color: $li-icon-category-bg;
+      }
+    }
+
+    // Blog icon bg
+    .lia-fa-blog {
+      @include li-icon-svg($li-svg-blog-inverse, $color: $li-icon-blog-bg, $size: $font-size-page-title);
+    }
+
+    // Idea icon bg
+    .lia-fa-idea {
+      @include li-icon-svg($li-svg-ideas, $color: $li-icon-idea-bg, $size: $font-size-page-title);
+    }
+
+    .lia-fa-community {
+      &:before {
+        color: $li-icon-community-bg;
+      }
+    }
+
+    .lia-fa-community,
+    .lia-fa-forum,
+    .lia-fa-qanda,
+    .lia-fa-blog,
+    .lia-fa-idea,
+    .lia-fa-contest,
+    .lia-fa-tkb,
+    .lia-fa-group,
+    .lia-fa-category {
+      height: floor($font-size-page-title * $headings-line-height);
+      width: floor($font-size-page-title * $headings-line-height);
+
+      &:before {
+        font-size: $font-size-page-title;
+        line-height: $headings-line-height;
+
+        @include media(phone) {
+          font-size: $font-size-h2;
+        }
+      }
+
+      @include media(phone) {
+        height: floor($font-size-h2 * $headings-line-height);
+        width: floor($font-size-h2 * $headings-line-height);
+      }
+    }
+
+    // svg based icons additional
+    .lia-fa-blog,
+    .lia-fa-idea {
+      // selector strength for lia-fa.lia-fa-thread.lia-fa-<interaction style> in icons
+      &.lia-fa-thread:before {
+        content: '';
+      }
+
+      &:before {
+        @include media(phone) {
+          background-size: $font-size-h2 $font-size-h2;
+          padding: $font-size-h2 / 2;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,259 @@
+@mixin components\tkb-content-finder {
+
+  .lia-body.TkbEditorFindContentPopupPage .VersionHeader {
+    display: none;
+  }
+
+  .lia-body.lia-tag-filter-open {
+    .lia-tkb-content-finder {
+      .lia-search-tag-filter-toggle {
+        background-color: #fff;
+        border-left: 1px solid $li-border-color;
+        border-right: 1px solid $li-border-color;
+        border-top: 1px solid $li-border-color;
+      }
+
+      .lia-search-tag-filter {
+        display: block;
+      }
+    }
+  }
+
+  .mce-lia-search-content-dialog {
+    .mce-window-head {
+      display: none;
+    }
+  }
+
+  .lia-tkb-content-finder {
+
+    .lia-message-search-container {
+      height: 100%;
+      overflow: auto;
+    }
+
+    .lia-tkb-content-finder-header {
+      padding-top: $panel-body-padding;
+
+      &:after {
+        clear: both;
+        content: ' ';
+        display: table
+      }
+    }
+
+    .lia-tkb-content-finder-results {
+      overflow: auto;
+
+      padding: {
+        left: $padding-large-horizontal;
+        right: $padding-large-horizontal;
+      }
+      margin: {
+        left: -$padding-large-horizontal;
+        right: -$padding-large-horizontal;
+      }
+
+      &.lia-tkb-content-finder-results-padded {
+        padding-top: $padding-xl-vertical;
+      }
+    }
+
+    .lia-tkb-content-finder-single-message {
+      margin: 0 $padding-large-horizontal;
+    }
+
+    .lia-component-search-widget-search-page-form {
+      @include li-extend('.col-xs-20');
+      padding-bottom: $padding-small-vertical;
+    }
+
+    .lia-search-tag-filter-toggle {
+      @include li-extend('.col-xs-4');
+      @include li-icon($fa-var-tags, $font-size-h3, $color: $btn-default-color, $icon-margin: 8px);
+
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      border-top: 1px solid transparent;
+      border-top-right-radius: $border-radius-base;
+      border-top-left-radius: $border-radius-base;
+      color: $text-color;
+      line-height: $li-search-input-height;
+      margin-bottom: 0;
+      overflow: hidden;
+      padding: {
+        bottom: $padding-small-vertical;
+        left: $padding-large-horizontal;
+        right: $padding-large-horizontal;
+      }
+      position: relative;
+      text-decoration: none;
+      text-overflow: ellipsis;
+      top: 1px;
+      white-space: nowrap;
+
+      &:before {
+        position: relative;
+        top: 2px;
+      }
+
+      @include media(phone) {
+        display: inline-block;
+        width: $li-icon-size + ($padding-small-horizontal * 2);
+
+        &:before {
+          padding-top: $font-size-base;
+        }
+
+        .lia-search-tag-filter-toggle-text {
+          visibility: hidden;
+          width: 1px;
+        }
+      }
+    }
+
+    .lia-search-tag-filter {
+      @extend %li-panel;
+      @extend %li-panel-body;
+      background-color: #fff;
+      border-top-right-radius: 0;
+      clear: both;
+      margin-bottom: 0;
+      padding-bottom: $panel-body-padding - ($grid-gutter-width / 2);
+      display: none;
+
+      @include media(phone) {
+        border-top-right-radius: $border-radius-base;
+      }
+    }
+
+    .lia-tag {
+      @include li-icon($fa-var-check, $color: transparent);
+    }
+
+    .lia-tag-selected {
+      @include li-icon($fa-var-check, $color: $btn-default-color);
+    }
+
+    .search-menu-bar {
+
+      padding: {
+        top: $padding-large-vertical;
+        bottom: $padding-large-vertical;
+      }
+
+      margin: {
+        top: 0;
+        bottom: 0;
+      }
+    }
+
+    .SearchPageForm.lia-form-horizontal {
+
+//      .lia-form-type-search + .lia-button-wrapper-searchForm-action:before {
+//        right: $li-search-input-height * 1.4 + $padding-small-horizontal;
+//      }
+    }
+
+    .lia-quilt-tkb-editor-message-search-item > .lia-quilt-row-top {
+      > .lia-quilt-column-left-content {
+        @include li-extend('.col-sm-18');
+        @include li-extend('.col-xs-14');
+        @include media(phone-min) {
+          width: 50%;
+        }
+      }
+
+      > .lia-quilt-column-right-content {
+        @include li-extend('.col-sm-6');
+        @include li-extend('.col-xs-10');
+        @include media(phone-min) {
+          width: 50%;
+        }
+
+        > .lia-quilt-column-alley-right {
+          display: table;
+        }
+      }
+    }
+
+
+    .lia-component-tkb-content-finder-popup-actions-header {
+      font-weight: bold;
+      margin: {
+        bottom: $padding-xl-vertical;
+        left: $padding-large-horizontal;
+        right: $padding-large-horizontal;
+        top: 0;
+      }
+      position: absolute;
+      top: -1px;
+    }
+
+    .lia-list-row-thread-solved {
+      &:before,
+      &:after {
+        display: none
+      }
+    }
+
+    .lia-content-finder-action {
+      @include li-icon($fa-var-check, $color: transparent);
+      display: table;
+      margin: $padding-xl-vertical 0;
+      padding: 0 $padding-large-horizontal;
+      width: 100%;
+
+      .lia-button-group {
+        display: table-cell;
+      }
+
+      .lia-button-content-finder-action {
+        @include lia-button-default;
+        width: 100%;
+      }
+
+      &:before {
+        display: table-cell;
+        padding-right: $padding-xs-horizontal;
+        width: 1%;
+      }
+
+      &.lia-component-tkb-content-finder-popup-action-quote {
+        margin-top: $font-size-large + $padding-xl-vertical;
+      }
+
+      &.lia-content-finder-selected {
+        @include li-icon($fa-var-check, $color: $btn-default-color);
+
+        &:before {
+          display: table-cell;
+          padding-right: $padding-xs-horizontal;
+          width: 1%;
+        }
+
+        .lia-button-content-finder-action {
+          color: $btn-secondary-color;
+          background-color: $btn-secondary-bg;
+          border-color: $btn-secondary-border;
+        }
+      }
+    }
+  }
+
+  .lia-tkb-content-finder-footer {
+    background-color: $li-bg-secondary;
+    border-top: 1px solid $li-border-color;
+    bottom: 0;
+    padding: $panel-body-padding;
+    width: 100%;
+
+    .lia-button-group {
+      text-align: right;
+    }
+  }
+
+  .lia-button-content-finder-done {
+    margin-left: $panel-body-padding;
+  }
+}

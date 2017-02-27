@@ -1,0 +1,144 @@
+// Media Lightbox: Viewer
+//
+// The lightbox viewer displays a single image flanked on either side by
+// arrows. Clicking an arrow (previous or next) will bring up that
+// respective image. The lightbox viewport scrolls through the collection
+// of images without looping.
+//
+// `.lia-featured-media-wrapper` - wraps the single image.
+// It is positioned absolutely and is responsive as the Media Lightbox is resized.
+//
+// `.lia-featured-media` - displays single image.
+//
+// `.lia-lightbox-navigation` - not displayed on mobile.
+// A class that wraps both thhe left and right navigation icons.
+// Classes added on to this one will determine which way the viewer goes.
+//
+// `.lia-lightbox-prev` - A class added on to specify that the icon it is
+//  displaying is the correct icon for 'previous'.
+//
+// `.lia-lightbox-right` - A class added on to specify that the icon it is
+// displaying is the correct icon for 'next'.
+//
+// Style guide: components.media-lightbox-viewer
+
+@mixin components\media-lightbox-viewer {
+
+  // Assists in middle alignment of image
+  .lia-featured-media-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  // Wraps image
+  .lia-featured-media-wrapper {
+    font-size: 0;
+    height: 100%;
+    left: 0;
+    line-height: 0;
+    padding: $padding-base-vertical;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    white-space: nowrap;
+    z-index: 5;
+  }
+
+  // Actual image
+  .lia-featured-media {
+    display: inline-block;
+    max-height: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+  }
+
+  // Selectors for changing the image
+  .lia-featured-media-one-third {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 34%;
+    z-index: 20;
+  }
+
+  .lia-featured-media-two-third {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 66%;
+    z-index: 20;
+  }
+
+  @include media(phone) {
+    .lia-lightbox-navigation {
+      display: none;
+    }
+  }
+
+  @include media(tablet-and-larger) {
+    // Lightbox Viewer Navigation
+    .lia-lightbox-navigation {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      z-index: 10;
+    }
+
+    // Lightbox Viewer left navigation icon positiioning
+    .lia-lightbox-prev {
+      left: -1px;
+
+      .lightbox-prev-icon {
+        @include li-icon-button(icon-nav-previous-horizontal);
+        height: $li-lightbox-icon-size-large;
+        opacity: .5;
+        vertical-align: middle;
+
+        &.lightbox-highlight-icon {
+          opacity: 1;
+        }
+      }
+    }
+
+    // Lightbox Viewer right navigation icon positiioning
+    .lia-lightbox-next {
+      right: -1px;
+
+      .lightbox-next-icon {
+        @include li-icon-button(icon-nav-next-horizontal);
+        height: $li-lightbox-icon-size-large;
+        opacity: $li-disabled-opacity;
+        vertical-align: middle;
+
+        &.lightbox-highlight-icon {
+          opacity: 1;
+        }
+      }
+    }
+
+    // Lightbox viewer navigation icons (left and right)
+    span.lia-lightbox-nav-icon {
+      cursor: pointer;
+      display: inline-block;
+      opacity: .8;
+      position: relative;
+      top: 50%;
+
+      &.lia-lightbox-next-image-icon {
+        border-bottom-left-radius: $border-radius-base;
+        border-top-left-radius: $border-radius-base;
+        padding: $padding-large-vertical $padding-small-horizontal $padding-large-vertical 0;
+      }
+
+      &.lia-lightbox-prev-image-icon {
+        border-bottom-right-radius: $border-radius-base;
+        border-top-right-radius: $border-radius-base;
+        padding: $padding-large-vertical 0 $padding-large-vertical $padding-small-horizontal;
+      }
+    }
+  }
+}

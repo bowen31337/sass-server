@@ -1,0 +1,74 @@
+@mixin components\toggleable-comment-list {
+  .lia-toggleable-comment-list {
+    background-color: $panel-bg;
+    margin: $padding-xl-vertical;
+
+    .ComponentToggler {
+      .lia-show-trigger,
+      .lia-hide-trigger {
+        margin-left: $padding-small-horizontal;
+
+        a {
+          color: $gray-dark;
+          font-size: $font-size-large;
+        }
+      }
+
+      .lia-show-trigger {
+        &:before {
+          @include fa-icon;
+          color: $gray-light;
+          content: li-icon-content(icon-toggle-closed);
+        }
+      }
+
+      .lia-hide-trigger {
+        &:before {
+          @include fa-icon;
+          color: $gray-light;
+          content: li-icon-content(icon-toggle-open);
+        }
+      }
+
+      .lia-quilt-row .lia-quilt-column {
+        min-height: 0;
+      }
+    }
+
+    .lia-quilt-toggleable-comment-list {
+      .lia-quilt-column .lia-quilt-column-alley-single {
+        margin: 0;
+      }
+
+      .CommentEditorForm {
+        @include li-extend('.lia-form.lia-form-inline.lia-form-footer-inside-fieldset');
+        border: {
+          bottom: 0;
+          left: 0;
+          right: 0;
+          top: 1px solid $li-border-panel;
+        }
+        border-radius: 0;
+        display: table;
+        padding: {
+          bottom: 0;
+          left: $padding-small-horizontal;
+          right: $padding-small-horizontal;
+          top: $panel-body-padding;
+        }
+
+        .lia-input-edit-form-row * {
+          width: 100%;
+        }
+
+        .lia-button-Submit-action {
+          @include lia-button-primary-inverse;
+        }
+
+        @include media(phone) {
+          display: block;
+        }
+      }
+    }
+  }
+}

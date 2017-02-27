@@ -1,0 +1,294 @@
+// Grid
+//
+// Our grid system is 24 columns wide. Adding `.lia-quilt-column-01` to an element will make it take up 1/24th of the screen width.
+//
+// #### Gutters
+// Depending on where the grid is, the gutter width changes.
+// Primary Layout (top quilt) - `$grid-gutter-width`: 20px (10px/side)
+//
+// Usage: `.lia-quilt-column-XX` _Where XX is a number between 01 and 24._
+//
+// Markup:
+// <div class="lia-quilt-column-04" style="background-color: #81AABF; height: 40px;">
+//   width = 4
+// </div>
+// <div class="lia-quilt-column-08" style="background-color: #ABE3FF; height: 40px;">
+//   width = 8
+// </div>
+// <div class="lia-quilt-column-12" style="background-color: #9ACCE5; height: 40px;">
+//   width = 12
+// </div>
+// <div class="lia-quilt-column-06" style="background-color: #60BF8F; height: 40px;">
+//   width = 6
+// </div>
+// <div class="lia-quilt-column-18" style="background-color: #7FFFBF; height: 40px;">
+//   width = 18
+// </div>
+// <div class="lia-quilt-column-18" style="background-color: #BF927A; height: 40px;">
+//   width = 18
+// </div>
+// <div class="lia-quilt-column-06" style="background-color: #FFC2A2; height: 40px;">
+//   width = 6
+// </div>
+//
+// Style guide: codebook.grid
+
+// This skin modifies the base grid by selectively removing the left and right
+// padding of interior columns and adding top and bottom margins to create
+// equally spaced gutters around content in the main row with header and footer
+// rows flush against the sides of the browser
+//
+// To eliminate the selective spacing, a combination of $grid-gutter-width: 0
+// and $padding-body-margin: 0 will remove the spacers
+
+$grid_container-min-width: 320px !default;
+
+
+@mixin codebook\grid {
+
+  .lia-content {
+    @if ($li-container-fluid) {
+      @include li-extend('.container-fluid');
+    } @else {
+      @include li-extend('.container');
+    }
+    min-width: $grid_container-min-width;
+  }
+
+  // for the older customers who have the center tag wrapping everything
+  .lia-page {
+    > center {
+      text-align: left;
+    }
+  }
+
+  .lia-quilt-row {
+    @include li-extend('.row');
+  }
+
+  // map bootstrap .col-md-<col#> to lia-quilt-column-<col#>
+  @for $i from 1 through 24 {
+    $column-num: $i;
+    @if ($i < 10) {
+      $column-num: '0' + $i;
+    }
+
+    .lia-quilt-column-#{$column-num} {
+      @include li-extend('.col-md-' + $i);
+    }
+  }
+
+  .lia-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  // remove left and right outermost margins and padding
+  .lia-quilt-row {
+    margin-left: 0;
+    margin-right: 0;
+
+    > .lia-quilt-column {
+      // assuming all columns are .col-md columns, remove left and right @ sm
+      @include media(tablet) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  // limit these styles to the outermost main quilt without targeting sub-quilts
+  .lia-top-quilt {
+    > .lia-quilt-row-main {
+      > .lia-quilt-column {
+
+        // establish equal spaced gutters and left/right padding for most main
+        // column layouts
+        @include media(desktop) {
+          padding-left: $grid-gutter-width / 2;
+          padding-right: $grid-gutter-width / 2;
+
+          &:first-child {
+            padding-left: $grid-gutter-width;
+          }
+
+          &:last-child {
+            padding-right: $grid-gutter-width;
+          }
+        }
+
+        // top margins get tricky with interactions depending on the components
+        // immediately below such as menubars
+        > .lia-quilt-column-alley {
+          margin-bottom: $grid-gutter-width;
+
+          @include media(tablet) {
+            margin-bottom: $grid-gutter-width / 2;
+          }
+
+          @include media(phone) {
+            margin-bottom: 0;
+            margin-top: 0;
+          }
+        }
+      }
+
+      // leave spacing around even columns (like on the forgotpassword page)
+      //
+      // single column quilts generally have gutters around the main area and
+      // goes full width for phones, but there are many exceptions, especially
+      // for lists of messages or other pages that don't have one main page,
+      // but many cards that would each have their own gutters
+      > .lia-quilt-column-left-content,
+      > .lia-quilt-column-right-content,
+      > .lia-quilt-column-single {
+        > .lia-quilt-column-alley {
+          padding: $grid-gutter-width;
+
+          @include media(tablet) {
+            padding: {
+              bottom: $panel-body-padding;
+              left: $panel-body-padding;
+              right: $panel-body-padding;
+              top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // no padding for this quilt in desktop
+  .lia-quilt-layout-one-column-multi-engagement-rows:not(.lia-quilt-tkb-community-page) {
+    > .lia-quilt-row-main {
+      > .lia-quilt-column-single {
+        &,
+        &:first-child,
+        &:last-child {
+          padding: 0;
+        }
+
+        > .lia-quilt-column-alley {
+          margin-bottom: 0;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  // column padding adjustments
+  // blogs collapse too far and butt up against the top when the menubar is empty
+  .lia-component-article,
+  .lia-component-articles {
+    margin-top: $grid-gutter-width;
+
+    @include media(tablet) {
+      margin-top: $grid-gutter-width / 2;
+    }
+  }
+
+  .lia-top-quilt {
+    > .lia-quilt-row-main {
+      > .lia-quilt-column-left-content,
+      > .lia-quilt-column-right-content,
+      > .lia-quilt-column-single {
+        > .lia-quilt-column-alley {
+          background-color: $li-bg-secondary;
+          border-radius: $panel-border-radius;
+        }
+      }
+
+      > .lia-quilt-column-main-content {
+        > .lia-quilt-column-alley {
+
+          // Some two column pages should get panel styling
+          .BlogArchivesPage & {
+            background-color: $li-bg-secondary;
+            border-radius: $panel-border-radius;
+            padding: $panel-body-padding;
+          }
+        }
+      }
+    }
+
+    // common page footer
+    > .lia-quilt-row-footer {
+      background-color: $panel-footer-bg;
+      border-top: 1px solid $li-border-color;
+      margin-top: -1px; // reduce double borders
+    }
+  }
+
+  // for single column empty columns, display: none to remove the min-width spacer
+  .lia-mark-empty.lia-quilt-column-single {
+    display: none;
+  }
+
+  // Background color exclusions:
+  // Generic column styling exclusions
+  // not all single column pages should get this generic treatment
+  // using exclusions here instead of inclusions as there are over
+  // 200 quilts using single column layouts
+
+  .AcceptedSolutionsLeaderboardPage,
+  .BlogArticlePage,
+  .CategoryPage,
+  .CommunityPage,
+  .ContestPage,
+  .ContestSubmissionPage,
+  .ForumPage,
+  .ForumTopicPage,
+  .IdeaExchangePage,
+  .IdeaPage,
+  .GroupsPage,
+  .GroupMessagePage,
+  .lia-quilt-spam-search-page,
+  .MessageHistoryPage,
+  .MessageTrackerPage,
+  .MyGroupsPage,
+  .PrivateNotesPage,
+  .RecentBlogArticlesPage,
+  .RecentPostsPage,
+  .RecentQuestionsPage,
+  .RecentReviewsPage,
+  .SearchPage,
+  .SingleReviewPage,
+  .TagDetailPage,
+  .TkbArticlePage,
+  .TkbPage,
+  .UnansweredPostsPage,
+  .UnansweredTopicsPage,
+  .UserReviewsPage,
+  .VideoGalleryPage {
+    .lia-quilt-row-main {
+      > .lia-quilt-column-single {
+        > .lia-quilt-column-alley {
+          background-color: inherit;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .QandAPage {
+    @include media(tablet) {
+      .lia-top-quilt {
+        > .lia-quilt-row-main {
+          background-color: $li-bg-secondary;
+
+          > .lia-quilt-column {
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}

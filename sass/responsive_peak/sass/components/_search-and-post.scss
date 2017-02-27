@@ -1,0 +1,112 @@
+@mixin components\search-and-post {
+  // for the SearchAndPost.quilt.xml two column interaction style search
+
+  %lia-search-button-alt {
+    @include border-right-radius($border-radius-round);
+
+    background-color: rgba($li-icon-color, .7);
+    background-image: svg-url($li-svg-icon-magnifying-glass, $li-text-color-inverse);
+    background-position: 40% 50%;
+    background-repeat: no-repeat;
+    background-size: $li-search-input-height / 2;
+    border: 0;
+    color: $li-text-color-inverse;
+    height: $li-search-input-height;
+    margin-top: 0;
+    min-width: 0;
+    outline: 0;
+    position: absolute;
+    right: 0;
+    text-indent: -9999px;
+    top: 0;
+    width: $li-search-input-height * 1.4;
+    z-index: 2;
+
+    // Taken almost verbatim from vender .btn
+    // Otherwise the active state was not fully clearing
+    // Likely issue is that there is another :focus after that
+    &:active,
+    &.active,
+    &:focus,
+    &:hover {
+      background-color: $li-icon-color;
+      border: 0;
+      border-color: transparent;
+      box-shadow: none;
+
+      &:focus,
+      &.focus {
+        background-color: $li-icon-color;
+        border: 0;
+        border-color: transparent;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .lia-quilt-search-and-post {
+    background-color: $li-panel-secondary-bg;
+    border-bottom: 1px solid $li-border-color;
+    border-top: 1px solid $li-border-color;
+
+    .lia-component-common-widget-search-form {
+      padding-bottom: $padding-xl-vertical;
+      padding-top: $padding-xl-vertical;
+
+      @include media(phone) {
+        padding: {
+          bottom: $panel-body-padding;
+          top: $panel-body-padding;
+        }
+      }
+    }
+
+    .lia-quilt-column-left-content {
+      @include make-sm-column(18);
+
+      border-right: 1px solid $li-border-color;
+
+      @include media(phone) {
+        border-bottom: 1px solid $li-border-color;
+        border-right: 0;
+        padding-right: inherit;
+      }
+    }
+
+    .lia-quilt-column-right-content {
+      @include make-sm-column(6);
+
+      .lia-button-wrapper {
+        display: block;
+        padding: {
+          bottom: $padding-xl-vertical + ($li-search-input-height - $input-height-base) / 2;
+          top: $padding-xl-vertical + ($li-search-input-height - $input-height-base) / 2;
+        }
+        text-align: center;
+
+        @include media(phone) {
+          padding: {
+            bottom: $panel-body-padding;
+            top: $panel-body-padding;
+          }
+        }
+      }
+    }
+
+    .SearchForm.lia-form-inline {
+      .lia-button-searchForm-action {
+        @extend %lia-search-button-alt;
+      }
+    }
+
+    .lia-post-action-hidden & {
+      .lia-quilt-column-left-content {
+        @include make-xs-column(24);
+      }
+
+      .lia-quilt-column-right-content {
+        display: none;
+      }
+    }
+  }
+}
