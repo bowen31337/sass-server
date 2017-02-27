@@ -5,7 +5,9 @@ git clone git@github.com:bowen31337/sass-server.git
 
 cd sass-server
 
-yarn install (recommended)
+npm install yarn -g
+
+yarn install
 
 yarn run sass-server
 
