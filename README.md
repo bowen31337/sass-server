@@ -17,7 +17,8 @@ yarn run sass-server
 ####Studio Setup
 
 ```
-Responsive Skin CSS URL : http://localhost:8080/css/main.css
+Responsive Skin CSS URL : http://localhost:8000/css/main.css
+(webroot:'sass-server')
 
 ```
 
