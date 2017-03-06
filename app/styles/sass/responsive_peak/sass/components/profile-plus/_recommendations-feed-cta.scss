@@ -1,0 +1,76 @@
+@mixin components\profile-plus\recommendations-feed-cta {
+
+.lia-panel-profileplus.lia-profileplus-recommendations-feed-cta.lia-profileplus-recommendations-feed-cta-close-disabled {
+
+  .lia-panel {
+
+    .lia-panel-close-button {
+      display: none;
+    }
+  }
+}
+
+.lia-panel-profileplus.lia-profileplus-recommendations-feed-cta {
+
+    .lia-panel {
+      box-shadow: 0px 2px 5px $gray;
+      margin: $padding-xl-vertical;
+    }
+
+    .lia-panel .lia-panel-heading-bar {
+      border-bottom: none;
+      border-radius: 0;
+      border-top: 6px solid $li-brand-call-to-action;
+      padding: 0;
+    }
+
+    .lia-panel-content {
+      padding: 0;
+    }
+
+    .lia-panel-close-button {
+      margin-top: 10px;
+    }
+
+    .lia-klout-connect-button {
+      float: none;
+      margin-bottom: 0;
+      margin-right: 0;
+      position: static;
+    }
+
+    .lia-integrated-profile-fineprint {
+      color: #acaeb9;
+      font-size: 11px;
+      font-style: italic;
+      text-align: right;
+    }
+
+    .lia-integrated-profile-klout-connect-wrapper {
+      padding: $li-integrated-profile-top-bottom-padding $li-integrated-profile-left-right-padding;
+      color: $text-muted;
+
+      h2 {
+        padding-top: $li-integrated-profile-top-bottom-footer-padding;
+      }
+
+      .lia-integrated-profile-klout-connect-button {
+        text-align: right;
+        @include media(tablet) {
+          padding-top: $li-integrated-profile-mobile-padding;
+        }
+      }
+
+      @include media(phone) {
+        padding: $li-integrated-profile-mobile-padding;
+      }
+    }
+
+    .lia-integrated-profile-klout-connect-footer {
+      padding: $li-integrated-profile-top-bottom-footer-padding $li-integrated-profile-left-right-padding;
+      @include media(phone) {
+        padding: $li-integrated-profile-top-bottom-footer-padding $li-integrated-profile-mobile-padding;
+      }
+    }
+  }
+}

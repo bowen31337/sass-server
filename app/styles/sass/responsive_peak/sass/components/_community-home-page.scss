@@ -1,0 +1,132 @@
+$community-home-page_featured-content-padding: 30px !default;
+$community-home-page_hero-height:      500px !default;
+$community-home-page_hero-height-sm:   440px !default;
+$community-home-page_hero-height-xs:   375px !default;
+$community-home-page_search-box-padding: 30px !default;
+$community-home-page_icon-spacing:     100px !default;
+$community-home-page_icon-spacing-xs:   65px !default;
+
+
+@mixin components\community-home-page {
+
+  .CommunityPage {
+    .lia-quilt-row-feedback {
+      background-color: $li-hero-community-bg;
+    }
+  }
+
+  // HERO COMPONENT
+  // Hero wrapper includes background image
+  .lia-component-quilt-community-hero {
+    background-blend-mode: overlay;
+    background-color: $li-hero-community-bg;
+    background-image: svg-url($li-svg-hero-community-bg, $li-bg-secondary);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $li-hero-color;
+    margin-top: -1px; // assume empty header in quilt above (empty row leaves 1px min-height)
+
+    // specific due to faq links appearing elsewhere in this quilt
+    .lia-search-form-wrapper + .lia-component-help-action-faq {
+      color: $li-text-color-inverse;
+      float: right;
+      margin-top: -$padding-large-vertical;
+      opacity: $li-disabled-opacity;
+      padding-bottom: $padding-large-vertical;
+      padding-right: $grid-gutter-width;
+
+      &:active,
+      &:focus,
+      &:hover {
+        opacity: 1;
+        text-decoration: none;
+      }
+    }
+
+    .lia-slide-out-nav-menu-wrapper {
+      @include li-icon-svg($li-svg-community-nav-trigger, $size: $font-size-h3, $color: $li-icon-inverse-color);
+    }
+  }
+
+  .lia-community-hero-icons {
+    text-align: center;
+    white-space: nowrap;
+
+    .lia-user-navigation-sign-in {
+      text-align: center;
+
+      .lia-user-avatar {
+        display: none;
+      }
+
+      .login-link {
+        @include li-icon-svg($li-svg-icon-anonymous-profile, $color: $li-icon-inverse-color, $size: $li-icon-size);
+
+        color: $li-text-color-inverse;
+        display: block;
+
+        &:before {
+          display: block;
+          height: $li-icon-size;
+          width: $li-icon-size;
+          opacity: .65;
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+          opacity: 1;
+          text-decoration: none;
+
+          &:before {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .lia-component-users-widget-menu,
+    .lia-component-notificationfeed-widget-indicator,
+    .lia-component-notes-widget-summary-modern {
+      display: inline-block;
+      float: none;
+      margin-right: 0;
+      position: relative;
+      vertical-align: top;
+    }
+
+    .lia-notification-feed-page-link,
+    .private-notes-link {
+      &:before {
+        color: $li-icon-inverse-color;
+        font-size: $font-size-h2;
+        margin-right: 0;
+      }
+    }
+
+
+    .lia-component-users-widget-menu {
+      padding-top: $padding-large-vertical;
+      margin-left: $community-home-page_icon-spacing;
+      margin-right: $community-home-page_icon-spacing;
+
+      @include media(phone) {
+        margin-left: $community-home-page_icon-spacing-xs;
+        margin-right: $community-home-page_icon-spacing-xs;
+      }
+    }
+
+    .view-profile-link {
+      color: $li-text-color-inverse;
+      padding-top: $padding-small-vertical;
+      text-decoration: none;
+    }
+  }
+
+  .lia-community-featured-content {
+    margin: 0;
+    padding: $community-home-page_featured-content-padding 0;
+    text-align: center;
+  }
+}

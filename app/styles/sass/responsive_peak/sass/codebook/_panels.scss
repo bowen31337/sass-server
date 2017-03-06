@@ -1,0 +1,255 @@
+// Panels
+//
+// Panels are the basic layout elements of your page.
+//
+// `.lia-panel`: a containing element.
+//
+// `.lia-panel-heading-bar`: the header for your panel, may include a `.lia-panel-heading-bar-title`.
+//
+// `.lia-panel-content`: the content element for your panel.
+//
+// Markup:
+// <div class="lia-panel"
+//      style="background-color: #81AABF; padding: 10px;">
+//   <div class="lia-panel-heading-bar"
+//        style="background-color: #ABE3FF;">
+//     <span class="lia-panel-heading-bar-title"> heading </span>
+//   </div>
+//   <div class="lia-panel-content"
+//        style="background-color: #9ACCE5; height:80px;"> content </div>
+// </div>
+//
+// Style guide: codebook.panels
+
+@mixin codebook\panels {
+
+  // Adapting panel code from Bootstrap, based on panel-default
+  // We're not using Bootstrap's panels directly because of the interaction
+  // between panels, tables and list-group created increased interdependence
+  // affecting compile times even though we do not rely on those interactions.
+  %li-panel {
+    @include box-shadow(0 1px 1px rgba(0, 0, 0, .05));
+
+    background-color: $panel-bg;
+    border: 1px solid $panel-default-border;
+    border-radius: $panel-border-radius;
+    margin-bottom: $line-height-computed;
+  }
+
+  // Panel contents
+  %li-panel-body {
+    @include clearfix;
+    @include img-responsive;
+
+    padding: $panel-body-padding;
+  }
+
+  // Optional heading
+  %li-panel-heading {
+    @include border-top-radius(($panel-border-radius - 1));
+
+    background-color: $panel-default-heading-bg;
+    border-bottom: 1px solid transparent;
+    border-color: $panel-default-border;
+    color: $panel-default-text;
+    padding: $panel-heading-padding;
+  }
+
+
+  // Within heading, strip any `h*` tag of its default margins for spacing.
+  %li-panel-title {
+    @extend %sub-section-header-font;
+
+    color: inherit;
+    font-size: $font-size-large;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    > a,
+    > small,
+    > .small,
+    > small > a,
+    > .small > a {
+      color: inherit;
+    }
+  }
+
+  // Optional footer (stays gray in every modifier class)
+  %li-panel-footer {
+    @include border-bottom-radius(($panel-border-radius - 1));
+
+    background-color: $panel-footer-bg;
+    border-top: 1px solid $panel-inner-border;
+    padding: $panel-footer-padding;
+  }
+
+
+  .lia-panel {
+    @extend %li-panel;
+
+    .lia-panel-heading-bar {
+      @extend %li-panel-heading;
+    }
+
+    .lia-panel-heading-bar-title {
+      @extend %li-panel-title;
+
+      .count {
+        float: right;
+      }
+    }
+
+    .lia-panel-close-button {
+      background-color: inherit;
+      border: 0;
+      cursor: pointer;
+      float: right;
+      margin-right: $padding-xs-horizontal;
+    }
+
+  }
+
+  .lia-panel-content {
+    @extend %li-panel-body;
+
+    padding-top: 0;
+  }
+
+  .lia-panel-message {
+    @extend %li-panel;
+  }
+
+  .lia-panel-message-content {
+    @extend %li-panel-body;
+
+    // don't style panel-type view all in a message
+    .lia-view-all {
+      background-color: transparent;
+      border: 0;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  // lia-panel-sections typically contain other panels, remove the padding
+  .lia-panel-section {
+    margin: {
+      left: -$panel-body-padding;
+      right: -$panel-body-padding;
+    }
+  }
+
+  // view all is nested within content so undo panel padding
+  .lia-view-all {
+    @extend %li-panel-footer;
+
+    margin: {
+      bottom: -$panel-body-padding;
+      left: -$panel-body-padding;
+      right: -$panel-body-padding;
+      top: $panel-body-padding;
+    }
+  }
+
+  .lia-message-view-display,
+  .lia-tkb-article-summary-view {
+    @extend %li-panel;
+    @include img-responsive;
+
+    padding: $panel-body-padding;
+  }
+
+
+  .lia-panel {
+    background-color: $li-bg-secondary;
+    border: 0;
+    border-radius: $panel-border-radius;
+    box-shadow: none;
+    position: relative;
+
+    @include media(tablet) {
+//      margin-bottom: $grid-gutter-width / 2;
+    }
+
+    // side content and engagement row content gets a lighter background color
+    .lia-quilt-column-engagement-content &,
+    .lia-quilt-column-side-content & {
+      background-color: $li-panel-secondary-bg;
+    }
+
+    .lia-panel-content {
+      padding-top: $padding-large-vertical;
+    }
+
+    .lia-panel-heading-bar {
+      border-bottom: 1px solid $li-border-color;
+    }
+
+    .lia-panel-heading-bar-count {
+      font-size: $font-size-large;
+      font-weight: normal;
+    }
+
+    .lia-panel-heading-bar-title {
+      line-height: $line-height-base;
+
+      > .lia-count-number {
+        @extend %panel-header-secondary-font;
+      }
+    }
+
+    .lia-view-all {
+      background: none;
+      border: 0;
+      margin: 0;
+      padding: 0;
+
+      .lia-link-navigation {
+        @include li-icon(icon-link-view-all, $color: $gray-light,
+          $size: $font-size-h3, $line-height: $line-height-medium, $hide-text: true);
+
+        left: 0;
+        padding: $panel-heading-padding;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0;
+      }
+    }
+  }
+
+  // treat most content tables like panels
+  .MessageList,
+  .UserList,
+  .BoardList {
+    > .t-data-grid {
+      background-color: $li-bg-secondary;
+      border-radius: $panel-border-radius;
+
+      // as the data tables have the panel styling, unstyle the container
+      // we do this as it's inconsistent whether the data tables have a
+      // containing panel
+      .lia-panel & {
+        background-color: transparent;
+        border-radius: 0;
+      }
+    }
+  }
+
+  //Q and A specific for now
+  .QandAPage {
+    @include media(tablet-and-smaller) {
+      .lia-message-view-display {
+        @include box-shadow(none);
+        border: {
+          bottom: 1px solid $li-border-panel;
+          left: 0;
+          right: 0;
+          top: 0;
+        }
+        border-radius: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

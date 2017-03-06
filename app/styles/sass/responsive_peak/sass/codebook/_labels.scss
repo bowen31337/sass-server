@@ -1,0 +1,224 @@
+// Labels
+//
+// Classes for labels.
+//
+// Markup:
+// <div class="lia-message-labels lia-component-labels-with-title
+//             LabelsForArticle LabelsList">
+//   <ul class="lia-list-standard-inline">
+//     <li class="label">
+//       <a class="label-link lia-link-navigation">foo</a>
+//     </li>
+//     <li class="label">
+//       <a class="label-link lia-link-navigation">bar</a>
+//     </li>
+//     <li class="label">
+//       <a class="label-link lia-link-navigation">baz</a>
+//     </li>
+//   </ul>
+// </div>
+//
+// Style guide: codebook.labels
+
+$labels_label-default-bg:         $gray-light !default;
+$labels_label-default-color:      $li-text-color-inverse !default;
+$labels_label-inverse-bg:         $gray-lighter !default;
+$labels_label-inverse-color:      $labels_label-default-bg !default;
+
+
+@mixin codebook\labels {
+
+  // the "Label: " in front of labels
+  .article-labels-title {
+    display: none;
+  }
+
+  .label-link {
+    @include li-extend('.label');
+    @include li-extend('.label-default');
+
+    display: inline-block;
+  }
+
+  // undo bootstrap labels and apply to label-link
+  .LabelsList {
+    > .lia-list-standard-inline {
+      margin-left: 0;
+    }
+
+    // most labels are inline in a ul.lia-list-standard-inline
+    .label {
+      color: $text-color;
+      font-size: $font-size-base;
+      font-weight: normal;
+      padding: {
+        bottom: $padding-small-vertical;
+        left: 0;
+        right: 0;
+        top: 0;
+      }
+      text-align: initial;
+    }
+
+    // labels that are vertical
+    .lia-list-standard > .label {
+      display: block;
+    }
+  }
+
+  .lia-component-labels {
+    margin-bottom: $padding-small-vertical;
+  }
+
+  %label-alt {
+    .label-link {
+      background-color: $labels_label-inverse-bg;
+      border: 1px solid transparent;
+      color: $labels_label-inverse-color;
+      display: block;
+      text-align: left;
+      text-decoration: none;
+      white-space: nowrap;
+
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: $labels_label-default-bg;
+        color: $labels_label-default-color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  %label-md {
+    .label-link {
+      border-radius: $border-radius-small;
+      padding: {
+        bottom: $padding-base-vertical;
+        left: $padding-base-horizontal;
+        right: $padding-base-horizontal;
+        top: $padding-base-vertical;
+      }
+    }
+  }
+
+  %label-sm {
+    .label-link {
+      border-radius: $border-radius-base;
+      font-size: $font-size-base;
+      line-height: $line-height-medium;
+      padding: {
+        bottom: $padding-small-vertical;
+        left: $padding-small-horizontal;
+        right: $padding-small-horizontal;
+        top: $padding-small-vertical;
+      }
+    }
+  }
+
+  %label-xs {
+    .label-link {
+      border-radius: $border-radius-base;
+      font-size: $font-size-small;
+      line-height: $line-height-small;
+      padding: {
+        bottom: $padding-xs-vertical;
+        left: $padding-xs-horizontal;
+        right: $padding-xs-horizontal;
+        top: $padding-xs-vertical;
+      }
+    }
+  }
+
+  // this requires a parent with a max or defined width for truncation to work
+  %label-with-truncation {
+    .label-link {
+      @include text-overflow;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  // alternate label styling with name and count in a contained pill
+  // assumes sm size
+  %label-with-truncation-and-counts {
+    @extend %label-with-truncation;
+    position: relative;
+
+    .label-link {
+      padding-right: $padding-small-horizontal * 3.5;
+    }
+
+    .label-count {
+      @include border-right-radius($border-radius-base - 1px);
+      background-color: $li-bg-secondary;
+      color: $text-muted;
+      font-size: $font-size-small;
+      line-height: $line-height-medium-computed;
+      min-width: $padding-small-horizontal * 3;
+      padding: {
+        bottom: $padding-small-vertical;
+        left: $padding-small-horizontal;
+        right: $padding-small-horizontal;
+        top: $padding-small-vertical;
+      }
+      position: absolute;
+      right: 1px;
+      text-align: center;
+      top: 1px;
+    }
+  }
+
+  .article-labels-title {
+    display: none;
+  }
+
+  .LabelsForArticle {
+    // Taking out comma
+    .separator {
+      display: none;
+    }
+
+    // actual labels in articles
+    .label-link {
+      background-color: $labels_label-inverse-bg;
+      color: $labels_label-inverse-color;
+      padding: $padding-small-vertical $padding-small-horizontal;
+    }
+  }
+
+  .BlogArticlePage,
+  .ForumTopicPage {
+    .LabelsForArticle {
+      .label-link {
+        background-color: $labels_label-default-bg;
+        border-radius: $border-radius-round;
+        color: $labels_label-default-color;
+        margin-bottom: $padding-small-horizontal;
+        margin-right: $padding-small-horizontal;
+        padding: $padding-large-vertical $padding-large-horizontal;
+      }
+    }
+  }
+
+  .BlogArticlePage {
+    .lia-message-labels {
+      padding: {
+        left: $padding-xl-horizontal;
+        right: $padding-xl-horizontal;
+        top: $padding-medium;
+      }
+    }
+  }
+
+  // Hierarchical labels
+  .lia-labels-concepts-wrapper {
+    .lia-tooltip-trigger {
+      display: inline-block;
+    }
+  }
+
+  .FilteredByLabelName {
+    margin-bottom: $padding-xl-vertical;
+  }
+}

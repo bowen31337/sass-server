@@ -1,0 +1,525 @@
+
+// Search Page
+//
+$search-page_advanced-date-range-col-width:     40px !default;
+$search-page_tree-icon-size:                    20px !default;
+
+@mixin components\search-page {
+
+  .lia-component-search-encapsulation .lia-tabs-standard {
+    margin-bottom: $padding-large-vertical;
+  }
+
+  // tkb search field is in a fieldset, message search isn't
+  .lia-form-search-fieldset-toggle.lia-form-fieldset-wrapper {
+    margin-bottom: 0;
+
+    .lia-form-search-query-entry {
+      margin-bottom: 0;
+    }
+  }
+
+  // tkb fieldset controls
+  .lia-form-radio-group {
+    input[type=checkbox] {
+      margin-right: $padding-small-horizontal;
+    }
+
+    input[type=radio] {
+      margin-right: $padding-xs-horizontal;
+    }
+  }
+
+  // by location tree navigation
+  .lia-list-tree-toggle-node {
+    > ul {
+      margin-left: $search-page_tree-icon-size;
+    }
+  }
+
+  .SearchToggleFieldFilter {
+    display: inline-block;
+  }
+
+  .lia-summary-view-message-list,
+  .thread-search-results-list {
+    clear: both;
+    padding-top: $padding-large-vertical;
+  }
+
+  // Advanced Search
+  .advancedSearchPanel {
+    .lia-panel-heading-bar {
+      @include clearfix;
+
+      > a {
+        float: right;
+      }
+    }
+
+    .lia-panel-heading-bar-controls-icon-maximize {
+      display: none;
+    }
+
+    .lia-panel-heading-bar-title {
+      float: left;
+    }
+  }
+
+  .AdvancedSearchForm {
+    border-top: 1px solid $li-border-color;
+
+    // special case handling for date range column width
+    .lia-quilt-column-08.lia-quilt-column-inner.range-editor-label {
+      width: $search-page_advanced-date-range-col-width;
+    }
+  }
+
+  .AdvancedThreadSearchForm,
+  .AdvancedSearchForm {
+    &.lia-component-search-advanced {
+      border-bottom: 1px solid $li-border-color;
+    }
+
+    .lia-panel-content {
+      padding: {
+        bottom: 0;
+        left: $panel-body-padding;
+        right: $panel-body-padding;
+        top: $panel-body-padding;
+      }
+    }
+
+    .lia-panel-heading-bar-wrapper {
+      display: none;
+    }
+
+    .lia-form-open-response-input {
+      top: 1.5em;
+    }
+
+    .lia-form-row-reverse-label-input {
+      margin-top: 0;
+
+      label {
+        padding-left: 0;
+      }
+    }
+
+    .lia-advanced-thread-search-instructions {
+      float: right;
+    }
+  }
+
+  .lia-advanced-search-closed {
+    .lia-advanced-search-close-link {
+      @include li-extend('.hide');
+    }
+
+    .lia-advanced-search-open-link {
+      @include li-extend('.show');
+    }
+  }
+
+  .lia-advanced-search-open {
+    .lia-advanced-search-close-link {
+      @include li-extend('.show');
+    }
+
+    .lia-advanced-search-open-link {
+      @include li-extend('.hide');
+    }
+  }
+
+  // search filter fieldsets
+  .search-filters,
+  .tkb-search {
+
+    input[disabled=disabled] + label,
+    .disabled label,
+    .lia-link-disabled {
+      cursor: not-allowed;
+      font-style: italic;
+      font-weight: normal;
+      opacity: $li-disabled-opacity;
+    }
+
+    legend {
+      font-size: $font-size-large;
+      margin-bottom: $padding-large-vertical;
+    }
+
+    .filter-toggle {
+      margin-right: $padding-xs-horizontal;
+    }
+
+    .lia-form-fieldset-content-wrapper {
+      margin-bottom: $padding-large-vertical;
+      margin-left: 21px;
+    }
+
+    .lia-form-fieldset-wrapper {
+      margin-bottom: $padding-large-vertical;
+    }
+
+    .lia-form-row {
+      margin-bottom: 0;
+    }
+
+    // the label sort dropdown is named the same as the search results sort
+    // dropdown. this requires a lia fix to resolve the class conflict
+    .lia-menu-action-search-result-sorting {
+      margin-bottom: $padding-large-vertical;
+    }
+  }
+
+  // for tkb the filter header "Show" is a <legend>
+  .search-filter-header {
+    background-color: inherit;
+    background-image: inherit;
+    border: inherit;
+    box-shadow: none;
+
+    .lia-panel-heading-bar {
+      border: inherit;
+      padding: inherit;
+    }
+
+    .lia-panel-heading-bar-title {
+      margin-bottom: $padding-small-vertical;
+    }
+  }
+
+  // discussion count and sort dropdown
+  .search-menu-bar {
+    display: table;
+    margin: {
+      bottom: $panel-body-padding;
+      top: $panel-body-padding;
+    }
+    width: 100%;
+
+    .lia-menu-action-search-result-sorting {
+      display: table-cell;
+    }
+
+    .search-result-count {
+      display: table-cell;
+      margin-bottom: $padding-small-horizontal;
+      padding-left: $padding-xs-horizontal;
+      vertical-align: middle;
+      width: 100%;
+    }
+
+    .search-result-sort-by-label {
+      display: table-cell;
+      padding-right: $padding-small-horizontal;
+      vertical-align: middle;
+    }
+
+    .search-result-sorting {
+      display: table-cell;
+      text-align: right;
+      white-space: nowrap;
+    }
+  }
+
+  .search-result-main {
+    padding-right: 0;
+  }
+
+  // admin search dropdown and subscribe / permalink links
+  .search-result-menu-bar {
+    display: table;
+    margin-top: $padding-large-vertical;
+    width: 100%;
+
+    .search-action-menu {
+      display: table-cell;
+    }
+
+    .search-result-syndicate {
+      display: table-cell;
+      text-align: right;
+      vertical-align: middle;
+      width: 100%;
+    }
+  }
+
+  .search-result-message-icon {
+    float: left;
+    padding-right: $padding-xs-horizontal;
+
+    > img {
+      height: $font-size-small;
+    }
+  }
+
+  .user-search-container {
+    padding: {
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .user-search-item-results {
+    .thread-search-results-list {
+      padding-left: $grid-gutter-width / 2;
+      padding-right: $grid-gutter-width / 2;
+    }
+  }
+
+  .lia-search-results-empty {
+    margin-bottom: $panel-body-padding;
+  }
+
+  .lia-search-match-lithium {
+    background-color: $li-text-highlight-bg;
+    padding: .2em;
+    color: $text-color;
+
+    padding: {
+      bottom: 0;
+      top: 0;
+    }
+  }
+
+  .user-search-result-container {
+    > .lia-quilt-column-left {
+      @include li-extend('.col-md-24');
+      @include li-extend('.col-sm-16');
+      @include li-extend('.col-xs-24');
+    }
+
+    > .lia-quilt-column-right {
+      @include li-extend('.col-md-24');
+      @include li-extend('.col-sm-8');
+      @include li-extend('.col-xs-24');
+
+      padding-left: 0;
+    }
+
+    // identical classes being applied at different depths prevents applying
+    // styles to lia-summary-view-statistics-wrapper universally
+    .lia-summary-view-statistics-wrapper > .lia-quilt-column-alley-right,
+    .user-search-result-statistics-block-left > .lia-summary-view-statistics-wrapper {
+      @include li-extend('.lia-fa-ul');
+    }
+
+    .lia-summary-view-statistic {
+      font-size: $font-size-small;
+      position: relative;
+
+      &:before {
+        @include li-extend('.lia-fa-li');
+      }
+    }
+
+    .lia-summary-view-statistic-email {
+      padding-left: $padding-small-horizontal;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    .search-user-avatar-container {
+      float: left;
+      padding-right: $padding-small-horizontal;
+    }
+
+    .user-search-result-statistics-block-left {
+      margin-top: $padding-large-vertical;
+    }
+  }
+
+  @include media(tablet) {
+    .lia-search-form-links-secondary, // advanced search and subscribe links
+    .lia-component-search-widget-search-filter-container, // search filters
+    .lia-content .tkb-search .lia-quilt-row-last > .lia-quilt-column-left { // tkb filters
+      display: none;
+    }
+  }
+
+  @include media(tablet-and-larger) {
+    .search-result-batch-checkbox {
+      position: absolute;
+      top: 24px;
+    }
+  }
+
+  @include media(phone) {
+    .search-result-sort-by-label,       // 'sort by: ' text next to dropdown
+    .search-result-syndicate {
+      display: none;
+    }
+  }
+
+  .lia-component-search-encapsulation {
+    @include clearfix;
+  }
+
+
+  // position tabs to allow for right side controls
+  .lia-search-tab-bar {
+    position: relative;
+
+    .lia-component-search-tabs {
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+
+      // advanced link and options menu could overlay tabs
+      .lia-tabs {
+        z-index: 10;
+      }
+    }
+  }
+
+  // any of these components could follow the positioned tabs
+  .lia-component-search-advanced,
+  .lia-component-search-breadcrumb,
+  .lia-component-search-filter,
+  .lia-component-search-filter-header {
+    clear: both;
+  }
+
+  .lia-component-search-widget-search-menu-bar {
+    margin-bottom: $padding-large-vertical;
+
+    .search-result-sort-by-label {
+      @include media(phone) {
+        display: none;
+      }
+    }
+  }
+
+  // undo some of the generic quilt manipuluation in _grid.scss
+  .lia-quilt-search-page {
+    .lia-component-quilt-header {
+      border-bottom: 0;
+    }
+
+    > .lia-quilt-row-main {
+      background-color: $li-bg-secondary;
+
+      > .lia-quilt-column-main-content {
+        background-color: inherit;
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+
+        > .lia-quilt-column-alley-single {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .lia-message-search-container,
+  .lia-search-container {
+    .lia-quilt-column-common-header {
+      border-bottom: 1px solid $li-border-color;
+
+      .lia-component-search-widget-user-search & {
+        border-bottom: 0;
+      }
+
+      > .lia-quilt-column-alley-single {
+        background-color: $li-bg-secondary;
+      }
+    }
+
+    > .lia-quilt {
+      > .lia-quilt-row-header {
+        background-color: $li-bg-secondary;
+      }
+
+      > .lia-quilt-row-main {
+        background-color: $body-bg;
+
+        > .lia-quilt-column-main-content {
+          &:first-child {
+            padding-left: $panel-body-padding;
+          }
+
+          &:last-child {
+            padding-right: $panel-body-padding;
+          }
+        }
+      }
+    }
+
+    .lia-paging-full-wrapper {
+      clear: both;
+      margin-bottom: $panel-body-padding;
+    }
+  }
+
+  .lia-search-spellchecked .lia-search-spellcheck {
+    padding: {
+      bottom: $panel-body-padding;
+      left: $panel-body-padding + $padding-base-horizontal;
+      right: $panel-body-padding;
+    }
+  }
+
+  .lia-search-title.lia-search-title {
+    font-size: $font-size-h1;
+    margin-bottom: $padding-xl-vertical;
+    margin-top: $padding-large-vertical;
+    text-align: center;
+  }
+
+  .search-instead-for-link,
+  .do-you-mean-link {
+    font-style: italic;
+  }
+
+  .SearchPage {
+    .lia-tabs-standard-wrapper {
+      > .lia-tabs-standard {
+        background-color: $li-bg-secondary;
+        margin-bottom: 0;
+        padding-left: $panel-body-padding;
+        padding-right: $panel-body-padding;
+      }
+    }
+  }
+
+  // search form on the search page
+  .lia-component-search-widget-search-page-form {
+    padding: {
+      bottom: $panel-body-padding * 3;
+      left: $panel-body-padding;
+      right: $panel-body-padding;
+    }
+  }
+
+  // Spam Quarantine search page
+  //
+  .lia-spam-search {
+    // spam quarantine is using a 3 column quilt but only using 2 columns
+    // extend search to fill available space and don't repeat control on top
+    // quilt modification like this is generally discouraged, adding here until
+    // a version we can do properly (if ever) -mikey 8/2/16
+    // styling of the form itself is in _search-form.scss
+    .lia-quilt-row-first {
+      .lia-quilt-column-left,
+      .lia-quilt-column-right {
+        display: none;
+      }
+
+      .lia-quilt-column-inner {
+        @include make-xs-column(24);
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}

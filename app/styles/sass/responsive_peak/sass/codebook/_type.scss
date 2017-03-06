@@ -1,0 +1,493 @@
+// Typography
+//
+// Several classes governing the appearance of type.
+//
+// Markup:
+// <div class="lia-message-body-content"> The quick brown fox - body content </div>
+// <div class="lia-attachment"> The quick brown fox - attachment </div>
+// <div class="lia-component-author ">
+//   The quick brown fox - author
+//   <div class="lia-message-author-rank"> The quick brown fox - rank </div>
+//   <div class="lia-user-name-link"> The quick brown fox - username </div>
+// </div>
+// <div class="lia-component-position-in-thread">
+//   <a> The quick brown fox - link </a>
+//   <span> - span </span>
+// </div>
+// <div class="lia-browser-category-heading">
+// <h2> The quick brown fox - heading </h2>
+// <div class="category-title"> The quick brown fox - category title </div
+// <div class="board-count"> The quick brown fox - board count</div>
+//
+// Style guide: codebook.type
+
+@mixin codebook\type {
+
+  %title-font {
+    color: $gray;
+    font-size: $font-size-page-title;
+    font-weight: $font-weight-content;
+    line-height: $headings-line-height;
+
+    @include media(phone) {
+      font-size: $font-size-h2;
+    }
+  }
+
+  %title-main-font {
+    font-size: $font-size-h2;
+
+    @include media(phone) {
+      font-size: $font-size-h4;
+    }
+  }
+
+  %section-header-font {
+    font-size: $font-size-h4;
+    font-weight: $headings-font-weight;
+    line-height: $headings-line-height;
+  }
+
+  %modal-section-header-font {
+    color: $gray;
+    font-size: $font-size-large;
+    font-weight: $headings-font-weight;
+    line-height: $headings-line-height;
+  }
+
+  %sub-section-header-font {
+    font-size: $font-size-large;
+    font-weight: $headings-font-weight;
+    line-height: $headings-line-height;
+  }
+
+  %section-header-label-font {
+    font-size: $font-size-large;
+    font-weight: $font-weight-content;
+    line-height: $headings-line-height;
+    color: $headings-small-color;
+  }
+
+  %content-font {
+    font-size: $font-size-large;
+    font-weight: $font-weight-content;
+    line-height: $line-height-base;
+  }
+
+  %base-font {
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+  }
+
+  %small-font {
+    font-size: $font-size-small;
+    line-height: $line-height-base;
+  }
+
+  %subject-font {
+    color: $text-color;
+    font-size: $li-font-size-subject;
+    line-height: $line-height-large;
+  }
+
+  %panel-header-secondary-font {
+    font-size: $font-size-large;
+    font-weight: $font-weight-content;
+  }
+
+  .lia-content .xsmall-text {
+    @include li-extend('.small');
+  }
+
+  .lia-content {
+    // reset h1 - h6
+    // reset to suppress margins and sizes
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+    }
+  }
+
+
+  .lia-component-common-widget-page-title {
+    > .lia-link-navigation {
+      @extend %title-font;
+    }
+  }
+
+
+  // Message page
+
+  // area containing author information for message pages
+  // mute the secondary text (post count, registered date)
+
+  .lia-message-body-content .attachments-label {
+    @include li-extend('.small');
+    @include li-extend('.text-muted');
+  }
+
+  .lia-attachment {
+    @extend %base-font;
+  }
+
+  .lia-component-author {
+    color: $text-muted;
+
+    // except the rank
+    .lia-message-author-rank {
+      @extend %base-font;
+      color: $text-color;
+    }
+
+    .lia-user-name-link {
+      @extend %content-font;
+    }
+  }
+
+  // message position in thread
+  .lia-component-position-in-thread {
+    a {
+      color: $li-navigation-link-color;
+      text-decoration: underline;
+    }
+
+    span {
+      @include li-extend('.small');
+
+      white-space: nowrap;
+    }
+  }
+
+  // tkb search field on the tkb community page is different from the other
+  // search fields
+  .lia-component-tkb-widget-search-bar {
+    .lia-form-label {
+      @extend %sub-section-header-font;
+    }
+  }
+
+  .lia-component-users-widget-unsaved-drafts {
+    .lia-unsaved-drafts-date {
+      @include li-extend('.small');
+      @include li-extend('.text-muted');
+    }
+  }
+
+  .lia-component-forums-widget-board-browser-list {
+    // board title in node lists
+    .board-icon,
+    .board-title {
+      @extend %sub-section-header-font;
+      display: inline-block;
+    }
+  }
+
+  // message subject in message lists (but not message pages!)
+  .message-subject,
+  .subscription {
+    display: inline; // inline to accomdate paging and icons for multiline
+
+    .lia-list-slim & {
+      @extend %base-font;
+      margin: 0;
+    }
+  }
+
+  // There is a hardcoded h5 tag in MessageSubject.tml when the subject is not clickable
+  .MessageSubjectIcons {
+    .lia-message-subject {
+      display: inline;
+
+      > h5 {
+        display: inline;
+      }
+    }
+  }
+
+  // category title container in node lists
+  .lia-browser-category-heading {
+
+    > h2 {
+      display: inline-block;
+    }
+
+    // category title in node lists
+    .category-title {
+      @extend %section-header-font;
+    }
+
+    // board count next to category titles in node lists
+    .board-count {
+      color: $headings-small-color;
+    }
+  }
+
+  // message subject on message pages. the surrounding tag (h1-h6, div) is
+  // selectable in the admin.
+  .lia-component-subject-blurb-header,
+  .lia-message-subject,
+  .message-subject {
+    &,
+    > h1,
+    > h2,
+    > h3,
+    > h4,
+    > h5,
+    > h6,
+    .lia-link-navigation {
+      @extend %prevent-overflow;
+      @extend %subject-font;
+    }
+
+    > h1,
+    > h2,
+    > h3,
+    > h4,
+    > h5,
+    > h6 {
+      // setting font-size inherit so that subjects with h# can be styled
+      // using classes instead of targeting the element
+      font-size: inherit;
+    }
+
+    .lia-message-subject-status {
+      @extend %base-font;
+      font-weight: normal;
+    }
+  }
+
+  // primary message body text
+  .lia-media-snippet-container,
+  .lia-message-body,
+  .lia-message-body-content,
+  .lia-message-editor {
+    @extend %content-font;
+
+    a {
+      color: $li-message-link-color;
+      text-decoration: underline;
+    }
+
+    // message quoting
+    blockquote {
+      @extend %base-font;
+      opacity: .8;
+    }
+  }
+
+  // specificity over tinymce's content.min.css
+  .lia-message-editor {
+    p,
+    div,
+    td {
+      @extend %content-font;
+
+      font-family: inherit;
+    }
+  }
+
+  .lia-message-posted-on {
+    color: $text-muted;
+  }
+
+  .lia-message-tkb {
+
+    // used for section headers, answer, question etc
+    h2 {
+      @extend %sub-section-header-font;
+    }
+
+    .lia-message-subject {
+      @extend %section-header-font;
+
+    }
+  }
+
+  .lia-message-dates,
+  .board-list-latest .lia-message-item,
+  .lia-content .xsmall-text {
+    color: $gray-light;
+  }
+
+  // read and unread states should have a somewhat strong selector
+  // when messages have been read, change from bold to normal
+  .lia-content .lia-message-read.lia-message-read {
+    &.lia-link-navigation,
+    > .lia-link-navigation {
+      font-weight: 300;
+    }
+  }
+
+  // when messages are unread, bold the subject
+  .lia-content .lia-message-unread.lia-message-unread {
+    &.lia-link-navigation,
+    > .lia-link-navigation {
+      font-weight: normal;
+    }
+  }
+
+  // section headers are used most often in the header underneath the main
+  // message that is the header for the section below.
+  // For a blog article, section-header is the "Comments" header below the article
+  // in places like q&a question, it's the "Other Answers" section of the page
+  .lia-section-header {
+    margin-bottom: $padding-large-vertical;
+
+    .lia-section-header-title {
+      @extend %sub-section-header-font;
+    }
+
+    .lia-section-header-label {
+      @extend %section-header-label-font;
+    }
+  }
+
+  .lia-summary-view-message-subject-supplement {
+    @extend %base-font;
+
+    display: block;
+    padding-bottom: $padding-large-vertical;
+    padding-top: $padding-small-vertical;
+  }
+
+  .lia-user-leaderboard-rank {
+    @extend %sub-section-header-font;
+
+    min-width: $li-font-size-subject * 2;
+    padding-right: $li-font-size-subject / 2;
+    text-align: right;
+  }
+
+
+  .lia-text {
+    margin-bottom: $padding-large-vertical;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .lia-message-by,
+  .lia-user-name,
+  .local-date,
+  .local-friendly-date,
+  .local-time {
+    white-space: nowrap;
+
+    .lia-message-body-content &,
+    .lia-message-editor & {
+      white-space: normal;
+    }
+  }
+
+  .lia-body .ui-dialog-title {
+    @extend %sub-section-header-font;
+  }
+
+  .lia-label-required-mark {
+    color: $state-danger-text;
+  }
+
+  @include media(phone) {
+    .lia-data-cell-secondary,
+    .lia-data-cell-tertiary {
+      font-size: $font-size-small;
+    }
+
+    .lia-list-wide {
+      .message-subject {
+        font-size: $font-size-base;
+      }
+    }
+  }
+
+
+  %section-header-font {
+    font-size: $font-size-h4;
+  }
+
+  %sub-section-header-font {
+    font-size: $font-size-h4;
+  }
+
+  %secondary-text {
+    font-size: $font-size-base;
+    font-weight: 300;
+  }
+
+  %content-font {
+    font-size: $font-size-large;
+    font-weight: $font-weight-content;
+    line-height: $line-height-base;
+  }
+
+  %small-label {
+    font-size: $font-size-small;
+    text-transform: uppercase;
+  }
+
+  %xsmall-label {
+    color: $gray;
+    font-size: $font-size-xsmall;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  .lia-message-stats-label {
+    @extend %xsmall-label;
+  }
+
+  .lia-count-label,
+  .lia-recent-message-count-label {
+    @extend %xsmall-label;
+
+    @include media(phone) {
+      display: none;
+    }
+  }
+
+  .lia-new-message-count,
+  .lia-recent-message-count {
+    font-size: $font-size-h4;
+    font-weight: $headings-font-weight;
+
+    @include media(phone) {
+      font-size: $font-size-base;
+      font-weight: 300;
+    }
+  }
+
+  // styles affecting all lithium content
+  .lia-content {
+    .xsmall-text {
+      color: $text-muted;
+    }
+  }
+
+  .lia-count {
+    font-size: $font-size-base;
+    font-weight: 300;
+  }
+
+  // replace read / unread with a dot instead of bold
+  //.lia-user-status-registered {
+  //  .lia-message-unread {
+  //    .lia-link-navigation {
+  //      font-weight: normal;
+  //    }
+  //
+  //    &:before {
+  //      color: $brand-primary;
+  //      content: '\2022';F
+  //      display: inline;
+  //      font-size: $font-size-h4;
+  //      line-height: 1;
+  //    }
+  //  }
+  //}
+
+}

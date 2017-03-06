@@ -1,0 +1,376 @@
+// Forms
+//
+// Classes to build uniform forms and control elements.
+//
+// Style guide: codebook.forms
+
+@mixin codebook\forms {
+  // scss-lint:disable QualifyingElement
+
+  $images-button-calendar-height: 16px !default;
+  $images-button-calendar-width: 16px !default;
+
+  %unstyle-field {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .lia-content input[type=text],
+  .lia-content select,
+  .lia-content textarea,
+  .lia-form-subject-input,
+  .lia-form-tiny-mce-editor-input,
+  .lia-form-type-text,
+  .lia-message-editor,
+  .mce-edit-area.mce-panel,
+  .mce-form .mce-textbox {
+    @include li-extend('.form-control');
+    @include placeholder;
+
+    // phone and tablet
+    @include media(tablet) {
+      // prevent zooming on ios safari when clicking on form fields.
+      font-size: 16px !important;
+    }
+  }
+
+  .lia-content label {
+    font-weight: normal;
+  }
+
+  .lia-content legend {
+    border-bottom: 0;
+  }
+
+  .lia-content select {
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .lia-content select[multiple],
+  .lia-content select[size] {
+    height: auto;
+  }
+
+  // display as form rows
+  .lia-already-registered-dialog-action,
+  .lia-forgot-password,
+  .lia-new-user-dialog-action {
+    @include li-extend('.lia-form-row');
+
+    display: inline-block;
+  }
+
+  .lia-form-buttons-empty-left-column {
+    .lia-quilt-column-alley-left,
+    .lia-quilt-column-left {
+      max-height: 1px;
+    }
+  }
+
+  .lia-form-captcha-input.lia-form-type-text {
+    @extend %unstyle-field;
+  }
+
+  .lia-form-horizontal {
+    .lia-captcha-image-container img,
+    .lia-captcha-actions {
+      margin-left: calc(33.3333% + #{$grid-gutter-width / 2});
+      max-width: calc(66.6666% - #{$grid-gutter-width / 2});
+    }
+  }
+
+  .lia-captcha-image-container {
+    margin-bottom: $padding-large-vertical;
+    width: auto !important;
+  }
+
+  .lia-form-row.lia-form-captcha-entry {
+    .lia-form-captcha-input {
+      height: auto;
+    }
+
+    .lia-form-validation-help-text {
+      margin-bottom: 0;
+    }
+  }
+
+  .lia-captcha .recaptcha_isnot_showing_audio .recaptcha_only_if_audio,
+  .lia-captcha .recaptcha_is_showing_audio .recaptcha_only_if_image,
+  .lia-captcha-verified #recaptcha_response_field,
+  .lia-captcha-verified ul,
+  .lia-captcha-verified #recaptcha_image,
+  .lia-captcha-noscript ul.lia-list-standard-inline li {
+    display: none;
+  }
+
+  .lia-captcha-noscript li.lia-captcha-help,
+  .lia-captcha-noscript li.recaptcha_only_if_image {
+    display: block;
+  }
+
+  .lia-form-horizontal {
+    @include li-extend('.form-horizontal');
+
+    // non-form fields (text) in the input area need a little padding.
+    .lia-form-input-wrapper {
+      .email-verification-input,
+      .lia-form-current-email-display {
+        padding-top: 7px;
+      }
+    }
+
+    .lia-form-label-wrapper {
+      text-align: right;
+    }
+
+    // scss-lint:disable DeclarationOrder
+    @include media(tablet) {
+      .lia-form-label,
+      .lia-form-label-wrapper {
+        margin-bottom: $padding-xs-vertical;
+        text-align: left;
+      }
+
+      .lia-form-row {
+        margin-bottom: $padding-xl-vertical;
+      }
+    }
+
+    .lia-form-radio-group {
+      margin-top: 6px;
+    }
+
+  }
+
+  .lia-form-error-text {
+    @include li-extend('.text-danger');
+
+    margin-top: $padding-small-vertical;
+  }
+
+  .lia-form-label {
+    @include li-extend('.control-label');
+  }
+
+  .lia-form-row-reverse-label-input {
+    @include li-extend('.checkbox');
+
+    // the input isn't wrapped in a label as expected
+    input[type=checkbox] {
+      margin-left: 0;
+    }
+  }
+
+  .lia-form-type-file {
+    line-height: 1;
+  }
+
+  .lia-form-type-file-hidden {
+    left: -9999px;
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .lia-form-validation-help-text {
+    @include li-extend('.help-block');
+  }
+
+  .lia-form-footer,
+  .lia-form-row,
+  .lia-text-form,
+  .lia-panel.search-filter-header {
+    margin-bottom: $form-group-margin-bottom;
+  }
+
+  .lia-form-vertical {
+    .lia-form-submit {
+      float: right;
+    }
+  }
+
+  // jqueryui datepicker image
+  .lia-form-input-wrapper .ui-datepicker-trigger {
+    cursor: pointer;
+    padding: ($input-height-base - $images-button-calendar-height) / 2;
+    position: absolute;
+    right: $images-button-calendar-width;
+    top: 0;
+  }
+
+  .lia-form-submit-wrapper {
+    margin-top: $form-group-margin-bottom;
+  }
+
+  // checkboxes are usually set up label (8col) - checkbox (16col). for small
+  // devices make this behave more inline with the checkbox followed by label
+  @include media(tablet) {
+    .lia-form-row-reverse-label-input {
+
+    }
+  }
+
+  // for jQuery-ui datepicker
+  .ui-datepicker {
+    @include li-extend('.dropdown-menu');
+  }
+
+
+  .lia-content {
+    label,
+    .lia-fieldset-title {
+      font-size: $font-size-large;
+      font-weight: bold;
+    }
+  }
+
+  .lia-fieldset-title {
+    @include li-extend('label');
+    display: inline-block;
+    outline: none;
+    position: relative;
+    width: auto;
+
+    .lia-form-fieldset-toggle {
+      left: 0;
+      outline: none;
+      position: absolute;
+      width: 100%;
+    }
+
+    .lia-form-label {
+      font-size: $font-size-base;
+    }
+  }
+
+  .lia-form-fieldset-toggelable {
+    .lia-fieldset-title,
+    .lia-form-fieldset-content-wrapper {
+      padding-left: $padding-large-horizontal;
+    }
+
+    .lia-form-label {
+      font-size: $font-size-base;
+    }
+  }
+
+  .lia-form-radio-group label {
+    font-size: $font-size-base;
+    font-weight: normal;
+  }
+
+  .lia-form-horizontal {
+    @include media(desktop) {
+      .lia-form-label {
+        padding-top: 4px;
+      }
+    }
+  }
+
+  .lia-form-row-reverse-label-input {
+    margin-top: 0;
+  }
+
+  .lia-form-row-checkbox {
+    // lithium horizontal forms have no .checkbox or .radio wrapper
+    input[type=checkbox] {
+      font-size: $font-size-large;
+      // margin top half of the line height difference + border
+      // checkbox margin + label top padding
+      margin-top: ($line-height-computed - $font-size-base + 2px) / 2 + $padding-base-vertical;
+
+      @include media(phone) {
+        margin-top: $padding-base-vertical;
+      }
+    }
+
+    //.lia-form-input-wrapper {
+    //  min-height: $line-height-computed + $padding-base-vertical + 1px;
+    //}
+
+    &.lia-form-row-reverse-label-input {
+      input[type=checkbox] {
+        // margin top half of the line height difference + border
+        margin-top: ($line-height-computed - $font-size-base + 2px) / 2;
+      }
+
+      .lia-form-label {
+        font-size: $font-size-base;
+        font-weight: normal;
+        padding-left: $padding-xl-horizontal + 1px;
+      }
+    }
+
+    // swap label left / checkbox right structure for tablet and mobile
+    @include media(tablet) {
+      position: relative;
+
+      .lia-form-label {
+        font-weight: normal;
+      }
+
+      > .lia-quilt-row {
+        // checkbox column of a horizontal form checkbox row
+        > .lia-quilt-column-left {
+          left: $padding-xl-horizontal + 1px;
+          position: relative;
+          width: calc(100% - #{$padding-xl-horizontal + 1px});
+        }
+
+        // label column of a horizontal form checkbox row
+        > .lia-quilt-column-right {
+          position: absolute;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  .help-icon:hover {
+    cursor: default;
+  }
+
+  .help-icon {
+    @include media(phone) {
+      font-size: $font-size-h4;
+    }
+  }
+
+  .lia-form.lia-form-inline.lia-form-footer-inside-fieldset {
+    .lia-fieldset-title {
+      display: block;
+    }
+
+    .lia-form-content-footer-wrapper {
+      display: table;
+      .lia-input-edit-form-row * {
+        width: 100%;
+      }
+
+      @include media(phone) {
+        display: block;
+      }
+    }
+
+    .lia-input-edit-form-row {
+      @include media(tablet-and-larger) {
+        padding-right: $padding-xl-horizontal;
+      }
+      width: 100%;
+    }
+
+    .lia-input-edit-form-row,
+    .lia-form-footer {
+      display: table-cell;
+      vertical-align: top;
+      @include media(phone) {
+        display: flex;
+        justify-content: center;
+        .lia-button-group {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

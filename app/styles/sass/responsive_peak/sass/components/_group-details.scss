@@ -1,0 +1,83 @@
+@mixin components\group-details {
+
+  .lia-group-details {
+    font-weight: 300;
+    padding-top: $padding-large-vertical;
+
+    .lia-group-icon-wrapper {
+      padding: {
+        right: $panel-body-padding;
+        top: $padding-small-vertical;
+      }
+
+      .lia-group-icon {
+        max-height: $li-group-icon-size;
+        max-width: $li-group-icon-size;
+
+        @include media(tablet-only) {
+            max-height: $li-group-icon-size-large;
+            max-width: $li-group-icon-size-large;
+        }
+      }
+    }
+
+    .lia-group-title {
+      font-size: $font-size-large;
+      font-weight: $headings-font-weight;
+    }
+
+    .lia-group-stats {
+      .lia-group-members-count,
+      .lia-group-type {
+        @include separator();
+      }
+    }
+
+    @include media(tablet) {
+      display: table;
+
+      .lia-group-icon-wrapper,
+      .lia-group-detail-summary {
+        display: table-cell;
+        vertical-align: top;
+      }
+
+      .lia-group-description-mobile {
+        display: none;
+      }
+    }
+
+    @include media(phone, desktop) {
+      display: block;
+      .lia-group-icon-wrapper,
+      .lia-group-detail-summary {
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: $panel-body-padding;
+      }
+
+
+      .lia-group-stats {
+        .lia-group-type {
+          @include separator(none);
+        }
+        .lia-group-creation-date {
+          display: block;
+        }
+      }
+
+      .lia-group-description {
+        font-weight: 300;
+        font-size: $font-size-large;
+        display: none;
+        &.lia-group-description-mobile {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .lia-groups-invite-find-users {
+    float: right;
+  }
+}

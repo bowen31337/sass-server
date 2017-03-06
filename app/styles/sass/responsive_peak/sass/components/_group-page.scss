@@ -1,0 +1,34 @@
+@mixin components\group-page {
+
+  .GroupPage {
+    @include media(tablet-only) {
+      .lia-quilt-column-side-content {
+        > .lia-quilt-column-alley-right {
+          > .lia-panel {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .lia-groups-dialog .lia-form-footer {
+
+      .lia-quilt-column-08.lia-quilt-column-left,
+      .lia-quilt-column-16.lia-quilt-column-right {
+        padding: 0;
+        width: auto;
+      }
+
+      .lia-button-wrapper {
+        padding: $padding-small-vertical;
+      }
+    }
+
+    .lia-groups-verify-and-join-dialog .lia-button-group {
+      text-align: center;
+
+      .lia-button-wrapper {
+        float: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,241 @@
+// The Masonry View
+//
+// The masonry view is an alternative display in which thread topics
+// are presented as cards. Cards are uniform in width, but not height.
+// Adapted from: https://github.com/akoenig/angular-deckgrid
+//
+// `.lia-messages-message-card` - displays an individual card consisting of
+// a body and image (optional) Classed to mimic Bootstrap's thumbnail component.
+//
+// `.lia-deckgrid[deckgrid]::before` - Necessary style to preset the masonry view.
+// Read more: https://github.com/akoenig/angular-deckgrid#the-grid-configuration
+//
+// `.lia-deckgrid .column` - sets the width of columns. In the responsive skin,
+// the set Bootstrap breakpoints are used to ensure appropriate sizing.
+//
+// Style guide: components.media-masonry
+
+@mixin components\media-masonry {
+
+  .lia-media-masonry-grid {
+    @include li-extend('.container-fluid');
+    overflow: auto;
+
+    .lia-messages-message-card {
+      @include li-extend('.thumbnail');
+      border-radius: $border-radius-large;
+      background-color: $li-bg-secondary;
+      margin: 0 $padding-xl-vertical $padding-xl-vertical 0;
+      padding: 0;
+      position: relative;
+      overflow: hidden; // prevent image corners from not being rounded
+    }
+
+    .lia-messages-message-masonry-card {
+      padding: $thumbnail-padding;
+
+      &.lia-message-float-type-global,
+      &.lia-message-float-type-user {
+        border-top: 3px $thumbnail-border solid;
+      }
+    }
+
+    .lia-messages-message-masonry-body {
+      @include li-extend('.caption');
+    }
+
+    .lia-masonry-image {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .lia-show-more {
+      text-align: center;
+    }
+
+    .lia-board-title-link {
+      @extend %small-label;
+    }
+
+    .lia-messages-message-subject {
+      @extend %subject-font;
+    }
+
+    .lia-message-body {
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      max-height: floor($line-height-base * $font-size-large * 3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lia-messages-message-author-name {
+      border-top: 1px solid $thumbnail-border;
+      font-size: $font-size-small;
+      margin-top: $padding-large-vertical;
+      padding-top: $padding-large-vertical;
+    }
+
+    .lia-messages-message-topic-update-time {
+      font-size: $font-size-small;
+    }
+
+    .lia-message-stats-wrapper {
+      svg {
+        display: inline-block;
+        height: $font-size-base;
+        vertical-align: middle;
+        width: $font-size-base;
+      }
+    }
+
+    .lia-topic-stat {
+      display: inline-block;
+      padding: $padding-large-vertical 0;
+      vertical-align: middle;
+    }
+  }
+
+  // Angular Deckgrid
+  .lia-deckgrid {
+    @include li-extend('.row');
+    margin-bottom: $grid-gutter-width / 2;
+    margin-top: $grid-gutter-width / 2;
+    overflow: auto;
+  }
+
+  .lia-deckgrid .column {
+    float: left;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:last-child .lia-messages-message-card {
+      margin-right: 0;
+    }
+  }
+
+  .lia-deckgrid[deckgrid]::before {
+    font-size: 0; // See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861
+    visibility: visible;
+  }
+
+  // XS layouts
+  @include media(phone-min) {
+    .lia-deckgrid[deckgrid]::before {
+      content: '1 .column';
+    }
+  }
+
+  // Small layouts
+  @include masonry(phone-min, 1);
+
+  // Medium layouts
+  @include masonry(phone-to-tablet, 2);
+
+  // Large layouts
+  @include masonry(tablet-to-desktop, 3);
+
+  // X-large layouts
+  @include masonry(desktop-and-bigger, 4);
+
+
+  .lia-media-masonry-grid {
+    border-bottom: 1px solid $li-border-color;
+    position: relative;
+
+    .lia-masonry-loading {
+      padding: 100px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .lia-messages-message-card {
+      padding: 0;
+    }
+
+    .lia-messages-message-masonry-card {
+      padding: 0;
+
+      &.lia-message-float-type-global,
+      &.lia-message-float-type-user {
+        border-top: 0;
+
+        .lia-messages-message-masonry-body {
+          @include thread-status-icon($li-triangletop-thumb-tack-bg, $fa-var-thumb-tack);
+          @include media(phone) {
+            position: relative;
+          }
+        }
+
+        .lia-messages-message-subject {
+          padding-right: $li-triangletop-size / 2;
+        }
+      }
+
+      &.lia-message-solved-topic {
+        .lia-messages-message-masonry-body {
+          @include thread-status-icon($li-triangletop-check-bg, $fa-var-check);
+        }
+
+        .lia-messages-message-subject {
+          padding-right: $li-triangletop-size / 2;
+        }
+      }
+    }
+
+    .lia-messages-message-masonry-body {
+      padding: $padding-large-vertical $padding-base-horizontal;
+    }
+
+    .lia-messages-message-subject {
+      display: inline-block;
+      margin-bottom: 3px;
+    }
+
+    .lia-batch-processing {
+      margin-right: $padding-xs-horizontal / 2;
+    }
+
+    .lia-message-body {
+      margin-bottom: $panel-body-padding - $padding-small-vertical;
+    }
+
+    .lia-message-stats {
+      padding-right: $padding-large-horizontal;
+    }
+
+    .lia-messages-message-author-name {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .lia-message-stats-wrapper {
+      &:after {
+        background-color: $li-border-color;
+        content: '';
+        display: block;
+        height: 1px;
+        margin: {
+          bottom: 0;
+          left: -$thumbnail-caption-padding;
+          right: -$thumbnail-caption-padding;
+          top: $padding-large-vertical;
+        }
+      }
+    }
+
+    .lia-messages-topic-solved-status {
+      display: none;
+    }
+
+    .lia-messages-message-topic-update-time {
+      margin-top: $padding-large-vertical;
+    }
+
+    .lia-messages-message-topic-latest-text,
+    .lia-messages-message-topic-user-text {
+      display: block;
+    }
+  }
+}

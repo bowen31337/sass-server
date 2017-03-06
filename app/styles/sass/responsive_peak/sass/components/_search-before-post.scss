@@ -1,0 +1,187 @@
+@mixin components\search-before-post {
+
+  .lia-quilt-search-before-post {
+    > .lia-quilt-row {
+      > .lia-quilt-column-left-content,
+      > .lia-quilt-column-right-content {
+        > .lia-quilt-column-alley {
+          padding: $form-padding;
+          padding-top: 0;
+
+          @include media(tablet) {
+            padding: 0;
+          }
+        }
+      }
+
+      > .lia-quilt-column-left-content {
+        border-right: 1px solid $li-border-row;
+        margin-top: $form-padding * 2;
+
+        @include media(tablet) {
+          border-right: 0;
+          margin-top: 0;
+        }
+      }
+
+      > .lia-quilt-column-right-content {
+        border-left: 1px solid $li-border-row;
+        margin-left: -1px;
+        margin-top: $form-padding * 2;
+        padding: 0;
+
+        @include media(tablet) {
+          border-left: 0;
+          margin-left: 0;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .lia-messages-search-before-post-title {
+    @extend %title-font;
+
+    margin-bottom: $form-padding;
+    margin-top: -$form-padding;
+
+    @include media(tablet) {
+      margin-top: 0;
+    }
+  }
+
+  // advisory styling exists in two locations, side and top so that one can be
+  // hidden or shown depending on the screen size and desired location
+  .lia-main-advisory-display {
+    @include media(desktop) {
+      display: none;
+    }
+  }
+
+  .lia-side-advisory-display {
+    @include media(tablet) {
+      display: none;
+    }
+  }
+
+  .lia-messages-search-before-post {
+    .lia-button-wrapper {
+      margin-left: $padding-xs-horizontal;
+    }
+
+    .lia-form-label {
+      font-weight: bold;
+    }
+
+    .lia-form-confirm-input {
+      margin-bottom: 0;
+
+      .lia-checkbox {
+        display: inline-block;
+        margin-left: -$panel-body-padding;
+        padding-left: $panel-body-padding;
+      }
+
+      .lia-form-label {
+        text-align: left;
+      }
+
+      .lia-form-label-wrapper {
+        display: inline-block;
+        margin-left: $padding-small-horizontal;
+
+        @include media(tablet-only) {
+          margin-top: 0;
+        }
+      }
+
+      .lia-form-error-text {
+        margin-left: $panel-body-padding + $padding-small-horizontal;
+        margin-top: 0;
+      }
+    }
+
+    .lia-form-submit-wrapper {
+      float: right;
+      padding-bottom: $panel-body-padding;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .lia-panel {
+      border: 1px solid $li-border-color;
+      clear: both;
+    }
+
+    .lia-panel-content {
+      padding: 0;
+    }
+
+    .lia-panel-heading-bar {
+      background-color: $brand-info;
+      padding-bottom: $padding-large-vertical;
+      padding-top: $padding-large-vertical;
+
+      .lia-panel-heading-bar-title {
+        color: $li-text-color-inverse;
+        font-weight: bold;
+      }
+    }
+
+    .lia-messages-message-simple-list-body {
+      border-bottom: 1px solid $li-border-color;
+      padding: $panel-body-padding;
+
+      .message-subject {
+//        @extend %section-header-font;
+
+        display: inline-block;
+        padding-bottom: $padding-large-vertical;
+      }
+
+      .lia-message-body {
+        display: inline;
+      }
+    }
+
+    .lia-messages-compose-confirmation {
+      @include clearfix;
+
+      background-color: $li-panel-secondary-bg;
+      border-top: 1px solid $li-border-color;
+      margin-top: -1px;
+      position: relative;
+      width: 100%;
+
+      .formly-field-checkboxFieldLabel {
+        display: inline-block;
+        padding: $panel-body-padding;
+      }
+
+      .lia-form-submit-wrapper {
+        margin-top: 0;
+        padding: $panel-body-padding;
+      }
+
+      .lia-formly-form-wrapper {
+        display: inline-block;
+        float: right;
+      }
+    }
+
+    .lia-messages-message-list-empty {
+      display: inline-block;
+      padding: ($panel-body-padding * 2) $panel-body-padding;
+    }
+  }
+
+  .lia-view-more-results-wrapper {
+    text-align: right;
+    width: 100%;
+
+    .lia-messages-search-before-post-view-more {
+      display: inline-block;
+      padding: $panel-body-padding;
+    }
+  }
+}

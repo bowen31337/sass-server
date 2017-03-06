@@ -1,0 +1,721 @@
+@mixin components\profile-plus\integrated-profile-tooltip {
+
+
+  .lia-panel-tooltip-wrapper.lia-content.lia-profile-plus-profile-hovercard {
+    margin-left: $li-integrated-profile-klout-hovercard-margin-left;
+    min-width: $li-integrated-profile-hovercard-container-min-width;
+  }
+
+  .lia-connect-outer-wrapper-cta.lia-connect-klout-tooltip-cta {
+    display: inline-block;
+  }
+
+  .lia-connect-klout-tooltip-cta-container.lia-connect-klout-tooltip-cta-container-show {
+    display: inline-block;
+  }
+
+  .popover.top > .arrow {
+    border-bottom-color: black;
+  }
+
+  .lia-maximum-topic-alert {
+
+    color: #839196;
+
+    .lia-content.lia-panel-tooltip-wrapper.ngdo-contents {
+
+      &:before {
+        background-color: #f7fbfc;
+        border-color: #007fab transparent transparent #007fab;
+        border-width: 2px;
+        top: -8px;
+      }
+
+      width: 350px;
+      padding: 0;
+      border: 1px solid #007fab;
+      border-radius: 2px;
+    }
+
+    .lia-alert-banner {
+      padding: 5px 10px;
+      font-size: 16px;
+      background-color: #f7fbfc;
+      border: 2px solid #007fab;
+    }
+
+    .lia-info-wrapper {
+      vertical-align: middle;
+      display: inline-block;
+
+      .lia-fa.lia-fa-info-circle {
+        margin-right: 5px;
+        font-size: 20px;
+        color: #007fab;
+      }
+
+    }
+
+    .lia-alert-title {
+      color: $gray-light;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 20px 10px 10px 10px;
+    }
+
+    .lia-alert-body {
+      padding: 0 10px 20px 10px;
+      strong {
+        color: $gray-light;
+      }
+    }
+
+    .lia-close-wrapper {
+      display: inline-block;
+      vertical-align: middle;
+      float: right;
+
+      .lia-fa.lia-fa-times {
+        font-size: 18px;
+      }
+
+    }
+
+    .lia-panel-tooltip-wrapper {
+      margin: 0;
+    }
+  }
+
+  .lia-connect-klout-help-icon {
+    display: inline-block;
+    vertical-align: bottom;
+
+    .lia-panel-tooltip-wrapper.lia-content {
+      margin-left: $li-integrated-profile-scorebox-help-icon-margin-left;
+    }
+
+    .lia-panel-tooltip-wrapper .content {
+      max-width: none;
+    }
+  }
+
+  .lia-connect-klout-tooltip-svg {
+    display: inline-block;
+    margin-right: $li-hovercard-border-radius;
+    height: $li-integrated-profile-scorebox-height;
+    width: $li-integrated-profile-scorebox-width;
+    text-align: center;
+    color: $li-integrated-profile-settings-tooltip-icon-color;
+    font-weight: 400;
+    font-size: $font-size-large;
+    vertical-align: middle;
+    line-height: $li-integrated-profile-scorebox-height;
+  }
+
+  .lia-connect-klout-tooltip-svg .lia-connect-community-score-wrapper {
+    background: transparent svg-url($li-integrated-profile-scorebox-community-score) no-repeat;
+    z-index: -1;
+  }
+
+  .lia-connect-klout-tooltip-svg .lia-connect-klout-connected-wrapper {
+    background: transparent svg-url($li-integrated-profile-scorebox-klout-score) no-repeat;
+    z-index: -1;
+  }
+
+  .lia-connect-klout-tooltip-svg .lia-connect-klout-not-connected-wrapper {
+    background: transparent svg-url($li-integrated-profile-scorebox-not-connected) no-repeat;
+    height: 34px;
+  }
+
+  .integrated-profile-setting-tooltip-icon-number {
+    position: absolute;
+    color: $li-integrated-profile-settings-tooltip-icon-color;
+    font-weight: bold;
+    font-size: $font-size-large;
+    line-height: $font-size-h3;
+    margin-left: $li-integrated-profile-settings-tooltip-icon-left;
+    margin-top: $padding-small-vertical;
+  }
+
+  .lia-connect-klout-tooltip-content {
+    display: none;
+  }
+
+  .lia-integrated-profile-klout-connect-points {
+    padding-top: $padding-large-vertical;
+  }
+
+  .lia-integrated-profile-klout-connect-points li {
+    padding-top: $padding-small-vertical;
+  }
+
+  .integrated-profile-settings-tooltip-container {
+    padding: $li-integrated-profile-klout-setting-tooltip-padding;
+  }
+
+  .lia-connect-klout-settings-container {
+    display: none;
+  }
+
+  .lia-connect-klout-tooltip-cta-container {
+    display: none;
+
+    .HelpIcon {
+      display: none;
+    }
+
+    .lia-connect-klout-tooltip-icon {
+      display: inline-block;
+      min-width: $li-integrated-profile-icon-size;
+      min-height: $li-integrated-profile-icon-size;
+      position: relative;
+      text-align: center;
+
+      a {
+        text-decoration: none;
+      }
+
+    }
+
+    .lia-klout-scorebox-unlinked {
+      color: #2C2D2E;
+      cursor: default;
+      text-decoration: none;
+    }
+
+    .lia-klout-scorebox-text {
+      font-weight: 400;
+      font-size: 16px;
+    }
+
+  }
+
+  .lia-klout-connection-cta-container .lia-klout-connection-cta-content,
+  .lia-klout-connection-cta-container .lia-klout-connection-cta-status,
+  .lia-klout-connection-cta-container .lia-klout-connection-cta-preview-title,
+  .lia-klout-connection-cta-container .lia-connect-klout-cta {
+    margin-bottom: $padding-large-horizontal;
+  }
+
+  .lia-klout-connection-cta-container .lia-klout-connection-cta-preview {
+    margin: {
+      bottom: $padding-large-vertical;
+      left: auto;
+      right: auto;
+      top: 0;
+    }
+  }
+
+  .lia-connect-klout-cta-hidden {
+    display: none;
+  }
+
+  // CTA Hovercard
+  .lia-integrated-profile-klout-connect-description {
+    .lia-collapse-button-container {
+      float: right;
+      .lia-insight-collapse-chevron-link, .lia-fa-chevron-up, .lia-fa-chevron-down {
+        background-color: transparent;
+        border: none;
+        color: $li-integrated-actionable-insight-tab-active;
+        font-size: $font-size-small;
+        outline: none;
+      }
+      .lia-insight-collapse-chevron-link {
+        padding: 0;
+      }
+      .lia-collapse-chevron-text {
+        margin-left: 10px;
+        @include media(phone) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .lia-klout-hovercard-inner-div {
+    max-height: 8em;
+    overflow: hidden;
+    //transition: 0.45s ease-out;
+
+    .lia-klout-hovercard-topic-pill {
+      cursor: default;
+      display: inline-block;
+      padding: $li-integrated-profile-topics-pill-padding;
+      margin-right: $li-integrated-profile-my-interests-padding-horizontal;
+      margin-top: $li-integrated-profile-my-interests-padding-vertical;
+
+      .lia-profile-topic {
+        cursor: default;
+      }
+    }
+  }
+
+  .lia-klout-hovercard-inner-div-expand {
+    max-height: 100%;
+    //transition: 0.80s ease-in;
+  }
+
+  .lia-integrated-profile-klout-connect-actions-button {
+    float: right;
+    line-height: $li-integrated-profile-klout-hovercard-connect-button-line-height;
+  }
+
+  .integrated-profile-settings-other-settings {
+    padding: $li-integrated-profile-settings-other-settings-padding;
+    color: $li-integrated-profile-settings-other-settings-color;
+    font-size: $li-integrated-profile-settings-other-settings-font-size;
+  }
+
+  .enable-social-network-links-wrapper {
+    display: none;
+    padding-top: $padding-large-vertical;
+  }
+
+  .lia-klout-hovercard-inner-bottom-div {
+    padding-top: $li-integrated-profile-hovercard-inner-div-padding;
+  }
+
+  .lia-klout-hovercard-no-topics-text-different-user {
+    padding-top: $padding-large-vertical;
+  }
+
+  .lia-klout-hovercard-no-topics-text {
+    margin-bottom: $padding-large-vertical;
+  }
+
+  .lia-klout-hovercard-powered-by {
+    border-radius: $border-radius-base;
+    float: left;
+    font-size: $font-size-small;
+    margin-top: $font-size-base;
+    max-width: $li-integrated-profile-hovercard-powered-by-width;
+
+  }
+
+  .lia-klout-hovercard-cta-button {
+    color: $li-integrated-profile-bg;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font-size: $font-size-base;
+    margin-top: $padding-xs-horizontal;
+    outline: none;
+    padding: $padding-base-vertical $padding-base-horizontal * 2;
+    text-align: center;
+  }
+
+  .lia-klout-hovercard-klout-logo {
+    height: $li-integrated-profile-padding;
+    padding-top: $padding-small-vertical;
+  }
+
+  .lia-klout-hovercard-topics-header {
+    font-size: $font-size-small;
+    font-weight: bold;
+    margin-top: $padding-small-vertical;
+  }
+
+  .lia-klout-connection-cta-title {
+    font-size: $font-size-large;
+  }
+
+  .lia-klout-user-display {
+    background-color: $li-hovercard-bg;
+    border-radius: $li-hovercard-border-radius;
+    display: table-cell;
+    padding: {
+      bottom: $padding-large-vertical;
+      left: $padding-base-horizontal;
+      right: $padding-base-horizontal;
+      top: 0;
+    }
+    position: relative;
+    vertical-align: top;
+    z-index: 1;
+  }
+
+  .lia-klout-user-display-mobile {
+    background-color: $li-hovercard-bg;
+    border-radius: $li-hovercard-border-radius;
+    display: none;
+    padding: {
+      bottom: $padding-large-vertical;
+      left: $padding-base-horizontal;
+      right: $padding-base-horizontal;
+      top: 0;
+    }
+    position: relative;
+    vertical-align: top;
+    z-index: 1;
+  }
+
+  .lia-klout-user-networks {
+    margin-top: $padding-large-vertical;
+  }
+
+  .lia-klout-hovercard-header {
+    font-size: $font-size-h4;
+    padding: $li-integrated-profile-padding 0;
+    vertical-align: middle;
+  }
+
+  //TODO: Enable all of these variations!
+
+  .lia-klout-hovercard-inner-div,
+  .lia-user-top-ranked-topics,
+  .lia-klout-ranked-topics {
+
+    margin-top: $padding-small-vertical;
+
+    .lia-delete-suggested-topic,
+    .lia-delete-topic {
+      display: none;
+    }
+
+    .lia-expert-text {
+      letter-spacing: $li-klout-expert-letter-spacing;
+      display: inline-block;
+      font: $li-klout-expert-topic-font;
+    }
+
+    .lia-expertise {
+      background-color: #bba5f1;
+      border: 1px solid #bba5f1;
+      border-radius: $li-klout-expert-border-radius;
+      color: #fff;
+      display: inline-block;
+      line-height: $li-klout-expert-line-height;
+      font: $li-klout-topic-font;
+      left: -($li-klout-expert-left-nudge);
+      padding: $li-klout-expert-padding;
+      position: relative;
+
+      &:after {
+        border-color: transparent #bba5f1 transparent transparent;
+        border-style: solid;
+        border-width: $li-klout-expert-bevel-border;
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 0;
+        left: -($li-klout-expert-left-nudge);
+        position: absolute;
+        width: 0;
+      }
+    }
+
+    .lia-expertise-treatment-header-plus-sign {
+      background-color: #efeff9;
+      border: 1px solid #efeff9;
+      border-radius: 4px; //variablize
+      color: #fff;
+      display: inline-block;
+      line-height: $li-klout-expert-line-height;
+      font: $li-klout-topic-font;
+      left: -($li-klout-expert-left-nudge);
+      padding: 6px 15px 5.9px 85px; // variablize
+      position: relative;
+
+      &:after {
+        border-color: transparent #efeff9 transparent transparent;
+        border-style: solid;
+        border-width: $li-klout-expert-bevel-border;
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 0;
+        left: -($li-klout-expert-left-nudge);
+        position: absolute;
+        width: 0;
+      }
+    }
+
+    .lia-expertise-hover {
+      background-color: $li-integrated-profile-expertise-hover-color;
+      border: 1px solid $li-integrated-profile-expertise-hover-color;
+
+      &:after {
+        border-color: transparent $li-integrated-profile-expertise-hover-color transparent transparent;
+      }
+    }
+
+    .lia-topic-pill {
+      overflow: hidden;
+      display: inline-block;
+      margin-right: $padding-xs-horizontal;
+      margin-top: $padding-xs-vertical;
+    }
+
+    .lia-profile-topic {
+      @include transition(width .2s ease-in-out);
+      background-color: #efeff9;
+      border: 1px solid #efeff9;
+      border-radius: 4px;
+      color: #6e6473;
+      cursor: pointer;
+      display: inline-block;
+      font: $li-klout-topic-font;
+      font-weight: normal;
+      padding: $li-profile-topic-padding;
+
+      &.lia-overflow-topic {
+        display: none;
+      }
+
+      zoom: 1;
+
+    }
+
+    .lia-profile-topic-hover {
+      background-color: $li-integrated-profile-topic-hover-color;
+      border: 1px solid $li-integrated-profile-topic-hover-color;
+    }
+
+    .lia-ranked-topics {
+      zoom: 1;
+    }
+
+    .lia-top-expert-star {
+      display: inline-block;
+      fill: #ffe800;
+      height: $li-integrated-profile-star-icon-size;
+      position: relative;
+      vertical-align: middle;
+      width: $li-integrated-profile-star-icon-size;
+
+      svg {
+        height: 25px;
+        left: -7px;
+        position: absolute;
+        top: -6px;
+        width: 25px;
+      }
+    }
+  }
+
+  &.lia-panel-tooltip-wrapper.lia-bootstrap-tooltip-scorebox,
+  &.lia-panel-tooltip-wrapper.lia-bootstrap-tooltip-hovercard {
+    // prevent tooltips from moving
+    position: absolute !important;
+    color: $text-color;
+    width: 330px;
+
+    strong {
+      font-weight: bold;
+    }
+
+    &:after, &:before {
+      left: $li-integrated-profile-scorebox-popup-arrow-left;
+    }
+  }
+
+  .lia-connect-hovercard-score-container {
+    font-family: $li-integrated-profile-hovercard-score-container-font;
+    padding: $li-integrated-profile-hovercard-score-container-padding;
+  }
+
+  .lia-connect-hovercard-score-title {
+    font-size: $li-integrated-profile-hovercard-score-title-font-size;
+  }
+
+  .lia-connect-hovercard-score-value {
+    font-weight: bold;
+    font-size: $li-integrated-profile-hovercard-score-value-font-size;
+    padding-left: $li-integrated-profile-hovercard-score-value-padding-left;
+  }
+
+  .lia-connect-hovercard-score-separator {
+    border-left: $li-integrated-profile-hovercard-score-separator-border;
+  }
+
+  .lia-profile-plus-page-link {
+    text-decoration: none;
+    font-size: $font-size-large;
+    font-weight: 400;
+    color: $li-integrated-actionable-insight-tab-active;
+
+    .lia-fa-cog {
+      margin-right: 10px;
+      color: inherit;
+    }
+
+  }
+
+  .lia-profile-plus-page-text {
+    @include media(phone) {
+      display: none;
+    }
+  }
+
+  .lia-my-interests-gear {
+    display: none;
+
+    @include media(phone) {
+      display: inline;
+    }
+  }
+
+  .lia-edit-topics-link-container {
+    float: right;
+  }
+
+  .lia-user-top-ranked-topics {
+    margin-top: 0;
+    margin-left: $li-user-expert-topics-margin;
+
+    .lia-top-expert-star {
+      width: $li-user-expert-topics-star-width;
+    }
+  }
+
+  .lia-klout-network-icon.lt {
+    background-image: svg-url($li-svg-profile-plus-lithosphere);
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    height: $li-integrated-profile-network-icon-size;
+    width: $li-integrated-profile-network-icon-size;
+    margin-right: 10px;
+
+
+    &.alteryx {
+      background-color: #0093d0;
+      background-image: svg-url($li-svg-profile-plus-alteryx);
+    }
+
+    &.webroot {
+      background-image: svg-url($li-svg-profile-plus-webroot);
+    }
+
+    &.foxsports {
+      background-image: svg-url($li-svg-profile-plus-foxsports);
+    }
+
+    &.telstra {
+      background-color: #1db0e6;
+      background-image: svg-url($li-svg-profile-plus-telstra);
+    }
+
+    &.jawwy {
+      background-color: #ff671f;
+      background-image: svg-url($li-svg-profile-plus-jawwy);
+    }
+
+    &.jawwyundisclosed {
+      background-color: #ff671f;
+      background-image: svg-url($li-svg-profile-plus-jawwyundisclosed);
+    }
+
+    &.comcastsupport {
+      background-color: #000000;
+      background-image: svg-url($li-svg-profile-plus-comcastsupport);
+    }
+
+    &.fido {
+      background-color: #231f20;
+      background-image: svg-url($li-svg-profile-plus-fido);
+    }
+
+    &.rogers {
+      background-color: #da291c;
+      background-image: svg-url($li-svg-profile-plus-rogers);
+    }
+
+    &.brooksrunning {
+      background-color: #215fab;
+      background-image: svg-url($li-svg-profile-plus-brooksrunning);
+    }
+
+    &.starhub {
+      background-color: #95c11f;
+      background-image: svg-url($li-svg-profile-plus-starhub);
+    }
+
+    &.sonyeu1 {
+      background-color: #ffffff;
+      background-image: svg-url($li-svg-profile-plus-sonyeu1);
+    }
+
+    &.du {
+      background-color: #00afdb;
+      background-image: svg-url($li-svg-profile-plus-du);
+    }
+
+    &.ooredoo {
+      background-color: #ee3124;
+      background-image: svg-url($li-svg-profile-plus-ooredoo);
+    }
+
+  }
+
+  @-moz-document url-prefix() {
+    .lia-user-top-ranked-topics {
+      .lia-top-expert-star {
+        vertical-align: inherit;
+        bottom: 0;
+      }
+    }
+  }
+
+  @include media(phone) {
+    .lia-connect-outer-wrapper-cta .lia-connect-klout-tooltip-cta-container-wrapper {
+      .lia-panel-tooltip-wrapper {
+        min-width: 200px;
+      }
+
+      .lia-panel-tooltip-wrapper.lia-bootstrap-tooltip-hovercard {
+          margin-left: -80px;
+      }
+
+      .lia-panel-tooltip-wrapper.lia-bootstrap-tooltip-scorebox {
+          margin-left: -160px;
+      }
+
+      .lia-ng-dropover.ngdo-bottom-left {
+        .lia-bootstrap-tooltip-hovercard.ngdo-contents:before, .lia-bootstrap-tooltip-hovercard.ngdo-contents:after {
+            left: 75px;
+        }
+
+        .lia-bootstrap-tooltip-scorebox.ngdo-contents:before, .lia-bootstrap-tooltip-scorebox.ngdo-contents:after {
+            left: 145px;
+        }
+      }
+    }
+  }
+
+  /* Delete Topics */
+
+  .lia-profile-topic-pill {
+    display: inline-block;
+    position: relative;
+  }
+
+  .lia-delete-klout-topic {
+    position: absolute;
+    right: 0;
+    border-radius: 0 $li-klout-topic-border-radius $li-klout-topic-border-radius 0;
+    top: 0;
+    background-color: $btn-default-bg;
+    width: $li-user-expert-topics-star-width;
+    height: $li-integrated-profile-search-icon-width-height;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &:after {
+      content: "";
+      vertical-align: middle;
+      height: $li-integrated-profile-search-icon-width-height;
+      display: inline-block;
+    }
+
+    .lia-fa-times-circle {
+      color: $li-integrated-profile-delete-icon-color;
+      font-size: $li-integrated-profile-settings-other-settings-font-size;
+      &:before {
+        content: $fa-var-times-circle;
+      }
+    }
+  }
+}

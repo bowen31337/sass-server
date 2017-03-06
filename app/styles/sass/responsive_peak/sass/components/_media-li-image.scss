@@ -1,0 +1,47 @@
+@mixin components\media-li-image {
+
+  // li-image css
+  .lia-inline-image-display-wrapper {
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+
+    .lia-image-actions-actionable-elm {
+      padding: 0;
+    }
+
+    &.lia-image-align-left {
+      float: left;
+      margin-right: $padding-large-vertical;
+    }
+
+    &.lia-image-align-right {
+      float: right;
+      margin-left: $padding-large-vertical;
+      text-align: right;
+    }
+
+    &.lia-image-align-center {
+      clear: both;
+      display: block;
+      margin: auto;
+    }
+  }
+
+  .lia-image-caption,
+  .lia-inline-image-caption {
+    color: lighten($text-color, 20%);
+    cursor: text;
+    display: block;
+    font-size: $font-size-small;
+    font-style: italic;
+    height: auto;
+    margin: {
+      bottom: $padding-large-vertical * 2;
+      left: 0;
+      right: 0;
+      top: $padding-small-horizontal;
+    }
+    text-align: left;
+  }
+}

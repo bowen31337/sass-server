@@ -1,0 +1,214 @@
+$user-slide-menu_dropdown-menu-min-width:         200px;
+//$slide-menu-background-color:     $gray-lightest;
+$user-slide-menu_svg-icon-dropdown-right-margin:  8px;
+$user-slide-menu_max-width:       80%;
+
+@mixin components\user-slide-menu {
+
+  body.lia-slide-menu-open {
+    overflow: auto;
+
+    @include media(tablet-and-smaller) {
+      overflow: hidden;
+    }
+  }
+
+  .CommunityPage {
+    .lia-menu-user-nav {
+      top: $padding-base-vertical;
+    }
+
+    .lia-component-users-widget-menu {
+      .lia-component-users-action-view-user-profile {
+        display: inline-block;
+      }
+    }
+  }
+
+  .lia-component-common-widget-slide-out-user-menu,
+  .lia-component-users-widget-menu {
+    .lia-common-slide-menu,
+    .lia-slide-menu-content {
+      background-color: #fff;
+
+      .lia-link-navigation {
+        border-bottom: 1px solid $gray-lighter;
+        color: $gray;
+        display: block;
+        font-size: $font-size-h3;
+        padding-bottom: $padding-large-vertical;
+        padding-left: $padding-xl-horizontal;
+        padding-top: $padding-large-vertical;
+        text-decoration: none;
+
+        &:hover {
+          background-color: $dropdown-link-hover-bg;
+        }
+      }
+    }
+  }
+
+  .lia-component-users-widget-menu {
+    .lia-slide-menu-content {
+      background-color: $li-hero-community-bg;
+
+      &.lia-slide-menu-content-vertical {
+        height: 100%;
+        max-width: $user-slide-menu_max-width;
+        top: 0;
+        width: $li-slide-menu-vertical-width;
+      }
+
+      .community-admin-link:before,
+      .switch-user-page-link:before {
+        margin-right: $padding-base-horizontal;
+      }
+    }
+
+    .lia-component-users-action-view-user-profile {
+      display: none;
+    }
+  }
+
+  .lia-menu-user-slide-out-container {
+      @include media(desktop) {
+        display: none;
+    }
+  }
+
+  .lia-menu-user-dropdown,
+  .lia-slide-menu-content {
+
+    .community-admin-link:before {
+      background-image: svg-url($li-svg-admin-icon, $li-icon-color);
+    }
+
+    .faq-link {
+      @include li-icon($fa-var-question-circle, $size: $font-size-h4, $fixed-width: true, $icon-margin: $padding-large-horizontal, $color: $li-icon-color);
+    }
+    .lia-component-admin-action-studio-admin {
+      @include li-icon($fa-var-sliders, $size: $font-size-h4, $fixed-width: true, $icon-margin: $padding-large-horizontal, $color: $li-icon-color);
+    }
+    .lia-component-users-actions-my-subscriptions {
+      @include li-icon($fa-var-rss, $size: $font-size-h4, $fixed-width: true, $icon-margin: $padding-large-horizontal, $color: $li-icon-color);
+    }
+    .logout-link {
+      @include li-icon($fa-var-sign-out, $size: $font-size-h4, $fixed-width: true, $icon-margin: $padding-large-horizontal, $color: $li-icon-color);
+    }
+
+    .switch-user-page-link:before {
+      background-image: svg-url($li-svg-switch-user-icon, $li-icon-color);
+    }
+
+    .user-profile-link {
+      @include li-icon($fa-var-cog, $size: $font-size-h4, $fixed-width: true, $icon-margin: $padding-large-horizontal, $color: $li-icon-color);
+    }
+
+    .view-profile-link {
+      @include li-icon($fa-var-user, $size: $font-size-h4, $fixed-width: true, $icon-margin: $padding-large-horizontal, $color: $li-icon-color);
+    }
+
+    .community-admin-link:before,
+    .switch-user-page-link:before {
+      background-repeat: no-repeat;
+      background-size: contain;
+      content: '';
+      color: $li-icon-color;
+      font: normal normal normal $font-size-base / 1 FontAwesome;
+      font-size: $font-size-h4;
+      margin: {
+        top:0;
+        bottom: 0;
+        left: $padding-small-horizontal;
+      }
+      padding: 0 calc(#{$li-icon-fixed-width}/2);
+    }
+  }
+
+  .lia-menu-user-dropdown .lia-menu-user-nav {
+    padding: 0;
+
+    @include media(tablet-and-smaller) {
+      display: none;
+    }
+
+    .lia-link-navigation {
+      border-bottom: 1px solid $li-border-row;
+      color: $dropdown-link-color;
+      display: block;
+      font-size: $font-size-large;
+      padding: $padding-small-vertical $padding-small-horizontal;
+      text-decoration: none;
+
+      &:before {
+        padding-left: $padding-small-horizontal;
+      }
+
+      &:hover {
+        background-color: darken($gray-lighter, 3%);
+      }
+    }
+
+    .community-admin-link:before,
+    .switch-user-page-link:before {
+      margin-right:  $user-slide-menu_svg-icon-dropdown-right-margin;
+    }
+  }
+
+  .lia-menu-user-slide-out .lia-link-navigation {
+    background-color: $dropdown-bg;
+    color: $dropdown-link-color;
+    font-size: $font-size-large;
+    font-weight: $font-weight-content;
+    padding: $padding-large-vertical;
+
+    &:before {
+      color: $li-icon-color;
+      font-weight: $font-weight-content;
+      font-size: $font-size-h2;
+    }
+
+    &:before {
+      padding-left: $padding-small-horizontal;
+    }
+  }
+
+  .lia-users-current-user-profile-card {
+    padding: $padding-xl-vertical $padding-xl-horizontal;
+
+    @include media(desktop) {
+      display: none;
+    }
+
+    .UserAvatarProfile {
+      margin-bottom: 0;
+
+      &,
+      > img {
+        display: inline-block;
+        height: $li-icon-size-sm;
+        width: $li-icon-size-sm;
+      }
+    }
+
+    .lia-users-profile-card-avatar {
+      display: block;
+      margin: auto;
+    }
+
+    .lia-users-profile-card-login {
+      color: $li-text-color-inverse;
+      font-size: $font-size-h3;
+      padding: 0 ($padding-medium - 1);
+      text-decoration: none;
+    }
+
+    .lia-users-profile-card-rank {
+      display: none;
+    }
+  }
+
+  .user-navigation-settings-drop-down-inner > .lia-list-standard {
+    min-width: $user-slide-menu_dropdown-menu-min-width;
+  }
+}

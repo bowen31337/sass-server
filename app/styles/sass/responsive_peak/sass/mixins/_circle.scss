@@ -1,0 +1,8 @@
+// use on an <img>
+@mixin circle($size) {
+  border-radius: 50%;
+  height: $size;
+  object-fit: cover;
+  width: $size;
+  max-width: none;
+}

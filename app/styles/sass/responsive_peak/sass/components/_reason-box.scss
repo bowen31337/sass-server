@@ -1,0 +1,42 @@
+@mixin components\reason-box {
+  /* Fixes for Reason-box UI on Responsive
+  *  See https://jira.dev.lithium.com/browse/LIA-45167
+  */
+
+  .lia-content {
+    form {
+      &.MessageEditorForm {
+        .lia-form-reason-box-fieldset-toggle {
+          clear: left;
+        }
+        .lia-notify-title {
+          font-weight: bold;
+        }
+      }
+    }
+
+    #confirmationform,
+    #movemessagesform {
+      .lia-notify-title {
+        font-weight: bold;
+      }
+    }
+
+    .lia-component-move-messages-form {
+      .thread-author,
+      .participants-in-thread,
+      .destination-author,
+      .participants-in-destination-thread {
+        padding-bottom: $panel-body-padding;
+        label {
+    	    font-weight: bold;
+    	    display: inline
+        }
+	    }
+	  }
+
+	}
+
+
+
+}

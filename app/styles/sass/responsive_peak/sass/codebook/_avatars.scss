@@ -1,0 +1,62 @@
+// Avatars
+//
+// Peak styling for user avatars crop the image in a circle.
+//
+// Markup:
+// <div class="UserAvatar">
+//   <img style="height: 50px; width: 50px; background-color: #FFC2A2;">
+// </div>
+//
+// Style guide: codebook.avatars
+
+@mixin codebook\avatars {
+
+  // Make avatar circular is all cases
+  .UserAvatar {
+    // for landscape icons
+    > img {
+      @include circle($li-avatar-size-large);
+
+      box-shadow: 0 0 1px 0 $li-border-color inset,
+                  0 0 1px 0 $li-border-color;
+
+      &.lia-textavatar {
+        box-shadow: none;
+      }
+    }
+
+    &.UserAvatarProfile {
+      > img {
+        height: $li-avatar-size-message;
+        width: $li-avatar-size-message;
+      }
+    }
+  }
+
+  // HACK: hardcoded values for the notification count over the avatar label
+  .lia-component-common-widget-slide-out-user-menu,
+  .lia-component-users-widget-menu {
+    .lia-notifications-messages-aggregate {
+      display: none;
+      position: absolute;
+      right: -10px;
+      top: -10px;
+    }
+  }
+
+  // token input user avatars when selected
+  .lia-form-input-wrapper {
+    .lia-token-input-avatar {
+      @include circle($line-height-computed);
+    }
+  }
+
+  // token input user avatars in dropdown result list
+  .lia-token-input-dropdown-item,
+  .lia-token-input-dropdown-item2 {
+    .lia-token-input-avatar {
+      @include circle($li-avatar-size-message / 2);
+    }
+  }
+
+}

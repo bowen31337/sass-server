@@ -1,0 +1,172 @@
+// Media Lightbox: Actions & Context
+//
+// The Media Lightbox displays actions and context for each image
+// displayed in the viewer. The information is displayed directly
+// below the image in a gray bar that is part of the footer.
+//
+// ### Context
+// The context is made up of two parts:
+// 1. the author of the image
+// 2. the date and time of its upload
+//
+// `.lia-lightbox-context` - a wrapper around the entire context.
+//
+// ### Actions
+// There are three actions applicable to each image: kudo, flag and
+// download.  The actions are floated to the right.
+//
+// ### Kudo
+// Kudo is two part action - an icon followed by a count.
+//
+// `.lia-kudos-kudo` - a wrapper for the entire kudo action.
+//
+// ### Flag
+// The flag action may look like one icon, but it is actually
+// composed of two icons.  One is the trigger (before an image
+// is flagged) and the second is the feedback (after an image
+// is flagged). By default, the trigger is shown. If clicked,
+// the class .lia-flagged is added.
+//
+// `.lia-moderation-flag-entity` - a wrapper for the entire flag action.
+//
+// `.lia-flagged` - When this class is present, the trigger effectively hides by
+// decreasing its opacity whole the feedback does the opposite
+//
+// ### Download
+// The download action is comprised of only one icon.  Upon
+// click, the image in the viewer begins downloading.
+//
+// `.lia-image-download-link-icon` - The download action.
+//
+// Style guide: components.media-lightbox-context-actions
+
+$media-lightbox-context-actions_nav-animation-time: .5s !default;
+$media-lightbox-context-actions_icon-size-base: 18px !default;
+$media-lightbox-context-actions_icon-size-inline: $font-size-base !default;
+
+
+@mixin components\media-lightbox-context-actions {
+
+  .lia-kudos-kudo,
+  .lia-moderation-flag-entity,
+  .lia-media-download-icon {
+    display: inline-block;
+    padding: {
+      bottom: 0;
+      left: 0;
+      right: $padding-large-horizontal;
+      top: 0;
+    }
+  }
+
+  // Kudos
+  .lia-kudos-kudo {
+    display: inline-block;
+  }
+
+  .lia-kudos-kudo-icon {
+    color: $btn-inverse-primary-color;
+    display: inline-block;
+    padding: $padding-xs-vertical;
+  }
+
+  // Flag
+  .lia-moderation-flag-entity {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+
+    .lia-icon-div {
+      border-radius: $border-radius-base;
+      float: left;
+      max-height: $li-lightbox-icon-size-large;
+      max-width: $li-lightbox-icon-size-large;
+
+      .lia-flag-div {
+        padding: $padding-xs-vertical;
+        position: relative;
+      }
+    }
+
+    .lia-trigger {
+      text-decoration: none;
+    }
+
+    .lia-trigger,
+    .lia-feedback {
+      display: inline-block;
+      height: $media-lightbox-context-actions_icon-size-base;
+      transition: opacity $media-lightbox-context-actions_nav-animation-time, visibility $media-lightbox-context-actions_nav-animation-time;
+    }
+
+    .lia-feedback {
+      display: none;
+    }
+
+    .lia-flagged {
+      .lia-trigger {
+        display: none;
+        opacity: 0;
+      }
+
+      .lia-feedback {
+        display: inline-block;
+        opacity: 1;
+      }
+    }
+
+    .lia-fa-flag {
+      display: inline-block;
+      height: $media-lightbox-context-actions_icon-size-base;
+      position: relative;
+      width: $media-lightbox-context-actions_icon-size-base;
+    }
+
+    .lia-flag-icon {
+      color: $btn-inverse-primary-color;
+    }
+  }
+
+  .lia-media-download-icon {
+    height: $media-lightbox-context-actions_icon-size-base;
+    vertical-align: middle;
+  }
+  // Download Icon
+  .lia-image-download-link-icon {
+    color: $btn-inverse-primary-color;
+    display: inline-block;
+    height: $media-lightbox-context-actions_icon-size-base;
+    position: relative;
+    width: $media-lightbox-context-actions_icon-size-base;
+  }
+
+  @include media(phone) {
+    .lia-lightbox-context,
+    .lia-lightbox-actions {
+      display: inline-block;
+      padding: 0 $grid-gutter-width / 2;
+    }
+
+    .lia-lightbox-actions {
+      float: right;
+    }
+  }
+
+  @include media(tablet-and-larger) {
+    .lia-lightbox-actions {
+      display: table-cell;
+      padding: 0 ($grid-gutter-width / 2);
+      text-align: right;
+      width: 50%;
+    }
+
+    .lia-lightbox-context {
+      display: table-cell;
+      padding: 0 ($grid-gutter-width / 2);
+    }
+  }
+
+  .lia-lightbox-dialog .lia-ligtbox-actions .lia-fa {
+    font-size: $media-lightbox-context-actions_icon-size-inline;
+  }
+}

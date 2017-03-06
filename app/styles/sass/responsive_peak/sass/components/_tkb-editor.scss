@@ -1,0 +1,327 @@
+$tkb-editor_drag-min-height:                22.5px !default;
+$tkb-editor_drag-handle-height:             24px !default;
+$tkb-editor_drag-handle-width:              12px !default;
+$tkb-editor_drag-handle-background-color:   $gray-lighter !default;
+$tkb-editor_drag-content-border-color:      $gray-light !default;
+$tkb-editor_zone-item-border-color:         #fff !default;
+
+@mixin components\tkb-editor {
+  .lia-component-tkb-article-editor-form {
+    .lia-message-zone-editor {
+      .lia-message-template-drop-zone {
+        border: 2px dotted $input-border;
+        color: $text-muted;
+        margin: 0 0 $form-group-margin-bottom;
+        min-height: $tkb-editor_drag-min-height;
+        position: relative;
+        zoom: 1;
+
+        .zone-item {
+          border: 1px solid $tkb-editor_zone-item-border-color;
+
+          &:after {
+            clear: both;
+            content: '.';
+            display: block;
+            height: 0;
+            line-height: 0;
+            visibility: hidden;
+          }
+
+          &:hover {
+            border: 1px dotted $input-border;
+          }
+        }
+      }
+
+      .lia-drag-container {
+        min-height: $tkb-editor_drag-min-height;
+
+        &:hover .lia-drag-handle {
+          //background: $tkb-editor_drag-handle-background-color url($lia_images_bg_drag_handle_url) no-repeat 0 50%;
+          background: svg-url($li-svg-drag-handle);
+          background-position: center;
+          background-repeat: no-repeat;
+          cursor: move;
+          height: $tkb-editor_drag-handle-height;
+          left: -$tkb-editor_drag-handle-width;
+          margin-top: 10px;
+          opacity: .95;
+          position: absolute;
+          width: $tkb-editor_drag-handle-width;
+        }
+      }
+
+      .lia-sortable-placeholder {
+        background-color: $dropdown-link-hover-bg;
+      }
+    }
+
+    .MessageClipper {
+      .lia-drag-container {
+        padding: 0 0 0 $padding-base-horizontal;
+        position: relative;
+
+        .lia-drag-content {
+          overflow: hidden;
+          padding: $padding-small-vertical $padding-xs-horizontal $padding-xs-vertical;
+
+          .lia-panel-message {
+            margin: 0;
+          }
+        }
+
+        &:hover .lia-drag-content {
+          border: 1px dotted $tkb-editor_drag-content-border-color;
+          padding: $padding-small-vertical $padding-xs-horizontal 0;
+        }
+      }
+
+      .lia-drag-handle {
+        background: svg-url($li-svg-drag-handle);
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: move;
+        height: $tkb-editor_drag-handle-height;
+        left: 0;
+        margin-top: 10px;
+        position: absolute;
+        width: $tkb-editor_drag-handle-width;
+      }
+
+      .lia-message-idea {
+        margin: 0;
+      }
+
+      .message-view-list .top-block,
+      .message-view-list .bottom-block {
+        zoom: 1;
+      }
+    }
+  }
+
+  .lia-tkb-old-revision-feedback .lia-text {
+    > p,
+    > ul,
+    > ul li {
+      display: inline;
+    }
+
+    > p {
+      padding-right: $padding-xs-horizontal;
+      margin-bottom: 0;
+      font-weight: bold;
+    }
+  }
+
+  .lia-component-tkb-article-editor-form {
+    .lia-form-row,
+    .lia-form-fieldset-wrapper {
+      margin-bottom: $padding-xl-vertical;
+
+      &.lia-form-related-messages-entry {
+        margin-bottom: 0;
+
+        .lia-form-validation-help-text {
+          display: none;
+        }
+      }
+    }
+
+    .lia-revision-info-wrapper {
+      width: 100%;
+    }
+
+    .lia-revision-info-wrapper,
+    .lia-tkb-updated-data {
+      margin-bottom: $padding-xl-vertical;
+    }
+
+    .lia-related-messages-list {
+      margin-bottom: $padding-xl-vertical;
+      display: inline-block;
+    }
+
+    .lia-form-compare-title,
+    .lia-revision-info-title,
+    .lia-related-messages-title {
+      @include li-extend('label');
+      display: block;
+    }
+
+    .lia-form-compare {
+      margin-top: $panel-body-padding;
+    }
+
+    .lia-form-revision-information-fieldset-toggle .lia-fieldset-title {
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+
+    .lia-form-revision-comment-entry {
+      display: inline-block;
+      float: none;
+      margin: {
+        bottom: 0;
+        left: $padding-small-horizontal;
+        top: 0;
+      }
+      padding-left: 0;
+      padding-right: 0;
+      vertical-align: top;
+      width: 35%;
+
+      @include media(phone) {
+        width: 100%;
+      }
+    }
+
+    .lia-form-minor-edit-entry {
+      display: inline-block;
+      margin: {
+        bottom: $padding-large-vertical;
+        left: $padding-small-horizontal;
+        top: $padding-large-vertical;
+      }
+      vertical-align: middle;
+    }
+
+    .mce-edit-area.mce-panel {
+      width: auto;
+    }
+
+    .lia-button-wrapper-SaveDraft-action {
+      @include media(phone-min) {
+        clear: right;
+      }
+    }
+
+    .lia-input-edit-form-row.lia-quilt-row-last {
+      border-top: 1px solid $li-border-color;
+      margin-left: -$panel-body-padding;
+      margin-right: -$panel-body-padding;
+
+      .lia-input-edit-form-column {
+        padding-left: $panel-body-padding;
+        padding-right: $panel-body-padding;
+        padding-top: $padding-xl-vertical;
+      }
+    }
+
+    .lia-contributor-search-field {
+      display: table;
+      overflow: hidden;
+      width: 100%;
+
+      .lia-search-input-user,
+      .lia-button-wrapper {
+        display: table-cell;
+      }
+
+      .lia-search-input-user {
+        width: 100%;
+        margin-bottom: $padding-xl-vertical;
+      }
+    }
+
+    .lia-contributors-list {
+      padding: {
+        bottom: 0;
+        left: $padding-xs-horizontal;
+        right: 0;
+        top: $padding-xl-vertical;
+      }
+    }
+
+    .lia-contributors-list {
+      display: table;
+      width: 100%;
+
+      .ContributorFieldItem {
+        display: table-row;
+      }
+
+      .lia-contributer-item-user {
+        display: table;
+        padding-right: $padding-large-horizontal;
+        table-layout: fixed;
+        width: 100%;
+
+        @include media(tablet) {
+          width: auto;
+        }
+
+        .UserProfileSummary {
+          display: table-row;
+        }
+
+        .lia-user-avatar {
+          width: $li-icon-size + $padding-large-horizontal;
+          vertical-align: middle;
+        }
+
+        .lia-user-attributes,
+        .lia-user-name .lia-user-name-link {
+          @include text-overflow;
+          width: 100%;
+        }
+      }
+
+      .lia-contributer-item-actions {
+        display: table-cell;
+        float: none;
+        padding: $padding-large-vertical 0;
+        white-space: nowrap;
+        vertical-align: middle;
+      }
+
+
+      .UserName.lia-user-name:before {
+        display: none;
+      }
+
+      .lia-menu-navigation-wrapper {
+        vertical-align: middle;
+        width: calc(100% - (#{$font-size-h4} + #{$padding-xl-horizontal}));
+
+        @include media(tablet-only) {
+          width: 30%;
+        }
+      }
+
+      .default-menu-option {
+        @include box-shadow(none);
+        background-color: transparent;
+        border-color: transparent;
+        border: none;
+        font-weight: normal;
+        padding: 0;
+        text-align: right;
+        width: 100%;
+
+        &,
+        &:active {
+          &:focus {
+            outline: none;
+          }
+        }
+
+        &:hover,
+        &:focus {
+          text-decoration: none;
+        }
+      }
+
+      .lia-button-group {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
+    .lia-img-button-delete {
+      @include li-icon(button-delete, $font-size-h3, $color: $btn-default-color);
+      margin-left: $padding-xl-horizontal;
+      vertical-align: middle;
+    }
+  }
+}

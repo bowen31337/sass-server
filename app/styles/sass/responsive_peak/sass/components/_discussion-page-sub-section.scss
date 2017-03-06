@@ -1,0 +1,12 @@
+$discussion-page-sub-section_topic-heading-color:        $gray-light !default;
+
+@mixin components\discussion-page-sub-section {
+
+  .lia-discussion-page-sub-section-header {
+    color: $discussion-page-sub-section_topic-heading-color;
+    font-size: $font-size-h3;
+    font-weight: $headings-font-weight;
+    padding-left: $grid-gutter-width;
+    padding-top: $padding-base-vertical;
+  }
+}

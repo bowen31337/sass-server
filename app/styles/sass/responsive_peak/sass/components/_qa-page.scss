@@ -1,0 +1,78 @@
+@mixin components\qa-page {
+  .QandAPage {
+    .lia-component-quilt-search-and-post {
+      .lia-quilt-column-18 {
+        @include make-xs-column(24);
+      }
+    }
+
+    .lia-pager-wrapper {
+      text-align: center;
+      @include media(tablet) {
+        .lia-paging-full-wrapper {
+          display: inline-block;
+          padding: {
+            top: $panel-body-padding;
+            bottom: $padding-large-vertical;
+          }
+        }
+      }
+    }
+
+    .lia-component-tabs .lia-paging-pager {
+      padding: {
+        top: $padding-large-vertical;
+        bottom: 2 * $padding-large-vertical;
+      }
+      @include media(tablet) {
+        display: none;
+      }
+    }
+
+    .lia-component-qanda-widget-ask-an-expert {
+      margin-bottom: 0;
+    }
+  }
+
+  .lia-qanda-tab-empty-message {
+    margin-left: $padding-small-horizontal;
+    padding: $nav-link-padding;
+    @include media(phone) {
+      padding: $nav-link-padding-xs;
+    }
+  }
+
+  .lia-message-view-qanda-message-item {
+    padding: $padding-large-vertical + 5 0 $padding-large-vertical 0;
+    .lia-byline-wrapper,
+    .lia-message-comment-action {
+      display: inline-block;
+    }
+
+    .lia-byline-wrapper {
+      @include media(phone) {
+        .lia-text-submitted-by,
+        .lia-text-date-on {
+          display: none;
+        }
+        .lia-component-users-widget-user-name {
+          @include separator;
+        }
+      }
+
+      > * {
+        @include separator;
+        &:last-child {
+          @include separator('', $padding-left:0, $padding-right:0);
+        }
+        display: inline-block;
+      }
+    }
+
+    .lia-message-subject {
+      .lia-img-message-type-solved {
+        display: none;
+      }
+    }
+  }
+}

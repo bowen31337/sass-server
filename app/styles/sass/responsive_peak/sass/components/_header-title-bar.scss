@@ -1,0 +1,31 @@
+@mixin components\header-title-bar {
+
+  // titlebar row, typically contains contextual title, search, optionally goto
+  .lia-quilt-row-title {
+    margin-bottom: $padding-large-vertical;
+
+    .lia-component-common-widget-search-form {
+      display: table-cell;
+      vertical-align: middle;
+      white-space: nowrap;
+      width: 40%;
+
+      @include media(phone) {
+        display: block;
+        width: auto;
+      }
+    }
+
+    .lia-component-common-widget-site-navigation {
+      float: right;
+    }
+
+    .lia-quilt-column-page-title {
+      @include li-extend('.col-sm-8');
+    }
+
+    .lia-quilt-column-site-navigation {
+      @include li-extend('.col-sm-16');
+    }
+  }
+}

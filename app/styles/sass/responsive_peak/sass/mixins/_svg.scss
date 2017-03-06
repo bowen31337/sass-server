@@ -1,0 +1,54 @@
+// http://codepen.io/Tigt/post/optimizing-svgs-in-data-uris
+//
+// This will fail for svgs over 2000 bytes with
+// "SystemStackError: stack level too deep"
+//
+
+@function svg-url($svg, $colors...) {
+
+  @if length($colors) > 0 {
+    @for $i from 1 through length($colors) {
+      $svg: str-replace($svg, '{{#{$i}}}', nth($colors, $i));
+    }
+  } @else {
+    $svg: str-replace($svg, '{{1}}', $li-icon-color);
+  }
+
+  $svg: str-replace($svg, '"', "'");
+  $svg: str-replace($svg, '%', '%25');
+  $svg: str-replace($svg, '<', '%3C');
+  $svg: str-replace($svg, '>', '%3E');
+  $svg: str-replace($svg, '&', '%26');
+  $svg: str-replace($svg, '#', '%23');
+
+  // scss-lint:disable StringQuotes
+  @return url("data:image/svg+xml;charset=utf8,#{$svg}");
+  // scss-lint:enable StringQuotes
+}
+
+@function svg-gradient-horizontal($color, $args...) {
+  @return svg-gradient($li-svg-gradient-horizontal, $color, $args...);
+}
+
+@function svg-gradient-vertical($color, $args...) {
+  @return svg-gradient($li-svg-gradient-vertical, $color, $args...);
+}
+
+@function svg-gradient($svg, $color, $args...) {
+  @if length($args) > 1 {
+    $stops: '';
+    @for $i from 1 through (length($args) / 2) {
+      $stops: $stops + unquote(svg-gradient-stop-add($color, nth($args, $i * 2 - 1), nth($args, $i * 2)));
+    }
+    @return svg-url(str-replace($svg, '{{stops}}', $stops));
+  } @else {
+    @error 'You must define at least one stop, which includes the distance and percentage';
+  }
+
+}
+
+@function svg-gradient-stop-add($color, $opacity, $offset) {
+  $stop: str-replace($li-svg-gradient-stop, '{{opacity}}', $opacity);
+  $stop: str-replace($stop, '{{color}}', $color);
+  @return str-replace($stop, '{{offset}}', $offset);
+}

@@ -1,0 +1,153 @@
+// Media Uploader: Header
+//
+// The header of the Media Uploader shows the title of the collection
+// of images as well as displaying the various tab options to the user.
+//
+// Style guide: components.media-uploader-header
+
+$media-uploader-header_close-button-padding:  10px !default;
+$media-uploader-header_close-button-color:    #999 !default;
+
+@mixin components\media-uploader-header {
+
+  @include media(phone) {
+    .lia-media-uploader-dialog-header {
+      display: none;
+    }
+  }
+
+  @include media(tablet-and-larger) {
+    .lia-media-uploader-dialog-header {
+      background-color: $body-bg;
+      margin: 0;
+      padding: 0;
+
+      .lia-tabs-sort.lia-media-uploader-tab-list {
+        border: none;
+      }
+
+      .lia-quilt-column {
+        line-height: $line-height-computed * 2;
+        padding: $padding-small-vertical $panel-body-padding;
+      }
+
+      .lia-media-uploader-header-album-selector-column,
+      .lia-media-uploader-header-title-column,
+      .lia-media-uploader-header-tabs-column {
+        padding: $padding-large-vertical $panel-body-padding;
+      }
+
+      .lia-media-uploader-header-close-column {
+        padding: $padding-small-vertical;
+      }
+
+      .lia-media-uploader-tab-list {
+        margin-bottom: 0;
+      }
+    }
+
+    .lia-media-uploader-header-close-column {
+      position: absolute;
+      right: 0;
+    }
+
+    .lia-visibility-hidden {
+      visibility: hidden;
+    }
+
+    .lia-media-uploader-header-close {
+      padding: $padding-small-vertical;
+      text-align: center;
+    }
+
+    .lia-media-album-selector {
+      font-size: $font-size-base;
+      line-height: $line-height-large;
+    }
+
+    .lia-media-uploader-header-title-wrapper,
+    .lia-media-uploader-tab-list {
+      color: $gray;
+      font-size: $font-size-large;
+
+      .lia-fa.lia-fa-camera {
+        color: $gray;
+        margin-right: $padding-xs-horizontal;
+      }
+    }
+
+    .lia-media-uploader-header-title-wrapper {
+      padding: $padding-large-vertical $panel-body-padding;
+    }
+
+    .lia-media-uploader-tab-list-link,
+    .lia-media-uploader-tab-list-link-disabled {
+      font-size: $font-size-base;
+      line-height: $line-height-large;
+      padding: $padding-xs-horizontal;
+
+    }
+
+    .lia-media-uploader-tab-list-link-disabled,
+    .lia-media-uploader-tab-list-link:hover {
+      background: $gray-lighter;
+      border-radius: 2.5px;
+    }
+
+    .lia-media-uploader-header-title {
+      font-weight: $headings-font-weight + 200;
+    }
+
+    .lia-media-image-upload-mobile-menu {
+      display: none;
+    }
+
+    .lia-media-uploader-tab,
+    .lia-media-uploader-tab-list {
+      display: inline;
+      margin-bottom: 0;
+    }
+
+    .lia-media-uploader-header-album-selector-column {
+      border-left: 1px solid $li-border-panel;
+      border-right: 1px solid $li-border-panel;
+    }
+
+    .lia-media-uploader-header-close .lia-fa {
+      color: $media-uploader-header_close-button-color;
+      font-size: $font-size-large + 3;
+
+      &:hover {
+        color: $gray;
+        cursor: pointer;
+      }
+    }
+
+    .tab-close-focus:focus {
+      border-bottom: 1px solid $gray;
+    }
+
+    .lia-media-uploader-tab-list {
+      float: right;
+    }
+
+    .lia-media-uploader-tab {
+      padding: 0 $padding-xs-horizontal;
+    }
+
+    .lia-media-album-selector-label {
+      display: none;
+    }
+
+    .lia-media-uploader-no-formatting {
+      .lia-media-uploader-header-close {
+        padding: {
+          bottom: 0;
+          left: $media-uploader-header_close-button-padding;
+          right: $media-uploader-header_close-button-padding + $padding-xs-horizontal;
+          top: 0;
+        }
+      }
+    }
+  }
+}

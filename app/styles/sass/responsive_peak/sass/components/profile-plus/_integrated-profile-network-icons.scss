@@ -1,0 +1,80 @@
+ @mixin components\profile-plus\integrated-profile-network-icons {
+
+   .lia-klout-network-icon {
+    display: none;
+    height: $li-integrated-profile-network-icon-size;
+    margin-right: 10px;
+    vertical-align: top;
+    width: $li-integrated-profile-network-icon-size;
+
+    svg {
+      border-radius: 50%;
+      box-sizing: border-box;
+      display: inline-block;
+      fill: $component-active-color;
+      padding-left: $li-integrated-profile-hovercard-icon-padding-small;
+      padding-right: $li-integrated-profile-hovercard-icon-padding-large;
+      padding-bottom: $li-integrated-profile-hovercard-icon-padding-small;
+    }
+
+    &.lt {
+      background: none;
+      display: inline-block;
+    }
+
+    &.foxsports svg {
+      background-color: #800080;
+      display: inline-block;
+    }
+
+    &.lithosphere svg {
+      background-color: #6b3d7d;
+      display: inline-block;
+    }
+
+    &.lt svg {
+      background-color: #6b3d7d;
+      display: inline-block;
+    }
+
+    &.telstracon svg {
+      background-color: #1db0e6;
+      display: inline-block;
+    }
+
+    &.jawwy svg {
+      background-color: #ff671f;
+      display: inline-block;
+    }
+
+    &.jawwyundisclosed svg {
+      background-color: #ff671f;
+      display: inline-block;
+    }
+
+    &.napa svg {
+      background-color: #d6e03d;
+      display: inline-block;
+    }
+
+    &.starhub svg {
+      background-color: #95c11f;
+      display: inline-block;
+    }
+
+    &.sonyeu svg {
+      background-color: #000;
+      display: inline-block;
+    }
+
+    &.du svg {
+     background-color: #00afdb;
+     display: inline-block;
+    }
+
+    &.ooredoo svg {
+      background-color: #ee3124;
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+$mentions_min-width:               270px !default;
+
+@mixin components\mentions {
+
+  // Reset styles since .lia-content is used elsewhere
+  // by customers to style the main portion of the page
+  #lia-mentions-wrapper.lia-content {
+    @extend .lia-content-reset;
+  }
+
+  .lia-mentions-block {
+    min-width: $mentions_min-width;
+
+    &.lia-autocomplete-container {
+      padding-top: 0;
+      margin-top: $padding-large-vertical;
+    }
+
+    // Creates the arrow caret on the top of the container
+    &:before {
+      content: '';
+      display: inline-block;
+      display: block;
+      position: absolute;
+      height: $caret-width-base * 2;
+      width: $caret-width-base * 2;
+      @include rotate(45deg);
+      border-width: 1px;
+      border-style: solid;
+      background: $gray-lighter;
+      border-color: $dropdown-border transparent transparent $dropdown-border;
+      left: $padding-xs-horizontal;
+      top: -($caret-width-base);
+    }
+
+    .lia-autocomplete-header {
+      display: inherit;
+    }
+
+    .lia-autocomplete-caption {
+      text-transform: uppercase;
+      font-size: $font-size-xsmall;
+      padding: 0 $padding-small-horizontal 0;
+      color: $gray-light;
+    }
+
+    .lia-list-standard.lia-mentions-user-list .lia-user-avatar-message {
+      max-width: $li-avatar-size-small;
+      max-height: $li-avatar-size-small;
+    }
+
+    .lia-user-name {
+      padding-top: $padding-small-vertical;
+    }
+
+    .lia-link-disabled {
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .lia-list-standard li {
+      @include clearfix;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .lia-mentions-block-header {
+    padding-left: $padding-small-horizontal;
+    margin-bottom: $padding-small-vertical;
+    background: $gray-lighter;
+    border-bottom: 1px solid $dropdown-border;
+    border-radius: $border-radius-base $border-radius-base 0 0;
+    @include li-extend('.dropdown-header');
+  }
+
+  .lia-mentions-loading {
+    float: right;
+  }
+
+  .lia-mentions-autocomplete {
+    background-color: $dropdown-link-hover-bg;
+    border: solid 1px darken($dropdown-link-hover-bg, 20%);
+  }
+
+  .lia-mentions-trigger {
+    background-color: darken($dropdown-link-hover-bg, 10%);
+    padding: 0 2px;
+  }
+
+  .lia-mentions-search-term {
+    padding: {
+      bottom: 0;
+      left: 2px;
+      right: 4px;
+      top: 0;
+    }
+  }
+}

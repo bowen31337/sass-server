@@ -1,0 +1,70 @@
+@mixin components\thread-images {
+
+  // using justify to align images from here
+  // http://www.barrelny.com/blog/text-align-justify-and-rwd/
+  // there needs to be spaces between the <li> so that it can be justified and not
+  // treated as one large unit, but needs to be small so that it is aligned
+  // to the edges and without creating excess vertical space.
+  .lia-component-images-widget-community-gallery,
+  .lia-component-images-widget-gallery,
+  .lia-component-media-tabs,
+  .lia-component-common-widget-thread-image-thumbnails {
+    .lia-list-tile {
+      font-size: .1px; // suppress spaces rendered by inline-block
+      text-align: justify;
+
+      > li {
+        @include columns-justified(3);
+
+        display: inline-block;
+        float: none;
+        font-size: $font-size-base; // reset font-size back to default
+        margin-right: 0; // undo generic .lia-list-tile margins
+        position: relative;
+        vertical-align: top;
+
+        // main / wide column images
+        .lia-quilt-column-main-content & {
+          @include columns-justified(8);
+        }
+
+        // scss-lint:disable DeclarationOrder
+        @include media(tablet) {
+          &,
+          .lia-quilt-column-main-content & {
+            @include columns-justified(5);
+          }
+        }
+
+        @include media(phone) {
+          &,
+          .lia-quilt-column-main-content & {
+            @include columns-justified(4);
+          }
+        }
+
+        &.lia-image-spacer {
+          margin-bottom: 0;
+        }
+      }
+
+      > li > .lia-link-navigation > img, // targeting ThreadImages
+      .image-preview > img {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+      }
+    }
+
+    .lia-list-tile-image-wrapper {
+      border-color: $gray-lighter;
+      border-style: solid;
+      border-width: 1px;
+    }
+  }
+}

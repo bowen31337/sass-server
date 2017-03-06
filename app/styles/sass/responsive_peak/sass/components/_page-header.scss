@@ -1,0 +1,140 @@
+@mixin components\page-header {
+  .lia-page-header {
+    display: table;
+    padding: {
+      bottom: $padding-small-vertical;
+      left: $grid-gutter-width;
+      right: $grid-gutter-width;
+      top: $panel-body-padding;
+    }
+    width: 100%;
+
+    @include media(tablet) {
+      padding-left: $panel-body-padding;
+      padding-right: $panel-body-padding;
+    }
+
+    @include media(phone) {
+      display: block;
+      padding: {
+        bottom: 0; // 0 so that if there's a primary action remove the gap the border
+        left: 0;
+        right: 0;
+        top: $padding-medium;
+      }
+    }
+
+    &.lia-mark-empty {
+      display: none;
+    }
+
+    .lia-component-common-widget-core-node-icon,
+    .lia-component-common-widget-page-title,
+    .lia-component-create-group-button,
+    .lia-component-forums-widget-menu-bar,
+    .lia-component-primary-post-button,
+    .lia-message-helpfulness-display,
+    .lia-component-solved-indicator,
+    .lia-page-actions-wrapper {
+      display: table-cell;
+      vertical-align: top;
+    }
+
+    // using individual left and right padding instead of .lia-page-header so
+    // that the border over the primary action can span the width
+    .lia-component-common-widget-core-node-icon,
+    .lia-component-common-widget-page-title {
+      padding-bottom: $padding-medium;
+
+      @include media(phone) {
+        padding-left: $panel-body-padding;
+      }
+
+      + .lia-component-common-widget-page-title {
+        padding-left: $padding-small-horizontal;
+      }
+    }
+
+    .lia-component-forums-widget-menu-bar,
+    .lia-component-primary-post-button,
+    .lia-page-actions-wrapper {
+      @include media(phone) {
+        background-color: $li-sub-header-bg;
+        border-bottom: 1px solid $li-border-panel;
+        border-top: 1px solid $li-border-panel;
+        display: block;
+        padding-bottom: $panel-body-padding;
+        padding-top: $panel-body-padding;
+        text-align: center;
+        width: 100%;
+      }
+    }
+
+    .lia-message-helpfulness-display {
+      text-align: right;
+
+      @include media(phone) {
+        display: block;
+        text-align: left;
+        width: 100%;
+      }
+    }
+
+    .lia-page-actions {
+      white-space: nowrap;
+
+      @include media(phone) {
+        white-space: normal;
+      }
+
+      .lia-button-wrapper {
+        display: inline-block;
+        padding-bottom: $padding-xl-vertical;
+        padding-left: $padding-small-horizontal;
+        padding-right: $padding-small-horizontal;
+      }
+    }
+
+    .lia-component-common-widget-page-title {
+      width: 100%;
+
+      .TkbArticlePage & {
+        width: 80%;
+      }
+
+      .lia-link-navigation {
+        display: block;
+        padding-right: $padding-xl-horizontal;
+
+        .lia-page-title {
+          @extend %title-main-font;
+        }
+      }
+    }
+
+    .lia-menu-bar {
+      &:before,
+      .lia-decoration-border-menu-bar:after,
+      .lia-decoration-border-menu-bar-top,
+      .lia-decoration-border-menu-bar-bottom {
+        display: none;
+      }
+    }
+  }
+
+  .QandAQuestionPage,
+  .ForumTopicPage {
+    .lia-page-header {
+      display: block;
+
+      .lia-thread-solved {
+        display: inline-block;
+      }
+
+      .lia-component-common-widget-page-title {
+        width: auto;
+        display: inline-block;
+      }
+    }
+  }
+}

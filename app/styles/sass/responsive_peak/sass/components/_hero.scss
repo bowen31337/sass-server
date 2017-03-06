@@ -1,0 +1,113 @@
+$hero_board-height:           135px !default;
+$hero_category-height:        225px !default;
+$hero_title-padding-top:      125px !default;
+$hero_node-font-size:         36px !default;
+$hero_node-font-size-xs:      floor($hero_node-font-size * .8) !default;
+$hero_node-icon-size:         floor($hero_node-font-size * 1.3) !default;
+$hero_node-icon-size-xs:      $hero_node-font-size !default;
+$hero_title-font-size:        43px !default;
+$hero_sub-heading-color:      $gray-lighter !default;
+
+
+@mixin components\hero {
+
+  .lia-content {
+    .lia-nodes-core-node-description {
+      margin: 0 auto;
+      padding-bottom: $line-height-computed * 2;
+      text-align: center;
+      width: 90%;
+    }
+
+    li\:nodes-core-node-info {
+      background-color: $li-hero-board-bg;
+      color: $li-hero-color;
+      display: block;
+//      min-height: $hero_board-height;
+    }
+
+    .lia-nodes-core-node-title {
+      margin: 0 auto;
+      padding-bottom: $padding-xl-vertical;
+//      padding-top: floor($hero_board-height * .3);
+      text-align: center;
+      width: 90%;
+    }
+
+    .lia-nodes-core-node-title-text {
+      color: $li-text-color-inverse;
+      display: inline-block;
+      font-size: $hero_node-font-size;
+      vertical-align: middle;
+
+      @include media(phone) {
+        font-size: $hero_node-font-size-xs;
+      }
+    }
+
+    .lia-nodes-core-node-title-icon {
+      color: $li-icon-inverse-color;
+      font-size: $hero_node-icon-size;
+      margin-right: $padding-xs-horizontal;
+      vertical-align: middle;
+
+      @include media(phone) {
+        font-size: $hero_node-icon-size-xs;
+      }
+    }
+  }
+
+  .CategoryPage {
+    li\:nodes-core-node-info {
+      background-color: $li-hero-category-bg;
+      min-height: $hero_category-height;
+    }
+
+    .lia-nodes-core-node-title {
+      padding-top: floor($hero_category-height * .25);
+    }
+  }
+
+
+  .CommunityPage {
+    li\:nodes-core-node-info {
+      background-color: transparent;
+//      min-height: $hero_category-height;
+    }
+
+    .lia-nodes-core-node-title {
+      color: $li-hero-color;
+      font-size: $hero_title-font-size;
+//      padding-bottom: $hero_title-font-size + $padding-small-vertical;
+      //padding-top: $hero_title-padding-top;
+
+      @include media(tablet) {
+        font-size: floor($hero_title-font-size * .85);
+//        padding-bottom: $hero_title-font-size + $li-icon-size-sm;
+//        padding-top: $hero_title-font-size * 2 + $padding-small-vertical;
+      }
+
+      @include media(phone) {
+        font-size: floor($hero_title-font-size * .8);
+  //      padding-top: $padding-xl-vertical * 2;
+      }
+    }
+
+    // Hero Welcome Text Community Name
+    .lia-welcome-text-node-title {
+      color: $li-text-color-inverse;
+      font-weight: bolder;
+    }
+  }
+
+  .lia-content {
+    .lia-nodes-core-node-description {
+      color: $hero_sub-heading-color;
+      font-style: italic;
+    }
+
+    .lia-nodes-core-node-title-text {
+      font-weight: 200;
+    }
+  }
+}

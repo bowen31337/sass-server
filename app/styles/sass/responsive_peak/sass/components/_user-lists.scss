@@ -1,0 +1,251 @@
+@mixin components\user-lists {
+
+  .lia-user-item {
+
+    .lia-user-leaderboard-rank {
+      display: table-cell;
+      padding-right: $padding-small-horizontal;
+      vertical-align: top;
+    }
+
+    .lia-user-avatar {
+      &,
+      & + .lia-user-attributes,
+      & + .lia-user-leaderboard-rank {
+        display: table-cell;
+        padding-right: $padding-medium;
+        vertical-align: top;
+      }
+    }
+
+    .lia-list-standard &,
+    .lia-list-slim & {
+      > div {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .lia-component-forums-widget-users-online {
+    .lia-text {
+      margin-bottom: 0;
+    }
+
+    .lia-users-online-current,
+    .lia-users-online-recent,
+    .lia-users-new {
+      margin-bottom: $padding-large-vertical;
+    }
+  }
+
+  // .lia-component-kudos-widget-authors-leaderboard {
+  //   .lia-list-slim {
+  //     width: 100%;
+
+  //     .lia-user-avatar {
+  //       display: none;
+  //     }
+
+  //     th {
+  //       display: none;
+  //     }
+
+  //     td.kudosCountColumn {
+  //       padding-left: $padding-large-horizontal + ($padding-xs-horizontal * 2);
+  //       text-align: left;
+  //       white-space: nowrap;
+
+  //       &:before {
+  //         @include li-extend('.lia-fa');
+  //         content: li-icon-content(button-kudos-v2-h-enabled);
+  //         margin-left: -($padding-large-horizontal + $padding-xs-horizontal);
+  //       }
+  //     }
+  //   }
+  // }
+
+
+  // Inner List of Users
+  .UserList {
+    .lia-list-row {
+      border-top: 1px solid $li-border-row;
+      display: table-row;
+
+      &:first-child {
+        border-top: 0;
+      }
+    }
+
+    .lia-user-item {
+      .lia-user-leaderboard-rank {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .lia-user-avatar {
+        display: table-cell;
+        margin-right: $padding-small-horizontal;
+      }
+
+      .lia-user-attributes {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  #contributorsList {
+    .lia-user-item {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    .lia-user-leaderboard-rank {
+      padding: $padding-large-horizontal;
+      width: $font-size-base + $padding-xl-horizontal;
+    }
+
+    .UserAvatar.lia-user-avatar {
+      width: $li-icon-size + $padding-base-horizontal;
+    }
+
+    .UserName.lia-user-name {
+      display: inline-block;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .lia-user-rank {
+      @include text-overflow;
+      display: block;
+      width: 100%;
+    }
+
+    .lia-user-attributes {
+      overflow: hidden;
+    }
+  }
+
+  // Users online
+  .UsersOnlineTaplet {
+    .lia-users-online-current {
+      margin-bottom: $padding-large-horizontal;
+    }
+
+    .lia-users-online-recent {
+      margin-bottom: $padding-large-horizontal;
+
+      .lia-list-standard-inline {
+        margin-left: $padding-large-horizontal;
+      }
+    }
+
+    .lia-users-new {
+      margin-bottom: 0;
+
+      .lia-text {
+        margin: $padding-small-vertical 0 0;
+      }
+
+      .lia-list-standard-inline {
+        line-height: $line-height-large;
+        margin-left: $padding-large-horizontal;
+      }
+    }
+  }
+
+  // Media
+  // Latest Photos Widget
+  // Top Image Contributors
+  .lia-media-top-image-contributors {
+    .li-image-contributor-header {
+      padding-top: $padding-small-vertical;
+    }
+
+    .lia-media-image-list.lia-media-image-list.lia-list-tile {
+      .lia-media-image-item.lia-media-placeholder {
+        margin-bottom: 0;
+      }
+    }
+
+    .lia-media-image-contributor-avatar-wrapper {
+      @include li-extend('.lia-user-avatar');
+      height: ceil($li-icon-size / 2);
+      width: ceil($li-icon-size / 2);
+
+      img {
+        left: -25%;
+      }
+    }
+  }
+
+  .UserOnline {
+    .offline,
+    .online {
+      display: none;
+    }
+  }
+
+  .GroupPage .GroupMembersTaplet.GroupMembersTaplet {
+    width: 100%;
+  }
+
+  .GroupMembersTaplet {
+    .lia-list-slim,
+    .lia-list-slim > tbody {
+      display: block;
+    }
+
+    .UserList .lia-list-row {
+      display: inline-block;
+      padding: $padding-large-vertical $padding-large-horizontal;
+      position: relative;
+      width: 100%;
+
+      @include media(tablet-only) {
+        border: none;
+        width: calc(100% / 3);
+      }
+    }
+
+    .lia-component-common-widget-user-avatar {
+      position: absolute;
+      left: $padding-large-horizontal;
+      top: $font-size-base;
+    }
+
+    .userColumn.userColumn {
+      display: block;
+      padding: {
+        bottom: 0;
+        left: $li-icon-size + $padding-large-horizontal;
+        right: 0;
+        top: 0;
+      }
+    }
+
+    .UserList .lia-user-item .lia-user-attributes {
+      display: block;
+    }
+
+    .lia-user-attributes > .lia-user-name {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    .rankColumn.rankColumn {
+      display: block;
+      padding: {
+        bottom: 0;
+        left: $li-icon-size + $padding-large-horizontal;
+        right: 0;
+        top: 0;
+      }
+      text-align: left;
+      width: 100%;
+    }
+  }
+}

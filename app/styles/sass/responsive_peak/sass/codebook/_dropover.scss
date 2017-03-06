@@ -1,0 +1,55 @@
+// Dropovers
+//
+// ngDropover http://verical.github.io/#/ngDropover
+//
+// Markup:
+// <div class="lia-ng-dropover">
+//   <a class="lia-common-dropdown-toggle dropdown-toggle">Dropdown</a>
+//   <div>
+//     <ul class="lia-list-standard">
+//       <li class>
+//         <a>foo</a>
+//       </li>
+//       <li class="lia-link-disabled">
+//         <a>bar</a>
+//       </li>
+//     </ul>
+//   </div>
+// </div>
+//
+// Style guide: codebook.dropover
+
+@mixin codebook\dropover {
+
+  .lia-ng-dropover {
+    .ngdo-contents {
+      background-color: $dropdown-bg;
+      border: 1px solid $gray-lighter;
+      border-radius: $border-radius-base;
+      box-shadow: 0px 6px 10px $gray-light;
+      max-width: 330px;
+      padding: 10px;
+      z-index: $zindex-dropdown;
+    }
+    .ngdo-contents:before {
+      background-color: $dropdown-bg;
+      border-width: 1px;
+      border-style: solid;
+      border-color: $gray-lighter transparent transparent $gray-lighter;
+      content: '';
+      height: 20px;
+      position: absolute;
+      transform: rotate(45deg);
+      width: 20px;
+    }
+  }
+  /* position: buttom-left styling */
+  .lia-ng-dropover.ngdo-bottom-left {
+    .ngdo-contents:before, .ngdo-contents:after {
+      left: 12px;
+      top: -10px;
+    }
+  }
+
+  /* all other position styling coming soon... */
+}

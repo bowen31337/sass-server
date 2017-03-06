@@ -1,0 +1,197 @@
+// Media Widget Content
+//
+// Governs the various media components that display photos and
+// enhancements.
+//
+// `.lia-media-image-item` - Each item (image) above gathers its width
+// relative to the size of the containing Lithium quilt. The number of images
+// that will display in one row can be determined by dividing the width by 100.
+// The default is nine images to one row applicable to all quilt columns except
+// the side column, which defaults to three rows of three iamges each.
+//
+// Style guide: components.media-widget-content
+
+//Media image items
+$media-widget-content_image-item-max-width:    150px !default;
+$media-widget-content_image-item-min-width:    69px !default;
+
+@mixin components\media-widget-content {
+
+  // Image actions
+  .lia-messages-message-image {
+    position: absolute;
+    right: $padding-small-vertical;
+    top: $padding-small-vertical;
+    visibility: hidden;
+    white-space: nowrap;
+
+    .lia-img-button-delete {
+      color: $brand-danger;
+      font-size: $font-size-large;
+      padding-left: $padding-xs-vertical;
+    }
+
+    .linked-message-link {
+      padding: {
+        bottom: $padding-xs-vertical;
+        left: $padding-xs-vertical;
+      }
+    }
+  }
+
+  .lia-media-lightbox-trigger,
+  .lia-message-image-link-wrapper {
+    background-color: $body-bg;
+    border: 1px solid $list-group-border;
+    border-radius: $list-group-border-radius;
+    margin: $padding-xs-vertical;
+    opacity: .8;
+    padding: {
+      bottom: $padding-small-vertical;
+      left: $padding-small-horizontal;
+      right: $padding-small-horizontal;
+      top: $padding-small-vertical;
+    }
+
+    &:hover {
+      opacity: .6;
+    }
+
+    &:active {
+      opacity: .5;
+    }
+  }
+
+  .lia-media-image:hover + .lia-messages-message-image,
+  .lia-messages-message-image:hover {
+    visibility: visible;
+    z-index: 1;
+  }
+
+  .lia-message-image-actions-hidden .lia-messages-message-image {
+    visibility: hidden !important;
+  }
+
+  .lia-message-image-actions-narrow.lia-message-image-actions-below {
+    .lia-messages-message-image {
+      left: 0;
+      right: auto;
+      top: auto;
+    }
+
+    .lia-media-link-text {
+      display: none;
+    }
+  }
+
+  // Top Contributors
+  .lia-media-contributor-count {
+    float: right;
+  }
+
+  .lia-media-image-list.lia-media-image-list.lia-list-tile {
+    font-size: .1px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 100%;
+    }
+
+    .lia-media-image {
+      height: auto;
+      width: 100%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .lia-media-image-item {
+      display: inline-block;
+      float: none;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      max-width: $media-widget-content_image-item-max-width;
+      min-width: $media-widget-content_image-item-min-width;
+      padding-top: 0;
+      width: 10%;
+    }
+
+    .lia-media-placeholder {
+      min-width: calc(100% / 9);
+      padding: 0;
+    }
+  }
+
+  // Resize for extra small layout (slim side)
+  .lia-quilt-column-01,
+  .lia-quilt-column-02,
+  .lia-quilt-column-03,
+  .lia-quilt-column-04,
+  .lia-quilt-column-05 {
+    .lia-media-image-list.lia-media-image-list.lia-list-tile {
+      .lia-media-image-item {
+        margin-bottom: 5.5%;
+        min-width: 0;
+        padding-top: 5.5%;
+        width: 100%;
+
+        &.lia-media-small-layout,
+        &.lia-media-large-layout {
+          display: none;
+        }
+      }
+    }
+  }
+
+  // Resize for small layout (side column),
+  .lia-quilt-column-06,
+  .lia-quilt-column-07,
+  .lia-quilt-column-08,
+  .lia-quilt-column-09,
+  .lia-quilt-column-10,
+  .lia-quilt-column-11,
+  .lia-quilt-column-12 {
+    .lia-media-image-list.lia-media-image-list.lia-list-tile {
+      .lia-media-image-item {
+        margin-bottom: 2.5%;
+        min-width: 0;
+        padding-top: 2.5%;
+        width: 30%;
+
+        &.lia-media-large-layout {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @include media(tablet-only) {
+    .lia-media-image-list.lia-media-image-list.lia-list-tile {
+      .lia-media-image-item {
+        margin-top: 2%;
+      }
+    }
+  }
+
+  @include media(phone) {
+    .lia-media-image-list.lia-media-image-list.lia-list-tile {
+      .lia-media-image-item {
+        margin-bottom: 2.5%;
+        min-width: 0;
+        padding-top: 2.5%;
+        width: 30%;
+
+        &.lia-media-large-layout {
+          display: none;
+        }
+      }
+    }
+  }
+}

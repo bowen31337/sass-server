@@ -1,0 +1,9 @@
+// making the imports explicit to the current directory since sasspath
+@import 'mixins';
+@import 'codebook';
+@import 'components';
+
+@mixin responsive-all {
+  @include codebook\all;
+  @include components\all;
+}

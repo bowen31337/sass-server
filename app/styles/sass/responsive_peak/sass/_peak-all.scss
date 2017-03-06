@@ -1,0 +1,9 @@
+// this file is no longer used as of the 16.6 base and peak merge and is now an alias to _all.scss
+// please adjust your skin.scss to remove the bootstrap_base references and peak-all and follow
+// the default skin.scss
+
+@import 'all';
+
+@mixin peak\all {
+  @include responsive-all;
+}

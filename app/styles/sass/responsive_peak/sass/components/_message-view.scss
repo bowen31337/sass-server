@@ -1,0 +1,567 @@
+$message-view_search-item-replies-bg:     $gray-lightest !default;
+$message-view_margin-left: $li-icon-size + $panel-body-padding + $panel-body-padding;
+$message-view_margin-right: $panel-body-padding + $panel-body-padding;
+
+@mixin components\message-view {
+  .lia-user-messages,
+  .lia-recent-posts {
+    clear: both;
+    margin: {
+      bottom: $panel-body-padding;
+      top: $panel-body-padding;
+    }
+  }
+
+  .lia-message-view-display {
+    clear: both;
+    position: relative;
+    padding: {
+      bottom: $panel-body-padding;
+      left: 0;
+      right: 0;
+      top: $panel-body-padding;
+    }
+
+    &.lia-message-view-related-message,
+    &.lia-message-view-related-message-field-item {
+      margin-bottom: 0;
+      border: 0;
+      box-shadow: none;
+      border-radius: 0;
+
+      &.lia-list-row-thread-escalated,
+      &.lia-list-row-thread-readonly,
+      &.lia-list-row-thread-solved {
+        &:before,
+        &:after {
+          display: none;
+        }
+      }
+
+      .lia-message-discussion-style-icon {
+        left: 0;
+      }
+
+      .lia-quilt-column-main-content {
+        padding-left: $li-icon-size + $padding-large-horizontal;
+        padding-right: 0;
+
+        > .lia-quilt-column-alley {
+          display: table;
+          width: 100%;
+
+          .lia-related-message-data,
+          .lia-related-message-action,
+          .lia-related-message-byline {
+            display: table-row;
+          }
+
+          .lia-component-tkb-related-message-action-remove,
+          .lia-message-byline,
+          .lia-message-subject {
+            display: table-cell;
+            vertical-align: middle;
+          }
+
+          .lia-component-tkb-related-message-action-remove {
+            padding-left: $padding-large-horizontal;
+            text-align: right;
+
+            .lia-img-button-delete {
+              vertical-align: inherit;
+            }
+          }
+        }
+      }
+    }
+
+    &.lia-message-view-auto-saved-draft {
+      border: {
+        left: 0;
+        right: 0;
+        top: 0;
+      }
+      border-radius: 0;
+      box-shadow: none;
+      margin-bottom: 0;
+    }
+
+    &.lia-message-view-user-message,
+    &.lia-message-view-recent-posts-item {
+      border-radius: 0;
+      margin-bottom: -1px;
+
+      &:first-child {
+        border-top-left-radius: $panel-border-radius;
+        border-top-right-radius: $panel-border-radius;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: $panel-border-radius;
+        border-bottom-right-radius: $panel-border-radius;
+      }
+    }
+
+    // status ribbons
+    &.lia-list-row-thread-escalated {
+      @include thread-status-icon($li-triangletop-bullhorn-bg, $fa-var-bullhorn);
+    }
+
+    &.lia-message-view-forum-message.lia-list-row-thread-escalated,
+    &.lia-message-view-group-topic-message.lia-list-row-thread-escalated,
+    &.lia-message-view-group-reply-message.lia-list-row-thread-escalated {
+      &:before {
+        display: none;
+      }
+    }
+
+
+    &.lia-list-row-thread-readonly {
+      @include thread-status-icon($li-triangletop-lock-bg, $fa-var-lock);
+    }
+
+    &.lia-message-view-forum-message.lia-list-row-thread-readonly,
+    &.lia-message-view-group-topic-message.lia-list-row-thread-readonly,
+    &.lia-message-view-group-reply-message.lia-list-row-thread-readonly {
+      &:before {
+        display: none;
+      }
+    }
+
+
+    &.lia-list-row-thread-solved {
+      @include thread-status-icon($li-triangletop-check-bg, $fa-var-check);
+    }
+
+    &.lia-message-view-forum-message.lia-list-row-thread-solved,
+    &.lia-message-view-group-topic-message.lia-list-row-thread-solved,
+    &.lia-message-view-group-reply-message.lia-list-row-thread-solved {
+      &:before {
+        display: none;
+      }
+    }
+
+    &.lia-list-row-thread-escalated,
+    &.lia-list-row-thread-readonly,
+    &.lia-list-row-thread-solved {
+      @include media(phone) {
+        position: relative;
+      }
+    }
+
+    .lia-quilt-column-full-content,
+    .lia-quilt-column-left-content {
+      > .lia-quilt-column-alley {
+        margin-left: $message-view_margin-left;
+        margin-right: $message-view_margin-right;
+      }
+    }
+
+    .lia-quilt-layout-one-column-list-item {
+      .lia-quilt-column-top-content > .lia-quilt-column-alley-single,
+      .lia-quilt-column-full-content > .lia-quilt-column-alley-single,
+      .lia-quilt-column-bottom-content > .lia-quilt-column-alley-single {
+        margin: 0 $panel-body-padding;
+      }
+    }
+
+    .lia-message-view-nested-replies-container {
+      margin: {
+        left: -$message-view_margin-left;
+        right: -$message-view_margin-right;
+      }
+    }
+
+    // main column content
+    .lia-quilt-column-left-content {
+      @include li-extend('.col-sm-18');
+
+      .lia-message-item-metadata-main {
+        display: none;
+        margin-top: $panel-body-padding;
+
+        @include media(phone) {
+          display: inline-block;
+        }
+
+        .lia-message-post-date {
+          @include li-icon(icn-time);
+        }
+
+        .lia-component-kudos-count {
+          @include li-icon(icn-kudos);
+        }
+
+        .lia-component-reply-count {
+          @include li-icon(icon-stat-replies);
+        }
+      }
+
+      .lia-component-kudos-count,
+      .lia-component-reply-count {
+        padding-top: $padding-small-vertical;
+      }
+    }
+
+    .lia-quilt-column-right-content {
+      @include li-extend('.col-sm-6');
+    }
+
+    .lia-message-item-metadata-side {
+      margin-right: $panel-body-padding * 2;
+      margin-top: $padding-xs-vertical;
+      text-align: right;
+
+      @include media(phone) {
+        display: none;
+      }
+
+      .lia-message-post-date {
+        @include li-icon(icn-time, $pseudo: after, $fixed-width: true);
+      }
+
+      .lia-component-kudos-count {
+        @include li-icon(icn-kudos, $pseudo: after, $fixed-width: true);
+      }
+
+      .lia-component-reply-count {
+        @include li-icon(icon-stat-replies, $pseudo: after, $fixed-width: true);
+      }
+    }
+
+    .lia-message-discussion-style-icon {
+      left: $panel-body-padding;
+      position: absolute;
+      top: $padding-xs-vertical;
+    }
+
+    .lia-message-byline,
+    .lia-message-byline-date {
+      @extend %secondary-text;
+
+      display: block;
+    }
+
+    .lia-message-item-metadata {
+      @extend %secondary-text;
+    }
+
+    .lia-message-subject {
+      font-size: $font-size-large;
+      line-height: $headings-line-height;
+      margin-bottom: $padding-base-vertical;
+
+      .lia-link-navigation {
+        color: $text-color;
+      }
+    }
+
+    .lia-component-kudos-count,
+    .lia-component-reply-count,
+    .lia-message-post-date {
+      white-space: nowrap;
+    }
+
+    .lia-message-body-wrapper,
+    .lia-message-attachments,
+    .lia-component-labels,
+    .lia-component-tags {
+      margin-bottom: $padding-large-vertical;
+      margin-top: $padding-large-vertical;
+    }
+
+    // Consider applying this to all message views not just search
+    &.lia-message-view-message-search-item .lia-message-empty {
+      display: none;
+    }
+
+    .lia-attachment-row {
+      position: relative;
+
+      .lia-attachment-row-element:last-child {
+        left: $fa-font-size-base + $padding-xs-horizontal;
+        position: absolute;
+        width: calc(100% - #{$fa-font-size-base});
+      }
+    }
+
+    .lia-link-navigation.attachment-link {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      display: inline-block;
+    }
+
+    .lia-tag-list-item {
+      display: inline-block;
+      font-weight: normal;
+      margin-bottom: 0;
+    }
+
+    .lia-message-body-content {
+      > .lia-body-strip-html-br {
+        display: none;
+      }
+    }
+
+    .lia-component-batch-processing-checkbox {
+      float: left;
+      margin-right: $padding-xs-horizontal;
+    }
+
+    &.lia-message-view-tkb-editor-message-search-item {
+      .lia-quilt-column-left-content .lia-message-item-metadata-main {
+        display: inline-block;
+      }
+    }
+
+    .lia-message-byline-author-date {
+      .lia-user-name-link {
+        vertical-align: baseline;
+      }
+    }
+
+    .lia-message-user-avatar-rank-date-display {
+      display: inline-block;
+      .lia-user-avatar {
+        img {
+          height: $li-avatar-size-small;
+          width: $li-avatar-size-small;
+        }
+      }
+
+      .lia-message-author-rank,
+      .lia-message-post-date {
+        display: inline-block;
+      }
+
+      .lia-message-author-rank {
+        @include separator;
+        @include media(phone) {
+          display: none;
+        }
+      }
+      .lia-message-author {
+        margin-right: $padding-xs-horizontal;
+        vertical-align: baseline;
+
+        .lia-user-name-link {
+          vertical-align: baseline;
+        }
+        @include media(phone) {
+          @include separator;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  // To adjust Table subgrid message icon
+  .lia-associated-search-term-messages .lia-associated-messages-status-icon {
+    float: left;
+    margin-right: $padding-large-vertical;
+  }
+
+  .lia-replies-toggle-link {
+    @include li-icon($fa-var-angle-right, $pseudo: after, $icon-margin: $padding-small-horizontal);
+
+    display: block;
+    margin-bottom: -$padding-large-vertical;
+    margin-left: $message-view_margin-left;
+    padding: {
+      bottom: $padding-large-vertical;
+      top: $padding-base-vertical;
+    }
+
+    &.lia-open {
+      margin-bottom: 0;
+
+      &:after {
+        content: $fa-var-angle-down;
+      }
+    }
+  }
+
+  // reply & solution block
+  .lia-message-item {
+    position: relative;
+
+    > .lia-link-navigation {
+      display: inline-block;
+      margin: {
+        left: $message-view_margin-left;
+        right: $message-view_margin-right;
+      }
+      padding: {
+        bottom: $panel-body-padding - $padding-large-vertical;
+        top: $panel-body-padding;
+      }
+    }
+
+    .lia-img-message-type-solution,
+    .lia-img-icon-stat-replies {
+      left: $panel-body-padding + $li-icon-size / 2;
+      line-height: $line-height-base;
+      position: absolute;
+      top: $panel-body-padding;
+    }
+
+    &.lia-message-item-solution {
+      //background-color: lighten($state-success-bg, 5%);
+      border-top: 1px solid $brand-success;
+    }
+
+    &.lia-message-item-reply {
+      background-color: $message-view_search-item-replies-bg;
+      border-top: 1px solid $li-border-color;
+    }
+  }
+
+  .lia-message-view-nested-replies {
+    margin-bottom: -$panel-body-padding;
+  }
+
+  .lia-search-match-lithium {
+
+    &.lia-search-attachment-icon {
+      background-color: inherit;
+    }
+  }
+
+  // Message Stats Display
+  .lia-message-stats-display {
+    display: inline-block;
+    text-align: center;
+
+    .lia-message-stat-count {
+      font-size: $font-size-h4;
+    }
+
+    .lia-message-stat-title {
+      font-size: $font-size-xsmall;
+    }
+
+    .lia-quilt-column-top-content & {
+      float: right;
+      padding: {
+        left: $padding-xl-vertical;
+        right: $padding-xl-vertical;
+      }
+
+      @include media(phone) {
+        display: none;
+      }
+    }
+
+    .lia-quilt-column-bottom-content & {
+      .lia-message-stat-count,
+      .lia-message-stat-title {
+        display: inline-block;
+        font-size: $font-size-xsmall;
+      }
+
+      .lia-message-stat-count {
+        margin-right: 3px;
+      }
+
+      .lia-message-stat-title {
+        @include separator;
+      }
+
+      :last-of-type {
+        .lia-message-stat-title {
+          @include separator('', $padding-left: 0, $padding-right: 0);
+        }
+      }
+
+      @include media(tablet-and-larger) {
+        display: none;
+      }
+    }
+  }
+
+  // Comment Item
+  .lia-message-view-comment-item {
+    padding-bottom: $padding-large-vertical;
+    .lia-quilt-column-alley-right {
+      display: block;
+    }
+
+    .lia-menu-navigation-wrapper {
+      .default-menu-option {
+        &:after {
+          content: li-icon-content(icon-menu-options-vertical);
+        }
+
+        background-color: inherit;
+        border: 0;
+        margin-top: -$padding-base-vertical;
+        margin-right: -$padding-base-horizontal;
+      }
+    }
+
+    .lia-quilt-row-main {
+      .lia-quilt-column-24 {
+        .lia-comment-main-wrapper {
+          @include media(tablet-and-larger) {
+            @include make-xs-column(20);
+            padding-left: 0;
+          }
+        }
+        .lia-comment-side-wrapper {
+          @include media(tablet-and-larger) {
+            position: absolute;
+            bottom:0;
+            right:0;
+          }
+          padding-right: 0;
+        }
+
+        @include media(tablet-only) {
+          .lia-comment-main-wrapper,
+          .lia-comment-side-wrapper {
+            float: none;
+            display: inline-block;
+            vertical-align: bottom;
+          }
+        }
+      }
+    }
+  }
+
+  .lia-message-view-display.lia-list-row-requires-moderation {
+    .lia-message-view-comment-item-reply-message {
+      .lia-message-state-indicator {
+        display: none;
+      }
+    }
+
+    &.lia-message-view-idea-message-item,
+    &.lia-message-view-idea-message {
+      .lia-message-state-indicator {
+        top: 70px; // for messages with kudos at the edge
+      }
+    }
+
+    &.lia-message-view-idea-message-item {
+      @include media(phone) {
+        .lia-message-state-indicator {
+          top: $panel-body-padding / 2;
+          bottom: 50px; // for messages with kudos at the bottom
+        }
+      }
+    }
+
+    .lia-message-state-indicator {
+      position: absolute;
+      top: $panel-body-padding / 2;
+      bottom: $panel-body-padding / 2;
+      left: 0;
+      background-color: $brand-danger;
+      width: $padding-xs-horizontal;
+      z-index: 2; // should appear above all border lines
+    }
+  }
+
+}

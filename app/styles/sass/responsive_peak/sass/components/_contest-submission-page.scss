@@ -1,0 +1,315 @@
+$li-contest-story-width:              580px !default;
+
+
+@mixin components\contest-submission-page {
+
+  .ContestSubmissionPage,
+  .lia-quilt-contest-winners-tab {
+    // TODO: when pagination is switched to non bordered everywhere remove
+    // margins from elements immediately above and below
+    .CommentEditorForm {
+      margin-bottom: 0;
+    }
+
+    .lia-component-submission-navigator {
+      margin-bottom: 0;
+      margin-top: -$panel-body-padding + $padding-small-vertical;
+
+      @include media(tablet) {
+        margin-top: -$padding-base-vertical;
+      }
+    }
+
+    // suppress lightbox on contest pages - blame mikey 5/3/16
+    .lia-message-image-wrapper {
+      cursor: default;
+      display: block;
+      padding-bottom: $padding-large-vertical;
+      padding-top: $padding-large-vertical;
+      pointer-events: none;
+      position: relative;
+
+      + .lia-inline-image-caption {
+        margin-top: 0;
+      }
+
+      // ie9/10 specific hack
+      @media screen and (min-width:0\0) {
+        &:after {
+          content: ' ';
+          display: block;
+          position: absolute;
+          background-color: rgba(0, 0, 0, .0001);
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 10000;
+        }
+      }
+
+      .lia-messages-message-image {
+        display: none;
+      }
+    }
+
+    .lia-paging-full {
+      @extend %pager-alt;
+    }
+
+    // common to all contest types
+    .lia-thread-topic {
+      margin-bottom: $panel-body-padding - $padding-small-vertical;
+      padding-top: 0;
+
+      @include media(phone) {
+        margin-bottom: $padding-large-vertical;
+      }
+
+      .image-preview {
+        display: block;
+        text-align: center;
+
+        img {
+          max-width: 100%;
+        }
+      }
+
+      .lia-component-message-view-widget-subject {
+        margin-bottom: $padding-large-vertical;
+      }
+
+      .lia-contest-content {
+        line-height: $line-height-small;
+      }
+
+      .lia-button-image-kudos-reversed {
+        @include kudos-button-primary;
+
+        max-width: $li-kudos-alt-button-style-width;
+        width: 100%;
+
+        &.lia-button-image-kudos-kudoed {
+          @include kudos-button-secondary;
+        }
+      }
+
+      .lia-message-actions {
+        margin-right: $panel-body-padding;
+        margin-top: $panel-body-padding - $padding-base-vertical;
+        text-align: right;
+      }
+
+      .lia-js-add-this-widget {
+        @include lia-button;
+        @include lia-button-primary-inverse;
+
+        @include media(phone) {
+          display: none;
+        }
+
+        .lia-img-widget-add-this-small {
+          color: inherit;
+          font-size: $font-size-large;
+          padding: 1px 0;
+          vertical-align: text-top;
+        }
+      }
+
+      .lia-message-post-date {
+        @include separator($color: $li-separator-color, $location: before);
+        display: inline-block;
+      }
+
+      .lia-message-subject {
+        > h5 {
+          // TODO:generalize new subject style / handle read state
+          color: $text-color;
+          font-size: $font-size-h4;
+          font-weight: normal;
+        }
+
+        @include media(phone) {
+          font-size: $font-size-large;
+        }
+      }
+
+      .lia-contest-media-description-display {
+        @extend %content-font;
+      }
+
+      .video-embed-link {
+        display: block;
+        margin: ($padding-base-vertical * 2) $panel-body-padding;
+        text-align: right;
+      }
+    }
+  }
+
+  .lia-message-author-with-avatar {
+    display: inline-block;
+
+    .lia-user-avatar {
+      display: inline-block;
+      padding-right: $padding-base-horizontal;
+    }
+  }
+
+  .lia-contest-voting-actions {
+    text-align: right;
+
+    @include media(phone) {
+      text-align: center;
+    }
+  }
+
+  .lia-rating-control-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+  }
+
+  .ui-stars-star.ui-stars-star,
+  .ui-stars-cancel.ui-stars-cancel {
+    text-indent: 999em;
+  }
+
+  .lia-form-contest-ratings-entry {
+    margin-bottom: 0;
+  }
+
+  .lia-contest.lia-primary-rating-type-contest-ratings .lia-message-view-display .lia-component-message-view-widget-kudos {
+    display: none;
+  }
+
+  .lia-primary-rating-type-kudos .lia-message-view-display .lia-component-ratings-widget-rating-display {
+    display: none;
+  }
+
+  .lia-contest-story-content {
+    margin: {
+      bottom: 0;
+      left: auto;
+      right: auto;
+      top: $panel-body-padding - $padding-small-vertical;
+    }
+    max-width: $screen-sm;
+
+    .lia-message-body-wrapper {
+      @include media(phone) {
+        margin-top: -$padding-small-vertical;
+      }
+    }
+  }
+
+  .lia-contest-story-voting-actions {
+    padding: $padding-base-horizontal;
+    padding-bottom: $panel-body-padding + $padding-large-vertical;
+    text-align: center;
+  }
+
+  .lia-message-view-contest-message-story {
+    .lia-message-subject.lia-message-subject {
+      > h5 {
+        font-size: $font-size-h2;
+        font-weight: normal;
+        line-height: $line-height-medium;
+
+        @include media(phone) {
+          font-size: $font-size-h4;
+        }
+      }
+    }
+
+    &.lia-message-view-display {
+      .lia-message-body-content {
+        @include media(phone) {
+          font-size: $font-size-base;
+        }
+      }
+    }
+  }
+
+  // layout specific modifications
+  .lia-quilt-layout-contest-message-media,
+  .lia-quilt-layout-contest-message-story {
+
+    .lia-quilt-column-controls {
+      @include make-sm-column(6);
+      @include media(phone) {
+        display: none;
+      }
+    }
+
+    .lia-quilt-column-submitter {
+      @include make-sm-column(18);
+
+      > .lia-quilt-column-alley {
+        padding: {
+          bottom: 0;
+          left: $panel-body-padding;
+          right: $panel-body-padding;
+          top: $panel-body-padding - $padding-base-vertical;
+        }
+
+        @include media(phone) {
+          padding: $padding-large-vertical $padding-medium;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .lia-quilt-layout-contest-message-media {
+    > .lia-quilt-row-main {
+      border-bottom: 1px solid $li-border-color;
+    }
+
+    .lia-quilt-row-main-title {
+//      background-color: $contest-submission-page_content-bg;
+      border-bottom: 1px solid $li-border-color;
+    }
+
+    .lia-quilt-column-main-title {
+      @include make-sm-column(16);
+
+      > .lia-quilt-column-alley {
+        padding: $panel-body-padding;
+
+        @include media(tablet) {
+          margin-bottom: $padding-large-vertical;
+          padding: $padding-large-vertical $padding-medium;
+        }
+      }
+    }
+
+    .lia-quilt-column-main-vote {
+      @include make-sm-column(8);
+
+      > .lia-quilt-column-alley {
+        padding: $panel-body-padding;
+
+        @include media(phone) {
+          padding-top: $padding-small-vertical;
+        }
+      }
+    }
+  }
+
+  .lia-quilt-layout-contest-message-story {
+    .lia-quilt-row-main-title {
+      border-bottom: 1px solid $li-border-color;
+    }
+
+    .lia-quilt-column-main-title {
+      > .lia-quilt-column-alley {
+        padding: $panel-body-padding;
+        padding-bottom: 0;
+
+        @include media(phone) {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+}

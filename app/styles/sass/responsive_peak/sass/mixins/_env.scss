@@ -1,0 +1,7 @@
+//Enter any environment overrides here 
+
+// This function is needed to build the right relative url for asset path for reverse proxy customers. On server side
+// this function will append the right subfolder path along with the tapestry context name. 
+@function asset($url) {
+  @return $url;
+}

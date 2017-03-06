@@ -1,0 +1,362 @@
+@mixin components\qa-question {
+  .QandAQuestionPage {
+    .lia-button-image-kudos-reversed {
+      @include kudos-button-secondary;
+      max-width: $li-kudos-alt-button-style-width;
+      width: 100%;
+    }
+
+    .lia-button.lia-rating-image {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      width: $li-btn-min-width + $padding-base-horizontal;
+    }
+
+    .lia-component-accepted-solutions-actions-mark-message-as-accepted-solution-secondary-button .lia-button {
+      font-weight: bold;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    .lia-component-message-view-widget-tags {
+      @include media(phone) {
+        margin-bottom: 0;
+      }
+
+      .add-tag-link {
+        margin-bottom: $padding-large-vertical;
+        margin-top: $padding-large-vertical;
+
+        @include media(phone) {
+          font-family: $font-family-sans-serif;
+          font-size: $font-size-base;
+
+          &::before {
+            margin-right: $padding-xs-horizontal;
+          }
+        }
+      }
+
+      .lia-panel-heading-bar-title {
+        font-size: $font-size-large;
+        margin-top: $padding-small-vertical;
+
+        .lia-panel-heading-bar-count {
+          font-size: $font-size-base;
+        }
+      }
+
+      .lia-panel-heading-bar,
+      .lia-panel-content {
+        padding: 0;
+        @include media(phone) {
+          padding: {
+            bottom: $padding-large-vertical;
+            left: 0;
+            right: 0;
+            top: $padding-large-vertical;
+          }
+        }
+      }
+    }
+
+    .lia-component-quilt-search-and-post {
+      .lia-quilt-column-18 {
+        @include make-xs-column(24);
+      }
+    }
+
+    .lia-component-question-view {
+      padding-top: 0;
+    }
+
+    .lia-panel-message-answer {
+      padding-bottom: $padding-xl-vertical + $padding-small-vertical;
+      padding-top: 0;
+    }
+
+    .lia-component-messages-widget-message-list {
+      .lia-message-view-wrapper:last-of-type {
+        .lia-message-view-display {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    .lia-go-to-solution-link {
+      float: right;
+      margin-top: $padding-large-vertical;
+
+      .lia-accepted-solution-link {
+        @include li-icon(icon-arrow-down-safe, $size: $font-size-small, $color: $brand-primary);
+      }
+    }
+
+    .lia-menu-navigation-wrapper {
+      float: right;
+
+      .default-menu-option {
+        background-color: inherit;
+        border: 0;
+        margin-right: -$padding-base-horizontal;
+
+        &:after {
+          content: li-icon-content(icon-menu-options-vertical);
+        }
+      }
+    }
+
+
+    .lia-message-byline-author-date,
+    .lia-rating-enumeration,
+    .lia-rating-link-summary {
+      display: inline-block;
+    }
+
+    .lia-message-byline-author-date {
+      @extend %secondary-text;
+    }
+
+    .lia-message-view-qanda-answer.lia-list-row-thread-solved:before {
+      display: none;
+    }
+
+    .lia-message-view-qanda-answer {
+      padding-top: 0;
+
+      .lia-button-image-kudos-reversed {
+        @include kudos-button-primary-inverse;
+        max-width: $li-kudos-alt-button-style-width;
+        width: 100%;
+      }
+
+      .lia-component-accepted-solutions-button .lia-button-secondary {
+        @include lia-button-primary-inverse;
+      }
+
+      .lia-message-author-avatar {
+        @include media(phone) {
+          float: none;
+        }
+      }
+
+      .lia-user-avatar img {
+        height: $li-avatar-size-large;
+        width: $li-avatar-size-large
+      }
+
+      .solution-text {
+        color: $li-triangletop-check-bg;
+        font-size: $font-size-large;
+        vertical-align: middle;
+
+        @include li-icon($fa-var-check-square-o, $color: $li-triangletop-check-bg, $size: $font-size-h4, $line-height: $line-height-base);
+
+        &:before {
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .lia-message-view-comment-item {
+      .lia-message-user-avatar-rank-date-display .lia-user-avatar img {
+        height: $li-avatar-size-small;
+        width: $li-avatar-size-small;
+      }
+    }
+
+    .lia-message-view-qanda-question {
+      padding-top: 0;
+    }
+
+    .lia-panel .lia-panel-heading-bar {
+      border: none;
+    }
+
+    .lia-qa-content {
+      .lia-message-body-content {
+        @extend %content-font;
+      }
+
+      .lia-message-subject {
+        font-size: $font-size-h2;
+      }
+    }
+
+    .lia-quilt-qanda-question.lia-quilt-layout-two-column-message,
+    .lia-quilt-qanda-answer.lia-quilt-layout-two-column-message {
+      @include media(tablet-and-larger) {
+        .lia-toggleable-comment-list {
+          margin: {
+            bottom: $padding-small-horizontal;
+            left: $padding-large-vertical + $padding-xl-vertical;
+            right: $padding-large-vertical + $padding-xl-vertical;
+            top: $padding-small-horizontal;
+          }
+        }
+
+        &>.lia-quilt-row-header {
+          padding: {
+            bottom: $padding-large-vertical;
+            left: $padding-large-vertical + $padding-xl-vertical;
+            right: $padding-large-vertical + $padding-xl-vertical;
+            top: $padding-large-vertical + $padding-xl-vertical
+          }
+        }
+
+        &>.lia-quilt-row-main {
+          padding-left: $padding-large-vertical + $padding-xl-vertical;
+          padding-right: $padding-large-vertical + $padding-xl-vertical;
+        }
+      }
+
+      .lia-quilt-column-header-left,
+      .lia-quilt-column-footer-left,
+      .lia-quilt-column-footer-right {
+        @include li-extend('.col-xs-24');
+        padding: 0;
+      }
+
+      .lia-quilt-column-header-right,
+      .lia-quilt-row-quickreply {
+        display: none;
+      }
+
+      .lia-quilt-column-footer-left {
+        @include media(phone) {
+          margin-bottom: $padding-large-vertical;
+        }
+      }
+
+      .lia-quilt-column-main-left {
+        @include make-sm-column(18);
+        overflow: auto;
+        margin-bottom: 0;
+        padding-left: 0;
+        padding-right: $padding-large-vertical + $padding-xl-vertical;
+
+        .lia-message-body-wrapper {
+          margin: 0;
+        }
+
+        @include media(tablet-only) {
+          border-right: 1px solid $li-border-color;
+        }
+
+        @include media(phone) {
+          padding: 0;
+
+        }
+      }
+
+      .lia-quilt-column-main-right {
+        @include make-sm-column(6);
+        padding-left: $padding-large-vertical + $padding-xl-vertical;
+        padding-right: 0;
+
+        @include media(tablet-only) {
+          border-left: 1px solid $li-border-color;
+          margin-left: -1px;
+        }
+
+        @include media(phone) {
+          border-top: 1px solid $li-border-color;
+          margin: 0px (-$panel-body-padding);
+          padding: 0px $panel-body-padding;
+        }
+      }
+
+      .lia-show-trigger,
+      .lia-hide-trigger {
+        margin: 0;
+      }
+    }
+
+
+    .lia-quilt-qanda-answer .TagList ul li:first-child,
+    .lia-quilt-qanda-question .TagList ul li:first-child,
+    .local-time {
+      display: none;
+    }
+
+    .lia-quilt-row-footer {
+      background-color: $li-bg-secondary;
+      padding: 0;
+      @include media(phone) {
+        text-align: center;
+      }
+
+      .lia-quilt-column-footer-left {
+        padding: {
+          left: $panel-body-padding * 2 - $padding-small-horizontal;
+          right: $panel-body-padding * 2 - $padding-small-horizontal;
+        }
+
+        @include media(phone) {
+          padding: {
+            left: $padding-small-horizontal;
+            right: $padding-small-horizontal;
+          }
+          text-align: left;
+        }
+      }
+    }
+
+    .lia-quilt-column-footer-right {
+      border-top: 1px solid $li-border-color;
+
+      .KudosButton,
+      .lia-component-accepted-solutions-button,
+      .lia-component-reply-button,
+      .lia-rating-metoo {
+        float: right;
+        padding: {
+          top: $panel-body-padding;
+          right: $panel-body-padding;
+          bottom: 0;
+          left: 0;
+        }
+
+        @include media(phone) {
+          display: block;
+          float: none;
+
+          .lia-button {
+            width: $li-kudos-alt-button-style-width;
+          }
+
+          .lia-button.lia-rating-image {
+            width: $li-btn-min-width + $padding-base-horizontal;
+          }
+        }
+      }
+    }
+
+    .lia-rating-metoo .lia-button-wrapper {
+      display: inline-block;
+    }
+
+    .lia-rating-metoo .lia-link-navigation {
+      border: 1px solid #767676;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: $border-radius-base;
+      border-left: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: $border-radius-base;
+      background-color: $li-bg-secondary;
+      float: right;
+      font-size: $font-size-large;
+      font-weight: bold;
+      height: $input-height-base;
+      padding: 6px 19px; // to match other buttons
+      vertical-align: middle;
+    }
+
+    .section-solution,
+    .section-answer {
+      margin-bottom: $padding-xl-vertical;
+    }
+  }
+}

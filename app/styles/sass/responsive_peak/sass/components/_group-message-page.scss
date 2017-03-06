@@ -1,0 +1,26 @@
+@mixin components\group-message-page {
+  .GroupMessagePage {
+    .lia-menu-bar-bottom {
+      float: right;
+      margin-top: 0;
+    }
+
+    .lia-page-header .lia-component-common-widget-page-title {
+        width: auto;
+        display: inline-block;
+    }
+
+    .lia-page-header .lia-component-solved-indicator {
+      display: inline-block;
+      white-space: nowrap;
+
+      @include media(phone) {
+        margin-left: $padding-medium;
+      }
+    }
+
+    .lia-paging-pager {
+      display: inline-block;
+    }
+  }
+}

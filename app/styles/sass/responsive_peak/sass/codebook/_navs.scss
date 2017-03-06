@@ -1,0 +1,221 @@
+// Navs
+//
+
+@mixin codebook\navs {
+
+  %lia-nav-stacked {
+    @include li-extend('.nav-stacked');
+
+    margin: {
+      bottom: -$panel-body-padding;
+      left: -$panel-body-padding;
+      right: -$panel-body-padding;
+    }
+
+    li > .lia-link-navigation {
+      @include li-extend('.list-group-item');
+
+      &:first-child,
+      &:last-child {
+        border: 0;
+        border-radius: 0;
+      }
+    }
+
+    > .lia-list-standard {
+      @include li-extend('.list-group');
+      margin-bottom: $padding-large-vertical;
+    }
+  }
+
+  %lia-pill {
+    border-radius: $nav-pills-border-radius;
+    display: block;
+    padding: $nav-link-padding;
+    position: relative;
+
+    &:focus,
+    &:hover {
+      background-color: $nav-link-hover-bg;
+      text-decoration: none;
+    }
+  }
+
+  %lia-pill-active {
+    border-radius: $nav-pills-border-radius;
+    display: block;
+    padding: $nav-link-padding;
+    position: relative;
+
+    &,
+    &:focus,
+    &:hover {
+      background-color: $nav-pills-active-link-hover-bg;
+      color: $nav-pills-active-link-hover-color;
+    }
+  }
+
+  .lia-nav-list {
+    @extend %lia-nav-stacked;
+  }
+
+  .lia-tabs-secondary:not(.lia-tabs-vertical) {
+    @include li-extend('.nav');
+    @include li-extend('.nav-pills');
+
+    margin-bottom: $line-height-computed;
+
+    > li > span > a {
+      @extend %lia-pill;
+    }
+
+    > .lia-tabs-active > span > a {
+      @extend %lia-pill-active;
+    }
+  }
+
+  .lia-tabs-standard {
+    @include li-extend('.nav');
+    @include li-extend('.nav-tabs');
+
+    // post page modifies this value in _post-page.scss
+    margin-bottom: $padding-large-vertical;
+
+    > li > span > a,
+    > li .default-menu-option {
+      border: 1px solid transparent;
+      border-radius: $border-radius-base $border-radius-base 0 0;
+      display: block;
+      line-height: $line-height-base;
+      margin-right: 2px;
+      padding: $nav-link-padding;
+      position: relative;
+
+      @include media(phone) {
+        padding: $nav-link-padding-xs;
+      }
+
+      &:focus,
+      &:hover {
+        // more convenient override
+        // scss-lint:disable PropertySortOrder
+        background-color: $nav-link-hover-bg;
+        border-color: $nav-tabs-link-hover-border-color;
+        border-bottom-color: $nav-tabs-border-color;
+        text-decoration: none;
+      }
+    }
+
+    > .lia-tabs-active > span > a,
+    > .lia-tabs-active .default-menu-option {
+      &,
+      &:focus,
+      &:hover {
+        background-color: $nav-tabs-active-link-hover-bg;
+        border: 1px solid $nav-tabs-active-link-hover-border-color;
+        border-bottom-color: transparent;
+        color: $nav-tabs-active-link-hover-color;
+        cursor: default;
+      }
+    }
+  }
+
+  .lia-tabs-standard {
+    display: table;
+
+    > .lia-tabs {
+      display: table-cell;
+      float: none;
+
+      .tab-link {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .lia-content .SortingBar,
+  .lia-content .TimeRangeSelector {
+    display: table;
+    padding-bottom: $line-height-computed;
+  }
+
+  .lia-label-tabs-sort {
+    display: table-cell;
+    padding-right: $padding-small-horizontal;
+    vertical-align: middle;
+
+    // situations where there's no wrapper
+    .lia-menu-bar ~ & {
+      padding-bottom: $line-height-computed;
+      padding-left: $panel-body-padding;
+    }
+  }
+
+  .lia-tabs-sort {
+    @include li-extend('.lia-tabs-secondary');
+    display: table-cell;
+
+    > li > .lia-link-navigation {
+      @extend %lia-pill;
+      margin-right: $padding-xs-horizontal;
+    }
+
+    > li > .lia-link-disabled {
+      @extend %lia-pill-active;
+    }
+
+    // situations where there's no wrapper
+    .lia-menu-bar ~ & {
+      padding-bottom: $line-height-computed;
+    }
+  }
+
+  .lia-tabs-vertical {
+    float: none;
+    margin-left: 0;
+    margin-top: $padding-large-vertical;
+  }
+
+  .lia-tabselect {
+    margin-bottom: $line-height-computed;
+  }
+
+  .lia-content .SortingBar {
+    padding: $grid-gutter-width / 2;
+    width: 100%;
+  }
+
+  .lia-content .TimeRangeSelector {
+    width: 100%;
+
+    .lia-label-tabs-sort {
+      border-bottom: 1px solid $li-border-color;
+      padding: $grid-gutter-width / 2;
+    }
+  }
+
+
+  .lia-tabs-secondary:not(.lia-tabs-vertical) {
+    border-bottom: 1px solid $li-border-color;
+
+    > li + li {
+      margin-left: 0;
+    }
+
+    >li > span > a {
+      border-radius: 0;
+      color: $text-color;
+
+      &:hover {
+        border-radius: 0;
+      }
+    }
+
+    > .lia-tabs-active > span > a {
+      background-color: $nav-link-hover-bg;
+      border-radius: 0;
+      color: $gray-light;
+    }
+
+  }
+}

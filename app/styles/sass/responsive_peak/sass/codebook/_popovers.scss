@@ -1,0 +1,79 @@
+// Tooltips (Popovers)
+//
+
+@mixin codebook\popovers {
+
+  .lia-panel-tooltip-wrapper {
+    @include li-extend('.popover');
+
+    margin: $panel-body-padding;
+    max-width: $popover-max-width;
+    padding: 0;
+    position: relative;
+    width: $popover-max-width;
+
+    // override positioning when using bootstrap uib-tooltip-* or uib-popover-*
+    &.lia-bootstrap-tooltip-topics-whitelist {
+      position: absolute;
+
+      .content {
+        max-width: none;
+      }
+    }
+
+    // override general lia-content min-width
+    &.lia-content {
+      min-width: 0;
+    }
+
+    // lia (jquery.tools.tooltip) sets inline styles when positioning tooltips
+    // scss-lint:disable ImportantRule
+    &.lia-overflow-width {
+      width: auto !important;
+    }
+
+    &.lia-overflow-left {
+      left: 0 !important;
+    }
+
+    &.lia-overflow-right {
+      right: 0 !important;
+    }
+    // scss-lint:enable ImportantRule
+
+    &.lia-tooltip-pos-align-left {
+      @include li-extend('.popover.left');
+    }
+
+    &.lia-tooltip-pos-bottom-left {
+      margin-left: $padding-xl-horizontal;
+    }
+
+    &.lia-tooltip-pos-bottom-left,
+    &.lia-tooltip-pos-bottom-right {
+      @include li-extend('.popover.bottom');
+    }
+
+    // lia default right side tooltips open to the right and for this skin
+    // we want the tooltip arrow to line up with the left side of the content
+    &.lia-tooltip-pos-bottom-right,
+    &.lia-tooltip-pos-top-right {
+      margin-left: -$panel-body-padding * 3;
+    }
+
+    &.lia-tooltip-pos-top-right {
+      @include li-extend('.popover.top');
+    }
+
+    .lia-tooltip-arrow {
+      @include li-extend('.arrow');
+    }
+
+    .content {
+      @include li-extend('.popover-content');
+
+      max-width: 100%;
+      padding: $panel-body-padding;
+    }
+  }
+}

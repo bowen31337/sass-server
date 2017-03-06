@@ -1,0 +1,399 @@
+// Media Uploader: Structure
+//
+// The Media Uploader is a custom Lithium component launched from the photos
+// icon in tinyMCE. It facilitates the upload and organization of photos.
+// Drag and drop functionality has been added (desktop only) and it allows
+// users to select or create a new album to organize newly uploaded images.
+// It also allows several formatting options:
+// * Arrangement: Inline
+// * Size: Small, Medium, and Large
+// * Position: Left, Center, and Right
+//
+// The uploader is divided into four parts: header (top left), main content
+// (bottom left), album selector (top right) and a side panel (bottom right)
+//
+// For main content, there are three major sections that are accessed via
+// tabs.  These sections are show the options a user has to include photos
+// in their post - Upload (from computer), URL (from the web) and Saved
+// Photos (already uploaded).
+//
+// Styling notes:
+// The uploader's appearance is like a modal, but it is distinct
+// enough that it does not follow the conventions of other modals used.
+//
+// `.lia-media-uploader-body-tab-content` - default selected tab is 'Upload'
+//
+// `.lia-media-uploader-upload-tab` - note that the uploader tabs are styled differently than the default
+//
+// Style guide: components.media-uploader-structure
+
+$media-uploader-structure_mobile-menu-height:               50px !default;
+$media-uploader-structure_dialog-bg:                        #a1a1a1 !default;
+
+
+@mixin components\media-uploader-structure {
+
+  body.lia-media-uploader-dialog-open {
+    overflow: hidden;
+  }
+
+  .lia-media-image-preview {
+    background-color: #fff;
+    height: $li-uploader-image-tile-height;
+    width: $li-uploader-image-tile-width;
+
+    &.lia-image-cover {
+      background-size: cover;
+    }
+  }
+
+  .lia-media-uploader-backdrop {
+    background-color: $modal-backdrop-bg;
+    float: left;
+    height: 100vh;
+    left: 0;
+    opacity: $modal-backdrop-opacity;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10001;
+  }
+
+  .lia-media-uploader-dialog {
+    background-color: $body-bg;
+    float: left;
+    left: 0;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    position: fixed;
+    right: 0;
+    top: 5%;
+    width: 91%;
+    z-index: 10002;
+
+    .lia-quilt-column {
+      float: left;
+    }
+
+    span:focus,
+    a:focus,
+    i:focus {
+      color: darken($link-hover-color, 20%);
+      outline: none;
+    }
+  }
+
+  .lia-media-uploader-dialog-no-items {
+    .lia-media-uploader-tab-content {
+      .lia-common-feedback {
+        margin: {
+          bottom: $padding-large-vertical;
+          left: 0;
+          right: 0;
+          top: 0;
+        }
+        word-wrap: break-word;
+      }
+    }
+
+    .lia-media-uploader-body-side-panel,
+    .lia-media-uploader-formatting,
+    .lia-media-uploader-side-panel-formatting {
+      min-height: 0;
+    }
+
+    .lia-tile-image-uploader {
+      height: 100%;
+      width: 100%;
+    }
+
+    .lia-tile-image {
+      margin: 0;
+    }
+  }
+
+  .lia-tile-image {
+    min-height: $li-uploader-image-tile-height;
+    width: $li-uploader-image-tile-width;
+  }
+
+  .lia-list-tile > li.lia-image-item {
+    margin: 0 $li-uploader-padding-vertical $li-uploader-padding-vertical 0;
+  }
+
+  .lia-quilt-tkb-article-editor-page .lia-media-uploader .lia-media-uploader-dialog {
+    ul {
+      left: 0; // Hack to overwrite default value for UL elements on TKB pages
+    }
+  }
+
+  .lia-media-uploader-body-footer {
+    background-color: $body-bg;
+    bottom: 0;
+    left: 0;
+    padding: $padding-large-vertical $padding-large-horizontal;
+    position: absolute;
+    right: 0;
+  }
+
+
+  @include media(phone) {
+    .lia-media-album-selector {
+      display: none;
+    }
+
+    .lia-media-mobile-uploader {
+      .lia-image-upload-icon-wrapper,
+      .lia-media-image-upload-title {
+        display: none;
+      }
+
+      &.lia-media-no-image-uploaded {
+        .lia-row.lia-media-image-upload-contents-wrapper .lia-media-image-upload-contents {
+          @include centered(absolute);
+          display: block;
+          height: auto;
+          text-align: center;
+        }
+
+        .lia-media-image-upload-mobile-instruction {
+          @include centered-horizontal(absolute);
+          display: block;
+          margin-top: $padding-xl-vertical;
+          top: 0;
+          width: 80vw;
+        }
+
+        .lia-media-image-upload-contents .lia-button-wrapper {
+          .lia-button.lia-button-lg.lia-button-image-upload {
+            @include centered(absolute);
+            background-color: transparent;
+            border: 0;
+            height: auto;
+            outline: transparent;
+            padding: 30vh 30vw; //cover a generous portion of the viewable area
+
+            &:hover,
+            &:focus,
+            &:active {
+              background-color: transparent;
+              border: 0;
+            }
+
+            .lia-image-upload-icon {
+              display: block;
+              margin-bottom: $li-uploader-2x-icon * 3;  //size of icon
+            }
+
+            .lia-image-upload-button-text {
+              display: none;
+            }
+          }
+        }
+      }
+
+      &.lia-media-image-uploaded {
+        .lia-media-image-upload-contents .lia-button-wrapper {
+          .lia-button-image-upload {
+            @include lia-button-primary;
+          }
+          .lia-image-upload-icon {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .lia-list-tile > li.lia-image-item {
+      margin-right: 0;
+    }
+
+    .lia-media-image-upload-mobile-menu {
+      background-color: $body-bg;
+      font-size: $font-size-h4;
+      height: $media-uploader-structure_mobile-menu-height;
+      left:0;
+      line-height: $font-size-h4;
+      position: fixed;
+      text-align: center;
+      top:0;
+      width: 100%;
+
+      .lia-fa-camera {
+        margin-right: $padding-xs-horizontal;
+      }
+
+      .lia-media-image-upload-mobile-header {
+        padding-top: ($media-uploader-structure_mobile-menu-height - $font-size-h4) / 2;
+      }
+
+      .lia-button-close {
+        left: $padding-base-horizontal;
+        position: absolute;
+      }
+
+      .lia-button-upload-mobile-done {
+        position: absolute;
+        right: $padding-small-horizontal;
+        padding: 0;
+      }
+
+      .lia-button-upload-mobile-done,
+      .lia-button-close {
+        background-color: transparent;
+        border: 0;
+      }
+    }
+
+    .lia-media-uploader-body-tab-content,
+    .lia-media-uploader-body-tab-content {
+      height: 100%;
+      width: 100%;
+
+      .lia-common-feedback {
+        margin-bottom: 0;
+        margin: {
+          bottom: 0;
+          top: $padding-large-vertical;
+        }
+        min-width: calc(100% - #{$grid-gutter-width});
+        text-align: center;
+        word-wrap: break-word;
+      }
+
+      .lia-image-tile-ghost {
+        outline: 2px dashed $gray;
+
+        .lia-media-image-tile {
+	        visibility: hidden;
+        }
+      }
+
+      .lia-media-uploader-image-list {
+        text-align: center;
+        vertical-align: top;
+      }
+    }
+
+    .lia-media-uploader-button {
+      padding-left: $padding-large-horizontal;
+      padding-right: $padding-large-horizontal;
+    }
+
+    .lia-media-uploader-dialog {
+      background-color: $media-uploader-structure_dialog-bg;
+      height: 100%;
+      min-width: 100%;
+      top: 0;
+      padding-top: $media-uploader-structure_mobile-menu-height;
+
+    }
+
+    .lia-media-uploader-dialog-body {
+      height: 100%;
+      overflow: auto;
+    }
+  }
+
+  @include media(tablet-and-larger) {
+    .lia-media-image-upload {
+      display: table;
+      height: 100%;
+      min-height: $li-uploader-image-tile-height + $li-uploader-image-tile-caption-height;
+      min-width: $li-uploader-image-tile-width;
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    .lia-media-uploader-body-tab-content {
+      background-color: $media-uploader-structure_dialog-bg;
+      border-top: 1px solid $li-border-panel;
+      float: left;
+      height: 100%;
+      overflow: auto;
+      padding: 0;
+    }
+
+    .lia-media-uploader-dialog-body {
+      height: 80vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    .lia-media-uploader-dialog-no-items {
+      .lia-drop-accept .lia-button-group,
+      .lia-drop-accept .lia-media-image-upload-title {
+        visibility: hidden;
+      }
+    }
+
+    .lia-media-uploader-no-formatting {
+      .lia-media-uploader-dialog-body {
+        height: auto;
+      }
+
+      .lia-media-uploader-body-tab-content {
+        @include make-xs-column(24);
+        height: 70vh;
+        padding: 0;
+      }
+
+      .lia-media-uploader-header-tabs-column {
+        @include make-xs-column(18);
+      }
+
+      .lia-image-item {
+        left: 50%;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%) translateX(-50%);
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+
+  // LIA-43023
+  // Prevent side column from getting too narrow
+  // and messing with the formatting display
+
+  @include media(tablet-only) {
+      .lia-media-uploader.lia-media-uploader-display-formatting {
+        // 5 (20.833%)
+        .lia-media-uploader-header-title-column {
+          width: 22%;
+        }
+
+        // 14 (58.333%)
+        .lia-media-uploader-header-tabs-column {
+          width: 46%;
+        }
+
+        // 4 (16.666%)
+        .lia-media-uploader-header-album-selector-column {
+          width: 25%;
+        }
+
+        // 1 (4.166%)
+        .lia-media-uploader-header-close-column {
+          width: 7%;
+        }
+
+        // 19 (79.166%)
+        .lia-media-uploader-body-tab-content {
+          width: 68%;
+        }
+
+        // 5 (20.833%)
+        .lia-media-uploader-body-side-panel {
+          width: 32%;
+        }
+      }
+  }
+
+  @include keyframes(cursor-blink) {
+    50% { border-color: transparent; }
+  }
+}

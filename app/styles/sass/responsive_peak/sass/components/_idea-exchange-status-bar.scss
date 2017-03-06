@@ -1,0 +1,212 @@
+$idea-exchange-status-bar_size:           55px !default;
+$idea-exchange-status-bar_control-padding-top: 19px !default;
+$idea-exchange-status-bar_control-size:   72px !default;
+$idea-exchange-status-bar_large-width:    220px !default;
+$idea-exchange-status-bar_xs-width:       100px !default;
+$idea-exchange-status-bar_fade-xs-width:  60px !default;
+
+
+@mixin components\idea-exchange-status-bar {
+
+  // idea status bar
+  .lia-component-ideas-widget-statuses {
+
+    // different borders and padding for the header variant
+    .lia-quilt-column-common-header & {
+      border-bottom: 2px solid $li-border-color;
+
+      &.lia-panel {
+        margin-bottom: 0;
+      }
+
+      .lia-panel-content {
+        overflow: hidden;
+        padding: 0;
+        position: relative;
+      }
+
+      .lia-panel-heading-bar {
+        display: none;
+      }
+    }
+  }
+
+  .lia-message-statuses-horizontal {
+
+    margin-bottom: -15px; // hardcoded representative scrollbar height
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    padding-bottom: 15px; // hardcoded representative scrollbar height
+
+    &.lia-message-statuses-overflow {
+      .lia-message-statuses-scroll {
+        display: block;
+
+        @include media(phone) {
+          display: none;
+        }
+      }
+    }
+
+    @each $name, $icon in $li-status-icons {
+      .lia-status-idea-#{$name} {
+        .message-status-link {
+          &:before {
+            content: map-get($li-status-icons, $name);
+          }
+        }
+      }
+    }
+
+    > .lia-list-standard {
+      display: table;
+      margin: 0 auto;
+      min-width: 90%;
+      padding: {
+        bottom: $panel-body-padding + $padding-large-vertical;
+        left: $idea-exchange-status-bar_fade-xs-width - $padding-small-horizontal;
+        right: $idea-exchange-status-bar_fade-xs-width - $padding-small-horizontal;
+        top: $panel-body-padding + $padding-small-vertical;
+      }
+
+      @include media(phone) {
+        padding: 0;
+      }
+    }
+
+    .message-status {
+      display: table-cell;
+      margin: 0 auto;
+      min-width: $idea-exchange-status-bar_large-width;
+      position: relative;
+      text-align: center;
+      vertical-align: top;
+
+      @include media(phone) {
+        min-width: 0;
+        text-align: center;
+      }
+
+      .count {
+        font-size: $font-size-h1;
+        left: $idea-exchange-status-bar_size + $idea-exchange-status-bar_size / 2 + 2;
+        position: absolute;
+        top: $padding-small-vertical;
+
+        @include media(phone) {
+          left: 0;
+          right: 0;
+          top: $padding-small-vertical;
+        }
+      }
+    }
+
+    .message-status-link {
+      @extend %small-label;
+
+      color: $text-color;
+      display: inline-block;
+      line-height: $line-height-medium;
+      margin-left: $padding-base-horizontal;
+      margin-right: $padding-base-horizontal;
+      padding: {
+        bottom: $padding-small-vertical;
+        left: $idea-exchange-status-bar_size + $idea-exchange-status-bar_size / 2;
+        right: $padding-small-horizontal;
+        top: $padding-small-vertical + $idea-exchange-status-bar_size - floor($font-size-small * $line-height-base);
+      }
+      position: relative;
+      text-align: left;
+      text-decoration: none;
+
+      &:before {
+        @include fa-icon;
+
+        color: $li-idea-status-color;
+        content: li-icon-content($fa-var-certificate);
+        font-size: $idea-exchange-status-bar_size;
+        left: 0;
+        margin-top: $padding-base-vertical;
+        opacity: $li-disabled-opacity;
+        position: absolute;
+        text-align: right;
+        top: 0;
+        width: $idea-exchange-status-bar_size + $padding-base-horizontal;
+      }
+
+      &:active,
+      &:focus,
+      &:hover {
+        &:before {
+          opacity: 1;
+        }
+      }
+
+      @include media(phone) {
+        margin-left: $padding-xs-horizontal;
+        margin-right: $padding-xs-horizontal;
+        min-width: $idea-exchange-status-bar_xs-width;
+        padding: {
+          bottom: $padding-base-vertical + 2;
+          left: $padding-xs-horizontal;
+          right: $padding-xs-horizontal;
+          top: $padding-base-vertical * 2 + $font-size-h1;
+        }
+        position: relative;
+        text-align: center;
+
+        &:before {
+          display: none;
+        }
+      }
+    }
+
+    .lia-message-statuses-scroll {
+      bottom: 0;
+      cursor: pointer;
+      display: none;
+      font-size: $idea-exchange-status-bar_control-size;
+      padding-top: $idea-exchange-status-bar_control-padding-top;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      width: $idea-exchange-status-bar_fade-xs-width;
+      z-index: 10;
+
+      @include media(phone) {
+        &:before {
+          content: '';
+        }
+      }
+
+      @include media(tablet-and-larger) {
+        background-color: $li-bg-secondary;
+
+        &.lia-scroll-left {
+          left: 0;
+        }
+
+        &.lia-scroll-right {
+          right: 0;
+        }
+
+        &:before {
+          opacity: .5;
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+          &:before {
+            opacity: 1;
+          }
+        }
+      }
+
+      &.lia-scroll-disabled {
+        color: $btn-link-disabled-color;
+        cursor: $cursor-disabled;
+      }
+    }
+  }
+}

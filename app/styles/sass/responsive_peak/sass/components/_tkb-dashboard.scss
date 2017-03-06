@@ -1,0 +1,89 @@
+@mixin components\tkb-dashboard {
+  .TkbDashboardPage {
+    .default-menu-option {
+      font-weight: normal;
+      font-size: $font-size-small;
+    }
+
+    .lia-tabs-active .default-menu-option {
+      background-color: transparent;
+      border: 0;
+      border-bottom: 2px solid $brand-primary;
+    }
+
+    .lia-inline-confirm {
+      display: inline-block;
+      padding-left: $padding-small-vertical;
+      padding-right: $padding-xl-vertical;
+    }
+
+    .lia-paging-pager {
+      text-align: center;
+      .lia-paging-full {
+        float: none;
+      }
+    }
+    .tkb-action-bar {
+      padding-bottom: $padding-large-vertical;
+    }
+
+    .lia-component-tkb-widget-dashboard-tabs .SimpleMessageList {
+      @include media(tablet-and-smaller) {
+      }
+    }
+
+    .lia-headings-sub {
+      @extend %section-header-font;
+      padding-bottom: $padding-xl-vertical;
+    }
+
+    .lia-component-teaser .lia-panel-message-content {
+      padding: $padding-xl-vertical;
+    }
+
+    .MessageList {
+      .lia-panel-status-banner-note {
+        background-color: $brand-info;
+      }
+
+      @include media(phone) {
+        td {
+            width: 100%;
+
+            .lia-user-attributes {
+              padding: 0;
+            }
+          }
+      }
+
+      td.kudosCountColumn {
+        float: none;
+        padding-left: 0;
+      }
+      padding-left: $padding-small-vertical;
+    }
+
+    .tkb-action-bar .lia-button-wrapper {
+      @include media(phone) {
+        display: inline-block;
+        padding-bottom: $padding-large-vertical;
+        width: 100%;
+      }
+    }
+
+    .lia-inline-confirm {
+      @include media(phone) {
+        font-size: $font-size-large;
+
+        .lia-ajax-inline-approve {
+          padding: $padding-small-horizontal;
+        }
+        .lia-ajax-inline-deny {
+          padding-left: $padding-small-horizontal;
+        }
+      }
+    }
+  }
+}
+
+

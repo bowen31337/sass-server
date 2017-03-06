@@ -1,0 +1,154 @@
+@mixin kudos-button-variant($color, $background, $border, $active-color: $color, $active-background: $background, $active-border: $border) {
+
+  .lia-button-image-kudos-count,
+  .lia-button-image-kudos-give,
+  .lia-kudos-count-wrapper,
+  .lia-kudos-give-wrapper {
+    display: table-cell;
+  }
+
+  // create a fake extension of the button around the count by adding the same
+  // colored border and using the :hover of kudos give container to trigger
+  // the hover border change
+  .lia-button-image-kudos-count,
+  .lia-kudos-count-wrapper {
+    @include border-right-radius($border-radius-base);
+    border: 1px solid $border; // color to come from button style
+    border-left: 0;
+
+    // because of the fake border extension above, remove the actual button border
+    // adjust the height so that there isn't an extra 1px around the count
+    .lia-button-primary {
+      border: 0;
+      height: auto;
+    }
+  }
+
+  .lia-button-image-kudos-give,
+  .lia-kudos-give-wrapper {
+    width: 100%;
+
+    // darken the border around the count even though the it is not part of
+    // the vote markup
+    &:hover {
+      + .lia-button-image-kudos-count,
+      + .lia-kudos-count-wrapper {
+        border-color: darken($active-border, 12%);
+      }
+    }
+  }
+
+  // don't display kudo label next to count for this style
+  .lia-button-image-kudos-label,
+  .lia-kudos-count-label {
+    display: none;
+  }
+
+  .kudos-link,
+  .lia-kudos-button {
+    @include button-variant($color, $background, $border, $active-color, $active-background, $active-border);
+    @include border-left-radius($border-radius-base);
+    @include border-right-radius(0);
+
+    font-size: $font-size-large;
+    width: 100%;
+
+    &.lia-link-disabled {
+      opacity: 1; // prevent double disabled opacity from kudos container
+    }
+
+    // remove kudos icon
+    .lia-kudos-kudo-icon,
+    &:before {
+      display: none;
+    }
+  }
+
+  .lia-kudos-button {
+    min-height: $input-height-base;
+  }
+
+  .kudos-count-link,
+  .lia-kudos-count {
+    @include border-left-radius(0);
+    @include border-right-radius($border-radius-small);
+
+    background-color: $li-bg-secondary;
+    color: $text-color;
+    display: inline-block;
+    font-size: $font-size-large;
+    font-weight: bold;
+    min-width: round($input-height-base * 1.2); // should be identical to height
+    width: 100%;
+
+    .lia-kudos-count-link {
+      color: $text-color;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &.lia-link-disabled {
+      opacity: 1; // prevent double disabled opacity from kudos container
+
+      &:hover {
+        background-color: $li-bg-secondary;
+        color: $text-color;
+        cursor: default;
+      }
+    }
+  }
+
+  &.lia-button-image-kudos-disabled,
+  &.lia-kudos-button-disabled {
+    opacity: $li-disabled-opacity;
+
+    .lia-button-image-kudos-give,
+    .lia-kudos-give-wrapper {
+      // don't darken for disabled
+      &:hover {
+        + .lia-button-image-kudos-count,
+        + .lia-kudos-count-wrapper {
+          border-color: $border;
+        }
+      }
+
+      // no hover states for parent disabled
+      .kudos-link,
+      .lia-kudos-button {
+        &,
+        &:active,
+        &:focus,
+        &:hover {
+          background-color: $background;
+          border-color: $border;
+          color: $color;
+        }
+      }
+    }
+  }
+}
+
+// convenience named button styles
+@mixin kudos-button-primary {
+  @include kudos-button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+
+@mixin kudos-button-primary-inverse {
+  @include kudos-button-variant($btn-inverse-primary-color, $btn-inverse-primary-bg, $btn-inverse-primary-border,
+    $btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+
+@mixin kudos-button-secondary {
+  @include kudos-button-variant($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
+}
+
+@mixin kudos-button-secondary-inverse {
+  @include kudos-button-variant($btn-inverse-secondary-color, $btn-inverse-secondary-bg, $btn-inverse-secondary-border,
+    $btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
+}
+
+@mixin kudos-button-default {
+  @include kudos-button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+}

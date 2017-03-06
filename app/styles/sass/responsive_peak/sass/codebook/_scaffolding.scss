@@ -1,0 +1,53 @@
+// Scaffolding
+//
+// Scaffolding classes to manage lists. Our list classes will apply `list-style-type: none`.
+//
+// If you don't use these classes, your lists will look like this:
+//
+// .lia-list-standard        - standard list styling
+// .lia-list-standard-inline - inline list styling
+//
+// Markup:
+// <ul class="{{modifier_class}}">
+//   <li> corge </li>
+//   <li> grault </li>
+//   <li> garply </li>
+// </ul>
+//
+// Style guide: codebook.scaffolding
+
+
+@mixin codebook\scaffolding {
+
+  .lia-content ul,
+  .lia-list-standard {
+    @include li-extend('.list-unstyled');
+  }
+
+  .lia-list-standard-inline {
+    @include li-extend('.list-inline');
+    margin-bottom: 0;
+  }
+
+  @include media(tablet) {
+
+    html,
+    body {
+      // overflow-x: hidden;
+    }
+
+    body {
+      position: relative;
+      width: 100%;
+    }
+  }
+
+  // for development, unstyling tapestry's default.css
+  .t-data-grid.t-data-grid.t-data-grid {
+    font-family: $font-family-sans-serif;
+  }
+
+  .lia-list-standard {
+    margin-bottom: 0;
+  }
+}

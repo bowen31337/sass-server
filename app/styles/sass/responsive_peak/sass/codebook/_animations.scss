@@ -1,0 +1,45 @@
+// Animations
+//
+// Classes for generic animations.
+//
+// .lia-collapsing  - .35s ease transition.
+// .lia-fade        - .15s linear opacity fade.
+//
+// Style guide: codebook.animations
+
+@mixin codebook\animations {
+
+  .lia-collapse {
+    display: none;
+
+    &.lia-in {
+      display: block;
+    }
+    // [converter] extracted tr&%in to tr%collapse%in
+    // [converter] extracted tbody&%in to tbody%collapse%in
+  }
+
+  .lia-collapsing {
+    @include transition-duration(.35s);
+    @include transition-property(height, visibility);
+    @include transition-timing-function(ease);
+
+    height: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .lia-fade {
+    @include transition(opacity .15s linear);
+
+    opacity: 0;
+
+    &.lia-in {
+      opacity: 1;
+    }
+  }
+
+  .lia-panel-dialog {
+    @extend .lia-fade;
+  }
+}

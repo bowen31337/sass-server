@@ -1,0 +1,132 @@
+$token-input_delete-icon-size:  (30em/28) !default;
+$token-input_bg:                $gray-lighter !default;
+$token-input_selected-bg:       $link-color !default;
+$token-input_selected-color:    $li-text-color-inverse !default;
+$token-input_close-color:       $li-text-color-inverse !default;
+
+
+@mixin codebook\token-input {
+
+  .lia-form-input-wrapper {
+    // ul tag but styled like input text box
+    .lia-token-input-list {
+      @include li-extend('.form-control');
+      padding-bottom: 0;
+      padding-top: 0;
+      z-index: 999;
+    }
+
+    // Text input to add new users
+    .lia-token-input-input-token {
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+
+      > input {
+        background-color: transparent;
+        border: 0;
+        box-shadow: none;
+        // Default height overflows tokens in lines above input
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+        &:focus {
+          border-color: transparent;
+          box-shadow: none;
+        }
+      }
+    }
+
+    // User tokens
+    .lia-token-input-token {
+      background-color: $token-input_bg;
+      border-radius: $border-radius-round;
+      cursor: default;
+      display: inline-block;
+      margin-right: $padding-small-horizontal;
+      overflow: hidden;
+      padding: 1px;
+      position: relative;
+      vertical-align: middle;
+      white-space: nowrap;
+
+      > img,
+      > p,
+      > span {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: middle;
+      }
+
+      > img:first-child {
+        margin-left: $padding-xs-horizontal;
+      }
+
+      > .lia-token-input-avatar {
+        margin-right: $padding-xs-horizontal;
+        max-height: $line-height-computed;
+      }
+
+      &.lia-token-input-selected-token {
+        background-color: $token-input_selected-bg;
+        color: $token-input_selected-color;
+      }
+    }
+
+    .lia-token-input-delete-token {
+      background-image: none;
+      cursor: pointer;
+      display: inline-block;
+      margin: {
+        bottom: 0;
+        left: $padding-small-horizontal;
+        right: 0;
+        top: 0;
+      }
+      overflow: hidden;
+      width: $token-input_delete-icon-size;
+
+      &:before {
+        color: $token-input_close-color;
+        content: $fa-var-times-circle;
+      }
+    }
+
+    .lia-token-input-selected-token .lia-token-input-delete-token {
+      &:before {
+        color: $token-input_selected-color;
+      }
+    }
+  }
+
+  // Drop down list of results for users
+  .lia-token-input-dropdown {
+    @include li-extend('.dropdown-menu');
+
+    > p {
+      padding: $padding-base-vertical $padding-base-horizontal;
+    }
+
+    .lia-token-input-selected-dropdown-item {
+      background-color: $dropdown-link-hover-bg;
+    }
+  }
+
+  .lia-token-input-dropdown-item,
+  .lia-token-input-dropdown-item2 {
+    padding: $padding-base-vertical $padding-base-horizontal;
+
+    .lia-token-input-avatar {
+      margin-right: $padding-base-horizontal;
+      max-height: $line-height-computed * 2;
+      vertical-align: middle;
+      width: auto;
+    }
+
+    .lia-token-input-user-info {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@mixin components\comment-form {
+
+  .lia-component-comment-editor {
+    clear: both;
+  }
+
+  .CommentEditorForm {
+    background-color: $li-bg-secondary;
+    border: 1px solid $li-border-color;
+    border-radius: $border-radius-base;
+    margin-bottom: $padding-large-vertical;
+    padding: $panel-body-padding;
+  }
+}

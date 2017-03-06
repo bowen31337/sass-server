@@ -1,0 +1,138 @@
+@mixin components\profile-plus\integrated-profile-curated-feed {
+  .lia-profileplus-curated-feed {
+    background-color: #ffffff;
+    margin-bottom: $padding-xl-vertical;
+
+    .lia-profileplus-curated-feed-header {
+      border-bottom: 1px solid $li-border-color;
+      padding-bottom: $padding-large-vertical;
+    }
+
+    .lia-curated-feed-explore-topics-title {
+      color: $brand-primary;
+      cursor: pointer;
+      display: block;
+      margin-left: 20px;
+      margin-top: $padding-large-vertical;
+
+      .fa-caret-right {
+        @include li-icon($fa-var-caret-right);
+        cursor: pointer;
+        &:before {
+          color: $brand-primary;
+        }
+      }
+
+      .fa-caret-down {
+        @include li-icon($fa-var-caret-down);
+        cursor: pointer;
+        &:before {
+          color: $brand-primary;
+        }
+      }
+    }
+
+    .lia-curated-feed-title {
+      display: inline-block;
+      font-size: $li-integrated-profile-hovercard-score-value-font-size;
+      font-weight: bold;
+      margin-left: 20px;
+      margin-top: $padding-medium;
+
+      .lia-privacy-control-topic-group {
+        margin-top: 0;
+      }
+    }
+
+    .lia-edit-topics-link-container {
+      margin-right: 20px;
+      margin-top: $padding-medium;
+    }
+
+    .lia-profileplus-curated-feed-content {
+
+      .lia-topics-list {
+        clear: both;
+        margin-left: 20px;
+      }
+    }
+
+    .lia-curated-feed-search {
+      margin: {
+        bottom: 0;
+        left: 20px;
+        top: $padding-large-vertical;
+        right: 20px;
+      }
+      .lia-curated-feed-instruction-copy {
+        display: inline-block;
+        margin-left: 20px;
+        .lia-curated-feed-choose-topics {
+          border-bottom: 0;
+          margin-top: $padding-small-horizontal;
+          margin-bottom: 0;
+        }
+      }
+      .lia-search-typeahead {
+        height: 50px;
+        z-index: 1;
+      }
+    }
+    .lia-form-submit-wrapper {
+      overflow: auto;
+    }
+
+    .lia-button {
+      float: right;
+      margin-bottom: $padding-medium;
+      margin-right: 20px;
+      position: relative;
+    }
+
+    .lia-curated-feed-choose-topics {
+      margin-top: $padding-medium;
+      margin-bottom: $padding-medium;
+    }
+
+    .lia-curated-feed-toast-messages, .lia-curated-feed-general-messages {
+      padding: 20px;
+      .lia-common-feedback {
+        background-color: #f7fbfc;
+        border: 2px solid #5596ab;
+        color: $gray;
+
+        p:before {
+          font: normal normal normal $font-size-h4 / 1 FontAwesome;
+          color: #5596ab;
+          content: $fa-var-info-circle;
+          margin-right: $font-size-base;
+        }
+      }
+    }
+
+    .lia-curated-feed-explore-topics-text {
+      margin-left: 20px;
+    }
+
+    .lia-curated-feed-messages-list {
+      padding: $padding-small-horizontal;
+
+      .lia-curated-feed-no-messages-found-outer {
+        border: 0;
+        border-radius: 0;
+        margin: $li-profile-plus-no-messages-found-margin;
+        text-align: center;
+
+       .lia-curated-feed-no-messages-found-wrapper {
+          background-color: $brand-info;
+          color: $li-profile-plus-no-messages-found-color;
+          padding: $li-profile-plus-no-messages-found-padding;
+
+          .lia-curated-feed-no-messages-found-message {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@mixin centered($position) {
+  @include translate(-50%, -50%);
+
+  position: $position;
+  top: 50%;
+  left: 50%;
+}
+
+@mixin centered-vertical($position) {
+  @include translate(0, -50%);
+  position: $position;
+  top: 50%;
+}
+
+@mixin centered-horizontal($position) {
+  @include translate(-50%, 0);
+
+  position: $position;
+  left: 50%;
+}

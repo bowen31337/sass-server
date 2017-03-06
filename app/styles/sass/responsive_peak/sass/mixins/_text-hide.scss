@@ -1,0 +1,8 @@
+// subset of bootstrap's text-hide mixin
+// without the border:0 background-color: transparent rules
+//
+
+@mixin text-hide-min() {
+  font: 0/0 a;
+  text-shadow: none;
+}

@@ -1,0 +1,496 @@
+// Pagination
+//
+// The pagination component relies on a combination of the following markup with these classes:
+//
+// `.lia-paging-full`: wrapper `<ul>` for the component.
+//
+// `.lia-paging-page-previous`: first `<li>`, shifting the pager back by one if you are not on the first page.
+//
+// `.lia-component-pagesnumbered`: middle `<li>` containing the numbered pages.
+//
+// `.lia-paging-full-pages`: `<ul>` with links to individual pages, each in their own `.lia-paging-full-pages`.
+//
+// `.lia-paging-page-next`: final `<li>`, shifting the pager forward by one if you are not on the last page.
+//
+// Markup:
+// <ul class="lia-paging-full">
+//   <li class="lia-paging-page-previous lia-component-previous">
+//     <span class="lia-link-navigation">
+//       <span>
+//         <span class="lia-paging-page-arrow">«</span>
+//         <span class="lia-paging-page-link">Previous</span>
+//       </span>
+//     </span>
+//   </li>
+//   <li class="lia-component-pagesnumbered">
+//     <ul class="lia-paging-full-pages">
+//       <li class="lia-paging-page-link">
+//         <span class="lia-link-navigation lia-link-disabled">1</span>
+//       </li>
+//     </ul>
+//     <ul class="lia-paging-full-pages">
+//       <li class="lia-paging-page-link">
+//         <a class="lia-link-navigation">2</a>
+//       </li>
+//     </ul>
+//     <ul class="lia-paging-full-pages">
+//       <li class="lia-paging-page-link">
+//         <a class="lia-link-navigation">3</a>
+//       </li>
+//    </ul>
+//   </li>
+//   <li class="lia-paging-page-next lia-component-next">
+//     <span>
+//       <a class="lia-link-navigation">
+//         <span class="lia-paging-page-arrow">»</span>
+//         <span class="lia-paging-page-link">Next</span>
+//       </a>
+//     </span>
+//   </li>
+// </ul>
+//
+// Style guide: codebook.pagination
+
+@mixin codebook\pagination {
+
+  %page-active {
+    &,
+    &:hover,
+    &:focus {
+      // styles from Bootstrap/pagination/active
+      background-color: $pagination-active-bg;
+      border-color: $pagination-active-border;
+      color: $pagination-active-color;
+      cursor: default;
+      font-weight: bold;
+      opacity: 1;
+      text-decoration: none;
+      z-index: 2;
+    }
+  }
+
+  %page-disabled {
+    &,
+    &:hover,
+    &:focus {
+      // styles from Bootstrap/pagination/disabled
+      background-color: $pagination-disabled-bg;
+      border-color: $pagination-disabled-border;
+      color: $pagination-disabled-color;
+      cursor: $cursor-disabled;
+      opacity: $li-disabled-opacity;
+      text-decoration: none;
+      z-index: initial;
+    }
+  }
+
+  .lia-paging-full-wrapper {
+    overflow: hidden;
+
+    @include media(phone) {
+      text-align: center;
+    }
+
+    .lia-paging-full-left {
+      float: left;
+    }
+  }
+
+  .lia-menu-bar .lia-paging-full-wrapper.lia-paging-full-center-position {
+    float: none;
+  }
+
+  .lia-paging-full-center-position {
+    text-align: center;
+
+    .lia-paging-full {
+      float: none;
+    }
+  }
+
+  // although lia-paging-full should use bootstrap's .pager class and
+  // lia-paging-full-pages should use .pagination, both classes share the same
+  // parent lia-paging-full class making it difficult to target these two
+  // components individually
+  .lia-paging-full {
+    @include li-extend('.pagination');
+    float: right;
+    font-size: 0; // for inline block child elements
+    margin: 0;
+
+    @include media(phone) {
+      float: none;
+    }
+
+    .lia-link-navigation {
+      font-size: $font-size-base;
+    }
+
+    // disable hover for disabled pages
+    .lia-link-disabled {
+      @extend %page-disabled;
+    }
+  }
+
+  // Numbered pagination
+  .lia-paging-full-pages {
+    @include li-extend('.pagination');
+    display: inline;
+    font-size: $font-size-base;
+    margin: 0;
+
+    // first and lasts pages don't apply .lia-paging-page-active even if those
+    // pages are active, this requires a lia fix
+    li > .lia-link-disabled {
+      @extend %page-active;
+    }
+
+    .lia-paging-page-ellipsis > .lia-link-disabled {
+      @extend %page-disabled;
+    }
+
+    > .lia-paging-page-first > .lia-link-navigation {
+      border-radius: 0;
+      margin-left: -1px;
+    }
+
+    > .lia-paging-page-last > .lia-link-navigation {
+      border-radius: 0;
+      margin-right: -1px;
+    }
+  }
+
+  .lia-paging-page-link {
+    .lia-condensed-text {
+      display: none;
+
+      @include media(phone) {
+        display: inline;
+      }
+    }
+
+    .lia-full-text {
+      @include media(phone) {
+        display: none;
+      }
+    }
+  }
+
+  @include media(phone) {
+
+    .lia-menu-bar-bottom {
+      .lia-paging-full-wrapper {
+        text-align: center;
+      }
+
+      .lia-paging-full {
+        float: none;
+      }
+    }
+  }
+
+
+  // this pager variant reverts the navigation buttons to behave like links
+  // * the link text is not hidden for small sizes
+  // * the icon for back is removed
+  // * border between back and previous and next
+  // currently used in: contests
+  %pager-alt {
+    vertical-align: top;
+
+    .lia-paging-page-next,
+    .lia-paging-page-previous {
+      .lia-link-navigation {
+        @include li-extend('.btn-link');
+        padding: {
+          left: $panel-body-padding;
+          right: 0;
+        }
+      }
+
+      .lia-paging-page-link {
+        @include media(tablet) {
+          display: inline;
+        }
+      }
+    }
+
+    .lia-paging-page-listing {
+      .lia-link-navigation {
+        padding-right: $panel-body-padding;
+
+        &:after {
+          @include centered-vertical(absolute);
+
+          border-right: 1px solid $li-border-color;
+          content: ' ';
+          display: inline-block;
+          height: $line-height-medium-computed;
+          right: 0;
+        }
+
+        // no icon for threadnavigator.listing-page "Back to" or "View all"
+        &:before {
+          display: none;
+        }
+      }
+    }
+
+    > li:last-child {
+      .lia-link-navigation {
+        padding-right: 0;
+      }
+
+      // don't show | if view all entries is the only button
+      &.lia-paging-page-listing {
+        .lia-link-navigation {
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+
+  // Previous and Next Topic Control
+
+  // hide default pagination entities « »
+  .lia-paging-page-arrow {
+    display: none;
+  }
+
+  .lia-paging-full {
+    vertical-align: top;
+  }
+
+  // use larger pagination padding to match height of button, -1px for border
+  .lia-paging-full,
+  .lia-paging-full-pages {
+    .lia-link-navigation {
+      font-weight: 300;
+      padding: {
+//        bottom: $padding-large-vertical - 1px;
+        left: $padding-base-horizontal;
+        right: $padding-base-horizontal;
+//        top: $padding-large-vertical - 1px;
+      }
+
+      &:active,
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .lia-list-slim {
+    .lia-paging-page-next,
+    .lia-paging-page-previous {
+      .lia-paging-page-link {
+        display: none;
+      }
+    }
+  }
+
+  .lia-paging-page-next,
+  .lia-paging-page-previous {
+    // remove 'next' and 'previous' text for tablet & <
+    .lia-paging-page-link {
+      @include media(tablet) {
+        display: none;
+      }
+    }
+
+    &.lia-paging-page-listing {
+      .lia-paging-page-link {
+        @include media(tablet) {
+          display: inline-block;
+        }
+      }
+    }
+
+    > .lia-link-navigation {
+      &:after,
+      &:before {
+        vertical-align: baseline;
+      }
+
+      &:active,
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+
+      // remove background from next and previous pagination
+      &,
+      &.lia-link-disabled:hover {
+        background-color: transparent;
+        border-color: transparent;
+        text-decoration: none;
+      }
+    }
+  }
+
+  // replace » icon with font-awesome icon
+  .lia-count-pager-page-next,
+  .lia-paging-page-next {
+    > .lia-link-navigation {
+      @include li-icon($fa-var-angle-right, $pseudo: after, $color: inherit);
+
+      &:after {
+        font-weight: normal;
+      }
+    }
+  }
+
+    // replace » icon with font-awesome icon
+  .lia-count-pager-page-previous,
+  .lia-paging-page-previous {
+    > .lia-link-navigation {
+      @include li-icon($fa-var-angle-left, $color: inherit);
+
+      &:after {
+        font-weight: normal;
+      }
+    }
+  }
+
+  // for some reason, the page listing component has the previus page class on it
+  .lia-paging-page-listing.lia-paging-page-previous {
+    > .lia-link-navigation {
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .lia-paging-header-pagination-position {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .lia-paging-header-pagination {
+    margin-bottom: 0;
+    white-space: nowrap;
+
+    .lia-count-pager-page-next,
+    .lia-count-pager-page-previous,
+    .lia-paging-page-count {
+      display: inline-block;
+      float: left;
+    }
+
+    &.lia-paging-count {
+      .lia-count-pager-page-previous,
+      .lia-count-pager-page-next {
+        padding: 0;
+      }
+    }
+
+    .lia-count-pager-page-next {
+      > .lia-link-navigation {
+        @include media(phone) {
+          @include text-hide-min;
+        }
+
+        &:after {
+          margin-left: $padding-base-horizontal / 2;
+
+          @include media(phone) {
+            font-size: $font-size-base;
+            line-height: $line-height-base;
+          }
+        }
+      }
+    }
+
+    .lia-count-pager-page-previous {
+      > .lia-link-navigation {
+        @include media(phone) {
+          @include text-hide-min;
+        }
+
+        &:before {
+          margin-right: $padding-base-horizontal / 2;
+
+          @include media(phone) {
+            font-size: $font-size-base;
+            line-height: $line-height-base;
+          }
+        }
+      }
+    }
+
+    .lia-link-navigation {
+      color: $text-color;
+      display: inline-block;
+      padding: $padding-large-vertical $padding-large-horizontal;
+      text-decoration: none;
+
+      &.lia-link-disabled {
+        cursor: $cursor-disabled;
+        opacity: $li-disabled-opacity;
+
+        &:active,
+        &:focus,
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
+    .lia-paging-page-count-text {
+      color: $text-color;
+      display: inline-block;
+      padding: $padding-large-vertical ($padding-large-horizontal / 2);
+
+      @include media(phone) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+
+  .lia-paging-pager {
+    font-weight: 300;
+    .lia-paging-count {
+      > li {
+      display: inline-block;
+      }
+
+      .lia-link-navigation {
+        color: $text-color;
+        display: inline-block;
+        text-decoration: none;
+
+        &.lia-link-disabled {
+          cursor: $cursor-disabled;
+          opacity: $li-disabled-opacity;
+
+          &:active,
+          &:focus,
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    .lia-count-pager-page-previous,
+    .lia-count-pager-page-next {
+      padding: 0 $padding-large-horizontal;
+    }
+  }
+
+  // Remove top pager on mobile
+  .lia-menu-bar-top .lia-paging-full-wrapper,
+  .top-block .lia-paging-full-wrapper,
+  .RecentPostsPage .lia-menu-bar {
+    @include media(phone) {
+      display: none;
+    }
+  }
+}

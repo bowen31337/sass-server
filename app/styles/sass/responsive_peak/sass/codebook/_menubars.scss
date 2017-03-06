@@ -1,0 +1,83 @@
+// Menubars
+//
+// Menubars are the horizontal row where primary actions, navigation and paging
+// are placed, usually above and sometimes also below the main content on most
+// pages outside of the home page, category pages and profile page.
+//
+// Markup:
+// <div class="lia-menu-bar lia-menu-bar-top lia-component-menu-bar">
+//   <span style="margin-right: 20px">Menu bar with several actions</span>
+//   <div class="lia-menu-bar-buttons">
+//     <div class="lia-button lia-button-primary">foo</div>
+//     <div class="lia-button lia-button-secondary">bar</div>
+//   </div>
+// </div>
+//
+// Style guide: codebook.menubars
+
+@mixin codebook\menubars {
+
+  .lia-component-menu-bar,
+  .lia-menu-bar {
+    @include clearfix;
+    margin-bottom: $padding-large-vertical;
+  }
+
+  .lia-menu-bar-buttons {
+    float: left;
+  }
+
+
+  .lia-menu-bar {
+    margin-bottom: $panel-body-padding;
+
+    @include media(tablet) {
+      margin-bottom: $padding-large-vertical;
+      margin-top: $padding-large-vertical;
+
+      // single column pages with messages (like the blog article page) needs to
+      //   restore the margin that normal single column pages collapse
+      .lia-quilt-column-alley-single > & {
+        margin-left: $grid-gutter-width / 2;
+        margin-right: $grid-gutter-width / 2;
+      }
+    }
+
+    .lia-menu-bar-buttons {
+      display: inline;
+      float: none;
+    }
+
+    .lia-paging-full-wrapper {
+      float: right;
+
+      @include media(phone) {
+        float: none;
+        text-align: center;
+      }
+    }
+
+    .lia-button-wrapper,
+    .lia-menu-navigation-wrapper {
+      display: inline-block;
+    }
+  }
+
+
+  .lia-menu-bar-bottom {
+//    margin-top: $panel-body-padding;
+
+    .lia-paging-full-wrapper {
+      @include media(phone) {
+        float: none;
+        text-align: center;
+      }
+    }
+  }
+
+  @include media(phone) {
+    .lia-component-menu-bar-sort-pager .lia-paging-full-wrapper {
+      display: none;
+    }
+  }
+}

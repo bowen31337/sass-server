@@ -1,0 +1,239 @@
+// Node Lists
+//
+// General styling for the containing table can be found in _tables.scss
+//
+$node-lists_count-label-min-width: 75px !default;
+$node-lists_recent-time-min-width: 130px !default;
+
+
+@mixin components\node-lists {
+
+  .lia-browser-category-heading {
+    margin-bottom: $padding-large-vertical;
+  }
+
+  .lia-browser-category-list {
+    margin-bottom: $line-height-computed;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // node browser
+
+  //  board list
+  //    [1] hide latest message text
+  //    [2] truncate and use ellipsis
+  .BoardBrowserListTaplet {
+    .board-list-latest {
+      // hide latest thread text, subset of text-hide() mixin
+      @include text-hide;
+    }
+
+    // suppress "community" panel title
+    .lia-panel-heading-bar-wrapper {
+      display: none;
+    }
+
+    .lia-panel-content {
+      padding-top: 0;
+    }
+  }
+
+  @include media(phone) {
+    .messageAuthorColumn,
+    .latestPostDateColumn,
+    .newMessagesCountColumn,
+    .board-list-latest, // latest message for each node on board browser
+    .recentMessageCountColumn, // active areas
+    .newMessageCountColumn,
+    .viewsCountColumn {
+      display: none;
+    }
+  }
+
+  .board-title {
+    padding-bottom: $padding-small-vertical;
+  }
+
+  // Join the Discussion
+  .NodeListTaplet {
+    tbody > tr > td {
+      // node lists have different left and right padding than normal tables
+      &:last-child {
+        padding-right: $table-cell-padding * 2;
+
+        @include media(tablet) {
+          padding-right: $table-cell-padding + $li-triangletop-size;
+          text-align: right;
+        }
+      }
+    }
+
+    .boardIconColumn:first-child {
+      padding-left: $table-cell-padding * 2;
+      padding-right: $table-cell-padding;
+
+      @include media(tablet) {
+        padding-left: $table-cell-padding;
+        padding-right: $table-cell-padding / 2;
+      }
+    }
+  }
+
+  .BoardList {
+    .lia-count-label,
+    .lia-recent-message-count-label {
+      display: block;
+      min-width: $node-lists_count-label-min-width;
+      padding-top: $padding-small-vertical;
+
+      @include media(phone) {
+        display: none;
+      }
+    }
+  }
+
+  // Category and Board title colors
+  .lia-browser-category-heading .category-title,
+  .board-title .lia-link-navigation {
+    color: $text-color;
+    font-size: $font-size-h3;
+    font-weight: $headings-font-weight;
+  }
+
+  .lia-floated-boards {
+    border-bottom: 1px solid $li-border-row;
+
+    .lia-list-row {
+      display: block;
+      position: relative;
+
+      td:last-child {
+        @include thread-status-icon($li-triangletop-thumb-tack-bg, $fa-var-thumb-tack);
+      }
+    }
+  }
+
+  // board browser taplet (not the child nodes taplet)
+  .lia-component-forums-widget-board-browser-list,
+  .lia-component-forums-widget-board-browser-list-v2 {
+    .board-count {
+      color: $li-text-color-inverse;
+      white-space: nowrap;
+    }
+
+    .board-title {
+      display: block;
+    }
+
+    .category-title {
+      @include li-icon(icon-category, $icon-margin: $padding-base-horizontal, $color: $li-text-color-inverse);
+
+      color: $li-text-color-inverse;
+      display: inline-block;
+      padding-right: $padding-xs-horizontal;
+
+      &:before {
+        margin-left: -$panel-body-padding - $padding-base-horizontal;
+      }
+    }
+
+    // left padding and negative margin so that the category icon will stay
+    // to the left with title and count wrapping correctly
+    .lia-browser-category-heading {
+      background-color: $gray-light;
+      margin: {
+        bottom: 0;
+        left: -$panel-body-padding;
+        right: -$panel-body-padding;
+      }
+      padding: {
+        bottom: $padding-medium;
+        left: $table-cell-padding * 4;
+        right: $panel-body-padding;
+        top: $padding-medium;
+      }
+
+      > h2 {
+        line-height: 1;
+      }
+    }
+
+    .lia-browser-category-list {
+      margin-bottom: 0;
+    }
+
+    .t-data-grid {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    .recentMessageTimeColumn {
+      min-width: $node-lists_recent-time-min-width;
+
+      @include media(phone) {
+        min-width: 0;
+      }
+    }
+
+    .local-time {
+      @include media(phone) {
+        display: none;
+      }
+    }
+
+    .DateTime {
+      @include media(phone) {
+        display: inline-block;
+        font-size: $font-size-base;
+        line-height: $line-height-computed;
+      }
+    }
+  }
+
+  .lia-user-status-registered {
+    .lia-row-standard-unread {
+      .lia-new-message-indicator-wrapper {
+        height: 100%;
+        overflow: auto;
+        position: relative;
+      }
+
+      .lia-new-message-indicator {
+        border-left: $li-unread-border-width solid $brand-info;
+        bottom: 0;
+        display: block;
+        left: 0;
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+
+  .lia-new-message-indicator-count {
+    display: none;
+  }
+
+  .board-description {
+    @extend %content-font;
+  }
+
+  .lia-new-message-indicator-wrapper {
+    width: $li-unread-border-width;
+  }
+
+  .newMessageIndicatorColumn.newMessageIndicatorColumn.newMessageIndicatorColumn {
+    padding-left: 0;
+    padding-right: $table-cell-padding * 1.5 - $li-unread-border-width;
+    width: $li-unread-border-width;
+
+    @include media(phone) {
+      bottom: $table-cell-padding;
+      left: 0;
+      position: absolute;
+      top: $table-cell-padding;
+    }
+  }
+}

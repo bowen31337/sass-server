@@ -1,0 +1,82 @@
+// Media Uploader: Main Content: URL Tab
+//
+// The URL tab of the Media Uploader uploads photos from a URL found
+// on the internet. Please note that this tab is not available at
+// $screen-xs-max breakpoint or smaller (mobile).
+//
+// Style guide: components.media-uploader-tab-url
+
+$media-uploader-tab-url_input-padding: 45px !default;
+
+@mixin components\media-uploader-tab-url {
+
+  @include media(tablet-and-larger) {
+    .lia-media-image-url-upload {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .lia-media-image-url-upload-error {
+      background-color: $body-bg;
+      border: 1px solid lighten($brand-danger, 30%);
+      border-radius: 0 0 $padding-small-vertical $padding-small-vertical;
+      border-top: 0;
+      color: lighten($brand-danger, 30%);
+      display: inline-block;
+      left: $padding-small-horizontal;
+      margin: 0;
+      padding: $padding-small-horizontal;
+      z-index: 150;
+    }
+
+    .lia-media-image-url-upload-images {
+      max-height: calc(100% - (#{$line-height-computed} * 2 + #{$padding-large-vertical}));
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: $padding-small-vertical;
+
+      .lia-media-uploader-image-list {
+        margin-top: $padding-large-vertical;
+      }
+    }
+
+    .lia-media-image-url-upload-input-wrapper {
+      padding: {
+        bottom: 0;
+        left: $padding-large-vertical;
+        right: $padding-large-vertical;
+        top: $padding-small-horizontal;
+      }
+      position: relative;
+
+      .lia-media-image-url-upload-input {
+        line-height: 1;
+        padding: $padding-base-vertical $padding-small-horizontal;
+
+        &.lia-media-disabled {
+          opacity: .5;
+        }
+      }
+    }
+
+    .lia-media-uploader-no-formatting {
+      &.lia-media-uploader-tab-web {
+        .lia-media-uploader-image-list {
+          position: relative;
+          min-height: $li-uploader-image-tile-height + $li-uploader-image-tile-caption-height;
+        }
+      }
+      .lia-media-image-url-upload-input-wrapper {
+        margin-top: $padding-large-vertical;
+        padding-left: $media-uploader-tab-url_input-padding;
+        padding-right: $media-uploader-tab-url_input-padding;
+      }
+    }
+  }
+
+  @include keyframes(cursor-blink) {
+    50% {
+      border-color: transparent;
+    }
+  }
+}

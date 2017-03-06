@@ -1,0 +1,105 @@
+// Authentication Page
+//
+
+
+@mixin components\authentication-page {
+
+  // Modals:
+  // Sign in
+  // Registration
+  .lia-component-authentication-widget-login-dialog-content,
+  .lia-component-authentication-widget-registration-dialog-content {
+    .lia-quilt-column-left {
+      position: static;
+    }
+
+    // move title up
+    .lia-fieldset-title {
+      margin-bottom: auto;
+      padding: $padding-large-vertical $padding-large-horizontal;
+      position: absolute;
+      top: 0;
+      width: auto;
+    }
+
+    // Sign in using facebook
+    .SocialLoginForm {
+      padding-bottom: $padding-large-vertical;
+
+      .lia-fieldset-title {
+        padding: 0;
+        position: relative;
+      }
+    }
+  }
+
+  // Pages:
+  // Forgot Password
+  // Sign in
+  .ForgotPasswordPage,
+  .SwitchUserPage,
+  .UserLoginPage {
+
+    // using .lia-page to prevent styling modals which don't have .lia-page
+    .lia-page {
+      .lia-fieldset-title {
+        @extend %li-panel-title;
+
+        margin-bottom: $padding-large-vertical;
+        width: 100%;
+
+        &:after {
+          border-bottom: 1px solid $li-border-color;
+          content: '';
+          display: block;
+          margin-left: -$grid-gutter-width / 2;
+          padding-top: $padding-small-vertical;
+          width: calc(100% + #{$grid-gutter-width});
+        }
+      }
+    }
+
+    .lia-button-facebook-wrapper {
+      display: block;
+      margin-bottom: $panel-body-padding;
+    }
+
+    .SocialLoginForm {
+      margin-bottom: $grid-gutter-width;
+    }
+  }
+
+  // Page: Sign in
+  .UserLoginPage {
+    // don't show sign in link when already on the sign in page
+    .lia-header-actions .login-link {
+      display: none;
+    }
+
+    // hide sign in header since it's the same as the page title
+    .UserLoginForm .lia-fieldset-title {
+      display: none;
+    }
+  }
+
+  // Page: Registration
+  .UserRegistrationForm {
+    .lia-text-form {
+      background-color: $li-panel-secondary-bg;
+      margin-bottom: $form-padding;
+      padding: $padding-large-vertical;
+      text-align: center;
+    }
+
+    .lia-form-footer {
+      padding-bottom: $form-padding;
+    }
+  }
+
+  .lia-form-terms-of-service {
+    font-size: $font-size-small;
+    line-height: $line-height-base;
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+}

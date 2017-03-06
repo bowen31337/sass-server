@@ -1,0 +1,20 @@
+// Comments
+//
+// Comments are used when there is an asymmetric relationship between the
+// primary piece of content and the comment as opposed to forum replies where
+// all the messages in a thread carry relatively equal weight.
+//
+// Example implementations:
+// TKB comments, idea comments, contests comments, Q&A comments (not answers),
+// media comments...
+//
+// Styling notes:
+// .lia-message-heading assumes a dropdown on the same plane as the user info.
+// Most of the body styling is handled in Messages (_messages.scss) which is
+// common to all interaction styles.
+//
+//
+// Styleguide x.x.x
+//
+// Compatibility untested.
+//

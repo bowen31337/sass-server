@@ -1,0 +1,368 @@
+$idea-exchange-page_kudos-sm-width:      80px !default;
+$idea-exchange-page_kudos-padding-small: 9px !default;
+
+@mixin components\idea-exchange-page {
+
+  // styling specific to the components in this quilt or when placed in this quilt
+  .lia-quilt-idea-exchange-components {
+    background-color: $li-bg-secondary;
+
+    @include media(tablet) {
+      display: none;
+    }
+
+    > .lia-quilt-row {
+      padding-left: $panel-body-padding;
+      padding-right: $panel-body-padding;
+      padding-top: $padding-xl-vertical;
+    }
+
+    .lia-panel {
+      background-color: $li-panel-secondary-bg;
+      border: 1px solid $li-border-color;
+    }
+
+    .lia-panel-heading-bar {
+      padding: {
+        bottom: $padding-large-vertical;
+        left: $panel-body-padding;
+        right: $panel-body-padding;
+        top: $padding-large-vertical;
+      }
+    }
+
+    .lia-panel-heading-bar-title {
+      line-height: 1;
+    }
+
+    .lia-view-all {
+      .lia-link-navigation {
+        padding-bottom: $padding-large-vertical;
+        padding-top: $padding-large-vertical;
+      }
+    }
+  }
+
+  .lia-component-ideas-widget-completed-ideas {
+    .lia-button-image-kudos-wrapper {
+      position: relative;
+
+      .kudos-link {
+        padding-left: $idea-exchange-page_kudos-padding-small;
+        padding-right: $idea-exchange-page_kudos-padding-small;
+      }
+
+      .kudos-link,
+      .kudos-count-link,
+      .lia-button-image-kudos-count {
+        line-height: $font-size-small * $line-height-base;
+      }
+
+      .lia-button-image-kudos-count {
+        .lia-component-kudos-widget-message-kudos-count {
+          font-size: $font-size-small;
+          padding-left: $idea-exchange-page_kudos-padding-small;
+        }
+      }
+
+      .lia-button-image-kudos-horizontal {
+        background-color: $btn-default-bg;
+        left: 0;
+        position: absolute;
+        top: 0;
+      }
+    }
+
+    .lia-list-slim {
+      padding-bottom: $padding-large-vertical;
+      position: relative;
+    }
+
+    .lia-message-content {
+      margin-left: $idea-exchange-page_kudos-sm-width;
+      min-height: ($padding-large-vertical * 2) + $line-height-computed;
+    }
+
+    .MessageListTaplet {
+      .lia-panel-content {
+        .lia-list-standard {
+          > li {
+            border-top: 0;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .lia-component-ideas-widget-completed-ideas,
+  .lia-message-view-idea-message-item,
+  .lia-message-view-idea-message {
+    .lia-status,
+    .lia-message-status-info {
+      @extend %secondary-text;
+
+      margin-bottom: 0;
+      margin-top: 0;
+
+      .message-status-link {
+        background-color: transparent;
+        color: $link-color;
+        display: inline;
+        font-weight: normal;
+        margin-left: $li-font-size-space;
+        padding: 0;
+      }
+    }
+
+    .lia-component-comments-action-comments-link:before {
+      display: none;
+    }
+
+    .lia-message-byline,
+    .lia-component-common-widget-date,
+    .lia-component-comments-action-comments-link {
+      display: inline;
+    }
+
+    .lia-byline-wrapper {
+      display: inline-block;
+
+      .lia-message-byline,
+      .lia-status {
+        @include separator($color: $li-separator-color);
+
+        &:after {
+          line-height: $line-height-computed;
+          vertical-align: top;
+        }
+      }
+
+      .lia-user-name-link {
+        font-size: inherit;
+      }
+    }
+
+    .lia-message-comment-action {
+      display: inline-block;
+
+      @include media(phone) {
+        display: none;
+      }
+    }
+
+    .lia-button-image-kudos-wrapper {
+      @extend %kudos-alt;
+      .lia-button-image-kudos {
+        @include media(tablet-and-smaller) {
+          background-color: transparent;
+        }
+        .kudos-link {
+          border-radius: 0;
+        }
+      }
+    }
+
+    // icons for the default statuses
+    .lia-status {
+      &:before {
+        @include fa-icon;
+
+        color: $li-idea-status-color;
+        content: li-icon-content($fa-var-certificate);
+      }
+    }
+
+    @each $name, $icon in $li-status-icons {
+      .lia-status-idea-#{$name} {
+        &:before {
+          content: map-get($li-status-icons, $name);
+        }
+      }
+    }
+
+    // .lia-status-idea-new {
+    //   &:before {
+    //     content: limap-get($li-status-icons, new);
+    //   }
+    // }
+
+    // .lia-status-idea-needs_info {
+    //   &:before {
+    //     content: map-get($li-status-icons, needs_info);
+    //   }
+    // }
+
+    // .lia-status-idea-investigating {
+    //   &:before {
+    //     content: map-get($li-status-icons, investigating);
+    //   }
+    // }
+
+    // .lia-status-idea-accepted {
+    //   &:before {
+    //     content: map-get($li-status-icons, accepted);
+    //   }
+    // }
+
+    // .lia-status-idea-declined {
+    //   &:before {
+    //     content: map-get($li-status-icons, declined);
+    //   }
+    // }
+
+    // .lia-status-idea-delivered {
+    //   &:before {
+    //     content: map-get($li-status-icons, delivered);
+    //   }
+    // }
+  }
+
+  .lia-message-view-idea-message-item {
+    margin-bottom: $padding-xl-vertical;
+    padding-top: 0;
+    position: relative;
+
+    @include media(tablet) {
+      padding-bottom: 0;
+
+      .LabelsForArticle {
+        margin-bottom: 0;
+        margin-top: 0;
+
+      }
+
+      .LabelsList {
+        text-align: right;
+      }
+    }
+
+    .LabelsForArticle {
+      width: 100%;
+    }
+
+    // increased specificity for status triangle icon, hardcoded at 3 columns
+    &.lia-message-view-idea-message-item {
+      &:after {
+        right: calc(#{percentage(3 / $grid-columns)} + #{$padding-base-vertical});
+
+        @include media(tablet) {
+          right: $padding-base-vertical;
+        }
+      }
+
+      &:before {
+        right: percentage(3 / $grid-columns);
+
+        @include media(tablet) {
+          right: 0;
+        }
+      }
+    }
+
+    .lia-quilt-column-side-content {
+      padding: {
+        left: $padding-small-horizontal;
+        top: $padding-base-vertical + 1;
+      }
+
+      @include media(tablet) {
+        margin-bottom: 0;
+        min-height: $line-height-computed + $padding-base-vertical * 2;
+        padding: {
+          bottom: 0;
+          left: 25%;
+        }
+        vertical-align: top;
+        width: auto;
+      }
+
+      // extra specfificity
+      &.lia-quilt-column-side-content {
+        padding-right: $padding-small-horizontal;
+      }
+    }
+
+    .lia-button-image-kudos-wrapper {
+      left: 0;
+      position: absolute;
+
+      @include media(tablet) {
+        // - height of kudos button - body margin bottom - 1
+        bottom: -($line-height-computed + $padding-base-vertical * 2) - $padding-large-vertical - 1;
+        z-index: 10;
+      }
+    }
+
+    .lia-message-byline {
+      @include media(phone) {
+        display: none;
+      }
+    }
+
+    .lia-message-byline-date {
+      display: none;
+
+      @include media(phone) {
+        display: inline;
+
+        .local-time {
+          display: none;
+        }
+      }
+    }
+
+    .label {
+      @extend %label-alt;
+      @extend %label-xs;
+      @extend %label-with-truncation;
+
+      padding-bottom: $padding-small-vertical;
+      vertical-align: top;
+      width: 100%;
+
+      @include media(tablet) {
+        width: auto;
+      }
+    }
+
+    .label-link {
+      float: left;
+    }
+
+    .lia-message-subject {
+      margin-bottom: 0;
+    }
+
+    .lia-message-body-wrapper {
+      margin-top: $padding-base-vertical;
+    }
+  }
+
+  .lia-idea.lia-primary-rating-type-kudos .lia-quilt-idea-message-item .lia-quilt-column-main-content {
+    padding-left: $li-kudos-horizontal-md-width;
+    padding-right: $panel-body-padding;
+    padding-top: $panel-body-padding;
+
+    @include media(tablet) {
+      padding-left: $panel-body-padding;
+    }
+  }
+
+  .lia-component-ideas-widget-labels-sortable {
+    @include li-extend('.lia-component-labels-widget-labels-list');
+  }
+
+  .lia-idea.lia-primary-rating-type-idea-ratings {
+    .lia-message-view-idea-message-item .lia-component-kudos-widget-button {
+      display: none;
+    }
+    .lia-message-view-idea-message-item {
+      padding: $panel-body-padding;
+    }
+  }
+
+  .lia-primary-rating-type-kudos .lia-message-view-display .lia-component-ratings-widget-rating-display {
+    display: none;
+  }
+}

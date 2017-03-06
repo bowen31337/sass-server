@@ -1,0 +1,23 @@
+@mixin ratings-star($star-size) {
+  &.stars-enabled {
+    cursor: pointer;
+  }
+
+  .li-star {
+    @include fa-icon;
+    font-size: $star-size;
+    font-style: normal;
+  }
+
+  .full-star:before {
+    content: $fa-var-star;
+  }
+
+  .half-star:before {
+    content: $fa-var-star-half-o;
+  }
+
+  .empty-star:before {
+    content: $fa-var-star-o;
+  }
+}

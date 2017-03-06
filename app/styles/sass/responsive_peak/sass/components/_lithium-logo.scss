@@ -1,0 +1,19 @@
+// Lithium Logo
+//
+// Small style modification for responsive skin: altered top and bottom margins.
+//
+// Style guide: components.lithium-logo
+
+@mixin components\lithium-logo {
+
+  .lia-component-common-widget-lithium-logo {
+    float: right;
+    margin: $panel-body-padding;
+
+    // TODO: remove duplicate scroll-to from footer
+    // TEMP: This removes the 2nd instance of the scroll-to
+    + .lia-component-common-widget-scroll-to {
+      display: none;
+    }
+  }
+}

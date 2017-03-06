@@ -1,0 +1,305 @@
+// Albums
+//
+// This component is a port from Media v3 albums. We have not re-done this page in Media v4's likeness,
+// so the album pages linked to from user profiles take the styles outlined in this mixin.
+//
+// Style guide: components.albums
+
+@mixin components\albums {
+
+  .lia-quilt-media-gallery-page {
+    .albums-tab .albums-link:hover {
+      cursor: pointer;
+    }
+
+    .AlbumGalleryList,
+    .AllImagesDisplay,
+    .AlbumDisplay {
+      .remove-image {
+        left: ($padding-small-horizontal * 9); // positions it at top right corner of image
+        position: absolute;
+        top: $padding-small-vertical;
+
+        &:before {
+          background-color: $body-bg;
+          border: 1px solid $gray-light;
+          border-radius: $border-radius-large * 1.5;
+          color: $gray-light;
+          font-size: $font-size-base;
+          padding: 0 2px;
+        }
+      }
+
+
+      .lia-component-external-widget-add-this .lia-link-navigation {
+        float: left;
+        margin-left: $padding-xs-horizontal;
+        margin-top: $padding-small-vertical;
+      }
+
+      .lia-media-tile.lia-media-tile {
+        height: auto;
+      }
+
+      .lia-form-album-input option {
+        background-color: $body-bg;
+        width: auto;
+      }
+
+      .lia-media-image-rejected-text {
+        color: $brand-danger;
+        font-weight: bold;
+        position: absolute;
+        top: $padding-large-vertical * 9.5;
+      }
+
+      .lia-menu-bar-buttons {
+        display: table;
+        float: left;
+        @include media(phone) {
+          padding: {
+            top: $padding-large-vertical;
+            left: 0;
+            bottom: $padding-large-vertical;
+            right: 0;
+          }        }
+
+        .lia-button-wrapper,
+        .lia-menu-navigation-wrapper {
+          padding-right: $padding-xs-horizontal;
+        }
+      }
+
+      .lia-paging-full-wrapper {
+        float: right;
+        @include media(phone) {
+          padding: {
+            top: $padding-large-vertical;
+            left: 0;
+            bottom: $padding-large-vertical;
+            right: 0;
+          }
+        }
+      }
+
+      .AddThis {
+        display: table-cell;
+        padding-left: $padding-small-horizontal;
+        padding-right: $padding-small-horizontal;
+
+        .lia-img-widget-add-this-small {
+          font-size: $font-size-large;
+        }
+      }
+
+      .lia-media-album-title {
+        font-size: $font-size-large;
+        font-weight: bolder;
+        padding-bottom: $padding-large-vertical;
+        padding-top: $padding-large-vertical;
+      }
+
+      .ImageUpload .lia-form-horizontal .lia-form-label {
+        padding-top: 0;
+      }
+
+      .lia-media-image-actions,
+      .lia-media-album-actions {
+        position: absolute;
+        right: $padding-small-horizontal - 1;
+        text-align: center;
+        top: $padding-small-vertical + 1;
+        visibility: hidden;
+
+        .lia-fa-delete {
+          background-color: $body-bg;
+          border: 1px solid $gray-light;
+          border-radius: $border-radius-large * 1.5;
+          color: $gray-light;
+          font-size: $font-size-base;
+          padding: 0 2px;
+        }
+      }
+
+      .image-display-group:hover .lia-media-image-actions,
+      .album-display-group:hover .lia-media-album-actions {
+        visibility: visible;
+      }
+    }
+
+    .AlbumGalleryList {
+      .lia-list-tile.image-preview-wrapper {
+        margin-bottom: $padding-large-vertical;
+
+        li {
+          margin: $padding-small-vertical;
+          width: auto;
+        }
+      }
+
+      .lia-list-tile.lia-list-tile {
+        font-size: inherit;
+        margin-bottom: $padding-large-vertical;
+        text-align: inherit;
+
+        li {
+          margin: $padding-small-vertical;
+          width: auto;
+        }
+
+        .AlbumThumbnailDisplay {
+          border: 1px solid $gray-lighter;
+          border-radius: $border-radius-base;
+          margin: 0;
+          padding: $padding-small-vertical;
+          position: relative;
+          width: $li-album-thumbnail-dimensions + (2 * $padding-small-vertical) + 4px; // 2px to account for border
+
+          .album-display-group {
+            margin-bottom: $padding-medium;
+
+            &:before {
+              @include translate(-50%, none);
+
+              background: $body-bg;
+              border-bottom: 2px solid darken($gray-lighter, 10%);
+              content: '';
+              height: $li-album-thumbnail-dimensions;
+              left: 50%;
+              position: absolute;
+              top: $padding-large-vertical;
+              width: $li-album-thumbnail-dimensions * .8;
+              z-index: -1;
+            }
+
+            &:after {
+              @include translate(-50%, none);
+
+              background: $body-bg;
+              border-bottom: 2px solid darken($gray-lighter, 10%);
+              content: '';
+              height: $li-album-thumbnail-dimensions;
+              left: 50%;
+              position: absolute;
+              top: $padding-medium;
+              // -webkit-transform: translateX(-50%);
+              // transform: translateX(-50%);
+              width: $li-album-thumbnail-dimensions * .6;
+              z-index: -2;
+            }
+          }
+
+          .album-batch-processing {
+            left: $padding-small-horizontal;
+            position: absolute;
+          }
+
+          .album-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal;
+          }
+        }
+
+        .lia-list-tile-image-wrapper {
+          border: 0;
+        }
+
+        .lia-list-tile-image {
+          border: 2px solid darken($gray-lighter, 10%);
+          height: $li-album-thumbnail-dimensions;
+          overflow: hidden;
+          width: $li-album-thumbnail-dimensions;
+
+          img {
+            max-width: none;
+            min-height: $li-album-thumbnail-dimensions;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+      }
+    }
+
+    .AllImagesDisplay,
+    .AlbumDisplay {
+      .lia-list-tile.lia-tile-list-image,
+      .lia-list-tile.image-preview-wrapper {
+        text-align: left;
+
+        li {
+          margin: $padding-small-vertical;
+          width: auto;
+        }
+      }
+
+      .ImageThumbnailDisplay {
+        border: 1px solid $gray-lighter;
+        border-radius: $border-radius-base;
+        margin: 0;
+        padding: $padding-small-vertical;
+        position: relative;
+        white-space: nowrap;
+        width: $li-album-thumbnail-dimensions + (2 * $padding-small-vertical) + 2px; // 2px to account for border
+
+        .image-batch-processing {
+          left: $padding-small-horizontal;
+          position: absolute;
+        }
+
+        .lia-media-image-author,
+        .lia-media-image-posted-on,
+        .lia-media-image-posted-in,
+        .lia-media-image-kudos {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-wrap: normal; // IE 10 hack
+        }
+
+        .lia-img-icon-forum-thread,
+        .lia-img-icon-contest-thread,
+        .lia-img-icon-blog-thread,
+        .lia-img-icon-tkb-thread,
+        .lia-img-icon-idea-thread,
+        .lia-img-icon-group-thread,
+        .lia-img-icon-qanda-thread {
+          background-color: $body-bg;
+          border: 1px solid $gray-light;
+          border-radius: $border-radius-large * 1.5;
+          color: $gray-light;
+          font-size: $font-size-small;
+          padding: 2px;
+        }
+
+        .lia-img-icon-tkb-thread,
+        .lia-img-icon-qanda-thread,
+        .lia-img-icon-group-thread {
+          height: $padding-large-vertical * 2; // for some reason this icon isn't font-awesome and therefore needs this to constrain size.
+        }
+
+        .lia-img-icon-idea-thread {
+          height: $padding-large-vertical * 1.8;
+          width: $padding-small-horizontal * 1.8; // to make idea icon appear circular and not misshapen
+        }
+      }
+
+      .lia-list-tile-image-wrapper {
+        border: 0;
+
+        .lia-list-tile-image {
+          height: $li-album-thumbnail-dimensions;
+          overflow: hidden;
+          width: $li-album-thumbnail-dimensions;
+
+          img {
+            max-width: none;
+            min-height: $li-album-thumbnail-dimensions;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+      }
+    }
+  }
+}

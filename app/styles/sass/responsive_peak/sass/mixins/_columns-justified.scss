@@ -1,0 +1,6 @@
+@mixin columns-justified($cols) {
+  $col-width: (92% / $cols); // 92% is completely arbitrary
+
+  margin-bottom: (100% - ($col-width * $cols)) / ($cols - 1);
+  width: $col-width;
+}

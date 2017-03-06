@@ -1,0 +1,667 @@
+@mixin components\profile-plus\integrated-profile-privacy-controls {
+
+  .lia-white-list-topics {
+
+    .lia-privacy-control-instruction {
+      font-size: $font-size-base;
+      margin-bottom: $padding-large-vertical * 2;
+      border-bottom: 1px solid $li-border-color;
+      padding-bottom: $padding-small-horizontal;
+    }
+
+    .lia-privacy-control-topic-group {
+      display: inline-block;
+      font-weight: bold;
+      font-size: $font-size-base * 1.5;
+      margin-top: $li-integrated-profile-padding;
+    }
+
+    .lia-checkbox {
+      margin-left: $padding-base-horizontal;
+    }
+
+    .lia-privacy-control-instruction-copy {
+      margin-top: $li-integrated-profile-padding;
+      font-size: $font-size-base;
+    }
+
+    .lia-save-privacy-controls {
+      margin-top: $li-integrated-profile-padding;
+    }
+
+    .lia-topic-pill {
+      margin-right: $padding-large-horizontal;
+      margin-top: $padding-large-vertical * 1.2;
+
+      .lia-topic-checkbox {
+        margin-right: $li-integrated-profile-topic-checbox-margin;
+      }
+    }
+
+    .lia-selection-topic-pill {
+      float: left;
+      margin: $li-integrated-profile-topics-selection-pill-margin;
+    }
+
+    .lia-topics-field-group {
+      padding-top: $padding-large-vertical;
+      position: relative;
+    }
+
+    .lia-topics-list {
+      overflow: hidden;
+    }
+
+    .lia-topics-selection-list {
+      clear: left;
+      margin: $padding-large-vertical $padding-small-horizontal 0;
+      overflow: hidden;
+      padding-top: $padding-large-vertical;
+    }
+
+    .lia-topic-selection-area {
+      background-color: #fafafa;
+      border: 1px solid #cbd3d5;
+      overflow: hidden;
+      padding: $padding-large-vertical;
+    }
+
+    .lia-topic-selection-instructions {
+      color: #839196;
+      float: left;
+      padding: $padding-small-vertical 0;
+      width: 60%
+    }
+
+    .lia-topic-selection-select-box-wrapper {
+      float: left;
+      min-width: $li-integrated-profile-topics-selection-select-min-width;
+      margin-left: $padding-xl-horizontal;
+      width: auto;
+    }
+
+    .lia-integrated-profile-delete-icon {
+      color: #839196;
+      cursor: pointer;
+      padding: $padding-small-vertical $padding-xs-horizontal;
+
+    }
+
+    .lia-integrated-profile-delete-icon.lia-integrated-profile-delete-hover {
+      color: #067397;
+    }
+
+  }
+
+  .lia-advanced-settings-label {
+    cursor: pointer;
+  }
+
+  .lia-advanced-settings-heading {
+    float: left;
+    width: $padding-xl-vertical;
+
+    .fa-caret-right {
+      @include li-icon($fa-var-caret-right);
+      cursor: pointer;
+    }
+
+    .fa-caret-down {
+      @include li-icon($fa-var-caret-down);
+      cursor: pointer;
+    }
+  }
+
+  .lia-white-list-loading-icon {
+    margin-top: $padding-large-vertical;
+    text-align: center;
+
+    .lia-common-loading-dots {
+      display: inline-block;
+    }
+  }
+
+  .lia-profile-plus {
+    .lia-profile-plus-title  {
+      font-size: $font-size-h4;
+      font-weight: $headings-font-weight;
+      margin: $padding-xl-horizontal 0 $padding-xl-horizontal 0;
+    }
+
+    .lia-profile-plus-social-networks {
+      margin-top: $li-profile-plus-settings-social-networks-margin;
+
+      .lia-profile-plus-social-networks-checkbox {
+        font-weight: normal;
+      }
+    }
+
+    .lia-profile-plus-connected-state {
+      margin-bottom: $padding-xl-horizontal;
+
+      .lia-profile-plus-connect-status {
+        font-weight: $headings-font-weight;
+      }
+
+      .lia-profile-plus-connect-mode {
+        .lia-profile-plus-disconnect {
+          margin-left: $padding-small-horizontal;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .lia-profile-plus-disconnected-state {
+      margin-bottom: $padding-small-horizontal;
+
+      .lia-profile-plus-enable-text {
+        display: block;
+        margin-bottom: $padding-small-horizontal;
+      }
+
+      .lia-profileplus-auth-modal {
+        text-align: right;
+      }
+    }
+  }
+
+  .lia-klout-user-networks {
+    margin-bottom: $padding-large-horizontal;
+  }
+
+  .lia-klout-user-networks-icon {
+    border-radius: $lia-integrated-profile-networks-icon-border-radius;
+    color: #fff;
+    display: none;
+    height: $lia-integrated-profile-networks-icon-border-radius;
+    line-height: $lia-integrated-profile-networks-icon-border-radius;
+    margin: $lia-integrated-profile-networks-icon-margin;
+    width: $lia-integrated-profile-networks-icon-border-radius;
+    font-size: $lia-integrated-profile-networks-icon-font-size;
+    text-align: center;
+    text-decoration: none;
+
+    &.lt {
+      box-sizing: border-box;
+      display: inline-block;
+      vertical-align: bottom;
+      text-decoration: none;
+      background: gray none;
+
+      &:hover {
+        color: white;
+      }
+
+      &.a {
+        &:after {
+          content: 'A'
+        }
+      }
+      &.b {
+        &:after {
+          content: 'B'
+        }
+      }
+      &.c {
+        &:after {
+          content: 'C'
+        }
+      }
+      &.d {
+        &:after {
+          content: 'D'
+        }
+      }
+      &.e {
+        &:after {
+          content: 'E'
+        }
+      }
+      &.f {
+        &:after {
+          content: 'F'
+        }
+      }
+      &.g {
+        &:after {
+          content: 'G'
+        }
+      }
+      &.h {
+        &:after {
+          content: 'H'
+        }
+      }
+      &.i {
+        &:after {
+          content: 'I'
+        }
+      }
+      &.j {
+        &:after {
+          content: 'J'
+        }
+      }
+      &.k {
+        &:after {
+          content: 'K'
+        }
+      }
+      &.l {
+        &:after {
+          content: 'L'
+        }
+      }
+      &.m {
+        &:after {
+          content: 'M'
+        }
+      }
+      &.n {
+        &:after {
+          content: 'N'
+        }
+      }
+      &.o {
+        &:after {
+          content: 'O'
+        }
+      }
+      &.p {
+        &:after {
+          content: 'P'
+        }
+      }
+      &.q {
+        &:after {
+          content: 'Q'
+        }
+      }
+      &.r {
+        &:after {
+          content: 'R'
+        }
+      }
+      &.s {
+        &:after {
+          content: 'S'
+        }
+      }
+      &.t {
+        &:after {
+          content: 'T'
+        }
+      }
+      &.u {
+        &:after {
+          content: 'U'
+        }
+      }
+      &.v {
+        &:after {
+          content: 'V'
+        }
+      }
+      &.w {
+        &:after {
+          content: 'W'
+        }
+      }
+      &.x {
+        &:after {
+          content: 'X'
+        }
+      }
+      &.y {
+        &:after {
+          content: 'Y'
+        }
+      }
+      &.z {
+        &:after {
+          content: 'Z'
+        }
+      }
+
+      &.icon {
+        &.alteryx {
+          &:after {
+            content: '';
+          }
+          background-color: #0093d0;
+          background-image: svg-url($li-svg-profile-plus-alteryx);
+        }
+
+        &.webroot {
+          &:after {
+            content: '';
+          }
+          background-color: #ffffff;
+          background-image: svg-url($li-svg-profile-plus-webroot);
+        }
+
+        &.foxsports {
+          &:after {
+            content: '';
+          }
+          background-color: #ffffff;
+          background-image: svg-url($li-svg-profile-plus-foxsports);
+        }
+
+        &.telstracon {
+          &:after {
+            content: '';
+          }
+          background-color: #1db0e6;
+          background-image: svg-url($li-svg-profile-plus-telstra);
+        }
+
+        &.jawwy {
+          &:after {
+            content: '';
+          }
+          background-color: #ff671f;
+          background-image: svg-url($li-svg-profile-plus-jawwy);
+        }
+
+        &.jawwyundisclosed {
+          &:after {
+            content: '';
+          }
+          background-color: #ff671f;
+          background-image: svg-url($li-svg-profile-plus-jawwyundisclosed);
+        }
+
+        &.comcastsupport {
+          &:after {
+            content: '';
+          }
+          background-color: #000000;
+          background-image: svg-url($li-svg-profile-plus-comcastsupport);
+        }
+
+        &.fido {
+          &:after {
+            content: '';
+          }
+          background-color: #231f20;
+          background-image: svg-url($li-svg-profile-plus-fido);
+        }
+
+        &.rogers {
+          &:after {
+            content: '';
+          }
+          background-color: #da291c;
+          background-image: svg-url($li-svg-profile-plus-rogers);
+        }
+
+        &.brooksrunning {
+          &:after {
+            content: '';
+          }
+          background-color: #215fab;
+          background-image: svg-url($li-svg-profile-plus-brooksrunning);
+        }
+
+        &.starhub {
+          &:after {
+            content: '';
+          }
+          background-color: #95c11f;
+          background-image: svg-url($li-svg-profile-plus-starhub);
+        }
+
+        &.sonyeu1 {
+          &:after {
+            content: '';
+          }
+          background-color: #ffffff;
+          background-image: svg-url($li-svg-profile-plus-sonyeu1);
+        }
+
+        &.du {
+          &:after {
+            content: '';
+          }
+          background-color: #00afdb;
+          background-image: svg-url($li-svg-profile-plus-du);
+        }
+
+        &.ooredoo {
+          &:after {
+            content: '';
+          }
+          background-color: #ee3124;
+          background-image: svg-url($li-svg-profile-plus-ooredoo);
+        }
+
+      }
+    }
+    &.lia-fa-circle-o {
+      text-decoration: none;
+      display: inline-block;
+
+      &.lia-blogger {
+        background-color: #fa920f;
+        color: #fff;
+      }
+
+      &.lia-yammer {
+        background-color: #339dd3;
+        color: #fff;
+      }
+    }
+
+    &.lia-fa-facebook {
+      background-color: #3b5998;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-twitter {
+      background-color: #46c0fb;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+    &.lia-fa-plus {
+      background-color: #fff;
+      color: #8e8e8e;
+      border: solid 1px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-flickr {
+      background-color: #ff0082;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-foursquare {
+      background-color: #D3D3D3;
+      color: #fc4575;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-google-plus {
+      background-color: #e14929;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-instagram {
+      background-color: #3a6a97;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-lastfm {
+      background-color: #e91100;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-linkedin {
+      background-color: #00619e;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-pinterest {
+      background-color: #bd2027;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-tumblr {
+      background-color: #3d5770;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-wordpress {
+      background-color: #12749f;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    &.lia-fa-youtube-play {
+      background-color: #e82603;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+  }
+
+  .lia-search-typeahead {
+    position: relative;
+
+    .lia-search-input-wrapper {
+      display: block;
+    }
+
+    .lia-profile-plus-search-icon {
+      background-image: svg-url($li-svg-profile-plus-search);
+      background-repeat: no-repeat;
+      display: inline-block;
+      float: right;
+      height: $li-integrated-profile-search-icon-width-height;
+      width: $li-integrated-profile-search-icon-width-height;
+      position: relative;
+      right: $padding-xl-vertical;
+      top: $li-integrated-profile-search-icon-top-margin;
+      z-index: $zindex-dropdown;
+    }
+
+    .dropdown-menu {
+      @include li-extend('.dropdown-menu');
+
+      width: 100%;
+    }
+  }
+
+  /* Delete modal pop-up css */
+
+  .lia-profileplus-klout-topic-delete-modal .modal-dialog {
+    margin: $li-integrated-actionable-insight-ranking-top-margin auto;
+  }
+
+  .lia-ui-modal .modal-profileplusDeleteOverlay {
+    width: $li-integrated-profile-delete-modal-width;
+    height: $li-integrated-profile-delete-modal-height;
+
+    @include media(phone) {
+      width: $li-integrated-profile-delete-modal-mobile-width;
+    }
+  }
+
+  .lia-profileplus-delete-overlay-modal-container {
+    .lia-ui-modal-header {
+      background-color: $li-integrated-profile-delete-modal-warning-text-background-color;
+      border-bottom: none;
+      color: #000000;
+      font-size: $li-integrated-profile-settings-other-settings-font-size;
+      height: $li-integrated-profile-button-height;
+    }
+
+    .lia-ui-modal-header {
+      padding-left: $li-integrated-actionable-insight-section-padding;
+      padding-top: $padding-small-horizontal;
+    }
+
+    .lia-ui-modal-body {
+      padding: $li-integrated-actionable-insight-section-padding;
+    }
+
+    .lia-ui-modal-footer {
+      padding: $li-integrated-actionable-insight-section-padding;
+      padding-top: 0;
+    }
+
+    .lia-delete-modal-header {
+      font-size: $font-size-h4;
+      font-weight: $li-integrated-actionable-insight-ranking-user-rank-font-weight;
+      margin-bottom: $padding-small-horizontal;
+    }
+
+    .lia-delete-modal-info-text {
+      font-size: $li-integrated-profile-settings-other-settings-font-size;
+      font-weight: $li-integrated-actionable-insight-ranking-sub-text-font-weight;
+    }
+
+    .lia-ui-modal-footer {
+      border-top: none;
+    }
+
+    .lia-fa-exclamation-triangle {
+      color: #000000;
+      margin-right: $padding-small-horizontal;
+      font-size: $li-integrated-profile-heading-font-size;
+
+      &:before {
+        content: $fa-var-warning;
+      }
+    }
+
+    .lia-profileplus-delete-cancel-text {
+      margin-right: $li-integrated-actionable-insight-ranking-top-margin;
+      font-weight: $li-integrated-actionable-insight-ranking-sub-text-font-weight;
+    }
+
+    .lia-profileplus-overlay-cancel-button {
+      background-color: #FFFFFF;
+      border: none;
+    }
+
+    .lia-profileplus-delete-text {
+      margin-left: $li-integrated-actionable-insight-ranking-top-margin;
+      margin-right: $li-integrated-actionable-insight-ranking-top-margin;
+    }
+
+    .lia-profileplus-overlay-delete-button {
+      background-color: $li-integrated-profile-insights-border-color;
+      border: none;
+      height: $li-integrated-profile-button-height;
+    }
+  }
+
+  /* End - Delete modal pop-up css */
+
+  .lia-max-klout-topics-information, .lia-check-topics-information {
+    font-size: $font-size-large;
+    font-weight: $li-integrated-actionable-insight-ranking-user-rank-font-weight;
+    margin-bottom: $padding-large-horizontal;
+  }
+}

@@ -1,0 +1,200 @@
+// Media Uploader: Side panel
+//
+// The uploader side panel displays formatting options for the
+// selected images.
+//
+// `.lia-media-uploader-body-side-panel` - wrapper for the entire side panel.
+//
+// Style guide: components.media-uploader-side-panel
+
+$media-uploader-side-panel_formatting-line-height:        15px !default;
+$media-uploader-side-panel_formatting-preview-height-sm:  35px !default;
+$media-uploader-side-panel_formatting-preview-height-md:  55px !default;
+$media-uploader-side-panel_formatting-preview-height-lg:  65px !default;
+$media-uploader-side-panel_formatting-preview-text-sm:    40px !default;
+$media-uploader-side-panel_formatting-preview-text-md:    60px !default;
+$media-uploader-side-panel_formatting-preview-text-lg:    75px !default;
+$media-uploader-side-panel_bottom-row-height:             60px !default;
+
+
+@mixin components\media-uploader-side-panel {
+
+  @include media(phone) {
+    .lia-media-uploader-body-side-panel {
+      display: none;
+    }
+  }
+
+  @include media(tablet-and-larger) {
+    .lia-form-label.lia-media-uploader-formatting-label {
+      display: block;
+    }
+
+    .lia-form-vertical .lia-media-uploader-side-panel-add .lia-button-wrapper {
+      float: none;
+      padding: 0;
+    }
+
+    .lia-media-uploader-side-panel-add {
+      height: $media-uploader-side-panel_bottom-row-height;
+
+      .lia-button-group {
+        margin-bottom: $li-uploader-padding-vertical;
+      }
+    }
+
+    .lia-media-uploader-body-side-panel {
+      border-left: 1px solid $li-border-panel;
+      border-top: 1px solid $li-border-panel;
+      height: 100%;
+      overflow: hidden; // temp hack until we fix modal to not used position: fixed;
+      overflow-y: auto;
+      transform: translate3d(0, 0, 0); // fix issue where done button doesn't highlight when ready
+    }
+
+    .lia-media-uploader-body-side-panel .lia-quilt-column-20 {
+      float: left;
+      width: 85%;
+    }
+
+    // Uploader Formatting
+    .lia-media-uploader-formatting {
+      min-height: 355px;
+    }
+
+    .lia-media-uploader-formatting-title {
+      font-size: $font-size-h4;
+      font-weight: bolder;
+    }
+
+    .lia-media-uploader-formatting-preview {
+      @include centered-horizontal(relative);
+      padding: 0;
+      width: 65%;
+
+      [dir='rtl'] & {
+        right: 50%;
+      }
+
+    }
+
+    .lia-media-uploader-formatting-preview-wrapper {
+      line-height: $media-uploader-side-panel_formatting-line-height;
+      margin: {
+        bottom: $padding-large-vertical;
+        left: $padding-large-vertical;
+        right: $padding-large-vertical;
+        top: 0;
+      }
+      overflow: hidden;
+    }
+
+    .lia-media-uploader-formatting-preview-image {
+      color: $link-hover-color;
+    }
+
+    .lia-media-uploader-formatting-preview-align-center {
+      .lia-media-uploader-formatting-preview-image {
+        display: block;
+        text-align: center;
+      }
+    }
+
+    .lia-media-uploader-formatting-preview-align-empty .lia-media-uploader-formatting-around-image,
+    .lia-media-uploader-formatting-preview-align-inline .lia-media-uploader-formatting-around-image {
+      display: inline-block;
+    }
+
+    .lia-media-uploader-formatting-preview-align-empty .lia-media-uploader-formatting-around-image + .lia-media-uploader-formatting-preview-text-bar,
+    .lia-media-uploader-formatting-preview-align-inline .lia-media-uploader-formatting-around-image + .lia-media-uploader-formatting-preview-text-bar {
+      margin-top: 1px;
+    }
+
+    .lia-media-uploader-formatting-preview-align-left {
+      .lia-media-uploader-formatting-preview-image {
+        float: left;
+        margin-right: $padding-xs-horizontal;
+      }
+    }
+
+    .lia-media-uploader-formatting-preview-align-right {
+      .lia-media-uploader-formatting-preview-image {
+        float: right;
+        margin-right: $padding-xs-horizontal;
+      }
+    }
+
+    .lia-media-uploader-formatting-preview-arrangement-inline {
+      &.lia-media-uploader-formatting-preview-size-small {
+        .lia-media-uploader-formatting-preview-image {
+          font-size: $media-uploader-side-panel_formatting-preview-text-sm;
+          height: $media-uploader-side-panel_formatting-preview-height-sm;
+        }
+      }
+
+      &.lia-media-uploader-formatting-preview-size-medium {
+        .lia-media-uploader-formatting-preview-image {
+          font-size: $media-uploader-side-panel_formatting-preview-text-md;
+          height: $media-uploader-side-panel_formatting-preview-height-md;
+        }
+      }
+
+      &.lia-media-uploader-formatting-preview-size-large {
+        .lia-media-uploader-formatting-preview-image {
+          font-size: $media-uploader-side-panel_formatting-preview-text-lg;
+          height: $media-uploader-side-panel_formatting-preview-height-lg;
+        }
+      }
+    }
+
+    .lia-media-uploader-formatting-preview-arrangement-gallery {
+      .lia-media-uploader-formatting-preview-image {
+        font-size: $media-uploader-side-panel_formatting-preview-text-sm;
+        height: $media-uploader-side-panel_formatting-preview-height-sm;
+      }
+    }
+
+    .lia-media-uploader-formatting-preview-image-wrapper {
+      display: inline-block;
+      width: 100%;
+    }
+
+    .lia-media-uploader-formatting-preview-text-bar {
+      background-color: lighten($text-color, 30%);
+      height: $padding-small-vertical;
+      margin-top: $padding-small-vertical;
+      overflow: hidden;
+    }
+
+    .lia-media-uploader-formatting-preview-text-bar-clear {
+      clear: both;
+    }
+
+    .lia-media-uploader-formatting-preview-text-bar-spacer {
+      display: inline-block;
+      height: $padding-small-vertical;
+      width: 100%;
+    }
+
+    .lia-media-uploader-side-panel-formatting {
+      height: calc(100% - #{$media-uploader-side-panel_bottom-row-height});
+      min-height: 395px;
+      padding: $li-uploader-padding-vertical 0;
+    }
+
+    #lia-media-uploader-formatting-align .lia-button-secondary {
+      @include lia-button-default;
+      min-width: 0;
+    }
+  }
+
+  .lia-media-uploader-no-formatting {
+    .lia-media-uploader-body-side-panel {
+      @include make-xs-column(24);
+    }
+
+    .lia-media-uploader-side-panel-add .lia-button-wrapper {
+      float: right;
+    }
+  }
+}

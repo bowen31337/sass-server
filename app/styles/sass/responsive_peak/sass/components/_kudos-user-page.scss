@@ -1,0 +1,51 @@
+@mixin components\kudos-user-page {
+  .KudosUserPage {
+
+    .top-block {
+      float: right;
+      margin-bottom: $padding-small-vertical;
+
+      // Don't remove kudos userpage top pagination because
+      // it doesn't have a pager on the bottom
+      .lia-paging-full-wrapper {
+        @include media(phone) {
+          display: block;
+        }
+      }
+    }
+
+    .SortingBar {
+      display: block;
+      float: left;
+      padding: 0;
+      width: auto;
+    }
+
+    .UserListBlock {
+      clear: both;
+
+      .lia-user-avatar,
+      .lia-user-leaderboard-rank {
+        vertical-align: middle;
+      }
+
+      .UserProfileSummary {
+        padding: $padding-large-vertical;
+
+        .lia-user-kudos-count {
+          @include li-icon(icn-kudos, $pseudo: before);
+          color: $gray-light;
+        }
+
+        .lia-user-kudos-count,
+        .lia-user-kudos-weight {
+          font-size: $font-size-small;
+        }
+
+        .lia-user-name {
+          font-size: $font-size-large;
+        }
+      }
+    }
+  }
+}

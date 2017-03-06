@@ -1,0 +1,163 @@
+//
+// Profile Plus Variables - Base
+// --------------------------------------------------
+
+//== CTAs
+$li-brand-call-to-action:                    $text-muted !default;
+
+//== Hover Card
+$li-hovercard-bg:                            #f4f6f7 !default;
+$li-hovercard-border-radius:                 2px !default;
+
+$li-klout-topic-font:                        12px / 13px 'Lato Regular', Helvetica, Arial, sans-serif !default;
+$li-klout-expert-topic-font:                 11px / 11px 'Lato Regular', Helvetica,Arial,sans-serif !default;
+$li-klout-expert-line-height:                20px !default;
+$li-klout-expert-letter-spacing:             .4px !default;
+$li-klout-expert-border-radius:              2px 4px 4px 2px !default;
+$li-klout-topic-border-radius:               4px !default;
+$li-klout-expert-left-nudge:                 6px !default;
+$li-klout-expert-padding:                    5px 7px 4.9px 4px !default;
+$li-klout-expert-bevel-border:               13px 5px 12px 0 !default;
+
+$li-user-expert-topics-margin:               50px !default;
+$li-user-expert-topics-star-width:           25px !default;
+
+$li-profile-topic-padding:                   6px 15px 5.9px 11px !default;
+
+$li-integrated-profile-topic-checbox-margin: 5px !default;
+
+$li-integrated-profile-btn-facebook-color:      #3b5998 !default;
+$li-integrated-profile-btn-twitter-color:       #00aced !default;
+$li-integrated-profile-btn-email-color:         #b3cae5 !default;
+$li-cta-icon-background-color:                  #95a2a7 !default;
+$li-cta-icon-background-color-light:            #e4e8ea !default;
+$li-integrated-profile-insights-border-color:   #e4e8ea !default;
+$li-integrated-profile-insights-ranking-border: #cbd3d5 !default;
+
+$li-integrated-profile-cta-border-top-height: 6px !default;
+$li-integrated-profile-center-width:          900px !default;
+
+$li-integrated-profile-bg:                          #fff !default;
+$li-integrated-profile-padding:                       25px !default;
+$li-integrated-profile-top-bottom-padding:            15px !default;
+$li-integrated-profile-left-right-padding:            45px !default;
+$li-integrated-profile-mobile-padding:                10px !default;
+$li-integrated-profile-top-bottom-footer-padding:     5px !default;
+$li-integrated-profile-center-width:                  900px !default;
+$li-integrated-profile-heading-font-size:             20px !default;
+$li-integrated-profile-icon-font-size:                36px !default;
+$li-integrated-profile-fa-icon-size-medium:           50px !default;
+$li-integrated-profile-fa-icon-size-large:            70px !default;
+$li-integrated-profile-fa-icon-size-xl:               100px !default;
+
+$li-integrated-profile-icon-size:             32px !default;
+$li-integrated-profile-star-icon-size:        15px !default;
+$li-integrated-profile-network-icon-size:     30px !default;
+
+$li-integrated-profile-settings-tooltip-icon-left:                  -26px !default;
+$li-integrated-profile-settings-tooltip-icon-color:                 #fff !default;
+$li-integrated-profile-hovercard-powered-by-width:                  120px !default;
+$li-integrated-profile-hovercard-icon-padding-small:                3px !default;
+$li-integrated-profile-hovercard-icon-padding-large:                6px !default;
+$li-integrated-profile-tooltip-icon-number-left:                    7px !default;
+$li-integrated-profile-tooltip-icon-number-klout-score-left:        45px !default;
+$li-integrated-profile-klout-setting-tooltip-padding:               10px 0 0 20px !default;
+$li-integrated-profile-settings-other-settings-padding:             30px 0 10px 0 !default;
+$li-integrated-profile-settings-other-settings-font-size:           16px !default;
+$li-integrated-profile-settings-other-settings-color:               #a8a8a8 !default;
+$li-integrated-profile-hovercard-inner-div-padding:                 25px !default;
+$li-integrated-profile-hovercard-tooltip-content-left:              -999px !default;
+$li-integrated-profile-scorebox-help-icon-margin-left:              -25px !default;
+$li-integrated-profile-scorebox-popup-arrow-left:                   30px !default;
+$li-integrated-profile-scorebox-height:                             34px !default;
+$li-integrated-profile-scorebox-width:                              32px !default;
+$li-integrated-profile-klout-hovercard-margin-left:                 0 !default;
+$li-integrated-profile-klout-hovercard-padding:                     10px !default;
+$li-integrated-profile-klout-hovercard-connect-button-line-height:  70px !default;
+
+$li-integrated-profile-topics-selection-select-min-width:       25% !default;
+$li-integrated-profile-topics-selection-pill-margin:            0 20px 10px 0 !default;
+$li-integrated-profile-connect-dialog-agreement-text-color:     #808597 !default;
+$li-integrated-profile-topics-pill-padding:                     5px 2px 5px 0 !default;
+
+
+$li-integrated-profile-hovercard-container-min-width:       330px !default;
+$li-integrated-profile-hovercard-score-container-font:      Lato !default;
+$li-integrated-profile-hovercard-score-container-padding:   0 10px !default;
+$li-integrated-profile-hovercard-score-title-font-size:     14px !default;
+$li-integrated-profile-hovercard-score-value-font-size:     21px !default;
+$li-integrated-profile-hovercard-score-value-padding-left:  6px !default;
+$li-integrated-profile-hovercard-score-separator-border:    1px #a8a8a8 solid !default;
+
+
+$li-integrated-profile-expertise-hover-color:       #997cdf !default;
+$li-integrated-profile-topic-hover-color:           #d4d4f3 !default;
+
+$li-integrated-profile-topics-line-height:          2 !default;
+
+
+$lia-integrated-profile-networks-icon-border-radius:    30px !default;
+$lia-integrated-profile-networks-icon-font-size:        15px !default;
+$lia-integrated-profile-networks-icon-margin:           auto 3px !default;
+
+$li-integrated-actionable-collapse-content-color:                   #525658 !default;
+$li-integrated-actionable-activity-title-color:                     #4a4a4a !default;
+$li-integrated-actionable-insight-section-padding:                  20px  !default;
+$li-integrated-actionable-insight-tab-active:                       #0691c1 !default;
+$li-integrated-actionable-insight-activity-threshold-color:         #808587 !default;
+$li-integrated-actionable-insight-activity-threshold-color:         #808587 !default;
+$li-integrated-actionable-insight-uib-tab-color:                    #dddddd !default;
+$li-integrated-actionable-insight-metrics-icon-color:               #b2b8b9 !default;
+$li-integrated-actionable-insight-metrics-font-size:                50px    !default;
+$li-integrated-actionable-insight-topics-link-margin-left:          10px    !default;
+
+$li-integrated-actionable-insight-ranking-discription-color:            #65696B !default;
+$li-integrated-actionable-insight-ranking-topic-color:                  #2c2d2e !default;
+$li-integrated-actionable-insight-ranking-list-margin-right:            15px    !default;
+$li-integrated-actionable-insight-ranking-top-margin:                   30px    !default;
+$li-integrated-actionable-insight-ranking-user-rank-text-size:          30px    !default;
+$li-integrated-actionable-insight-ranking-user-rank-font-weight:        400     !default;
+$li-integrated-actionable-insight-ranking-sub-text-font-weight:         300     !default;
+$li-integrated-actionable-insight-ranking-user-rank-link-color-hover:   #23527c !default;
+
+$li-integrated-profile-my-interests-padding-vertical:   12px !default;
+$li-integrated-profile-my-interests-padding-horizontal: 16px !default;
+
+$li-integrated-profile-search-icon-width-height:    28px !default;
+$li-integrated-profile-search-icon-top-margin:      -35px !default;
+
+$li-integrated-profile-delete-icon-color:           #cf000f !default;
+
+$li-integrated-profile-delete-modal-warning-text-background-color:  #ffcb59 !default;
+$li-integrated-profile-delete-modal-width:                          400px !default;
+$li-integrated-profile-delete-modal-height:                         250px !default;
+$li-integrated-profile-delete-modal-mobile-width:                   300px !default;
+$li-integrated-profile-button-height:                               40px !default;
+
+$li-integrated-profile-treatment-author-avatar-profile-size:        40px !default;
+$li-integrated-profile-treatment-author-avatar-hovecard-size:       50px !default;
+
+$modal-button-margin-right:             5px !default;
+$modal-button-wrapper-margin-bottom:    5px !default;
+$modal-button-text-size:                16px !default;
+
+$auth-modal-button-background:                          #828282 !default;
+$auth-modal-success-button-background:                  #0f4f7e !default;
+$li-profile-plus-auth-modal-dismiss-button-color:       #ffffff !default;
+$li-profile-plus-auth-modal-success-button-color:       #146cac !default;
+$li-profile-plus-pre-connect-notice-button-margin-top:  20px !default;
+$li-profile-plus-pre-connect-note-header-color:         #007FAB !default;
+$li-profile-plus-pre-connect-note-color:                #ffffff !default;
+$li-profile-plus-auth-modal-fine-print-margin-top:      20px !default;
+$li-profile-plus-auth-modal-actions-margin:             20px 36px 10px 36px !default;
+
+$li-profile-plus-auth-modal-more-social-connections-margin-top:     20px !default;
+
+$li-profile-plus-settings-social-networks-margin: 40px !default;
+
+//== Recommendation Feed
+$li-profile-plus-no-messages-found-margin: 10px !default;
+$li-profile-plus-pre-connect-modal-button-width: 49% !default;
+$li-profile-plus-no-messages-found-color: #fff !default;
+$li-profile-plus-no-messages-found-padding: 15px !default;
+$li-profile-plus-no-messages-found-margin: 10px 0 !default;

@@ -1,0 +1,81 @@
+// User
+// Styling for user related components such as user name and rank
+//
+// Markup:
+// <div class="lia-component-author"> User Foo </div>
+// <div class="lia-user-rank"> Super User </div>
+//
+// Style guide: codebook.user
+@mixin codebook\user {
+  .UserName .login-bold,
+  .lia-user-name .login-bold {
+    font-weight: bold;
+  }
+
+  .lia-component-author {
+    @include text-overflow();
+    margin-bottom: 0;
+    padding-left: 0;
+    vertical-align: middle;
+  }
+
+  .lia-user-name-link,
+  .view-profile-link {
+    font-weight: normal;
+  }
+
+  .lia-component-author-rank-name,
+  .lia-message-author-rank,
+  .lia-user-rank-container,
+  .lia-users-profile-card-rank,
+  .lia-user-rank,
+  .rankColumn {
+    @extend %secondary-text;
+    @include text-overflow();
+    display: inline-block;
+    text-transform: $li-rank-text-transform;
+    vertical-align: middle;
+  }
+
+  .anon-label {
+    display: inline-block;
+
+    &:after {
+      content: ' ';
+    }
+  }
+
+  // hardcoded value that reflects the historical lia size
+  .lia-user-avatar-message {
+    width: 60px;
+  }
+
+  // Special styles for User Profile Summary component when it is in a table
+  .lia-list-wide {
+    .UserProfileSummary {
+      display: table;
+
+      .lia-component-common-widget-user-avatar {
+        display: table-cell;
+        vertical-align: middle;
+        width: $li-avatar-size-large;
+      }
+
+      .lia-user-attributes.lia-user-attributes {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+
+    @include media(phone) {
+      .UserProfileSummary {
+        .lia-user-attributes {
+          > .lia-user-name,
+          .lia-user-rank {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

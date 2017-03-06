@@ -1,0 +1,283 @@
+// Media Uploader: Image Tiles
+//
+// Image tiles are the building blocks, so to speak, of the
+// Media Uploader. They are how each image is displayed.
+//
+// Style guide: components.media-uploader-image-tiles
+//** Media uploader mobile image tile
+$media-uploader-image-tiles_mobile-tile-width:    85vw !default;
+$media-uploader-image-tiles_mobile-tile-height:   85vw !default;
+$media-uploader-image-tiles_loading-dots-width:             5px !default;
+$media-uploader-image-tiles_loading-dots-height:            5px !default;
+$media-uploader-image-tiles_loading-dots-width-large:       25px !default;
+$media-uploader-image-tiles_loading-dots-height-large:      25px !default;
+$media-uploader-image-tiles_progress-bar-width: 16px !default;
+$media-uploader-image-tiles_progress-bar-height: 16px !default;
+
+
+@mixin components\media-uploader-image-tiles {
+
+  // Loading Dots
+  .lia-common-loading-dots {
+    &.lia-common-loading-dots-small {
+      .lia-common-loading-dot {
+        height: $media-uploader-image-tiles_loading-dots-height;
+        width: $media-uploader-image-tiles_loading-dots-width;
+      }
+    }
+
+    &.lia-common-loading-dots-large {
+      .lia-common-loading-dot {
+        height: $media-uploader-image-tiles_loading-dots-height-large;
+        width: $media-uploader-image-tiles_loading-dots-width-large;
+      }
+    }
+  }
+
+  .lia-common-loading-dot {
+    @include animation(loading-dots .8s linear infinite);
+    background: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 0;
+    margin-right: $padding-xs-horizontal;
+    text-align: center;
+
+    &:nth-child(1) {
+      @include animation-delay(.2s);
+      margin-left: $padding-xs-horizontal;
+    }
+
+    &:nth-child(2) {
+      @include animation-delay(.4s);
+    }
+
+    &:nth-child(3) {
+      @include animation-delay(.6s);
+    }
+  }
+
+  .lia-media-image-loading-icon {
+    z-index: 101;
+
+    .lia-common-loading-dots {
+      text-align: center;
+      margin-top: 50%;
+    }
+  }
+
+  .lia-media-image-preview {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    height: inherit;
+    position: relative;
+    width: inherit;
+
+    &:hover {
+      cursor: move;
+      opacity: .7;
+    }
+  }
+
+  .lia-media-image-preview-overlay {
+    background-color: $text-color;
+    content: '';
+    height: inherit;
+    left: 0;
+    opacity: .7;
+    position: absolute;
+    top: 0;
+    width: inherit;
+    z-index: 100;
+  }
+
+  // Uploader Progress Bar
+  .lia-media-image-progress-bar {
+    background-color: $input-bg;
+    &.lia-progress-bar-animate {
+      .progress-bar {
+        @include animation(animate-stripes 3s linear infinite);
+        background-image: linear-gradient(45deg, transparent 10%, $brand-primary 10%,
+          $brand-primary 30%, transparent 30%, transparent 60%, $brand-primary 60%,
+          $brand-primary 80%, transparent 80%);
+        background-size: $media-uploader-image-tiles_progress-bar-width $media-uploader-image-tiles_progress-bar-height; // These should not be changed and are values for this progress bar only.
+        transition: width .6s ease;
+        width: 0;
+        height: 100%;
+      }
+    }
+  }
+
+
+  .lia-media-image-tile {
+    overflow: hidden;
+  }
+
+  .lia-media-image-tile-caption,
+  .lia-media-image-progress-bar {
+    float: left;
+    font-size: $font-size-base;
+    height: $li-uploader-image-tile-caption-height;
+    line-height: $line-height-computed;
+    margin: 1px 0 0; // aforementioned 1px margin between caption and tile
+    width: 100%;
+  }
+
+  .lia-media-image-tile-caption-field {
+    background: $body-bg;
+    border: 0;
+    border-radius: 0;
+    font-size: $font-size-base;
+    font-style: italic;
+    height: $li-uploader-image-tile-caption-height;
+    line-height: $line-height-computed;
+    padding: 0 $padding-xs-horizontal;
+    width: 100%;
+
+    &:focus {
+      @include appearance(none);
+      border: 0;
+      outline: 0;
+    }
+  }
+
+  .lia-media-image-tile-display {
+    background: $body-bg;
+    height: $li-uploader-image-tile-height;
+  }
+
+  .lia-media-image-tile-footer {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .lia-media-image-tile-remove {
+    float: right;
+    padding: $padding-xs-horizontal;
+
+    .lia-fa {
+      cursor: pointer;
+      font-size: 2em;
+      position: relative;
+      z-index: 102;
+    }
+  }
+
+  @include media(phone) {
+    .lia-content {
+      .lia-media-image-tile-caption-field.lia-media-image-tile-caption-field {
+        border: 0;
+        border-radius: 0;
+      }
+    }
+
+    .lia-media-image-tile-display {
+      height: $media-uploader-image-tiles_mobile-tile-height;
+      width: $media-uploader-image-tiles_mobile-tile-width;
+    }
+
+    .lia-media-tile.lia-media-tile {
+      display: inline-block;
+      float: none;
+      padding: {
+        bottom: $padding-large-vertical;
+        left: 0;
+        right: 0;
+        top: $padding-large-vertical;
+      }
+      width: $media-uploader-image-tiles_mobile-tile-width;
+
+    }
+  }
+
+  @include media(tablet-and-larger) {
+    .lia-media-image-tile-display {
+      float: left;
+      width: $li-uploader-image-tile-width;
+    }
+  }
+
+  // Image orientation numbers refer to the exif identifier
+  // that is mapped to all possible orientations of an image.
+
+  // See here for more info: http://www.daveperrett.com/articles/2012/07/28/exif-orientation-handling-is-a-ghetto/
+  .lia-image-orientation-2 {
+    @include rotateY(180deg);
+
+    .lia-common-loading-dots {
+      @include rotateY(-180deg);
+    }
+  }
+
+  .lia-image-orientation-3 {
+    @include rotate(180deg);
+
+    .lia-common-loading-dots {
+      @include rotate(180deg);
+    }
+  }
+
+  .lia-image-orientation-4 {
+    @include rotateX(180deg);
+
+    .lia-common-loading-dots {
+      @include rotateX(-180deg);
+    }
+  }
+
+  .lia-image-orientation-5 {
+    @include transform(rotate(270deg) rotateY(180deg));
+
+    .lia-common-loading-dots {
+      @include transform(rotate(-270deg) rotateY(-180deg));
+    }
+  }
+
+  .lia-image-orientation-6 {
+    @include rotate(90deg);
+
+    .lia-common-loading-dots {
+      @include rotate(-90deg);
+    }
+  }
+
+  .lia-image-orientation-7 {
+    @include transform(rotate(90deg) rotateY(180deg));
+
+    .lia-common-loading-dots {
+      @include transform(rotate(-90deg) rotateY(-180deg));
+    }
+  }
+
+  .lia-image-orientation-8 {
+    @include rotate(270deg);
+
+    .lia-common-loading-dots {
+      @include rotate(-270deg);
+    }
+  }
+
+  @include keyframes(loading-dots) {
+    0% {
+      background: $gray-light;
+    }
+
+    50% {
+      background: $gray;
+    }
+
+    100% {
+      background: $gray-dark;
+    }
+  }
+
+  @include keyframes(animate-stripes) {
+    0% {
+      background-position: 0 0;
+    }
+
+    100% {
+      background-position: 60px 0; // 60px is specific to only this animation.
+    }
+  }
+}

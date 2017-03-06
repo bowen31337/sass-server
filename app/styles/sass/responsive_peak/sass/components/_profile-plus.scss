@@ -1,0 +1,20 @@
+@import 'profile-plus/profile-plus-variables-base';
+@import 'profile-plus/integrated-profile';
+@import 'profile-plus/integrated-profile-cta';
+@import 'profile-plus/integrated-profile-curated-feed';
+@import 'profile-plus/integrated-profile-network-icons';
+@import 'profile-plus/integrated-profile-plus-settings';
+@import 'profile-plus/integrated-profile-tooltip';
+@import 'profile-plus/integrated-profile-privacy-controls';
+@import 'profile-plus/recommendations-feed-cta';
+
+@mixin components\profile-plus\all {
+  @include components\profile-plus\integrated-profile;
+  @include components\profile-plus\integrated-profile-cta;
+  @include components\profile-plus\integrated-profile-curated-feed;
+  @include components\profile-plus\integrated-profile-network-icons;
+  @include components\profile-plus\integrated-profile-plus-settings;
+  @include components\profile-plus\integrated-profile-tooltip;
+  @include components\profile-plus\integrated-profile-privacy-controls;
+  @include components\profile-plus\recommendations-feed-cta;
+}

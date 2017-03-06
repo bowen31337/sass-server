@@ -1,0 +1,35 @@
+// Tiles
+//
+// We use `.lia-list-tile` in many of our list/masonry views for our new Media Experience.
+//
+// Markup:
+// <ul class="lia-list-tile lia-list-standard-inline">
+//   <li style="height: 75px; width: 75px; background-color: #BFA64B;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #7F6F32;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #FFDE64;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #403719;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #E5C85A;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #BFA64B;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #7F6F32;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #FFDE64;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #403719;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #E5C85A;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #BFA64B;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #7F6F32;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #FFDE64;"></li>
+//   <li style="height: 75px; width: 75px; background-color: #403719;"></li>
+// </ul>
+//
+// Style guide: codebook.tiles
+
+@mixin codebook\tiles {
+
+  // tiled lists
+  .lia-list-tile > li {
+    float: left;
+    margin: {
+      bottom: $padding-small-vertical;
+      right: $padding-xs-horizontal;
+    }
+  }
+}

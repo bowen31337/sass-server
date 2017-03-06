@@ -1,0 +1,17 @@
+@mixin components\tag-detail-page {
+
+  .TagDetailPage {
+
+    .lia-menu-bar {
+      margin-bottom: $padding-large-vertical;
+    }
+
+    .lia-menu-dropdown-items > li > .lia-link-disabled {
+      color: $btn-link-disabled-color;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}

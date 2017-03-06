@@ -1,0 +1,52 @@
+// Core variables and mixins
+@import "bootstrap/variables-placeholder";
+@import "bootstrap/mixins-placeholder";
+
+// Reset and dependencies
+@import "bootstrap/normalize-placeholder";
+@import "bootstrap/print-placeholder";
+@import "bootstrap/glyphicons-placeholder";
+
+// Core CSS
+@import "bootstrap/scaffolding-placeholder";
+@import "bootstrap/type-placeholder";
+@import "bootstrap/code-placeholder";
+@import "bootstrap/grid-placeholder";
+@import "bootstrap/tables-placeholder";
+@import "bootstrap/forms-placeholder";
+@import "bootstrap/buttons-placeholder";
+
+// Components
+@import "bootstrap/component-animations-placeholder";
+@import "bootstrap/dropdowns-placeholder";
+@import "bootstrap/button-groups-placeholder";
+@import "bootstrap/input-groups-placeholder";
+@import "bootstrap/navs-placeholder";
+@import "bootstrap/navbar-placeholder";
+@import "bootstrap/breadcrumbs-placeholder";
+@import "bootstrap/pagination-placeholder";
+@import "bootstrap/pager-placeholder";
+@import "bootstrap/labels-placeholder";
+@import "bootstrap/badges-placeholder";
+@import "bootstrap/jumbotron-placeholder";
+@import "bootstrap/thumbnails-placeholder";
+@import "bootstrap/alerts-placeholder";
+@import "bootstrap/progress-bars-placeholder";
+@import "bootstrap/media-placeholder";
+@import "bootstrap/list-group-placeholder";
+@import "bootstrap/panels-placeholder";
+@import "bootstrap/responsive-embed-placeholder";
+@import "bootstrap/wells-placeholder";
+@import "bootstrap/close-placeholder";
+
+// Components w/ JavaScript
+@import "bootstrap/modals-placeholder";
+@import "bootstrap/tooltip-placeholder";
+@import "bootstrap/popovers-placeholder";
+@import "bootstrap/carousel-placeholder";
+
+// Utility classes
+@import "bootstrap/utilities-placeholder";
+@import "bootstrap/responsive-utilities-placeholder";
+
+$li-bootstrap-classes-included: true;

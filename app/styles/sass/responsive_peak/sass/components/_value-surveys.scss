@@ -1,0 +1,162 @@
+@mixin components\value-surveys {
+
+  // colors
+  $color_survey_header: #999;
+  $color_rating_label: #a9a9a9;
+  $color_survey_primary_button: #2095f3;
+  $color_survey_prompt_border: #ddd;
+  $color_survey_primary_button_hover: #62b4f6;
+
+  .lia-content {
+    .lia-valuesurvey-container {
+      float: none;
+      margin: 100px auto 0;
+
+      h1 {
+        margin: 10px 0;
+      }
+
+      h2 {
+        color: $color_survey_header;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 10px 0 30px;
+      }
+
+      img {
+        margin: 0 0 25px;
+      }
+
+      form {
+        .lia-input-edit-form-row {
+          margin: 0;
+          overflow-x: hidden;
+        }
+
+        .lia-input-edit-form-column {
+          // the lia input edit form column has to be wide enough to hold all the survey pages otherwise they will wrap and break the styling
+          padding: 0;
+          width: 10000000px;
+        }
+
+        .lia-button-group {
+          .lia-button-Submit-action {
+            display: none;
+          }
+        }
+      }
+
+      .lia-form-survey-group-fieldset-toggle {
+        float: left;
+        display: none;
+      }
+
+      .lia-form-survey-group-fieldset-toggle {
+        &:first-child {
+          display: block;
+        }
+      }
+
+      .lia-form-fieldset-wrapper {
+        float: left;
+        font-size: 14px;
+
+        fieldset {
+          margin: 0 5px;
+        }
+      }
+
+      .lia-form-label-wrapper {
+        line-height: 18px;
+        margin-bottom: 20px;
+      }
+
+      .lia-form-input-rating-radio {
+        .lia-form-rating-label {
+          color: $color_rating_label;
+          font-weight: bold;
+          width: 17%;
+        }
+
+        .lia-form-rating-left-label {
+          float: left;
+          padding-right: 3%;
+          text-align: right;
+        }
+
+        .lia-form-rating-right-label {
+          float: right;
+          padding-left: 3%;
+          text-align: left;
+        }
+
+        .lia-form-radio-wrapper {
+          float: left;
+          position: relative;
+          width: 60%;
+
+          @include media(phone) {
+            clear: both;
+            width: 100%;
+          }
+        }
+
+        ul {
+          text-align: justify;
+
+          &:after {
+            content: '';
+            display: inline-block;
+            width: 100%;
+          }
+        }
+
+        li {
+          display: inline-block;
+          text-align: center;
+
+          label {
+            display: block;
+          }
+        }
+      }
+
+      &.thank-you {
+        margin-top: 100px;
+
+        h1 {
+          text-align: center;
+        }
+      }
+    }
+
+    .survey-prompt-dialog {
+      text-align: center;
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .survey-prompt-dialog-description {
+        font-weight: bold;
+        margin-top: 30px;
+      }
+
+      .lia-button-wrapper {
+        display: inline-block;
+        float: none;
+        margin: 20px 3px;
+      }
+
+      .lia-text {
+        font-size: 14px;
+        margin-bottom: 10px;
+        padding: 0 30px;
+      }
+
+      .survey-prompt-dialog-footer {
+        font-size: 12px;
+      }
+    }
+  }
+}

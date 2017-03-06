@@ -1,0 +1,141 @@
+// Media Lightbox: Structure
+//
+// The Media Lightbox is an interactive viewer for various collections
+// of images. It is wrapped in a modal renderer, but it is distinct
+// enough that it does not follow all the conventions of other modals used.
+// It is made up of two parts: the lightbox viewer and a filmstrip
+// underneath.
+//
+// `.lia-lightbox-dialog` - the modal-like viewport positioned in the center of the screen.
+//
+// ### Header
+//
+// `.lia-lightbox-header-wrapper`
+// a wrapper around the header.  The header contains information about the
+// collection.  This is not displayed at `$screen-xs-max` or lower (aka mobile).
+//
+// `.lia-lightbox-image-title-context` - displays the title of the collection.
+// Example: "Photos from the message " + thread title
+//
+// `.lia-lightbox-image-link-context` - if available, this displays the board title the collection is in.
+//
+// ### Main Content
+//
+// `.lia-lightbox-main-content-wrapper` - displays the lightbox viewer (single image).
+//
+// ### Footer
+//
+// `.lia-lightbox-footer-wrapper` - a wrapper around the footer.
+// The footer is comprised of three rows. Two of these rows are always visible.
+//
+// `.lia-lightbox-footer-first-row` - always visible.
+// This row contains context (author, date created) and actions that can be taken on the image in the viewer portion.
+//
+// `.lia-lightbox-footer-second-row` - always visible with the following caveats:
+// sometimes it contains nothing and is therefore invisible to the user. It contains image captions if set.
+//
+// `.lia-lightbox-footer-third-row` - only visible if the filmstrip is displayed.
+// There are two cases in which the filmstrip is not displayed : ``$screen-xs-max` (or lower, basically mobile),
+// and if the collection is only one image. In all other cases, the filmstrip is displayed.
+//
+// `.lia-lightbox-footer-has-third-row` - modifier class used to signal that the third row (filmstrip) is displayed.
+// It modifies the height of `.lia-lightbox-main-content-wrapper` and .lia-lightbox-footer-wrapper proportionally.
+//
+// Style guide: components.media-lightbox-structure
+
+@mixin components\media-lightbox-structure {
+
+  // Dialog
+  // Actual dialog center on translucent overlay
+  .lia-lightbox-dialog {
+    @include translate(-50%, -50%);
+    background-color: $body-bg;
+    font-family: $font-family-sans-serif;
+    left: 50%;
+    overflow: hidden;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10002;
+
+    .lia-close-button {
+      cursor: pointer;
+      float: right;
+      height: $li-lightbox-icon-size-large;
+      opacity: .8;
+      position: relative;
+      width: $li-lightbox-icon-size-large;
+      z-index: 1020;
+    }
+  }
+
+  // Lightbox Footer
+  .lia-lightbox-footer-wrapper {
+    bottom: 0;
+    left: 0;
+    max-height: 20%;
+    min-height: 4em * $line-height-base;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+  }
+
+  .lia-users-user-login {
+    display: inline-block;
+  }
+
+  @include media(phone) {
+    .lia-lightbox-dialog {
+      height: 100%;
+      min-height: 100%;
+      min-width: 100%;
+      width: 100%;
+    }
+
+    .lia-lightbox-main-content-wrapper {
+      bottom: 4em * $line-height-base;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    // Uneeded in mobile view
+    .lia-lightbox-header-wrapper {
+      display: none;
+    }
+
+    .lia-lightbox-dialog-content {
+      display: block;
+    }
+  }
+
+  @include media(tablet-and-larger) {
+    .lia-lightbox-dialog {
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .3), 0 0 5px rgba(0, 0, 0, .1) inset;
+      height: 90%;
+      min-height: 90%;
+      min-width: 90%;
+      width: 80%;
+    }
+
+    .lia-lightbox-main-content-wrapper {
+      bottom: 4em * $line-height-base;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: ($line-height-computed * 2) + ($padding-large-vertical * 2);
+    }
+
+    // Lightbox Header
+    //
+    .lia-lightbox-header-wrapper {
+      padding: $padding-large-vertical $padding-large-horizontal;
+    }
+
+    .lia-lightbox-dialog-content {
+      display: table;
+      width: 100%;
+    }
+  }
+}

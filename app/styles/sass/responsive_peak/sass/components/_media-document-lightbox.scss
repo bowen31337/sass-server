@@ -1,0 +1,66 @@
+@mixin components\media-document-lightbox {
+
+  .lia-document-lightbox {
+    .lia-document-body-content {
+      height: 100%;
+      .lia-document-box-content {
+        height: 100%;
+      }
+
+      iframe {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .lia-lightbox-header-wrapper {
+      display: block;
+      padding: $padding-large-vertical $padding-large-horizontal;
+    }
+
+    .lia-lightbox-header-context-section,
+    .lia-lightbox-close-icon {
+      font-size: $font-size-h2;
+
+      @include media(phone) {
+        font-size: $font-size-h4;
+      }
+    }
+
+    .lia-lightbox-close-icon {
+      display: block;
+      padding: $padding-large-vertical $padding-large-horizontal;
+    }
+
+    .lia-lightbox-dialog .lia-close-button {
+      width: auto;
+    }
+
+    .lia-lightbox-actions,
+    .lia-lightbox-context {
+      display: table-cell;
+      padding:  $padding-xl-vertical $padding-xl-horizontal;
+      vertical-align: top;
+
+      @include media(phone) {
+        display: inline-block;
+        padding: $padding-large-vertical $padding-large-horizontal;
+      }
+    }
+
+    .lia-lightbox-actions {
+      text-align: right;
+      @include media(phone) {
+        float: right;
+      }
+    }
+
+    .lia-button-primary .lia-image-download-link-icon {
+      color: inherit;
+    }
+
+    .lia-image-download-link {
+      @include lia-button-primary;
+    }
+  }
+}

@@ -1,0 +1,558 @@
+// Search form
+//
+// There are 5 different sets of markup for search:
+// * Search in responsive header
+// ** Community page search markup is identical but styled differently
+// ** Search before post markup is also the same but styled differently
+// * Search on search page
+// * TKB Search on search page / tkb community page
+// * TKB Search on tkb category and tkb pages
+// * Spam Quarantine search
+//
+// Searches may have different scope dropdowns
+// Searches may have secondary links (advanced link or subscribe link)
+//
+// This does not account for previous versions of those searches
+// This does not count dedicated user search forms
+//
+
+
+$search-form_search-box-padding:          $li-search-input-height !default;
+$search-form_search-granularity-caret:    16px !default;
+$search-form_hero-search-button-margin:   16px !default;
+
+@mixin components\search-form {
+  // .SearchForm.lia-form-inline are often seen together because there is both a
+  // parent and child with the class .SearchForm. .lia-form-inline denotes the
+  // .SearchForm on the form element, not the container parent.
+  .SearchForm.lia-form-inline {
+    display: table;
+    width: 100%;
+  }
+
+  .lia-search-input-wrapper {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+  }
+
+  // main search form input
+  //
+  // using a 3 selector strength to compete against
+  // .lia-form-inline input[type=text] for width: 100%
+  // not needed for .lia-form-type-search as it's not in a lia-form-inline
+  .lia-form-search-query-input.lia-form-search-query-input.lia-form-search-query-input,
+  .lia-form-type-search,
+  .lia-search-input-user.lia-search-input-user.lia-search-input-user,
+  .search-input.search-input.search-input {
+    font-size: $font-size-large;
+    height: $li-search-input-height;
+    padding-left: $search-form_search-box-padding;
+    width: 100%;
+
+    &::-ms-clear {
+      display: none;
+    }
+
+    &:active,
+    &.active,
+    &:focus,
+    &.focus,
+    &:hover {
+      background-color: $input-bg;
+      z-index: 2;
+    }
+
+    &.lia-autocomplete-input-has-results {
+      @include border-bottom-radius(0);
+    }
+  }
+
+  // search form found in header with granularity to the left
+  .search-input.search-input.search-input {
+    @include border-left-radius(0);
+
+    @include media(phone) {
+      border-left: 0;
+      border-radius: 0;
+    }
+  }
+
+  // search button
+  .lia-button-wrapper-searchForm-action .lia-button-searchForm-action,
+  .lia-button-SearchPageForm-action.lia-button-SearchPageForm-action,
+  .lia-component-tkb-widget-search-bar .lia-button-Submit-action,
+  .lia-filter-support-case-by-users .lia-button-Submit-action {
+    background-color: transparent;
+    background-image: svg-url($li-svg-icon-magnifying-glass, $li-icon-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: $li-search-input-height - $padding-base-horizontal * 2;
+    border: 0;
+    height: $li-search-input-height;
+    min-width: 0;
+    outline: 0;
+    position: absolute;
+    text-indent: -9999px;
+    width: $li-search-input-height;
+    z-index: 3;
+
+    // Taken almost verbatim from vender .btn
+    // Otherwise the active state was not fully clearing
+    // Likely issue is that there is another :focus after that
+    &,
+    &:active,
+    &.active {
+      background-color: transparent;
+      border: 0;
+      border-color: transparent;
+      box-shadow: none;
+
+      &:focus,
+      &.focus {
+        background-color: transparent;
+        border: 0;
+        border-color: transparent;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .lia-filter-support-case-by-users,
+  .lia-component-tkb-widget-search-bar  {
+    margin-bottom: $line-height-computed;
+    position: relative;
+
+    .lia-button-Submit-action {
+      @include lia-button-link;
+      bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .lia-form-label-wrapper {
+      margin-bottom: $padding-large-vertical;
+    }
+
+    .lia-form-footer,
+    .lia-form-row {
+      margin-bottom: 0;
+    }
+  }
+
+
+  // search granularity dropdown
+  .lia-search-granularity-wrapper {
+    @include border-left-radius($input-border-radius);
+    @include li-icon($fa-var-angle-down);
+
+    background-color: $gray-lighter;
+    display: block;
+    position: relative;
+
+    &:before {
+      font-size: $search-form_search-granularity-caret;
+      margin-right: 0;
+      position: absolute;
+      right: $padding-base-horizontal;
+      top: ($li-search-input-height - $font-size-base) / 2;
+      z-index: 3;
+    }
+
+    // nested to be stronger than .lia-content select
+    .lia-search-form-granularity {
+      @include appearance(none);
+      @include border-right-radius(0);
+
+      background-color: transparent;
+      border-right: 0;
+      box-shadow: none;
+      cursor: pointer;
+      display: table-cell;
+      height: $li-search-input-height;
+      line-height: $line-height-base;
+      padding-right: $padding-base-horizontal * 3;
+      position: relative;
+      vertical-align: top;
+      width: auto;
+      z-index: 4;
+
+      @include media(phone) {
+        display: none;
+      }
+
+      &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 $li-icon-color;
+      }
+    }
+  }
+
+  // Search autocomplete
+  .lia-component-common-widget-search-form {
+    .lia-autocomplete-header,
+    .lia-autocompete-footer {
+      display: none;
+    }
+
+    .lia-autocomplete-container {
+      @include border-bottom-radius($input-border-radius-small);
+      @include border-top-radius(0);
+      display: none !important;
+      margin-top: -1px;
+
+      @include media(phone) {
+        border: 0;
+        left: 0 !important;
+        margin-top: 1px;
+        position: fixed;
+        right: 0 !important;
+        width: 100% !important;
+      }
+
+      &.lia-autocomplete-has-results {
+        display: block !important;
+      }
+
+      ul {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // search cancel button (found only on mobile header)
+  .lia-cancel-search {
+    @include lia-button;
+
+    @include media(tablet-and-larger) {
+      display: none;
+    }
+
+    border: 1px solid $input-border;
+    border-left: 0;
+    border-radius: 0;
+    border-right: 0;
+    height: $li-search-input-height;
+    padding: {
+      bottom: ($li-search-input-height - $li-line-height-input) /2;
+      top: ($li-search-input-height - $li-line-height-input) /2;
+    }
+
+    &:active {
+      @include box-shadow(none);
+    }
+  }
+
+  .lia-clear-field {
+    background-image: svg-url($li-svg-icon-uploader-close, $gray-light);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: $font-size-small;
+    cursor: pointer;
+    display: block;
+    height: $li-search-input-height;
+    margin: {
+      bottom: - $li-search-input-height;
+      left: - $li-search-input-height;
+    }
+    position: relative;
+    width: $li-search-input-height;
+    z-index: 3;
+  }
+
+  .show-results-for-link,
+  .search-instead-for-link,
+  .do-you-mean-link {
+    font-style: italic;
+  }
+
+  .search-instead-for-link,
+  .do-you-mean-link {
+    font-weight: bold;
+  }
+
+  .spell-check-showing-result {
+    font-size: $font-size-large;
+    margin-bottom: $padding-xs-vertical * 2;
+  }
+
+  .spell-check-do-you-mean,
+  .spell-check-search-instead,
+  .spell-check-showing-result {
+    display: none;
+  }
+
+  .lia-search-form-links-secondary {
+    bottom: -$form-padding;
+    position: absolute;
+    right: $panel-body-padding;
+
+    > li {
+      display: table-cell;
+      vertical-align: top;
+    }
+  }
+
+  // search form behavior in the header only
+  // collapsing search form in header specific behavior
+  .lia-component-quilt-header {
+    .lia-search-toggle {
+      @include li-icon-svg($li-svg-icon-magnifying-glass, $size: $font-size-h2);
+      border: 0;
+      cursor: pointer;
+      display: none;
+      font-size: $font-size-h2;
+
+      &:active {
+        @include box-shadow(none);
+      }
+
+      @include media(phone) {
+        display: inline-block;
+      }
+    }
+
+    .lia-component-common-widget-search-form {
+      padding-bottom: $panel-body-padding;
+
+      @include media(phone) {
+        float: right;
+        padding: 0;
+
+        .lia-form-inline.SearchForm {
+          display: none;
+        }
+
+        // mobile search fixed at top when toggled open
+        .lia-body.lia-phone-search-open & {
+          background-color: $li-bg-secondary;
+          bottom: 0;
+          left: 0;
+          padding: 0;
+          position: fixed;
+          right: 0;
+          top: 0;
+          z-index: 3;
+
+          .lia-form-inline.SearchForm {
+            display: table;
+          }
+
+          .lia-cancel-search {
+            display: block;
+          }
+
+          .lia-search-toggle {
+            display: none;
+
+            &:active {
+              @include box-shadow(none);
+            }
+          }
+
+          .lia-autocomplete-container {
+            @include box-shadow(none);
+          }
+        }
+      }
+
+      // show granularity on desktop or larger
+      .lia-search-form-granularity {
+        @include media(phone) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @include media(phone) {
+    .lia-body.lia-phone-search-open {
+      position: fixed;
+    }
+  }
+
+
+  // Search page specific
+  //
+  .SearchPage {
+    .lia-cancel-search,
+    .lia-search-toggle-text {
+      display: none;
+    }
+  }
+
+  // increasing specificity of the input and button to be consistent with
+  // other search forms
+  .SearchPageForm.SearchPageForm {
+    .lia-form-type-search {
+      padding-left: $li-icon-size + $padding-small-horizontal;
+    }
+
+    .lia-button-SearchPageForm-action {
+      padding-left: 0;
+      padding-right: 0;
+      position: absolute;
+      top: 0;
+    }
+  }
+
+
+  // community page search form in hero behaves differently
+  //
+  .CommunityPage {
+    .lia-component-common-widget-search-form {
+      padding: {
+        bottom: $form-padding;
+        left: $panel-body-padding;
+        right: $panel-body-padding;
+        top: $panel-body-padding;
+      }
+
+      .lia-search-input-wrapper {
+        display: block;
+        margin: 0 auto;
+        width: 75%;
+
+        @include media(phone) {
+          width: 100%;
+        }
+      }
+
+      .lia-search-granularity-wrapper + .lia-search-input-wrapper {
+        display: table-cell;
+        margin: auto;
+        width: 100%;
+      }
+
+      .SearchForm.lia-form-inline {
+        // Modifying submit button.  Only a magnifying glass shows
+        .lia-button-searchForm-action {
+          background-image: svg-url($li-svg-icon-magnifying-glass, $li-hero-icon-color);
+
+          @include media(desktop) {
+            height: $li-hero-input-height;
+            width: $li-hero-input-height;
+          }
+        }
+
+        .lia-clear-field {
+          background-image: svg-url($li-svg-icon-uploader-close, $li-hero-icon-color);
+
+          @include media(desktop) {
+            height: $li-hero-input-height;
+            margin: {
+              bottom: - $li-hero-input-height;
+              left: - $li-hero-input-height;
+            }
+            width: $li-hero-input-height;
+          }
+        }
+
+        .search-input {
+          @include transition(border-color ease-in-out .15s, background-color ease-in-out .15s);
+          @include border-left-radius($input-border-radius-small);
+
+          background-color: darken($li-hero-community-bg, 2%);
+          border-color: rgba($input-border, .15);
+          border-width: 2px;
+          color: $li-hero-color;
+
+          @include media(desktop) {
+            height: $li-hero-input-height;
+            padding-left: $li-hero-input-height;
+            padding-right: $li-hero-input-height;
+          }
+
+          @include media(phone) {
+            // restore left border for phones for community page
+            // border-left is normally suppressed to be flush with the device
+            border-left: 2px solid rgba($input-border, .15);
+          }
+
+          &:active,
+          &:focus {
+            background-color: $input-bg;
+            border-color: $input-border;
+            color: $input-color;
+          }
+
+          &:hover {
+            border-color: $li-hero-color;
+          }
+        }
+
+        .lia-search-granularity-wrapper {
+          background-color: darken($li-hero-community-bg, 2%);
+          color: $li-hero-color;
+
+          &:before {
+            @include media(desktop) {
+              top: ($li-hero-input-height - $font-size-base) / 2;
+            }
+
+            @include media(phone) {
+              display: none;
+            }
+          }
+        }
+
+        .lia-search-form-granularity {
+          border-color: rgba($input-border, .15);
+          border-width: 2px;
+          color: $gray-light;
+
+          @include media(desktop) {
+            height: $li-hero-input-height;
+          }
+        }
+
+        .lia-cancel-search {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  // spam quarantine page
+  .spam-search-container {
+    margin-bottom: $padding-xl-vertical;
+
+    // currently spam search container nests itself when re-rendering
+    // suppress nested styles
+    .spam-search-container {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .lia-spam-search {
+    .lia-form-inline {
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .lia-button-searchForm-action {
+      left: 0;
+      top: 0;
+    }
+  }
+
+  // select doesn't have a wrapper like the granularity one.
+  // select doesn't allow pseudo before or after so we can't add the caret
+  // for the dropdown, omitting it for now. -mikey 8/4/16
+  .lia-form-user-filter-input.lia-form-user-filter-input,
+  .lia-spam-search-type-dropdown.lia-spam-search-type-dropdown {
+    @include appearance(none);
+
+    background-color: $gray-lighter;
+    bottom: 0;
+    height: $li-search-input-height;
+    position: absolute;
+    right: 0;
+    width: auto;
+  }
+
+  .lia-form-user-filter-input {
+    margin-bottom: 1px;
+  }
+}

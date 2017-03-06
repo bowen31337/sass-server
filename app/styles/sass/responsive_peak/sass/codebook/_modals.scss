@@ -1,0 +1,280 @@
+// Modals
+//
+// Dialog.js uses 1.8.x jQueryUI dialogs and adds inline styles for dialogs.
+//
+// Markup:
+// <div class="lia-modal-window">
+//   <div class="ui-dialog">
+//     <div class="modal-content">
+//       [modal content here]
+//     </div>
+//   </div>
+// </div>
+//
+// Style guide: codebook.modals
+
+@mixin codebook\modals {
+
+  // modal container and positioning
+  .lia-body .mce-window,
+  .lia-panel-dialog,
+  .ui-dialog {
+    @include li-extend('.modal-content');
+
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+    position: absolute;
+
+    // inline styles on modals make !important required
+    // scss-lint:disable ImportantRule
+    @include media(phone) {
+      left: 0 !important;
+      margin: {
+        left: $padding-xs-horizontal;
+        right: $padding-xs-horizontal;
+        top: $padding-xs-horizontal;
+      }
+      max-height: 100%;
+      max-width: 100%  !important;
+      right: 0 !important;
+      top: 0 !important;
+      width: auto  !important;
+    }
+
+    @include media(desktop) {
+      .lia-form-buttons-empty-left-column {
+        .lia-quilt-column-left {
+          display: none;
+        }
+
+        .lia-quilt-column-right {
+          @include make-xs-column(24);
+        }
+      }
+    }
+  }  
+
+  // modal header & titlebars
+  .lia-body .mce-title,
+  .lia-body .ui-dialog-title {
+    @include li-extend('.modal-title');
+  }
+
+  .lia-body .mce-window-head,
+  .lia-body .ui-dialog-titlebar {
+    @include li-extend('.modal-header');
+
+    padding: $panel-heading-padding;
+  }
+
+  .lia-body .mce-abs-layout.mce-container-body,
+  .lia-body .ui-dialog-buttonpane,
+  .lia-body .ui-dialog-content {
+    @include li-extend('.modal-body');
+  }
+
+  .lia-panel-dialog .ui-dialog-content {
+    // inline styles on modals make !important required
+    // scss-lint:disable ImportantRule
+    max-height: none !important;
+  }
+
+  .lia-panel-dialog,
+  .ui-dialog {
+
+    .ui-dialog-titlebar-close {
+      @include li-icon-button(button-dialog-close);
+      @include opacity(.5);
+
+      float: right;
+      margin: -5px;
+      // titlebar padding + title height - close icon default size (font-size-small)
+      padding: $panel-heading-padding;
+      position: relative;
+
+      &:hover {
+        @include opacity(1);
+
+        text-decoration: none;
+      }
+    }
+
+    .lia-accessibility,
+    &.lia-accessibility {
+
+      .ui-dialog-titlebar-close {
+        &:before {
+          display: none;
+        }
+      }
+    }
+
+    .ui-icon-closethick {
+      @include text-hide;
+    }
+
+    .ui-resizable-handle {
+      // inline styles on modals make !important required
+      // scss-lint:disable ImportantRule
+      display: none !important;
+    }
+  }
+
+  // slimming top bar of modals when no title is present.
+  .lia-dialog-titleless {
+    .ui-dialog-titlebar {
+      padding: 3px 0;
+    }
+  }
+
+  // Measure scrollbar width for padding body during modal show/hide
+  .lia-modal-scrollbar-measure {
+    height: 50px;
+    overflow: scroll;
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+  }
+
+  .ui-dialog-buttonpane {
+    button {
+      margin-right: 4px;
+    }
+  }
+
+  .lia-body .modal-backdrop,
+  .lia-body .ui-widget-overlay {
+    @include li-extend('.modal-backdrop');
+    @include opacity($modal-backdrop-opacity);
+  }
+
+  .MediaGalleryPage.lia-body {
+    .ui-dialog {
+      @include translate(-50%, -50%);
+
+      // inline styles on modals make !important required
+      // scss-lint:disable ImportantRule
+      left: 50% !important;
+      position: fixed;
+      top: 50% !important; // necesary, otherwise delete confirmation dialogs aren't responsive
+
+      .lia-modal {
+        height: auto !important; // Unfortunately, this !important is necessary to override some inline styles in LIA
+                                 // that we don't want to touch.
+      }
+    }
+  }
+
+  // Modal definition for bootstrap based modal classes
+  #lia-body.modal-open {
+    overflow: hidden;
+
+    .lia-modal-window {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+
+  .lia-modal-window {
+    bottom: 0;
+    display: none;
+    left: 0;
+    outline: 0;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 10002;
+
+    .modal-dialog {
+      position: relative;
+    }
+
+    .modal-content {
+      background-clip: padding-box;
+      background-color: $modal-backdrop-bg;
+      border: 1px solid $modal-content-border-color;
+      border-radius: $border-radius-large;
+      box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+      outline: 0;
+      position: relative;
+    }
+  }
+
+  .lia-modal-backdrop {
+    background-color: #000;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 10001;
+  }
+
+  .lia-modal-backdrop.fade {
+    @include opacity(0);
+  }
+
+  .lia-modal-backdrop.in {
+    @include opacity(.5);
+  }
+
+  .lia-modal-window.fade .modal-dialog {
+    @include opacity(0);
+  }
+
+  .lia-modal-window.in .modal-dialog {
+    @include opacity(1);
+  }
+
+  .lia-modal-backdrop.fade,
+  .lia-modal-backdrop.in,
+  .lia-modal-window.fade .modal-dialog,
+  .lia-modal-window.in .modal-dialog {
+    @include transition(opacity .15s linear);
+  }
+
+  @include media(tablet-and-larger) {
+    .lia-modal-window .modal-content {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    }
+  }
+
+
+  // Sign in and Registration Modals
+  .lia-body .mce-window,
+  .lia-panel-dialog,
+  .ui-dialog {
+    border-radius: $border-radius-base;
+
+    .ui-dialog-titlebar-close:before {
+      color: $text-color;
+    }
+  }
+
+  .lia-body .mce-abs-layout.mce-container-body,
+  .lia-body .ui-dialog-buttonpane,
+  .lia-body .ui-dialog-content {
+    position: static;
+  }
+
+  .lia-dialog-titleless .ui-dialog-titlebar,
+  .lia-panel-dialog .ui-dialog-titlebar-close,
+  .ui-dialog .ui-dialog-titlebar-close {
+    padding: $padding-large-vertical $padding-large-horizontal;
+  }
+
+  .lia-panel-dialog .ui-dialog-titlebar-close,
+  .ui-dialog .ui-dialog-titlebar-close {
+    margin: -$padding-large-vertical;
+  }
+
+  .lia-dialog-titleless .ui-dialog-titlebar {
+    border-bottom: 3px solid $li-border-color;
+    border-top: 3px solid $li-border-panel;
+    line-height: $line-height-computed;
+  }
+}

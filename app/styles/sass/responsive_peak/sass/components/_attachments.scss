@@ -1,0 +1,81 @@
+@mixin components\attachments {
+
+  .lia-form-attachments-fieldset-toggle {
+    @include media(phone) {
+      width: 100%;
+    }
+  }
+
+  .lia-new-attachments-field {
+    display: table;
+    margin: {
+      bottom: $padding-large-vertical;
+      left: 0;
+      right: $padding-large-vertical;
+      top: $padding-large-vertical;
+    }
+    overflow: hidden;
+    position: relative;
+
+
+
+    .lia-attachment-active-input {
+      display: table-header-group;
+
+      .lia-attachment-text-display {
+        @include li-icon(message-has-attachment);
+        display: inline-block;
+        min-height: $fa-font-size-base;
+        min-width: $fa-font-size-base;
+        pointer-events: none;
+        z-index: 1;
+
+        &:before {
+          left: 0;
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      .lia-form-type-file {
+        font-size: $font-size-h3;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+        width: 80%;
+        z-index: 0;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.lia-attachments-multiple .lia-attachment-text-display:before {
+      padding-right: $padding-large-vertical;
+    }
+
+    &.lia-attachments-single {
+      .lia-attachment-text-display:before {
+        position: absolute;
+      }
+      .lia-form-type-file {
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .lia-attachment-value-set {
+      display: table-footer-group;
+    }
+
+    .lia-new-attachment {
+      margin: 0;
+    }
+
+    .lia-remove-new-attachment{
+      display: inline-block;
+    }
+  }
+}

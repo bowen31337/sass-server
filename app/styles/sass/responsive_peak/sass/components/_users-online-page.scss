@@ -1,0 +1,7 @@
+@mixin components\users-online-page {
+
+  .lastRequestColumn,
+  .lastCleanRequestColumn {
+    word-break: break-all; // used to break long URLS
+  }
+}
